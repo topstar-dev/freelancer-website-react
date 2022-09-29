@@ -2,23 +2,14 @@ import React from "react";
 import { useRoutes, RouteObject, Outlet } from "react-router-dom";
 import SignIn from "./SignIn";
 import SignUp from "./signUp/SignUp";
-import Skills from "./freelancer/Skills";
 import EmailVerification from "./EmailVerification";
 import ClientProfile from './profile/ClientProfile';
 import FreelancerProfile from "./profile/Freelancerprofile";
-import BlockedIP from "./blocked/BlockedIP";
-import BlockedKeyword from "./blocked/BlockedKeyword";
-import AdminActivityLog from "./activityLog/admin";
-import UserActivityLog from "./activityLog/user";
-import ReviewFreelancer from "./Review/ReviewFreelancer";
-import JobDetails from "./Review/JobDetails";
 import HomePage from "./homepage/HomePage";
 import PrivacyPolicy from "./homepage/PrivacyPolicy";
 import TermsOfService from "./homepage/TermsOfService";
 import ContactUs from "./homepage/ContacUs";
 import AboutUs from "./homepage/AboutUs";
-import Search from "./Search";
-import AuthGuard from "../components/AuthGuard";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Settings from "./settings";
@@ -103,22 +94,6 @@ export default function Router() {
           element: <FreelancerProfile />
         },
         {
-          path: "/blocked-ips",
-          element: <BlockedIP />
-        },
-        {
-          path: "/blocked-keywords",
-          element: <BlockedKeyword />
-        },
-        {
-          path: "/activity-admins",
-          element: <AdminActivityLog />
-        },
-        {
-          path: "/activity-users",
-          element: <UserActivityLog />
-        },
-        {
           path: "/about",
           element: <AboutUs />
         },
@@ -141,21 +116,9 @@ export default function Router() {
           ]
         },
         {
-          path: "/freelancers",
-          element: <ReviewFreelancer />
-        },
-        {
-          path: "/jobs",
-          element: <JobDetails />
-        },
-        {
           path: "/apply-freelancer",
           element: <Submit />
-        },
-        {
-          path: "/search/freelancers",
-          element: <Search />
-        },
+        }
       ],
     },
   ];

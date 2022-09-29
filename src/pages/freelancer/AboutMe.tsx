@@ -1,21 +1,11 @@
 import React from 'react'
 import {
-    FormControl,
-    InputLabel,
     Select,
     MenuItem,
-    OutlinedInput,
-    DialogActions,
-    Dialog,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
     TextField,
     Box,
     Divider,
-    Typography,
-    Chip,
-    Stack
+    Typography
 } from "@mui/material"
 
 export default function AboutMe() {

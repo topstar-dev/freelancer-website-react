@@ -2,8 +2,7 @@ import React from "react";
 import {
     TextField,
     Typography,
-    Box,
-    Button
+    Box
 } from "@mui/material";
 import { BlueButton, DecideButton, CustomForm } from "../../commonStyle/CommonStyle";
 import { useNavigate } from "react-router-dom";
