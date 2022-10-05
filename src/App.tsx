@@ -1,12 +1,11 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Router from "./pages/Router";
 import { Provider } from "react-redux";
-import rootreducer from './reducers';
 import { configureStore } from "@reduxjs/toolkit";
 import { SnackbarProvider } from "notistack";
-
+import Router from "./content/Router";
+import rootreducer from './core/reducers';
 
 const store = configureStore({ reducer: rootreducer });
 
