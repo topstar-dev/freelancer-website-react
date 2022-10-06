@@ -1,10 +1,10 @@
 import * as React from "react";
+import { useTranslation } from 'react-i18next';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ListItemText from "@mui/material/ListItemText";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,9 +12,9 @@ import MenuList from "@mui/material/MenuList";
 import Menu from "@mui/material/Menu";
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
 
 export default function MenuAppbar() {
+  const { t } = useTranslation();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
@@ -44,28 +44,28 @@ export default function MenuAppbar() {
             component="div"
             sx={{ flexGrow: 1, marginLeft: "30px", marginTop: "2px" }}
           >
-            Help
+            {t('header-help')}
           </Typography>
           <Typography
             variant="h6"
             component="div"
             sx={{ marginLeft: "30px", marginTop: "2px" }}
           >
-            Blog
+            {t('header-blog')}
           </Typography>
           <Typography
             variant="h6"
             component="div"
             sx={{ marginLeft: "30px", marginTop: "2px" }}
           >
-            Contact us
+            {t('header-contact-us')}
           </Typography>
           <Typography
             variant="h6"
             component="div"
             sx={{ marginLeft: "30px", marginTop: "2px" }}
           >
-            About us
+            {t('header-about-us')}
           </Typography>
           {auth && (
             <div>

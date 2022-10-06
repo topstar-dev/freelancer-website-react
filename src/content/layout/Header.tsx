@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTranslation } from 'react-i18next';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -20,6 +21,7 @@ import { IS_MOBILE } from "../../core/actions/actionType";
 import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { t } = useTranslation();
   let user = useSelector((state: any) => state.login.user);
   const [currentUser, setCurrentUser] = React.useState(user);
   React.useEffect(() => {
@@ -33,7 +35,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
 
-  const pages = [{ name: 'Help', url: '/' }, { name: 'Blog', url: '/' }, { name: 'Contact us', url: '/contact' }, { name: 'About us', url: '/about' }]
+  const pages = [{ name: t('header-help'), url: '/' }, { name: t('header-blog'), url: '/' }, { name: t('header-contact-us'), url: '/contact' }, { name: t('header-about-us'), url: '/about' }]
   const navigate = useNavigate();
 
   const handleMenu = (event: any) => {
@@ -81,7 +83,7 @@ export default function Header() {
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, cursor: "pointer" }}>
             <img
               src="/rounx-symbol.png"
-              alt="Rounx admin"
+              alt="Rounx user"
               width="40px"
               height="40px"
               onClick={() => navigate("/")}
@@ -98,7 +100,7 @@ export default function Header() {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
-            <TextField sx={{ display: { xs: 'none', md: 'flex' } }} placeholder="Search freelancers"
+            <TextField sx={{ display: { xs: 'none', md: 'flex' } }} placeholder={t('header-search-freelancers')}
               InputProps={{ sx: { height: 40, borderRadius: '20px' }, startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> }} />
             {!!currentUser && <>
               <IconButton

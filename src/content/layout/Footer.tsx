@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { BottomNavigation, Paper, BottomNavigationAction, Select, MenuItem, Box, Typography } from "@mui/material";
+import { Paper, Select, MenuItem, Box, Typography } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { TextButton } from "../commonStyle/CommonStyle";
 import { useNavigate } from "react-router-dom";
@@ -30,10 +30,10 @@ export default function Footer() {
                 variant="standard"
             >
                 <MenuItem value="en">English</MenuItem>
-                <MenuItem value="cn">Chinese</MenuItem>
+                <MenuItem value="cn">{t('footer-chinese-language')}</MenuItem>
             </Select>
-            <TextButton mr={3} onClick={() => navigate('/privacy')}>Privacy Policy</TextButton>
-            <TextButton mr={3} onClick={() => navigate('/terms')}>Terms of Service</TextButton>
+            <TextButton mr={3} onClick={() => navigate('/privacy')}>{t('footer-privacy-policy')}</TextButton>
+            <TextButton mr={3} onClick={() => navigate('/terms')}>{t('footer-terms-of-service')}</TextButton>
             <Typography>&copy; Rounx {new Date().getFullYear()}</Typography>
         </Box>
         <Box sx={{ display: 'flex', mt: { xs: 2 }, alignItems: 'center', justifyContent: 'center', mr: '15%' }} >

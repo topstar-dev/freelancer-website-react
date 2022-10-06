@@ -1,29 +1,32 @@
+import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 import { BlueButton } from "../../commonStyle/CommonStyle";
 import useHome from "./customHooks/useHome";
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const { formik } = useHome();
   const navigate = useNavigate();
+
   return (
     <Box style={{ margin: '5% 15%' }}>
       <Grid container>
         <Grid alignItems='center' display='flex' item xs={12} md={12} lg={5}>
           <Box>
             <Typography style={{ fontSize: '40px', fontWeight: 'bold' }}>
-              Talent First, Client First
+              {t('home-page-heading1')}
             </Typography>
             <br />
             <Typography style={{ fontSize: '24px', color: '#757575' }}>
-              Rounx is a remote work platform for people with professional skills.
+              {t('home-page-heading1-details')}
               <br />
               <br />
-              Clients can hire freelancers all over the world to get the job done, Freelancers can find suitable jobs on ﻿this platform.
+              {t('home-page-heading1-details2')}
             </Typography>
             <br />
-            <BlueButton onClick={() => navigate('./sign-in')}>Join Rounx</BlueButton>
+            <BlueButton onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</BlueButton>
           </Box>
         </Grid>
         <Grid item lg={2} />
@@ -37,16 +40,16 @@ export default function HomePage() {
       <Divider />
       <br />
       <Box>
-        <Typography style={{ fontSize: '40px', fontWeight: 'bold', justifyContent: 'center', display: 'flex', margin: '5%' }}>Why Rounx</Typography>
+        <Typography style={{ fontSize: '40px', fontWeight: 'bold', justifyContent: 'center', display: 'flex', margin: '5%' }}>{t('home-page-why-ronux')}</Typography>
         <Grid container justifyContent='center'>
           <Grid item md={12} lg={4}>
             <Box sx={{ display: { xs: 'flex' }, alignItems: { xs: 'center' }, flexDirection: { xs: 'column' } }} marginRight='30px'>
               <img width='70px' src="VerifiedUserIcon.png" />
               <br />
               <br />
-              <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>High quality work</Typography>
+              <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>{t('home-page-why-point1')}</Typography>
               <br />
-              <Typography style={{ fontSize: '18px', color: '#757575' }}>Before freelancers join the platform, they go through a rigorous review, and only a few freelancers will pass the review.</Typography>
+              <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point1-info')}</Typography>
             </Box>
           </Grid>
           <Grid item md={12} lg={4}>
@@ -54,8 +57,8 @@ export default function HomePage() {
               <img width='70px' src="PublicIcon.png" />
               <br />
               <br />
-              <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Work-Life Balance</Typography>
-              <Typography style={{ fontSize: '18px', color: '#757575' }}>Remote work allows for more flexibility in scheduling, as long as you can complete your work on time, ﻿so you can work as long as you want.</Typography>
+              <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>{t('home-page-why-point2')}</Typography>
+              <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point2-info')}</Typography>
               <br />
             </Box>
           </Grid>
@@ -64,8 +67,8 @@ export default function HomePage() {
               <img width='70px' src="CodeIcon.png" />
               <br />
               <br />
-              <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Focus on IT industry</Typography>
-              <Typography style={{ fontSize: '18px', color: '#757575' }}>Rounx focuses on the IT industry, occupation categories include: front-end back-end development, ﻿design...etc.</Typography>
+              <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>{t('home-page-why-point3')}</Typography>
+              <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point3-info')}</Typography>
               <br />
             </Box>
           </Grid>
@@ -81,12 +84,12 @@ export default function HomePage() {
         <Grid item lg={5} xs={12} >
           <Box>
             <Box sx={{ display: { xs: 'flex' }, justifyContent: { xs: 'center' } }}>
-              <Typography sx={{ fontSize: '40px', fontWeight: 'bold' }}>Coming Soon</Typography>
+              <Typography sx={{ fontSize: '40px', fontWeight: 'bold' }}>{t('home-page-comming-soon')}</Typography>
             </Box>
             <br />
             <Box sx={{ display: { xs: 'flex' }, justifyContent: { xs: 'center' } }}>
               <Typography sx={{ fontSize: '24px', color: '#757575' }}>
-                Our remote work platform will be online soon,Add your email and become the first Rounx user.
+                {t('home-page-comming-soon-info')}
               </Typography>
             </Box>
             <br />
@@ -95,7 +98,7 @@ export default function HomePage() {
                 value={formik.values.email}
                 id="email"
                 name="email"
-                placeholder="Email"
+                placeholder={t('home-page-comming-soon-email')}
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
@@ -103,7 +106,7 @@ export default function HomePage() {
                 style={{ marginRight: '20px' }}
                 fullWidth
               />
-              <BlueButton type="submit">Submit</BlueButton>
+              <BlueButton type="submit">{t('home-page-comming-soon-email-button')}</BlueButton>
             </form>
           </Box>
         </Grid>
