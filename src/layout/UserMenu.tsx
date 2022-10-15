@@ -3,14 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Divider, IconButton, ListItemText, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { UserInterface } from '../redux/auth/authSlice';
 
 interface UserMenuPropsInterface {
-    signOut: Function
+    signOut: Function,
+    userInfo: UserInterface | null
 }
-export default function UserMenu({ signOut }: UserMenuPropsInterface) {
+
+export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) {
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const currentUser: any = {};
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
@@ -35,7 +37,11 @@ export default function UserMenu({ signOut }: UserMenuPropsInterface) {
                 onClick={handleMenu}
                 color="inherit"
             >
-                <AccountCircle style={{ width: "40px", height: "40px", color: '#757575' }} />
+                {userInfo?.avatar_url ?
+                    <img src={userInfo?.avatar_url} alt="Rounx user" width="40" height="40" />
+                    :
+                    <AccountCircle style={{ width: "40px", height: "40px", color: '#757575' }} />
+                }
             </IconButton>
             <Menu
                 id="menu-appbar"
@@ -62,9 +68,9 @@ export default function UserMenu({ signOut }: UserMenuPropsInterface) {
                             textAlign: "center",
                         }}
                     >
-                        {currentUser.name}
+                        {userInfo?.name}
                         <br />
-                        {currentUser.email}
+                        {userInfo?.email}
                     </ListItemText>
                     <Divider />
                     <MenuItem style={{ padding: "15px" }}>

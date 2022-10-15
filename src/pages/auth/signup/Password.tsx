@@ -7,20 +7,18 @@ import {
     Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import usePassword from "./customHooks/usePassword";
 import { CustomForm, BlueButton, DecideButton } from "../../commonStyle";
 
-export default function Password(props: any) {
+export default function Password(mainProps: any) {
+    const { formik } = mainProps;
+
     const [showPassword, setShowPassword] = React.useState(false);
-    const navigate = useNavigate();
-    const { formik } = usePassword(props.handleNext);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
     return (
-        <CustomForm onSubmit={formik.handleSubmit}>
+        <CustomForm>
             <img
                 src="images/rounx-symbol.png"
                 alt="Rounx admin"
@@ -30,7 +28,7 @@ export default function Password(props: any) {
             />
             <Typography
                 style={{
-                    fontSize: "17px",
+                    fontSize: "16px",
                     textAlign: "center",
                     marginTop: "-10px",
                     marginBottom: "20px",
@@ -40,14 +38,14 @@ export default function Password(props: any) {
             </Typography>
             <TextField
                 fullWidth
-                id="set_password"
-                name="set_password"
+                id="password"
+                name="password"
                 label="Set password"
                 type={showPassword ? "text" : "password"}
-                value={formik.values.set_password}
+                value={formik.values.password}
                 onChange={formik.handleChange}
-                helperText={"At least 8 characters"}
-                error={formik.touched.set_password && Boolean(formik.errors.set_password)}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -76,11 +74,27 @@ export default function Password(props: any) {
             <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                 <DecideButton
                     sx={{ mr: 2 }}
-                    onClick={() => props.handleBack()}
+                    onClick={() => mainProps.handleBack()}
                 >
                     Back
                 </DecideButton>
-                <BlueButton type="submit" >
+                <BlueButton onClick={() => {
+                    formik.validateForm().then((res: any) => {
+                        const { password, confirm_password } = res;
+
+                        if (password) {
+                            formik.setFieldTouched('password', true, true);
+                            formik.setFieldError('password', password);
+                        }
+                        if (confirm_password) {
+                            formik.setFieldTouched('confirm_password', true, true);
+                            formik.setFieldError('confirm_password', confirm_password);
+                        }
+                        if (!password && !confirm_password) {
+                            mainProps.handleNext();
+                        }
+                    })
+                }} >
                     Next
                 </BlueButton>
             </Box>

@@ -8,32 +8,34 @@ import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import {
-    isLoggedIn,
-    user,
-    signOutAsync,
-    resetUserData
-} from '../pages/auth/authSlice';
+    signOutUser
+} from '../redux/auth/authActions';
 import UserMenu from "./UserMenu";
 
 export default function Header() {
-    const { t } = useTranslation();
-    const { enqueueSnackbar } = useSnackbar();
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const alreadyLoggedIn = useAppSelector(isLoggedIn);
-    const userData = useAppSelector(user);
+    const { userInfo, error, status, message } = useAppSelector((state) => state.auth);
+
+    const { t } = useTranslation();
     const isTabOrMobile = useMediaQuery({ query: '(max-width: 900px)' });
 
+    const dispatch = useAppDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+
+
     useEffect(() => {
-        if (!alreadyLoggedIn && userData.status === 200) {
-            dispatch(resetUserData())
-            navigate('/sign-in')
-        } else if (userData.status === 401) {
-            enqueueSnackbar(userData.message, { variant: 'error' })
+        if (!userInfo && status === 200) {
+            enqueueSnackbar(message, { variant: 'success' });
+            navigate('/sign-in');
         }
-    }, [alreadyLoggedIn])
+
+        if (error) {
+            enqueueSnackbar(error, { variant: 'error' })
+        }
+    }, [navigate, enqueueSnackbar, userInfo, status, message, error])
+
     const signOut = () => {
-        dispatch(signOutAsync());
+        dispatch(signOutUser());
     }
 
     const pages: { name: string; url: string; }[] = [
@@ -43,7 +45,7 @@ export default function Header() {
         { name: t('header-about-us'), url: '/about' }
     ];
 
-    const userMenu = alreadyLoggedIn ? <UserMenu signOut={signOut} /> : "";
+    const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : "";
 
     return (
         <Box sx={{ flexGrow: 1 }}>

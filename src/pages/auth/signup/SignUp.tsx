@@ -1,0 +1,114 @@
+import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { useSearchParams } from 'react-router-dom';
+import * as yup from "yup";
+import { Formik } from "formik";
+import Box from '@mui/material/Box';
+import Info from './Info';
+import Password from './Password';
+import Email from './Email';
+import Code from './Code';
+import { getCountriesList } from '../../../redux/resources/resourcesActions';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+
+const validationSchema = yup.object({
+    first_name: yup
+        .string()
+        .required("First name is required"),
+    last_name: yup
+        .string()
+        .required("Last name is required"),
+    birthday: yup
+        .string()
+        .required("Birthday is required"),
+    country_id: yup
+        .string()
+        .required("Country id is required"),
+    password: yup
+        .string()
+        .min(8, "Password should be of minimum 8 characters length")
+        .required("Password is required"),
+    confirm_password: yup
+        .string()
+        .when("password", {
+            is: (value: string) => (value && value.length > 0 ? true : false),
+            then: yup.string().oneOf([yup.ref("password")], "Passwords do not match"),
+        })
+        .required("Confirm password is required"),
+    primary_email: yup
+        .string()
+        .email("Enter a valid email")
+        .required("Email is required"),
+    email_code: yup
+        .number()
+        .required("Code is required"),
+});
+
+export default function SignUp() {
+    const [searchParams] = useSearchParams();
+    const dispatch = useAppDispatch();
+    const type = searchParams.get('type');
+    const [activeStep, setActiveStep] = useState<number>(0);
+    const [countries, setCountries] = useState([]);
+    const { loading, countryData } = useAppSelector(state => state.resources)
+
+    useEffect(() => {
+        if (!loading && !countryData.records) {
+            dispatch(getCountriesList()).then(res => {
+                const { status, data } = res.payload;
+                if (status === 200) {
+                    setCountries(data.records);
+                }
+            })
+        }
+    })
+
+    const handleNext = () => {
+        const newActiveStep = activeStep + 1;
+        setActiveStep(newActiveStep);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    const steps: any = {
+        0: (props: any) => <Info formik={props} handleNext={handleNext} countries={countries} />,
+        1: (props: any) => <Password formik={props} handleBack={handleBack} handleNext={handleNext} />,
+        2: (props: any) => <Email formik={props} handleBack={handleBack} handleNext={handleNext} />,
+        3: (props: any) => <Code formik={props} handleBack={handleBack} type={type} />
+    }
+
+    return (
+        <Box style={{
+            position: 'relative',
+            height: '100%'
+        }}>
+            <Box style={{
+                width: useMediaQuery({ query: '(max-width: 500px)' }) ? 'calc(100% - 20px)' : '500px',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 1
+            }}>
+                <Formik
+                    initialValues={{
+                        first_name: "",
+                        last_name: "",
+                        confirm_password: "",
+                        password: "",
+                        primary_email: "",
+                        email_code: "",
+                    }}
+                    validationSchema={validationSchema}
+                    onSubmit={(values) => { }}
+                >
+                    {props => (
+                        steps[`${activeStep}`](props)
+                    )}
+                </Formik>
+            </Box>
+        </Box>
+    );
+}

@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { SnackbarProvider } from "notistack";
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import SnackbarCloseButton from './layout/CloseSnakeBar';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
@@ -13,7 +14,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <SnackbarProvider maxSnack={3}>
+    <SnackbarProvider maxSnack={3} action={snackbarKey => <SnackbarCloseButton snackbarKey={snackbarKey} />}>
       <Provider store={store}>
         <App />
       </Provider>

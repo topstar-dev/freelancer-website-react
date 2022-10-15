@@ -20,10 +20,8 @@ import { useSnackbar } from "notistack";
 import { BlueButton, CustomForm } from "../../commonStyle";
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import {
-  isLoggedIn,
-  user,
-  signInAsync
-} from '../authSlice';
+  signInUser
+} from '../../../redux/auth/authActions';
 
 const validationSchema = yup.object({
   email: yup
@@ -39,24 +37,26 @@ const validationSchema = yup.object({
 export default function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const alreadyLoggedIn = useAppSelector(isLoggedIn);
-  const userData = useAppSelector(user);
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
+
+  const { loading, userInfo, error, status, message } = useAppSelector((state) => state.auth)
   const [showPassword, setShowPassword] = React.useState(false);
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    console.log(userData)
-    if (alreadyLoggedIn && userData.status === 200) {
-      enqueueSnackbar(userData.message, { variant: 'success' });
-      navigate('/');
-    } else {
-      if (userData.message) {
-        enqueueSnackbar(userData.message, { variant: 'error' });
+    if (userInfo) {
+      if (status === 200) {
+        enqueueSnackbar(message, { variant: 'success' });
+        navigate('/');
+      } else {
+        enqueueSnackbar(message, { variant: 'error' });
       }
     }
-  }, [alreadyLoggedIn])
+    if (error) {
+      enqueueSnackbar(error, { variant: 'error' });
+    }
+  }, [enqueueSnackbar, navigate, status, userInfo, message, error])
 
   return (
     <Box style={{
@@ -80,7 +80,7 @@ export default function SignIn() {
           }
           validationSchema={validationSchema}
           onSubmit={(values, actions) => {
-            dispatch(signInAsync({ email: values.email, password: values.password }))
+            dispatch(signInUser({ email: values.email, password: values.password }))
           }}
         >
           {props => (
@@ -147,7 +147,11 @@ export default function SignIn() {
                 >
                   {t('signin-forgot-password')}
                 </Button>
-                <BlueButton type="submit" style={{ float: "right" }}>
+                <BlueButton
+                  disabled={loading}
+                  type="submit"
+                  style={{ float: "right" }}
+                >
                   {t('signin-submit')}
                 </BlueButton>
               </Box>
@@ -171,8 +175,8 @@ export default function SignIn() {
                   horizontal: "left",
                 }}
               >
-                <MenuItem onClick={() => navigate('/sign-up?type="CLIENT"')}>{t('signin-signup-client')}</MenuItem>
-                <MenuItem onClick={() => navigate('/sign-up?type="FREELANCER"')}>{t('signin-signup-freelancer')}</MenuItem>
+                <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('signin-signup-client')}</MenuItem>
+                <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('signin-signup-freelancer')}</MenuItem>
               </Popover>
             </CustomForm>
           )}

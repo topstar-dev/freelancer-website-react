@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
-import axios from 'axios';
 import { useSnackbar } from "notistack";
 import { BlueButton } from "../commonStyle";
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import {
+    scheduleAppointment
+} from '../../redux/home/homeActions';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 const validationSchema = yup.object({
     email: yup
         .string()
@@ -18,6 +20,7 @@ const validationSchema = yup.object({
 
 export default function HomePage() {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
 
@@ -109,22 +112,17 @@ export default function HomePage() {
                             validationSchema={validationSchema}
                             initialValues={{ email: '' }}
                             onSubmit={(values, actions) => {
-                                axios.post(`${BASE_URL}/appointment-email`, {
-                                    email: values.email,
-                                }, {
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        "Accept-Language": 'en',
-                                        "device-type": 'WEB'
-                                    }
-                                }).then((res: any) => {
-                                    enqueueSnackbar(res.data.message, { variant: 'success' });
-                                    actions.resetForm();
-                                }).catch((error: any) => {
-                                    if (error.response.status === 403) enqueueSnackbar('Email already exists', { variant: 'error' });
-                                    if (error.response.status === 400) enqueueSnackbar('Invalid email format', { variant: 'error' });
-                                    actions.resetForm();
-                                });
+                                dispatch(scheduleAppointment(values.email))
+                                    .then((res) => {
+                                        const payload = res.payload;
+                                        if (payload.status === 200) enqueueSnackbar(payload.message, { variant: 'success' });
+                                        if (payload.status === 403) enqueueSnackbar(payload.message, { variant: 'error' });
+                                        if (payload.status === 400) enqueueSnackbar(payload.message, { variant: 'error' });
+                                        actions.resetForm();
+                                    }).catch((error) => {
+                                        enqueueSnackbar(error, { variant: 'error' });
+                                        actions.resetForm();
+                                    })
                             }}
                         >
                             {props => (

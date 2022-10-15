@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import SignIn from "./auth/signin/SignIn";
-import SignUp from "./auth/register/SignUp";
+import SignUp from "./auth/signup/SignUp";
 import ResetPassword from "./auth/resetPassword/ResetPassword";
 import Settings from "./settings/Settings";
 import Personal from "./settings/personalInfo/Personal";
@@ -17,44 +17,33 @@ import ContactUs from "./contactUs/ContacUs";
 import AboutUs from "./aboutUs/AboutUs";
 import PrivacyPolicy from "./privacy/PrivacyPolicy";
 import TermsOfService from "./termsOfService/TermsOfService";
+import AuthGuard from "./auth/AuthGuard";
 
-const AuthLayout = () => {
-  const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
-
-  return (
-    <>
-      <Box style={{
-        overflow: 'auto',
-        height: isWeb ? 'calc(100% - 50px)' : 'calc(100% - 100px)',
-      }}>
-        <Outlet />
-      </Box>
-      <Footer />
-    </>
-  );
+interface RoutesInterface {
+  isHeader: boolean,
+  protectedRoute: boolean
 }
-
-const MainLayout = () => {
+const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
 
-  return (
-    <>
-      <Box style={{
-        overflow: 'auto',
-        height: isWeb ? 'calc(100% - 50px)' : 'calc(100% - 100px)',
-      }}>
-        <Header />
-        <Outlet />
-      </Box>
-      <Footer />
-    </>
-  );
+  const content = <>
+    <Box style={{
+      overflow: 'auto',
+      height: isWeb ? 'calc(100% - 50px)' : 'calc(100% - 100px)',
+    }}>
+      {isHeader && <Header />}
+      <Outlet />
+    </Box>
+    <Footer />
+  </>
+
+  return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;
 }
 
 export default function Router() {
   const router: RouteObject[] = [
     {
-      element: <AuthLayout />,
+      element: <CustomRouter isHeader={false} protectedRoute={false} />,
       children: [
         {
           path: "/sign-in",
@@ -72,7 +61,7 @@ export default function Router() {
     },
     {
       path: "/",
-      element: <MainLayout />,
+      element: <CustomRouter isHeader={true} protectedRoute={false} />,
       children: [
         {
           path: "/",
@@ -93,7 +82,13 @@ export default function Router() {
         {
           path: "terms",
           element: <TermsOfService />,
-        },
+        }
+      ],
+    },
+    {
+      path: "/settings",
+      element: <CustomRouter isHeader={true} protectedRoute={true} />,
+      children: [
         {
           path: "/settings",
           element: <Settings />,
@@ -111,8 +106,8 @@ export default function Router() {
               element: <Currency />,
             }
           ]
-        },
-      ],
+        }
+      ]
     },
   ];
 
