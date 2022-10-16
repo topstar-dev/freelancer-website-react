@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useSnackbar } from "notistack";
 import {
   TextField,
   Typography,
@@ -8,11 +10,11 @@ import {
 import { BlueButton, DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
-import { useSnackbar } from "notistack";
 import { resetDefault } from "../../../redux/auth/authSlice";
 
 export default function EnterEmail(mainProps: any) {
   const { formik } = mainProps;
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -25,18 +27,18 @@ export default function EnterEmail(mainProps: any) {
           fontSize: "17px",
           textAlign: "center",
           marginTop: "-10px",
-          marginBottom: "20px",
+          marginBottom: "20px"
         }}
       >
-        <b>Reset Password</b>
+        <b>{t('reset-password-title.title')}</b>
         <br />
-        Enter your email address and we will send you a verification code.
+        {t('reset-password-title.email-info')}
       </Typography>
       <TextField
         fullWidth
         id="email"
         name="email"
-        label="Email"
+        label={t('reset-password-data.email')}
         value={formik.values.email}
         onChange={formik.handleChange}
         error={formik.touched.email && Boolean(formik.errors.email)}
@@ -48,7 +50,7 @@ export default function EnterEmail(mainProps: any) {
           onClick={() => navigate("/sign-in")}
           sx={{ marginRight: '10px' }}
         >
-          Back
+          {t('signup-title.signin-btn')}
         </DecideButton>
         <BlueButton
           disabled={loading}
@@ -82,7 +84,7 @@ export default function EnterEmail(mainProps: any) {
               }
             })
           }}>
-          Next
+          {t('signup-title.next-btn')}
         </BlueButton>
       </Box>
     </>

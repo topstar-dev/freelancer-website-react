@@ -91,7 +91,7 @@ export default function Code(mainProps: any) {
                         }
                     })
                 }}>
-                    {t('signup-title.next-btn')}
+                    {t('signup-title.submit-btn')}
                 </BlueButton>
             </Box>
         </>

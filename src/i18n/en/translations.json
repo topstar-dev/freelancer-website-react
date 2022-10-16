@@ -50,7 +50,8 @@
         "code-title": "An email with a verification code was just to",
         "next-btn": "Next",
         "signin-btn": "Sign in",
-        "back-btn": "Back"
+        "back-btn": "Back",
+        "submit-btn": "Submit"
     },
     "signup-data": {
         "first-name": "First Name",
@@ -61,6 +62,18 @@
         "confirm-password": "Confirm password",
         "email": "Email",
         "code": "Enter code"
+    },
+    "reset-password-title": {
+        "title": "Reset Password",
+        "email-info": "Enter your email address and we will send you a verification code.",
+        "code-info": "An email with a verification code was just to",
+        "password-info": "Create a strong password with a mix of letters, numbers and symbols"
+    },
+    "reset-password-data": {
+        "email": "Email",
+        "code": "Enter code",
+        "password": "Set password",
+        "confirm-password": "Confirm password"
     },
     "user-settings": "Settings",
     "user-settings-personal": "Personal info",

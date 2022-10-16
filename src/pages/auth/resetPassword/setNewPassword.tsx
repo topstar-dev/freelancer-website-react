@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
 import {
   TextField,
   Typography,
@@ -16,6 +17,7 @@ import { resetDefault } from "../../../redux/auth/authSlice";
 
 export default function SetNewPassword(mainProps: any) {
   const { formik } = mainProps;
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -36,13 +38,13 @@ export default function SetNewPassword(mainProps: any) {
           marginBottom: "20px",
         }}
       >
-        Create a strong password with a mix of letters, numbers and symbols
+        {t('reset-password-title.password-info')}
       </Typography>
       <TextField
         fullWidth
         id="password"
         name="password"
-        label="Set password"
+        label={t('reset-password-data.password')}
         type={showPassword ? "text" : "password"}
         value={formik.values.password}
         onChange={formik.handleChange}
@@ -67,19 +69,19 @@ export default function SetNewPassword(mainProps: any) {
         id="confirm_password"
         name="confirm_password"
         type="password"
-        label="Confirm password"
+        label={t('reset-password-data.confirm-password')}
         value={formik.values.confirm_password}
         onChange={formik.handleChange}
         error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
         helperText={formik.touched.confirm_password && formik.errors.confirm_password}
       />
-      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <DecideButton
           disabled={loading}
           sx={{ mr: 2 }}
           onClick={() => mainProps.handleBack()}
         >
-          Back
+          {t('signup-title.back-btn')}
         </DecideButton>
         <BlueButton disabled={loading} onClick={() => {
           formik.validateForm().then((res: any) => {
@@ -117,7 +119,7 @@ export default function SetNewPassword(mainProps: any) {
             }
           })
         }}>
-          Submit
+          {t('signup-title.submit-btn')}
         </BlueButton>
       </Box>
     </>

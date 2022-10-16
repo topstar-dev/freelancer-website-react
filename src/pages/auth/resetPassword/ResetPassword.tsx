@@ -31,7 +31,7 @@ const validationSchema = yup.object({
 
 export default function ResetPassword() {
 	const navigate = useNavigate();
-	const [activeStep, setActiveStep] = React.useState<number>(1);
+	const [activeStep, setActiveStep] = React.useState<number>(0);
 
 	const handleNext = () => {
 		const newActiveStep = activeStep + 1;
