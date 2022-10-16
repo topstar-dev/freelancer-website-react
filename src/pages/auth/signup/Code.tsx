@@ -7,7 +7,7 @@ import {
     Box,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { CustomForm, BlueButton, DecideButton } from "../../commonStyle";
+import { BlueButton, DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { signUpUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
@@ -21,14 +21,7 @@ export default function Code(mainProps: any) {
     const navigate = useNavigate();
 
     return (
-        <CustomForm>
-            <img
-                src="images/rounx-symbol.png"
-                alt="Rounx admin"
-                width="60px"
-                height="60px"
-                style={{ color: "#336def", alignSelf: "center" }}
-            />
+        <>
             <Typography
                 style={{
                     fontSize: "17px",
@@ -101,6 +94,6 @@ export default function Code(mainProps: any) {
                     {t('signup-title.next-btn')}
                 </BlueButton>
             </Box>
-        </CustomForm>
+        </>
     );
 }

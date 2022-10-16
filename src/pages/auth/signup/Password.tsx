@@ -8,7 +8,7 @@ import {
     Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CustomForm, BlueButton, DecideButton } from "../../commonStyle";
+import { BlueButton, DecideButton } from "../../commonStyle";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
@@ -20,14 +20,7 @@ export default function Password(mainProps: any) {
     };
 
     return (
-        <CustomForm>
-            <img
-                src="images/rounx-symbol.png"
-                alt="Rounx admin"
-                width="60px"
-                height="60px"
-                style={{ alignSelf: "center" }}
-            />
+        <>
             <Typography
                 style={{
                     fontSize: "16px",
@@ -100,6 +93,6 @@ export default function Password(mainProps: any) {
                     {t('signup-title.next-btn')}
                 </BlueButton>
             </Box>
-        </CustomForm>
+        </>
     );
 }

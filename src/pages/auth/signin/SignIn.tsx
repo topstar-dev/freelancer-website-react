@@ -87,7 +87,8 @@ export default function SignIn() {
                 alt="Rounx admin"
                 width="60px"
                 height="60px"
-                style={{ alignSelf: "center" }}
+                style={{ alignSelf: "center", cursor: "pointer" }}
+                onClick={() => navigate('/')}
               />
               <Typography
                 style={{

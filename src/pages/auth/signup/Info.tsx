@@ -17,7 +17,6 @@ import {
 } from "@mui/material";
 import {
   BlueButton,
-  CustomForm,
   DecideButton,
   FlexBox,
 } from "../../commonStyle";
@@ -42,14 +41,7 @@ export default function Info(mainProps: any) {
   };
 
   return (
-    <CustomForm>
-      <img
-        src="images/rounx-symbol.png"
-        alt="Rounx admin"
-        width="60px"
-        height="60px"
-        style={{ alignSelf: "center" }}
-      />
+    <>
       <Typography
         style={{
           fontSize: "17px",
@@ -130,6 +122,6 @@ export default function Info(mainProps: any) {
           {t('signup-title.next-btn')}
         </BlueButton>
       </Box>
-    </CustomForm>
+    </>
   );
 }

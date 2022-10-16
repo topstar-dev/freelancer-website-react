@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as yup from "yup";
 import { Formik } from "formik";
 import Box from '@mui/material/Box';
@@ -8,6 +8,7 @@ import Info from './Info';
 import Password from './Password';
 import Email from './Email';
 import Code from './Code';
+import { CustomForm } from "../../commonStyle";
 import { getCountriesList } from '../../../redux/resources/resourcesActions';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
@@ -47,6 +48,7 @@ const validationSchema = yup.object({
 export default function SignUp() {
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const type = searchParams.get('type');
     const [activeStep, setActiveStep] = useState<number>(0);
     const [countries, setCountries] = useState([]);
@@ -104,9 +106,19 @@ export default function SignUp() {
                     validationSchema={validationSchema}
                     onSubmit={(values) => { }}
                 >
-                    {props => (
-                        steps[`${activeStep}`](props)
-                    )}
+                    {props =>
+                        <CustomForm>
+                            <img
+                                src="images/rounx-symbol.png"
+                                alt="Rounx admin"
+                                width="60px"
+                                height="60px"
+                                style={{ alignSelf: "center", cursor: "pointer" }}
+                                onClick={() => navigate('/')}
+                            />
+                            {steps[`${activeStep}`](props)}
+                        </CustomForm >
+                    }
                 </Formik>
             </Box>
         </Box>
