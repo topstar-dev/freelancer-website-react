@@ -9,8 +9,10 @@ import { BlueButton, DecideButton, CustomForm } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
+import { useTranslation } from "react-i18next";
 
 export default function Email(mainProps: any) {
+    const { t } = useTranslation();
     const { formik } = mainProps;
     const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
@@ -32,24 +34,26 @@ export default function Email(mainProps: any) {
                     marginTop: "-10px",
                     marginBottom: "20px",
                 }}>
-                Enter your email address and we will send you a verification code.
+                <b>{t("signup-title.email-header")}</b>
+                <br />
+                {t('signup-title.email-title')}
             </Typography>
             <TextField
                 fullWidth
                 id="primary_email"
                 name="primary_email"
-                label="Email"
+                label={t('signup-data.email')}
                 value={formik.values.primary_email}
                 onChange={formik.handleChange}
                 error={formik.touched.primary_email && Boolean(formik.errors.primary_email)}
-                helperText={formik.touched.primary_email && formik.errors.primary_email}
+                helperText={t('signup-title.email-helper')}
             />
             <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
                 <DecideButton
                     disabled={loading}
                     onClick={() => mainProps.handleBack()}
                     sx={{ marginRight: '10px' }}>
-                    Back
+                    {t('signup-title.back-btn')}
                 </DecideButton>
                 <BlueButton disabled={loading} style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
@@ -81,7 +85,7 @@ export default function Email(mainProps: any) {
                         }
                     })
                 }}>
-                    Next
+                    {t('signup-title.next-btn')}
                 </BlueButton>
             </Box>
         </CustomForm>

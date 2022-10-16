@@ -1,10 +1,10 @@
 import React from "react";
-import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
-
 import {
   TextField,
   Typography,
@@ -23,6 +23,7 @@ import {
 } from "../../commonStyle";
 
 export default function Info(mainProps: any) {
+  const { t } = useTranslation();
   const options = mainProps.countries;
   const { formik } = mainProps;
 
@@ -57,13 +58,13 @@ export default function Info(mainProps: any) {
           marginBottom: "20px",
         }}
       >
-        <span>Create </span>
-        <span style={{ fontWeight: "bold" }}>Rounx </span>
-        <span>account </span>
+        <span>{t('signup-title.join')} </span>
+        <span style={{ fontWeight: "bold" }}>{t('signup-title.rounx')} </span>
+        <span>{t('signup-title.account')} </span>
       </Typography>
       <FlexBox sx={{ justifyContent: 'space-between' }} >
         <TextField
-          label="First name"
+          label={t('signup-data.first-name')}
           id="first_name"
           name="first_name"
           value={formik.values.first_name}
@@ -72,7 +73,7 @@ export default function Info(mainProps: any) {
           helperText={formik.touched.first_name && formik.errors.first_name}
           sx={{ mr: 1 }} />
         <TextField
-          label="Last name"
+          label={t('signup-data.last-name')}
           id="last_name"
           name="last_name"
           value={formik.values.last_name}
@@ -82,7 +83,7 @@ export default function Info(mainProps: any) {
       </FlexBox>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
-          label="Birthday"
+          label={t('signup-data.birthday')}
           inputFormat="YYYY-MM-DD"
           value={birthday}
           onChange={handleChange}
@@ -90,9 +91,9 @@ export default function Info(mainProps: any) {
         />
       </LocalizationProvider>
       <FormControl>
-        <InputLabel>Country/Region</InputLabel>
+        <InputLabel>{t('signup-data.country')}</InputLabel>
         <Select
-          label="Country/Region"
+          label={t('signup-data.country')}
           value={country}
           onChange={countryChange}
         >
@@ -104,13 +105,13 @@ export default function Info(mainProps: any) {
           })}
         </Select>
       </FormControl>
-      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
+      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'space-between' }}>
         <DecideButton
           onClick={() => navigate("/sign-in")}
         >
-          Back
+          {t('signup-title.signin-btn')}
         </DecideButton>
-        <BlueButton style={{ float: "right" }} onClick={() => {
+        <BlueButton onClick={() => {
           formik.validateForm().then((res: any) => {
             const { first_name, last_name } = res;
             if (first_name) {
@@ -126,7 +127,7 @@ export default function Info(mainProps: any) {
             }
           })
         }}>
-          Next
+          {t('signup-title.next-btn')}
         </BlueButton>
       </Box>
     </CustomForm>

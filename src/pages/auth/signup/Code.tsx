@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
     TextField,
     Typography,
@@ -13,6 +14,7 @@ import { resetDefault } from "../../../redux/auth/authSlice";
 
 export default function Code(mainProps: any) {
     const { formik } = mainProps;
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
@@ -32,17 +34,16 @@ export default function Code(mainProps: any) {
                     fontSize: "17px",
                     textAlign: "center",
                     marginTop: "-10px",
-                    // marginBottom: "20px",
                 }}
             >
-                An email with a verification code is sent to
+                {t('signup-title.code-title')}
             </Typography>
             <Typography style={{ alignSelf: 'center', fontWeight: 'bold' }}>{formik.values.primary_email}</Typography>
             <TextField
                 fullWidth
                 id="email_code"
                 name="email_code"
-                label="Enter email code"
+                label={t('signup-data.code')}
                 value={formik.values.email_code}
                 onChange={formik.handleChange}
                 error={formik.touched.email_code && Boolean(formik.errors.email_code)}
@@ -54,7 +55,7 @@ export default function Code(mainProps: any) {
                     onClick={() => mainProps.handleBack()}
                     sx={{ marginRight: '10px' }}
                 >
-                    Back
+                    {t('signup-title.back-btn')}
                 </DecideButton>
                 <BlueButton disabled={loading} style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
@@ -97,7 +98,7 @@ export default function Code(mainProps: any) {
                         }
                     })
                 }}>
-                    Next
+                    {t('signup-title.next-btn')}
                 </BlueButton>
             </Box>
         </CustomForm>

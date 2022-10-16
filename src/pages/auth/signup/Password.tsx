@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import {
     TextField,
     Typography,
@@ -10,6 +11,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { CustomForm, BlueButton, DecideButton } from "../../commonStyle";
 
 export default function Password(mainProps: any) {
+    const { t } = useTranslation();
     const { formik } = mainProps;
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -34,13 +36,13 @@ export default function Password(mainProps: any) {
                     marginBottom: "20px",
                 }}
             >
-                Create a strong password with a mix of letters, numbers and symbols
+                {t('signup-title.password-title')}
             </Typography>
             <TextField
                 fullWidth
                 id="password"
                 name="password"
-                label="Set password"
+                label={t('signup-data.set-password')}
                 type={showPassword ? "text" : "password"}
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -65,18 +67,18 @@ export default function Password(mainProps: any) {
                 id="confirm_password"
                 name="confirm_password"
                 type="password"
-                label="Confirm password"
+                label={t('signup-data.confirm-password')}
                 value={formik.values.confirm_password}
                 onChange={formik.handleChange}
                 error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
                 helperText={formik.touched.confirm_password && formik.errors.confirm_password}
             />
-            <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'space-between' }}>
                 <DecideButton
                     sx={{ mr: 2 }}
                     onClick={() => mainProps.handleBack()}
                 >
-                    Back
+                    {t('signup-title.back-btn')}
                 </DecideButton>
                 <BlueButton onClick={() => {
                     formik.validateForm().then((res: any) => {
@@ -95,7 +97,7 @@ export default function Password(mainProps: any) {
                         }
                     })
                 }} >
-                    Next
+                    {t('signup-title.next-btn')}
                 </BlueButton>
             </Box>
         </CustomForm>
