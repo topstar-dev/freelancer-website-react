@@ -55,8 +55,8 @@ export default function SignUp() {
     useEffect(() => {
         if (!loading && !countryData.records) {
             dispatch(getCountriesList()).then(res => {
-                const { status, data } = res.payload;
-                if (status === 200) {
+                const { success, data } = res.payload;
+                if (success) {
                     setCountries(data.records);
                 }
             })

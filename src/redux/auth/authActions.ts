@@ -28,19 +28,13 @@ export interface CheckEmailCodeInterface extends SendEmailCodeInterface {
 
 export const signUpUser = createAsyncThunk(
     'user/signup',
-    async (signInData: SignUpInterface, { rejectWithValue }) => {
+    async (signUpData: SignUpInterface, { rejectWithValue }) => {
         try {
-            const response = await signUp(signInData);
-            const userData = await response.json();
-            return { status: response.status, ...userData };
+            const response = await signUp(signUpData);
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
-
     }
 )
 
@@ -49,16 +43,10 @@ export const signInUser = createAsyncThunk(
     async (signInData: SignInInterface, { rejectWithValue }) => {
         try {
             const response = await signIn(signInData);
-            const userData = await response.json();
-            return { status: response.status, ...userData };
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
-
     }
 )
 
@@ -67,16 +55,10 @@ export const signOutUser = createAsyncThunk(
     async (arg: void, { rejectWithValue }) => {
         try {
             const response = await signOut();
-            const data = await response.json();
-            return { status: response.status, ...data };
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
-
     }
 )
 
@@ -85,16 +67,10 @@ export const sendCodeToEmail = createAsyncThunk(
     async (sendEmailObj: SendEmailCodeInterface, { rejectWithValue }) => {
         try {
             const response = await sendEmailCode(sendEmailObj);
-            const userData = await response.json();
-            return { status: response.status, ...userData };
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
-
     }
 )
 
@@ -103,15 +79,9 @@ export const checkCodeOfEmail = createAsyncThunk(
     async (checkEmailObj: CheckEmailCodeInterface, { rejectWithValue }) => {
         try {
             const response = await checkEmailCode(checkEmailObj);
-            const userData = await response.json();
-            return { status: response.status, ...userData };
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
-
     }
 )

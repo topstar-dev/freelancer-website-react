@@ -22,6 +22,7 @@ import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import {
   signInUser
 } from '../../../redux/auth/authActions';
+import { resetDefault } from "../../../redux/auth/authSlice";
 
 const validationSchema = yup.object({
   email: yup
@@ -40,23 +41,19 @@ export default function SignIn() {
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { loading, userInfo, error, status, message } = useAppSelector((state) => state.auth)
+  const { loading, userInfo, success, message } = useAppSelector((state) => state.auth)
   const [showPassword, setShowPassword] = React.useState(false);
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    if (userInfo) {
-      if (status === 200) {
-        enqueueSnackbar(message, { variant: 'success' });
-        navigate('/');
-      } else {
-        enqueueSnackbar(message, { variant: 'error' });
-      }
+    if (message) {
+      enqueueSnackbar(message);
     }
-    if (error) {
-      enqueueSnackbar(error, { variant: 'error' });
+    if (success && userInfo) {
+      dispatch(resetDefault())
+      navigate('/');
     }
-  }, [enqueueSnackbar, navigate, status, userInfo, message, error])
+  }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
   return (
     <Box style={{
@@ -80,7 +77,7 @@ export default function SignIn() {
           }
           validationSchema={validationSchema}
           onSubmit={(values, actions) => {
-            dispatch(signInUser({ email: values.email, password: values.password }))
+            dispatch(signInUser({ email: values.email, password: values.password }));
           }}
         >
           {props => (

@@ -8,15 +8,14 @@ export interface CountryData {
 }
 
 export interface ResourcesState {
-    message?: string,
+    message?: string | null,
     loading: boolean;
-    countryData: CountryData,
-    error?: string | null,
-    status?: number
+    countryData: CountryData;
 }
 
 const initialState: ResourcesState = {
     loading: false,
+    message: null,
     countryData: {}
 }
 
@@ -28,17 +27,16 @@ export const resourceslice = createSlice({
         //getCountries
         builder.addCase(getCountriesList.pending, (state: ResourcesState, _action) => {
             state.loading = true
-            state.error = null
         })
         builder.addCase(getCountriesList.fulfilled, (state: ResourcesState, action) => {
             state.loading = false;
-            state.status = action.payload.status;
             state.countryData = action.payload.data;
             state.message = action.payload.message;
         })
         builder.addCase(getCountriesList.rejected, (state: ResourcesState, action) => {
+            const payload = action.payload as ResourcesState;
             state.loading = false
-            state.error = action.payload as string
+            state.message = payload.message;
         })
     }
 });

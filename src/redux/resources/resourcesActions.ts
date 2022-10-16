@@ -11,15 +11,9 @@ export const getCountriesList = createAsyncThunk(
     async (countriesData: GetCountriesInterface | void, { rejectWithValue }) => {
         try {
             const response = await getCountries(countriesData);
-            const countryData = await response.json();
-            return { status: response.status, ...countryData };
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
-
     }
 )

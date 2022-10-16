@@ -11,10 +11,11 @@ import {
     signOutUser
 } from '../redux/auth/authActions';
 import UserMenu from "./UserMenu";
+import { resetDefault } from "../redux/auth/authSlice";
 
 export default function Header() {
     const navigate = useNavigate();
-    const { userInfo, error, status, message } = useAppSelector((state) => state.auth);
+    const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
     const { t } = useTranslation();
     const isTabOrMobile = useMediaQuery({ query: '(max-width: 900px)' });
@@ -24,15 +25,14 @@ export default function Header() {
 
 
     useEffect(() => {
-        if (!userInfo && status === 200) {
-            enqueueSnackbar(message, { variant: 'success' });
+        if (message) {
+            enqueueSnackbar(message);
+        }
+        if (success && !userInfo) {
+            dispatch(resetDefault())
             navigate('/sign-in');
         }
-
-        if (error) {
-            enqueueSnackbar(error, { variant: 'error' })
-        }
-    }, [navigate, enqueueSnackbar, userInfo, status, message, error])
+    }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
     const signOut = () => {
         dispatch(signOutUser());

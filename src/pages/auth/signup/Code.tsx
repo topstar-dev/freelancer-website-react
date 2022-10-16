@@ -9,6 +9,7 @@ import { useSnackbar } from "notistack";
 import { CustomForm, BlueButton, DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { signUpUser } from "../../../redux/auth/authActions";
+import { resetDefault } from "../../../redux/auth/authSlice";
 
 export default function Code(mainProps: any) {
     const { formik } = mainProps;
@@ -81,22 +82,17 @@ export default function Code(mainProps: any) {
 
                             setLoading(true);
                             dispatch(signUpUser(signUpData)).then((res: any) => {
-                                const { type, payload } = res;
-                                if (type === 'user/signup/rejected') {
-                                    enqueueSnackbar(payload, { variant: 'error' });
-                                } else {
-                                    const { status, message } = payload;
-                                    if (status === 200) {
-                                        enqueueSnackbar(message, { variant: 'success' });
-                                        navigate('/sign-in')
-                                    } else {
-                                        enqueueSnackbar(message, { variant: 'error' });
-                                    }
+                                const { payload } = res;
+                                const { success, message } = payload;
+                                enqueueSnackbar(message);
+                                if (success) {
+                                    dispatch(resetDefault());
+                                    navigate('/sign-in')
                                 }
                                 setLoading(false);
                             }).catch((err) => {
                                 setLoading(false);
-                                enqueueSnackbar(err.response.data.message, { variant: 'error' });
+                                enqueueSnackbar("Error occured");
                             })
                         }
                     })

@@ -20,58 +20,71 @@ export interface UserInterface {
 }
 
 export interface AuthState {
-    message?: string,
     loading: boolean;
+    success: boolean,
+    message: string | null,
     userInfo: UserInterface | null;
-    error: string | null,
-    status?: number
 }
 
 const initialState: AuthState = {
     loading: false,
-    userInfo: userToken, // for user object
-    error: null
+    success: false,
+    message: null,
+    userInfo: userToken // for user object
 }
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        resetDefault: (state) => {
+            state.success = false;
+            state.message = null;
+        }
+    },
     extraReducers: (builder) => {
         //signin
         builder.addCase(signInUser.pending, (state: AuthState, _action) => {
-            state.loading = true
-            state.error = null
+            state.loading = true;
+            state.message = null;
         })
         builder.addCase(signInUser.fulfilled, (state: AuthState, action) => {
-            state.loading = false
-            state.status = action.payload.status;
-            state.userInfo = action.payload.data;
+            state.loading = false;
+            state.success = true;
             state.message = action.payload.message;
+            state.userInfo = action.payload.data;
             localStorage.setItem('userToken', JSON.stringify(action.payload.data))
         })
         builder.addCase(signInUser.rejected, (state: AuthState, action) => {
-            state.loading = false
-            state.error = action.payload as string
+            const payload = action.payload as AuthState;
+            state.success = false;
+            state.loading = false;
+            state.message = payload.message;
         })
 
         //signout
         builder.addCase(signOutUser.pending, (state: AuthState, _action) => {
-            state.loading = true
-            state.error = null
+            state.loading = true;
+            state.message = null;
         })
         builder.addCase(signOutUser.fulfilled, (state: AuthState, action) => {
-            state.loading = false
-            state.status = action.payload.status;
-            state.message = action.payload.message;
+            state.loading = false;
+            state.success = true;
             state.userInfo = null;
+            state.message = action.payload.message;
             localStorage.removeItem('userToken')
         })
         builder.addCase(signOutUser.rejected, (state: AuthState, action) => {
-            state.loading = false
-            state.error = action.payload as string
+            const payload = action.payload as AuthState;
+            state.loading = false;
+            state.success = false;
+            state.message = payload.message;
+
         })
     }
 });
 
+const { resetDefault } = authSlice.actions;
+
+export { resetDefault }
 export default authSlice.reducer;
