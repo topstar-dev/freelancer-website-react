@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { signIn, signOut, signUp, sendEmailCode, checkEmailCode } from "./authAPI";
+import { signIn, signOut, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authAPI";
 
 export interface SignUpInterface {
     account_type: 'CLIENT' | 'FREELANCER';
@@ -24,6 +24,12 @@ export interface SendEmailCodeInterface {
 
 export interface CheckEmailCodeInterface extends SendEmailCodeInterface {
     code: string;
+}
+
+export interface ResetPasswordInterface {
+    email: string,
+    code: string,
+    password: string
 }
 
 export const signUpUser = createAsyncThunk(
@@ -55,6 +61,18 @@ export const signOutUser = createAsyncThunk(
     async (arg: void, { rejectWithValue }) => {
         try {
             const response = await signOut();
+            return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
+
+export const resetPasswordUser = createAsyncThunk(
+    'user/resetPassword',
+    async (resetPasswordData: ResetPasswordInterface, { rejectWithValue }) => {
+        try {
+            const response = await resetPassword(resetPasswordData);
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })

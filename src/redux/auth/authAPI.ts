@@ -1,5 +1,5 @@
 import { apiCall } from "../apiCall";
-import { CheckEmailCodeInterface, SendEmailCodeInterface, SignInInterface, SignUpInterface } from "./authActions";
+import { CheckEmailCodeInterface, ResetPasswordInterface, SendEmailCodeInterface, SignInInterface, SignUpInterface } from "./authActions";
 
 export const signUp = (signUpData: SignUpInterface) => {
     const requestOptions: RequestInit = {
@@ -23,6 +23,14 @@ export const signOut = () => {
         credentials: "include"
     };
     return apiCall(`/sign-out`, requestOptions);
+};
+
+export const resetPassword = (resetPasswordData: ResetPasswordInterface) => {
+    const requestOptions: RequestInit = {
+        method: 'POST',
+        body: JSON.stringify(resetPasswordData)
+    };
+    return apiCall(`/reset-password`, requestOptions);
 };
 
 export const sendEmailCode = (sendEmailObj: SendEmailCodeInterface) => {
