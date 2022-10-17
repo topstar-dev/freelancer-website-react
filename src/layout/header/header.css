@@ -1,0 +1,133 @@
+.rounx-web-header {
+    height: 72px;
+    display: flex;
+    padding: 16px 24px;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+}
+
+.rounx-appbar-section {
+    display: flex;
+}
+
+.rounx-logo {
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.rounx-nav-item-group {
+    display: flex;
+}
+
+.rounx-nav-item {
+    color: #757575;
+    font-size: 16px;
+    margin: auto 20px auto 20px;
+}
+
+.menu-item-selected {
+    color: blue !important;
+}
+
+.rounx-nav-item:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.rounx-tools-section {
+    display: flex;
+}
+
+.rounx-tools-section .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: rgb(0 0 0 / 15%);
+}
+
+.rounx-search-bar {
+    height: 40px;
+}
+
+.rounx-search-input {
+    height: 40px !important;
+    font-size: 14px !important;
+    border-radius: 20px !important;
+}
+
+.rounx-signin-handle {
+    cursor: pointer;
+    margin-left: 16px;
+    height: 40px !important;
+    width: 40px !important;
+    color: #757575;
+}
+
+
+/* mobile css */
+.rounx-mobile-header {
+    height: 73px;
+    display: flex;
+    padding: 16px 24px;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+}
+
+.rounx-mobile-burger {
+    cursor: pointer;
+    color: #757575;
+    font-size: 32px !important;
+    margin-top: 5px;
+}
+
+.rounx-mobile-header .rounx-logo {
+    margin-right: unset;
+}
+
+.rounx-floating-menu {
+    height: calc(100% - 144px);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
+}
+
+.rounx-search-container {
+    padding: 24px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.rounx-mobile-menu-list {
+    font-size: 16px;
+    padding: 0 !important;
+}
+
+.rounx-mobile-menu-item {
+    padding: 24px !important;
+}
+
+/* usermenu */
+.rounx-user-menu-list .MuiPaper-root {
+    padding: 0 !important;
+    border-radius: 7px;
+}
+
+.rounx-user-menu-list .MuiList-root {
+    padding: 0 !important;
+}
+
+.rounx-user-menu-items {
+    padding: 15px 24px !important;
+}
+
+.rounx-user-menu-info {
+    text-align: center;
+    padding: 10px;
+}
+
+.rounx-user-menu-info .user-name {
+    color: #000;
+    margin-bottom: 3px;
+}
+
+.rounx-user-menu-info .user-email {
+    color: #757575;
+    font-size: 15px;
+}

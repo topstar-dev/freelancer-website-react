@@ -2,8 +2,8 @@ import React from "react";
 import { useRoutes, RouteObject, Outlet } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import Header from "../layout/header/Header";
+import Footer from "../layout/footer/Footer";
 import SignIn from "./auth/signin/SignIn";
 import SignUp from "./auth/signup/SignUp";
 import ResetPassword from "./auth/resetPassword/ResetPassword";
@@ -27,11 +27,11 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
 
   const content = <>
+    {isHeader && <Header />}
     <Box style={{
       overflow: 'auto',
-      height: isWeb ? 'calc(100% - 50px)' : 'calc(100% - 100px)',
+      height: isWeb ? 'calc(100% - 144px)' : 'calc(100% - 192px)',
     }}>
-      {isHeader && <Header />}
       <Outlet />
     </Box>
     <Footer />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next';
@@ -6,15 +6,17 @@ import { Box } from "@mui/material";
 import { useSnackbar } from "notistack";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
-import { useAppSelector, useAppDispatch } from '../redux/hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import {
     signOutUser
-} from '../redux/auth/authActions';
+} from '../../redux/auth/authActions';
 import UserMenu from "./UserMenu";
-import { resetDefault } from "../redux/auth/authSlice";
+import { resetDefault } from "../../redux/auth/authSlice";
+import './header.css';
 
 export default function Header() {
     const navigate = useNavigate();
+    const [selectedPage, setSelectedPage] = useState(window.location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
     const { t } = useTranslation();
@@ -39,20 +41,29 @@ export default function Header() {
     }
 
     const pages: { name: string; url: string; }[] = [
-        { name: t('header-help'), url: '/' },
-        { name: t('header-blog'), url: '/' },
+        { name: t('header-help'), url: '/help' },
+        { name: t('header-blog'), url: '/blog' },
         { name: t('header-contact-us'), url: '/contact' },
         { name: t('header-about-us'), url: '/about' }
     ];
 
     const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : "";
 
+    const propsToPass = {
+        pages: pages,
+        userMenu: userMenu,
+        selectedPage: selectedPage,
+        setSelectedPage: (url: string) => {
+            setSelectedPage(url)
+            navigate(url)
+        }
+    }
     return (
         <Box sx={{ flexGrow: 1 }}>
             {isTabOrMobile ?
-                <MobileHeader pages={pages} userMenu={userMenu} />
+                <MobileHeader {...propsToPass} />
                 :
-                <DesktopHeader pages={pages} userMenu={userMenu} />
+                <DesktopHeader {...propsToPass} />
             }
         </Box >
     );

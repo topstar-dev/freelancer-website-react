@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Divider, IconButton, ListItemText, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { UserInterface } from '../redux/auth/authSlice';
+import { UserInterface } from '../../redux/auth/authSlice';
 
 interface UserMenuPropsInterface {
     signOut: Function,
@@ -29,22 +29,14 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     return (
         <>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-            >
-                {userInfo?.avatar_url ?
-                    <img src={userInfo?.avatar_url} alt="Rounx user" width="40" height="40" />
-                    :
-                    <AccountCircle style={{ width: "40px", height: "40px", color: '#757575' }} />
-                }
-            </IconButton>
+            {userInfo?.avatar_url ?
+                <img className='rounx-signin-handle' onClick={handleMenu} src={userInfo?.avatar_url} alt="Rounx user" />
+                :
+                <AccountCircle className='rounx-signin-handle' onClick={handleMenu} />
+            }
             <Menu
                 id="menu-appbar"
+                className='rounx-user-menu-list'
                 anchorEl={anchorEl}
                 anchorOrigin={{
                     vertical: "bottom",
@@ -58,31 +50,22 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuList
-                    sx={{ width: "250px", maxWidth: "100%" }}
-                >
-                    <ListItemText
-                        sx={{
-                            flexGrow: 1,
-                            alignItems: "center",
-                            textAlign: "center",
-                        }}
-                    >
-                        {userInfo?.name}
-                        <br />
-                        {userInfo?.email}
-                    </ListItemText>
-                    <Divider />
-                    <MenuItem style={{ padding: "15px" }}>
+                <div className='rounx-user-menu-info'>
+                    <div className='user-name'>{userInfo?.name}</div>
+                    <div className='user-email'>{userInfo?.email}</div>
+                </div>
+                <Divider />
+                <MenuList sx={{ width: "270px", maxWidth: "100%", padding: 0 }}>
+                    <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-submit-freelancer')}
                     </MenuItem>
-                    <MenuItem style={{ padding: "15px" }}>
+                    <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-profile')}
                     </MenuItem>
-                    <MenuItem style={{ padding: "15px" }} onClick={settingsClick}>
+                    <MenuItem className='rounx-user-menu-items' onClick={settingsClick}>
                         {t('header-user-settings')}
                     </MenuItem>
-                    <MenuItem style={{ padding: "15px" }} onClick={() => signOut()}>
+                    <MenuItem className='rounx-user-menu-items' onClick={() => signOut()}>
                         {t('header-user-signout')}
                     </MenuItem>
                 </MenuList>
