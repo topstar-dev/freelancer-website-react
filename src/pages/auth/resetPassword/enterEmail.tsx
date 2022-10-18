@@ -50,7 +50,7 @@ export default function EnterEmail(mainProps: any) {
           onClick={() => navigate("/sign-in")}
           sx={{ marginRight: '10px' }}
         >
-          {t('signup-title.signin-btn')}
+          {t('signup-title.back-btn')}
         </DecideButton>
         <BlueButton
           disabled={loading}

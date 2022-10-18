@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
-import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
+import { Box, Divider, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
 import { BlueButton } from "../commonStyle";
-import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
 import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
+import './home.css'
 
 const validationSchema = yup.object({
     email: yup
@@ -25,89 +26,83 @@ export default function HomePage() {
     const navigate = useNavigate();
 
     return (
-        <Box style={{ margin: '5% 15%' }}>
-            <Grid container>
-                <Grid alignItems='center' display='flex' item xs={12} md={12} lg={5}>
+        <>
+            <Box className="rounx-home-first-section">
+                <Box className="rounx-home-first-left">
                     <Box>
-                        <Typography style={{ fontSize: '40px', fontWeight: 'bold' }}>
+                        <Typography className="rounx-home-section-title">
                             {t('home-page-heading1')}
                         </Typography>
-                        <br />
-                        <Typography style={{ fontSize: '24px', color: '#757575' }}>
-                            {t('home-page-heading1-details')}
-                            <br />
-                            <br />
-                            {t('home-page-heading1-details2')}
-                        </Typography>
-                        <br />
+                        <div className="rounx-home-section-details">
+                            <Typography className="rounx-home-section-info2" style={{ marginBottom: '24px' }}>
+                                {t('home-page-heading1-details')}
+                            </Typography>
+                            <Typography className="rounx-home-section-info2">
+                                {t('home-page-heading1-details2')}
+                            </Typography>
+                        </div>
                         <BlueButton onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</BlueButton>
                     </Box>
-                </Grid>
-                <Grid item lg={2} />
-                <Grid item lg={5} xs={12} md={12} >
+                </Box>
+                <Box className="rounx-home-first-right">
                     <img
                         alt="Tools"
-                        width='100%'
+                        className="rounx-home-first-image"
                         src="images/tools.png" />
-                </Grid>
-            </Grid>
-            <br />
-            <Divider />
-            <br />
+                </Box>
+            </Box>
+            <Divider style={{ margin: '96px 0' }} />
             <Box>
-                <Typography style={{ fontSize: '40px', fontWeight: 'bold', justifyContent: 'center', display: 'flex', margin: '5%' }}>{t('home-page-why-ronux')}</Typography>
-                <Grid container justifyContent='center'>
-                    <Grid item md={12} lg={4}>
-                        <Box sx={{ display: { xs: 'flex' }, alignItems: { xs: 'center' }, flexDirection: { xs: 'column' } }} marginRight='30px'>
+                <Typography className="rounx-home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
+                    {t('home-page-why-ronux')}
+                </Typography>
+                <Box className="rounx-home-second-section">
+                    <Box className="rounx-home-second-box">
+                        <Box>
                             <img alt="Verified User" width='70px' src="images/VerifiedUserIcon.png" />
                             <br />
                             <br />
-                            <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>{t('home-page-why-point1')}</Typography>
+                            <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point1')}</Typography>
                             <br />
                             <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point1-info')}</Typography>
                         </Box>
-                    </Grid>
-                    <Grid item md={12} lg={4}>
-                        <Box sx={{ display: { xs: 'flex' }, alignItems: { xs: 'center' }, flexDirection: { xs: 'column' } }} marginRight='30px'>
+                    </Box>
+                    <Box className="rounx-home-second-box" style={{ margin: '0 3%' }}>
+                        <Box>
                             <img alt="Public Icon" width='70px' src="images/PublicIcon.png" />
                             <br />
                             <br />
-                            <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>{t('home-page-why-point2')}</Typography>
+                            <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point2')}</Typography>
                             <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point2-info')}</Typography>
                             <br />
                         </Box>
-                    </Grid>
-                    <Grid item md={12} lg={4}>
-                        <Box sx={{ display: { xs: 'flex' }, alignItems: { xs: 'center' }, flexDirection: { xs: 'column' } }} marginRight='30px'>
+                    </Box>
+                    <Box className="rounx-home-second-box">
+                        <Box>
                             <img alt="Code Icon" width='70px' src="images/CodeIcon.png" />
                             <br />
                             <br />
-                            <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>{t('home-page-why-point3')}</Typography>
+                            <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point3')}</Typography>
                             <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point3-info')}</Typography>
                             <br />
                         </Box>
-                    </Grid>
-                </Grid>
+                    </Box>
+                </Box>
             </Box>
-            <br />
-            <br />
-            <Divider />
-            <br />
-            <br />
-            <br />
-            <Grid container>
-                <Grid item lg={5} xs={12} >
+            <Divider style={{ margin: '96px 0' }} />
+            <Box style={{ marginBottom: '95px' }}>
+                <Box className="rounx-home-third-left">
                     <Box>
-                        <Box sx={{ display: { xs: 'flex' }, justifyContent: { xs: 'center' } }}>
-                            <Typography sx={{ fontSize: '40px', fontWeight: 'bold' }}>{t('home-page-comming-soon')}</Typography>
+                        <Box>
+                            <Typography sx={{ fontSize: '48px', fontWeight: '500' }}>
+                                {t('home-page-comming-soon')}
+                            </Typography>
                         </Box>
-                        <br />
-                        <Box sx={{ display: { xs: 'flex' }, justifyContent: { xs: 'center' } }}>
+                        <Box style={{ margin: '24px 0' }}>
                             <Typography sx={{ fontSize: '24px', color: '#757575' }}>
                                 {t('home-page-comming-soon-info')}
                             </Typography>
                         </Box>
-                        <br />
                         <Formik
                             validationSchema={validationSchema}
                             initialValues={{ email: '' }}
@@ -138,8 +133,8 @@ export default function HomePage() {
                                         onChange={props.handleChange}
                                         error={props.touched.email && Boolean(props.errors.email)}
                                         helperText={props.touched.email && props.errors.email}
-                                        InputProps={{ sx: { height: 40, borderRadius: '20px' } }}
-                                        style={{ marginRight: '20px' }}
+                                        InputProps={{ sx: { height: 49, borderRadius: '24px' } }}
+                                        style={{ marginRight: '20px', height: '49px' }}
                                         fullWidth
                                     />
                                     <BlueButton type="submit">{t('home-page-comming-soon-email-button')}</BlueButton>
@@ -147,23 +142,22 @@ export default function HomePage() {
                             )}
                         </Formik>
                     </Box>
-                </Grid>
-                <Grid item lg={2}></Grid>
-                <Grid item lg={5} xs={12}>
-                    <Box sx={{ display: 'flex', mt: { xs: 10 }, justifyContent: { xs: 'center' } }}>
+                </Box>
+                <Box className="rounx-home-third-right">
+                    <Box sx={{ display: 'flex' }}>
                         <img
                             alt="Mobile phone"
-                            height='700px'
+                            height='692px'
                             style={{ marginTop: '30px' }}
                             src="images/SamsungGalaxy.png" />
                         <img
                             alt="Half mobile phone"
-                            height='730px'
+                            height='727px'
                             style={{ marginLeft: '-200px', zIndex: '-1' }}
                             src="images/GooglePixel.png" />
                     </Box>
-                </Grid>
-            </Grid>
-        </Box >
+                </Box>
+            </Box>
+        </>
     )
 }

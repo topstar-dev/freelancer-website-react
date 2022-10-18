@@ -87,7 +87,7 @@ export default function SignUp() {
             height: '100%'
         }}>
             <Box style={{
-                width: useMediaQuery({ query: '(max-width: 500px)' }) ? 'calc(100% - 20px)' : '500px',
+                width: useMediaQuery({ query: '(max-width: 600px)' }) ? '100%' : '550px',
                 position: 'absolute',
                 top: '50%',
                 left: '50%',

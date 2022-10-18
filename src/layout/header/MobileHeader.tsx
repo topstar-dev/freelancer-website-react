@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { List, Box, TextField, InputAdornment, Divider } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -10,8 +9,6 @@ import { PropsInterface } from './DesktopHeader';
 
 export default function MobileHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
-    const navigate = useNavigate();
-
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
     return (
@@ -61,7 +58,10 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                                         :
                                         'rounx-mobile-menu-item'
                                     }
-                                    onClick={() => setSelectedPage(page.url)}
+                                    onClick={() => {
+                                        setMenuOpen(!menuOpen)
+                                        setSelectedPage(page.url)
+                                    }}
                                 >
                                     {page.name}
                                 </ListItemButton>

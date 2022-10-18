@@ -61,7 +61,7 @@ export default function SignIn() {
       height: '100%'
     }}>
       <Box style={{
-        width: useMediaQuery({ query: '(max-width: 500px)' }) ? 'calc(100% - 20px)' : '500px',
+        width: useMediaQuery({ query: '(max-width: 600px)' }) ? '100%' : '550px',
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -141,6 +141,7 @@ export default function SignIn() {
                 <Button
                   className="normal-text round-button"
                   variant="outlined"
+                  style={{ borderRadius: 20 }}
                   onClick={() => navigate("/reset-password")}
                 >
                   {t('signin-forgot-password')}
@@ -156,7 +157,7 @@ export default function SignIn() {
               <Button
                 className="normal-text round-button"
                 variant="outlined"
-                style={{ width: 'fit-content' }}
+                style={{ width: 'fit-content', borderRadius: 20 }}
                 onClick={(e) => setType(e.currentTarget)}>
                 {t('signin-signup')}
               </Button>

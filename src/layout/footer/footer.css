@@ -12,7 +12,7 @@
 .rounx-footer-left-content {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     margin-right: auto;
 }
 
@@ -46,10 +46,15 @@
     margin-right: 16px !important;
 }
 
+.rounx-footer-items:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 .rounx-footer-right-content {
     display: flex;
     justify-content: flex-end;
-    align-items: end;
+    align-items: center;
     margin-left: auto;
 }
 
@@ -60,8 +65,9 @@
     margin-left: 16px !important;
 }
 
-img.rounx-footer-brand-icon {
-    margin-bottom: -2px;
+.rounx-footer-brand-icon:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 @media (max-width: 900px) {

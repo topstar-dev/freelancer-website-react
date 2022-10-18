@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { useMediaQuery } from 'react-responsive'
 import { Select, MenuItem, Box, Typography } from "@mui/material";
-import { TextButton } from "../../pages/commonStyle";
 import LanguageIcon from '@mui/icons-material/Language';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -13,8 +11,6 @@ export default function Footer() {
     const navigate = useNavigate();
     const { i18n, t } = useTranslation();
 
-    const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
-
     const [language, setLanguage] = React.useState(localStorage.getItem('i18nextLng') || 'en');
 
     const changeLang = (lang: string) => {
@@ -23,8 +19,6 @@ export default function Footer() {
         setLanguage(lang);
         window.location.reload();
     }
-
-    const fontSizeValue = { fontSize: '12px' };
 
     return (
         <Box className="rounx-footer-container">

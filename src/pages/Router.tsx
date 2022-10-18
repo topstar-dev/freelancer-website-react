@@ -26,11 +26,16 @@ interface RoutesInterface {
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
 
+  const height = (isWeb ? 144 : 192);
+  const minusCount = isWeb ? 72 : 73;
+  const minusHeader = isHeader ? height : (height - minusCount);
+
   const content = <>
     {isHeader && <Header />}
     <Box style={{
       overflow: 'auto',
-      height: isWeb ? 'calc(100% - 144px)' : 'calc(100% - 192px)',
+      padding: isWeb ? '24px 16%' : '24px',
+      height: `calc(100% - ${minusHeader}px)`,
     }}>
       <Outlet />
     </Box>

@@ -1,12 +1,12 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 export default function AboutUs() {
   const { t } = useTranslation();
 
   return (
-    <Box margin='5% 15%'>
+    <>
       <Typography style={{ fontSize: '24px' }}>{t('about-us')}</Typography>
       <br />
       <Typography marginBottom='10px'>
@@ -26,6 +26,6 @@ export default function AboutUs() {
         <span style={{ fontWeight: 'bold' }}>2022- </span>
         <span>{t('about-us-2022')}</span>
       </Typography>
-    </Box>
+    </>
   )
 }

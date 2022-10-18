@@ -26,12 +26,14 @@ export const DecideButton = styled(Button)(() => ({
     },
 }));
 
-export const BlueButton = styled(Button)(() => ({
+export const BlueButton = styled(Button)((props: any) => ({
     color: "white",
     backgroundColor: "#336def",
-    borderRadius: "20px",
+    borderRadius: "24px",
     padding: "8px 20px",
     textTransform: "none",
+    height: props.height || 49,
+    width: props.width || 129,
     "&:hover": {
         background: "#336def",
     },
