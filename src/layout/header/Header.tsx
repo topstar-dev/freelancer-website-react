@@ -59,7 +59,7 @@ export default function Header() {
         }
     }
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box className="rounx-header-wrapper">
             {isTabOrMobile ?
                 <MobileHeader {...propsToPass} />
                 :

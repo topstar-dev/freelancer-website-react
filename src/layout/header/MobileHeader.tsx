@@ -39,17 +39,20 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         onClick={() => setSelectedPage("/")}
                     />
                 </Box>
-                {!userMenu ?
-                    <Button
-                        className="sign-in-button"
-                        variant="outlined"
-                        style={{ width: 'fit-content', borderRadius: 20 }}
-                        onClick={(e) => navigate('/sign-in')}
-                    >
-                        Sign in
-                    </Button>
+                {menuOpen ?
+                    <div className='rounx-signin-handle' />
                     :
-                    userMenu
+                    !userMenu ?
+                        <Button
+                            className="sign-in-button"
+                            variant="outlined"
+                            style={{ width: 'fit-content', borderRadius: 20 }}
+                            onClick={(e) => navigate('/sign-in')}
+                        >
+                            Sign in
+                        </Button>
+                        :
+                        userMenu
                 }
             </Box>
             {menuOpen &&

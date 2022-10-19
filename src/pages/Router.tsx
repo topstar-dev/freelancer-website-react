@@ -36,6 +36,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
       overflow: 'auto',
       padding: isWeb ? '24px 16%' : '24px',
       position: 'relative',
+      marginTop: isHeader ? isWeb ? '72px' : '73px' : 0,
       minHeight: `calc(100% - ${minusHeader}px)`,
     }}>
       <Outlet />
