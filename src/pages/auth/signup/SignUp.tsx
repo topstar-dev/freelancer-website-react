@@ -83,44 +83,39 @@ export default function SignUp() {
 
     return (
         <Box style={{
-            position: 'relative',
-            height: '100%'
+            width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1
         }}>
-            <Box style={{
-                width: useMediaQuery({ query: '(max-width: 600px)' }) ? '100%' : '550px',
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 1
-            }}>
-                <Formik
-                    initialValues={{
-                        first_name: "",
-                        last_name: "",
-                        confirm_password: "",
-                        password: "",
-                        primary_email: "",
-                        email_code: "",
-                    }}
-                    validationSchema={validationSchema}
-                    onSubmit={(values) => { }}
-                >
-                    {props =>
-                        <CustomForm>
-                            <img
-                                src="images/rounx-symbol.png"
-                                alt="Rounx admin"
-                                width="60px"
-                                height="60px"
-                                style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate('/')}
-                            />
-                            {steps[`${activeStep}`](props)}
-                        </CustomForm >
-                    }
-                </Formik>
-            </Box>
+            <Formik
+                initialValues={{
+                    first_name: "",
+                    last_name: "",
+                    confirm_password: "",
+                    password: "",
+                    primary_email: "",
+                    email_code: "",
+                }}
+                validationSchema={validationSchema}
+                onSubmit={(values) => { }}
+            >
+                {props =>
+                    <CustomForm>
+                        <img
+                            src="images/rounx-symbol.png"
+                            alt="Rounx admin"
+                            width="60px"
+                            height="60px"
+                            style={{ alignSelf: "center", cursor: "pointer" }}
+                            onClick={() => navigate('/')}
+                        />
+                        {steps[`${activeStep}`](props)}
+                    </CustomForm >
+                }
+            </Formik>
         </Box>
     );
 }

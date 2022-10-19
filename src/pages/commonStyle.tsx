@@ -116,7 +116,7 @@ export const MuiChip = styled(Chip)(() => ({
     "&:hover": {
         background: "#ccccff",
     },
-    color: "blue",
+    color: "#336def",
 }));
 
 export const CustomTableHeadWithTwoActions = (props: any) => {
@@ -172,7 +172,7 @@ export const SeeMoreBox = styled(Box)(() => ({
     height: '60px',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'blue',
+    color: '#336def',
     display: 'flex',
     '&:hover': {
         cursor: 'pointer',

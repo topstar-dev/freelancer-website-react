@@ -47,7 +47,7 @@ export default function Header() {
         { name: t('header-about-us'), url: '/about' }
     ];
 
-    const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : "";
+    const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : '';
 
     const propsToPass = {
         pages: pages,

@@ -26,11 +26,11 @@
 }
 
 .menu-item-selected {
-    color: blue !important;
+    color: #336def !important;
 }
 
 .rounx-nav-item:hover {
-    color: blue;
+    color: #336def;
     cursor: pointer;
 }
 
@@ -58,6 +58,12 @@
     height: 40px !important;
     width: 40px !important;
     color: #757575;
+}
+
+.sign-in-button {
+    background-color: #336def !important;
+    color: #fff !important;
+    margin-left: -24px !important;
 }
 
 

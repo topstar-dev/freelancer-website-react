@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { List, Box, TextField, InputAdornment, Divider } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { List, Box, TextField, InputAdornment, Divider, Button } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -9,6 +10,7 @@ import { PropsInterface } from './DesktopHeader';
 
 export default function MobileHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
     return (
@@ -37,7 +39,18 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         onClick={() => setSelectedPage("/")}
                     />
                 </Box>
-                {menuOpen ? <div className='rounx-signin-handle' /> : userMenu}
+                {!userMenu ?
+                    <Button
+                        className="sign-in-button"
+                        variant="outlined"
+                        style={{ width: 'fit-content', borderRadius: 20 }}
+                        onClick={(e) => navigate('/sign-in')}
+                    >
+                        Sign in
+                    </Button>
+                    :
+                    userMenu
+                }
             </Box>
             {menuOpen &&
                 <Box className='rounx-floating-menu'>
@@ -69,7 +82,8 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                             </React.Fragment>
                         ))}
                     </List>
-                </Box>}
+                </Box>
+            }
         </>
     )
 }

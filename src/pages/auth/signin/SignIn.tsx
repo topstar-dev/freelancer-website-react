@@ -57,130 +57,125 @@ export default function SignIn() {
 
   return (
     <Box style={{
-      position: 'relative',
-      height: '100%'
+      width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 1
     }}>
-      <Box style={{
-        width: useMediaQuery({ query: '(max-width: 600px)' }) ? '100%' : '550px',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: 1
-      }}>
-        <Formik
-          initialValues={
-            {
-              email: "",
-              password: "",
-            }
+      <Formik
+        initialValues={
+          {
+            email: "",
+            password: "",
           }
-          validationSchema={validationSchema}
-          onSubmit={(values, actions) => {
-            dispatch(signInUser({ email: values.email, password: values.password }));
-          }}
-        >
-          {props => (
-            <CustomForm onSubmit={props.handleSubmit}>
-              <img
-                src="images/rounx-symbol.png"
-                alt="Rounx admin"
-                width="60px"
-                height="60px"
-                style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate('/')}
-              />
-              <Typography
-                style={{
-                  fontSize: "17px",
-                  textAlign: "center",
-                  marginTop: "-10px",
-                  marginBottom: "20px",
-                }}
-              >
-                <span>{t('signin-logo')} </span>
-                <span style={{ fontWeight: "bold" }}>Rounx </span>
-              </Typography>
+        }
+        validationSchema={validationSchema}
+        onSubmit={(values, actions) => {
+          dispatch(signInUser({ email: values.email, password: values.password }));
+        }}
+      >
+        {props => (
+          <CustomForm onSubmit={props.handleSubmit}>
+            <img
+              src="images/rounx-symbol.png"
+              alt="Rounx admin"
+              width="60px"
+              height="60px"
+              style={{ alignSelf: "center", cursor: "pointer" }}
+              onClick={() => navigate('/')}
+            />
+            <Typography
+              style={{
+                fontSize: "17px",
+                textAlign: "center",
+                marginTop: "-10px",
+                marginBottom: "20px",
+              }}
+            >
+              <span>{t('signin-logo')} </span>
+              <span style={{ fontWeight: "bold" }}>Rounx </span>
+            </Typography>
+            <TextField
+              fullWidth
+              id="email"
+              name="email"
+              label={t('signin-email')}
+              value={props.values.email}
+              onChange={props.handleChange}
+              error={props.touched.email && Boolean(props.errors.email)}
+              helperText={props.touched.email && props.errors.email}
+            />
+            <FormControl>
               <TextField
                 fullWidth
-                id="email"
-                name="email"
-                label={t('signin-email')}
-                value={props.values.email}
+                id="password"
+                name="password"
+                label={t('signin-password')}
+                type={showPassword ? "text" : "password"}
+                value={props.values.password}
                 onChange={props.handleChange}
-                error={props.touched.email && Boolean(props.errors.email)}
-                helperText={props.touched.email && props.errors.email}
+                helperText={props.touched.password && props.errors.password}
+                error={props.touched.password && Boolean(props.errors.password)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
-              <FormControl>
-                <TextField
-                  fullWidth
-                  id="password"
-                  name="password"
-                  label={t('signin-password')}
-                  type={showPassword ? "text" : "password"}
-                  value={props.values.password}
-                  onChange={props.handleChange}
-                  helperText={props.touched.password && props.errors.password}
-                  error={props.touched.password && Boolean(props.errors.password)}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </FormControl>
-              <Box style={{ margin: "10px 0px" }}>
-                <Button
-                  className="normal-text round-button"
-                  variant="outlined"
-                  style={{ borderRadius: 20 }}
-                  onClick={() => navigate("/reset-password")}
-                >
-                  {t('signin-forgot-password')}
-                </Button>
-                <BlueButton
-                  disabled={loading}
-                  type="submit"
-                  style={{ float: "right" }}
-                >
-                  {t('signin-submit')}
-                </BlueButton>
-              </Box>
+            </FormControl>
+            <Box style={{ margin: "10px 0px" }}>
               <Button
                 className="normal-text round-button"
                 variant="outlined"
-                style={{ width: 'fit-content', borderRadius: 20 }}
-                onClick={(e) => setType(e.currentTarget)}>
-                {t('signin-signup')}
-              </Button>
-              <Popover
-                open={Boolean(type)}
-                anchorEl={type}
-                onClose={() => setType(null)}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
+                style={{ borderRadius: 20 }}
+                onClick={() => navigate("/reset-password")}
               >
-                <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('signin-signup-client')}</MenuItem>
-                <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('signin-signup-freelancer')}</MenuItem>
-              </Popover>
-            </CustomForm>
-          )}
-        </Formik>
-      </Box>
-    </Box >
+                {t('signin-forgot-password')}
+              </Button>
+              <BlueButton
+                disabled={loading}
+                type="submit"
+                style={{ float: "right" }}
+              >
+                {t('signin-submit')}
+              </BlueButton>
+            </Box>
+            <Button
+              className="normal-text round-button"
+              variant="outlined"
+              style={{ width: 'fit-content', borderRadius: 20 }}
+              onClick={(e) => setType(e.currentTarget)}>
+              {t('signin-signup')}
+            </Button>
+            <Popover
+              open={Boolean(type)}
+              anchorEl={type}
+              onClose={() => setType(null)}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+            >
+              <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('signin-signup-client')}</MenuItem>
+              <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('signin-signup-freelancer')}</MenuItem>
+            </Popover>
+          </CustomForm>
+        )}
+      </Formik>
+    </Box>
   );
 }

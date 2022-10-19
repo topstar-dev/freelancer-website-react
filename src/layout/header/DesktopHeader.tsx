@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { Box, TextField, InputAdornment } from '@mui/material';
+import { Box, TextField, InputAdornment, Button } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 
 export interface PropsInterface {
@@ -53,7 +53,17 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                         startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>
                     }}
                 />
-                {userMenu}
+                {!userMenu ?
+                    <Button
+                        className="sign-in-button"
+                        variant="outlined"
+                        style={{ width: 'fit-content', borderRadius: 20 }}
+                        onClick={(e) => navigate('/sign-in')}
+                    >
+                        Sign in
+                    </Button>
+                    :
+                    userMenu}
             </Box>
         </Box>
     )

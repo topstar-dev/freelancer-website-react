@@ -50,38 +50,32 @@ export default function ResetPassword() {
 
 	return (
 		<Box style={{
-			position: 'relative',
-			height: '100%'
+			width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
+			position: 'absolute',
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			zIndex: 1
 		}}>
-			<Box style={{
-				width: useMediaQuery({ query: '(max-width: 600px)' }) ? '100%' : '550px',
-				position: 'absolute',
-				top: '50%',
-				left: '50%',
-				transform: 'translate(-50%, -50%)',
-				zIndex: 1
-			}}>
-				<Formik
-					initialValues={{ email: "" }}
-					validationSchema={validationSchema}
-					onSubmit={() => { }}
-				>
-					{props => (
-						<CustomForm>
-							<img
-								src="images/rounx-symbol.png"
-								alt="Rounx admin"
-								width="60px"
-								height="60px"
-								style={{ color: "#336def", alignSelf: "center", cursor: "pointer" }}
-								onClick={() => navigate('/')}
-							/>
-							{steps[activeStep](props)}
-						</CustomForm>
-					)}
-				</Formik>
-			</Box>
-		</Box >
-
+			<Formik
+				initialValues={{ email: "" }}
+				validationSchema={validationSchema}
+				onSubmit={() => { }}
+			>
+				{props => (
+					<CustomForm>
+						<img
+							src="images/rounx-symbol.png"
+							alt="Rounx admin"
+							width="60px"
+							height="60px"
+							style={{ color: "#336def", alignSelf: "center", cursor: "pointer" }}
+							onClick={() => navigate('/')}
+						/>
+						{steps[activeStep](props)}
+					</CustomForm>
+				)}
+			</Formik>
+		</Box>
 	);
 }

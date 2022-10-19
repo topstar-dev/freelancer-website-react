@@ -90,7 +90,7 @@ export default function HomePage() {
                 </Box>
             </Box>
             <Divider style={{ margin: '96px 0' }} />
-            <Box style={{ marginBottom: '95px' }}>
+            <Box className="rounx-home-third-section" style={{ marginBottom: '95px' }}>
                 <Box className="rounx-home-third-left">
                     <Box>
                         <Box>
@@ -144,13 +144,15 @@ export default function HomePage() {
                     </Box>
                 </Box>
                 <Box className="rounx-home-third-right">
-                    <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <img
+                            className="samsungGalaxyPhone"
                             alt="Mobile phone"
                             height='692px'
                             style={{ marginTop: '30px' }}
                             src="images/SamsungGalaxy.png" />
                         <img
+                            className="googlePixelPhone"
                             alt="Half mobile phone"
                             height='727px'
                             style={{ marginLeft: '-200px', zIndex: '-1' }}
