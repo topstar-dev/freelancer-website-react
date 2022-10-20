@@ -15,7 +15,6 @@ import './home.css'
 const validationSchema = yup.object({
     email: yup
         .string()
-        .email("Enter a valid email")
         .required("Email is required")
 });
 
