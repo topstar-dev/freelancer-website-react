@@ -53,6 +53,7 @@ export default function Info(mainProps: any) {
       </Typography>
       <FlexBox sx={{ justifyContent: 'space-between' }} >
         <TextField
+          fullWidth
           label={t('signup-data.first-name')}
           id="first_name"
           name="first_name"
@@ -62,6 +63,7 @@ export default function Info(mainProps: any) {
           helperText={formik.touched.first_name && formik.errors.first_name}
           sx={{ mr: 1 }} />
         <TextField
+          fullWidth
           label={t('signup-data.last-name')}
           id="last_name"
           name="last_name"
