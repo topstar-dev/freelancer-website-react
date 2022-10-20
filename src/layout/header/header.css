@@ -62,18 +62,18 @@
 
 .rounx-signin-handle {
     cursor: pointer;
-    margin-left: 16px;
+    margin-left: 16px !important;
     height: 40px !important;
     width: 40px !important;
     color: #757575;
 }
 
-.sign-in-button {
-    background-color: #336def !important;
-    color: #fff !important;
-    margin-left: -24px !important;
+.rounx-no-signin-handle {
+    cursor: pointer;
+    margin-left: 16px !important;
+    height: 40px !important;
+    width: 88px;
 }
-
 
 /* mobile css */
 .rounx-mobile-header {

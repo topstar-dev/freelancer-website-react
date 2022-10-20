@@ -36,6 +36,10 @@
     border: none !important;
 }
 
+.rounx-language-select::after {
+    border: none !important;
+}
+
 .rounx-nav-items-box {
     display: flex;
 }

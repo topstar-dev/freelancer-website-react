@@ -13,6 +13,7 @@ import {
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
+import BlueButton from "../../components/blueButton/BlueButton";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -47,7 +48,7 @@ export default function Header() {
         { name: t('header-about-us'), url: '/about' }
     ];
 
-    const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : '';
+    const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : ''
 
     const propsToPass = {
         pages: pages,
