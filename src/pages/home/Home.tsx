@@ -108,13 +108,10 @@ export default function HomePage() {
                             onSubmit={(values, actions) => {
                                 dispatch(scheduleAppointment(values.email))
                                     .then((res) => {
-                                        const payload = res.payload;
-                                        if (payload.status === 200) enqueueSnackbar(payload.message, { variant: 'success' });
-                                        if (payload.status === 403) enqueueSnackbar(payload.message, { variant: 'error' });
-                                        if (payload.status === 400) enqueueSnackbar(payload.message, { variant: 'error' });
+                                        enqueueSnackbar(res.payload.message)
                                         actions.resetForm();
                                     }).catch((error) => {
-                                        enqueueSnackbar(error, { variant: 'error' });
+                                        enqueueSnackbar(error.message);
                                         actions.resetForm();
                                     })
                             }}

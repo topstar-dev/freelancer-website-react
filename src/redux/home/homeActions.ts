@@ -6,14 +6,9 @@ export const scheduleAppointment = createAsyncThunk(
     async (email: string, { rejectWithValue }) => {
         try {
             const response = await appointmentSchedule(email);
-            const data = await response.json();
-            return { status: response.status, ...data };
+            return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message)
-            } else {
-                return rejectWithValue(error.message)
-            }
+            return rejectWithValue({ message: "Error occured" })
         }
 
     }
