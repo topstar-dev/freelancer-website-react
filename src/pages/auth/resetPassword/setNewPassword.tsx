@@ -10,7 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { DecideButton } from "../../commonStyle";
+// import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
@@ -76,14 +76,14 @@ export default function SetNewPassword(mainProps: any) {
         error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
         helperText={formik.touched.confirm_password && formik.errors.confirm_password}
       />
-      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <DecideButton
+      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        {/* <DecideButton
           disabled={loading}
           sx={{ mr: 2 }}
           onClick={() => mainProps.handleBack()}
         >
           {t('signup-title.back-btn')}
-        </DecideButton>
+        </DecideButton> */}
         <BlueButton disabled={loading} onClick={() => {
           formik.validateForm().then((res: any) => {
             const { password, confirm_password } = res;

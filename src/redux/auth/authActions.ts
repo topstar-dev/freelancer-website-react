@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { signIn, signOut, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authAPI";
+import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authAPI";
 
 export interface SignUpInterface {
     account_type: 'CLIENT' | 'FREELANCER';
@@ -60,8 +60,12 @@ export const signOutUser = createAsyncThunk(
     'user/signout',
     async (arg: void, { rejectWithValue }) => {
         try {
-            const response = await signOut();
-            return response.success ? response : rejectWithValue(response);
+            // const response = await signOut();
+            const response = {
+                success: true,
+                message: "Sign out successfull"
+            }
+            return response;
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })
         }

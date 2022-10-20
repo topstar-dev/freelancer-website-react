@@ -5,7 +5,7 @@ import {
     Box
 } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { DecideButton } from "../../commonStyle";
+// import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
@@ -44,12 +44,12 @@ export default function Email(mainProps: any) {
                 helperText={t('signup-title.email-helper')}
             />
             <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
-                <DecideButton
+                {/* <DecideButton
                     disabled={loading}
                     onClick={() => mainProps.handleBack()}
                     sx={{ marginRight: '10px' }}>
                     {t('signup-title.back-btn')}
-                </DecideButton>
+                </DecideButton> */}
                 <BlueButton disabled={loading} style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { primary_email } = res;

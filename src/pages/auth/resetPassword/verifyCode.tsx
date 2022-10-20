@@ -7,7 +7,7 @@ import {
   Box,
 } from "@mui/material";
 import { useAppDispatch } from "../../../redux/hooks";
-import { DecideButton } from "../../commonStyle";
+// import { DecideButton } from "../../commonStyle";
 import { checkCodeOfEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
 import BlueButton from "../../../components/blueButton/BlueButton";
@@ -41,14 +41,14 @@ export default function VerifyCode(mainProps: any) {
         error={formik.touched.code && Boolean(formik.errors.code)}
         helperText={formik.touched.code && formik.errors.code}
       />
-      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'space-between' }}>
-        <DecideButton
+      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
+        {/* <DecideButton
           disabled={loading}
           onClick={() => mainProps.handleBack()}
           sx={{ marginRight: '10px' }}
         >
           {t('signup-title.back-btn')}
-        </DecideButton>
+        </DecideButton> */}
         <BlueButton disabled={loading} onClick={() => {
           formik.validateForm().then((res: any) => {
             const { code } = res;

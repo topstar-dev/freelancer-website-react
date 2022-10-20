@@ -4,8 +4,8 @@ import { signInUser, signOutUser } from './authActions';
 // initialize userToken from local storage
 var userToken = null;
 try {
-    if (localStorage.getItem('userToken')) {
-        userToken = JSON.parse(`${localStorage.getItem('userToken')}`);
+    if (localStorage.getItem('access_token') && localStorage.getItem('refresh_token') && localStorage.getItem('device_token')) {
+        userToken = JSON.parse(`${localStorage.getItem('userInfo')}`);
     }
 } catch (err) {
     userToken = null;
@@ -53,7 +53,10 @@ export const authSlice = createSlice({
             state.success = true;
             state.message = action.payload.message;
             state.userInfo = action.payload.data;
-            localStorage.setItem('userToken', JSON.stringify(action.payload.data))
+            localStorage.setItem('userInfo', JSON.stringify(action.payload.data))
+            localStorage.setItem('access_token', JSON.stringify(action.payload.data.access_token))
+            localStorage.setItem('refresh_token', JSON.stringify(action.payload.data.refresh_token))
+            localStorage.setItem('device_token', JSON.stringify(action.payload.data.device_token))
         })
         builder.addCase(signInUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;
@@ -72,7 +75,10 @@ export const authSlice = createSlice({
             state.success = true;
             state.userInfo = null;
             state.message = action.payload.message;
-            localStorage.removeItem('userToken')
+            localStorage.removeItem('userInfo')
+            localStorage.removeItem('access_token')
+            localStorage.removeItem('refresh_token')
+            localStorage.removeItem('device_token')
         })
         builder.addCase(signOutUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;

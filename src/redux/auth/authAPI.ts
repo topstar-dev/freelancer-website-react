@@ -17,14 +17,6 @@ export const signIn = (signInData: SignInInterface) => {
     return apiCall(`/sign-in`, requestOptions);
 };
 
-export const signOut = () => {
-    const requestOptions: RequestInit = {
-        method: 'POST',
-        credentials: "include"
-    };
-    return apiCall(`/sign-out`, requestOptions);
-};
-
 export const resetPassword = (resetPasswordData: ResetPasswordInterface) => {
     const requestOptions: RequestInit = {
         method: 'POST',

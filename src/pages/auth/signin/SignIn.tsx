@@ -48,10 +48,10 @@ export default function SignIn() {
 
   useEffect(() => {
     if (message) {
+      dispatch(resetDefault())
       enqueueSnackbar(message);
     }
     if (success && userInfo) {
-      dispatch(resetDefault())
       navigate('/');
     }
   }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
