@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   TextField,
@@ -46,6 +45,10 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
 
+  React.useEffect(() => {
+    document.title = "Sign in - Rounx"
+  })
+
   useEffect(() => {
     if (message) {
       dispatch(resetDefault())
@@ -65,9 +68,6 @@ export default function SignIn() {
       transform: 'translate(-50%, -50%)',
       zIndex: 1
     }}>
-      <Helmet>
-        <title>Sign in - Rounx</title>
-      </Helmet>
       <Formik
         initialValues={
           {

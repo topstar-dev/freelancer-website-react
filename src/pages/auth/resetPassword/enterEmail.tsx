@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
@@ -16,7 +15,6 @@ import BlueButton from "../../../components/blueButton/BlueButton";
 export default function EnterEmail(mainProps: any) {
   const { formik } = mainProps;
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);

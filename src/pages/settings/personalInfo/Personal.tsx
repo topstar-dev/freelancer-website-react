@@ -1,16 +1,17 @@
 import React from "react";
 import { TextField, Typography, Box } from "@mui/material";
-import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function Personal() {
     const { t } = useTranslation();
+
+    React.useEffect(() => {
+        document.title = "Settings (Personal info) - Rounx"
+    })
+
     return (
         <>
-            <Helmet>
-                <title>Settings (Personal info) - Rounx</title>
-            </Helmet>
             <Box id="account email">
                 <Typography fontSize='20px'>
                     {t('user-personal-account-email')}

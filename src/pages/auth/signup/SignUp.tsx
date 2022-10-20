@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Helmet } from "react-helmet";
 import * as yup from "yup";
 import { Formik } from "formik";
 import Box from '@mui/material/Box';
@@ -55,6 +54,10 @@ export default function SignUp() {
     const [countries, setCountries] = useState([]);
     const { loading, countryData } = useAppSelector(state => state.resources)
 
+    React.useEffect(() => {
+        document.title = "Sign up - Rounx"
+    })
+
     useEffect(() => {
         if (!loading && !countryData.records) {
             dispatch(getCountriesList()).then(res => {
@@ -91,9 +94,6 @@ export default function SignUp() {
             transform: 'translate(-50%, -50%)',
             zIndex: 1
         }}>
-            <Helmet>
-                <title>Sign up - Rounx</title>
-            </Helmet>
             <Formik
                 initialValues={{
                     first_name: "",

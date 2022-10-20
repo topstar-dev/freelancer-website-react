@@ -1,16 +1,16 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Helmet } from "react-helmet";
 import { Typography } from "@mui/material";
 
 export default function AboutUs() {
   const { t } = useTranslation();
 
+  React.useEffect(() => {
+    document.title = "About us - Rounx"
+  })
+
   return (
     <>
-      <Helmet>
-        <title>About us - Rounx</title>
-      </Helmet>
       <Typography style={{ fontSize: '24px' }}>{t('about-us')}</Typography>
       <br />
       <Typography marginBottom='10px'>

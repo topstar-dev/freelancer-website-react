@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { Helmet } from "react-helmet";
 
 export default function ContactUs() {
+  React.useEffect(() => {
+    document.title = "Contact us - Rounx"
+  })
+
   return (
     <>
-      <Helmet>
-        <title>Contact us - Rounx</title>
-      </Helmet>
       <Typography style={{ fontSize: '24px' }}>Contact us</Typography>
       <br />
       <br />

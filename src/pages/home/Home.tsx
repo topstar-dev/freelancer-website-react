@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { Box, Divider, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
 import { useAppDispatch } from '../../redux/hooks';
@@ -25,11 +24,12 @@ export default function HomePage() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        document.title = "Rounx"
+    })
+
     return (
         <>
-            <Helmet>
-                <title>Rounx</title>
-            </Helmet>
             <Box className="rounx-home-first-section">
                 <Box className="rounx-home-first-left">
                     <Box>

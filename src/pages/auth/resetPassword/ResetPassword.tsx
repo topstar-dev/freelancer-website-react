@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as yup from "yup";
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { Helmet } from "react-helmet";
 import { useMediaQuery } from 'react-responsive';
 import Box from '@mui/material/Box';
 import EnterEmail from './enterEmail';
@@ -34,6 +33,10 @@ export default function ResetPassword() {
 	const navigate = useNavigate();
 	const [activeStep, setActiveStep] = React.useState<number>(0);
 
+	React.useEffect(() => {
+		document.title = "Reset password - Rounx"
+	})
+
 	const handleNext = () => {
 		const newActiveStep = activeStep + 1;
 		setActiveStep(newActiveStep);
@@ -58,9 +61,6 @@ export default function ResetPassword() {
 			transform: 'translate(-50%, -50%)',
 			zIndex: 1
 		}}>
-			<Helmet>
-				<title>Reset password - Rounx</title>
-			</Helmet>
 			<Formik
 				initialValues={{ email: "" }}
 				validationSchema={validationSchema}

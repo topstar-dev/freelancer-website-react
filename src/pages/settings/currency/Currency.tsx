@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Helmet } from "react-helmet";
 import { TextField, Typography } from "@mui/material";
 import axios from 'axios';
 import { useSnackbar } from "notistack";
@@ -27,14 +26,15 @@ export default function Currency() {
     }
 
     React.useEffect(() => {
+        document.title = "Settings (Currency) - Rounx"
+    })
+
+    React.useEffect(() => {
         getCurrency();
     });
 
     return (
         <>
-            <Helmet>
-                <title>Settings (Currency) - Rounx</title>
-            </Helmet>
             <Typography fontSize='20px'>
                 {t('user-currency-title')}
             </Typography>

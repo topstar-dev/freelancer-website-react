@@ -1,13 +1,14 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { Helmet } from "react-helmet";
 
 export default function TermsOfService() {
+
+  React.useEffect(() => {
+    document.title = "Terms of Service - Rounx"
+  })
+
   return (
-    <Box margin='5% 15%'>
-      <Helmet>
-        <title>Terms of Service - Rounx</title>
-      </Helmet>
+    <>
       <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Terms of Service</Typography>
       <br />
       <Typography>Effective February 4, 2021</Typography>
@@ -29,6 +30,6 @@ export default function TermsOfService() {
         <br />
         <Typography>If you wish to update your account or profile information, you can do so from your Account Settings and Profile page (accessed from the dropdown menu at the top right of your dashboard.)When you delete your account from Account Settings, we remove all personal data we have on record, including your name, email, photo, social profiles, IP, payment information, and payout information. This means all account deletions are permanent. We may retain some personal data for a period of time, as required by law, or if there are ongoing payment disputes. For example, we retain tax documentation for mentors due to legal obligations.</Typography>
       </Box>
-    </Box>
+    </>
   )
 }
