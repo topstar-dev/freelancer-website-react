@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import * as yup from "yup";
 import { Formik } from "formik";
 import Box from '@mui/material/Box';
@@ -90,6 +91,9 @@ export default function SignUp() {
             transform: 'translate(-50%, -50%)',
             zIndex: 1
         }}>
+            <Helmet>
+                <title>Sign up - Rounx</title>
+            </Helmet>
             <Formik
                 initialValues={{
                     first_name: "",

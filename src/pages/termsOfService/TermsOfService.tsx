@@ -1,9 +1,13 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 export default function TermsOfService() {
   return (
     <Box margin='5% 15%'>
+      <Helmet>
+        <title>Terms of Service - Rounx</title>
+      </Helmet>
       <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Terms of Service</Typography>
       <br />
       <Typography>Effective February 4, 2021</Typography>

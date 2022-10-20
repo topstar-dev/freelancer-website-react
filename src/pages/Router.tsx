@@ -18,6 +18,7 @@ import AboutUs from "./aboutUs/AboutUs";
 import PrivacyPolicy from "./privacy/PrivacyPolicy";
 import TermsOfService from "./termsOfService/TermsOfService";
 import AuthGuard from "./auth/AuthGuard";
+import ErrorPage from "./404/ErrorPage";
 
 interface RoutesInterface {
   isHeader: boolean,
@@ -116,6 +117,16 @@ export default function Router() {
         }
       ]
     },
+    {
+      path: "*",
+      element: <CustomRouter isHeader={true} protectedRoute={false} />,
+      children: [
+        {
+          path: "*",
+          element: <ErrorPage />
+        }
+      ]
+    }
   ];
 
   return useRoutes(router);

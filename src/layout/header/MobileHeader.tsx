@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { List, Box, TextField, InputAdornment, Divider, Button } from '@mui/material';
+import { List, Box, TextField, InputAdornment, Divider } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";

@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -16,7 +15,6 @@ import {
   MenuItem
 } from "@mui/material";
 import {
-  DecideButton,
   FlexBox,
 } from "../../commonStyle";
 import BlueButton from "../../../components/blueButton/BlueButton";
@@ -26,7 +24,6 @@ export default function Info(mainProps: any) {
   const options = mainProps.countries;
   const { formik } = mainProps;
 
-  const navigate = useNavigate();
   const [country, setCountry] = React.useState('');
   const [birthday, setBirthday] = React.useState<Dayjs | null>(null);
 

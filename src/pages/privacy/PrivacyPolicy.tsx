@@ -1,9 +1,13 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 export default function PrivacyPolicy() {
   return (
     <Box margin='5% 15%'>
+      <Helmet>
+        <title>Privacy policy - Rounx</title>
+      </Helmet>
       <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Privacy Policy</Typography>
       <br />
       <Typography>Effective February 4, 2021</Typography>

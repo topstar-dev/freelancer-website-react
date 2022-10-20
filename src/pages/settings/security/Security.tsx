@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 import { TextField, Typography, Box } from "@mui/material";
 import useSecurity from "./useSecurity";
 import BlueButton from "../../../components/blueButton/BlueButton";
@@ -9,6 +10,9 @@ export default function Security() {
     useSecurity();
     return (
         <>
+            <Helmet>
+                <title>Settings (Security) - Rounx</title>
+            </Helmet>
             <Box id="account email">
                 <Typography fontSize='20px'>
                     {t('user-security-change-password')}

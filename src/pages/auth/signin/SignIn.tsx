@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   TextField,
@@ -64,6 +65,9 @@ export default function SignIn() {
       transform: 'translate(-50%, -50%)',
       zIndex: 1
     }}>
+      <Helmet>
+        <title>Sign in - Rounx</title>
+      </Helmet>
       <Formik
         initialValues={
           {

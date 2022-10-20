@@ -1,9 +1,13 @@
-import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 export default function ContactUs() {
   return (
     <Box margin='5% 15%'>
+      <Helmet>
+        <title>Contact us - Rounx</title>
+      </Helmet>
       <Typography style={{ fontSize: '24px' }}>Contact us</Typography>
       <br />
       <br />
