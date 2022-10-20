@@ -27,7 +27,6 @@ import { resetDefault } from "../../../redux/auth/authSlice";
 const validationSchema = yup.object({
   email: yup
     .string()
-    .email("Enter a valid email")
     .required("Email is required"),
   password: yup
     .string()
@@ -101,6 +100,7 @@ export default function SignIn() {
               fullWidth
               id="email"
               name="email"
+              type="text"
               label={t('signin-email')}
               value={props.values.email}
               onChange={props.handleChange}
