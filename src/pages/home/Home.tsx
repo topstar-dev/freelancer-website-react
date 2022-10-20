@@ -58,7 +58,7 @@ export default function HomePage() {
                 <Box className="rounx-home-second-section">
                     <Box className="rounx-home-second-box">
                         <Box>
-                            <img alt="Verified User" width='70px' src="images/VerifiedUserIcon.png" />
+                            <img alt="Verified User" width='70px' src="images/verified-user-icon.png" />
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point1')}</Typography>
@@ -68,7 +68,7 @@ export default function HomePage() {
                     </Box>
                     <Box className="rounx-home-second-box" style={{ margin: '0 3%' }}>
                         <Box>
-                            <img alt="Public Icon" width='70px' src="images/PublicIcon.png" />
+                            <img alt="Public Icon" width='70px' src="images/public-icon.png" />
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point2')}</Typography>
@@ -78,7 +78,7 @@ export default function HomePage() {
                     </Box>
                     <Box className="rounx-home-second-box">
                         <Box>
-                            <img alt="Code Icon" width='70px' src="images/CodeIcon.png" />
+                            <img alt="Code Icon" width='70px' src="images/code-icon.png" />
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point3')}</Typography>
@@ -146,13 +146,13 @@ export default function HomePage() {
                             alt="Mobile phone"
                             height='692px'
                             style={{ marginTop: '30px' }}
-                            src="images/SamsungGalaxy.png" />
+                            src="images/samsung-galaxy.png" />
                         <img
                             className="googlePixelPhone"
                             alt="Half mobile phone"
                             height='727px'
                             style={{ marginLeft: '-200px', zIndex: '-1' }}
-                            src="images/GooglePixel.png" />
+                            src="images/google-pixel.png" />
                     </Box>
                 </Box>
             </Box>
