@@ -37,7 +37,10 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         alt="Rounx user"
                         width="40px"
                         height="40px"
-                        onClick={() => setSelectedPage("/")}
+                        onClick={() => {
+                            setMenuOpen(false);
+                            setSelectedPage("/")
+                        }}
                     />
                 </Box>
                 {menuOpen ?

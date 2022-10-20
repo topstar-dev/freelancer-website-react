@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 export default function ContactUs() {
   return (
-    <Box margin='5% 15%'>
+    <>
       <Helmet>
         <title>Contact us - Rounx</title>
       </Helmet>
@@ -30,19 +30,19 @@ export default function ContactUs() {
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>Contact details</Typography>
             <Typography>
               <span>Customer Support: </span>
-              <span>support@rounx.com</span>
+              <span style={{ color: '#336def', cursor: 'pointer' }}>support@rounx.com</span>
             </Typography>
             <Typography>
               <span>Business Cooperation: </span>
-              <span>business@rounx.com</span>
+              <span style={{ color: '#336def', cursor: 'pointer' }}>business@rounx.com</span>
             </Typography>
             <Typography>
               <span>Online customer service (24 x 7): </span>
-              <span>Send message</span>
+              <span style={{ color: '#336def', cursor: 'pointer' }}>Send message</span>
             </Typography>
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
