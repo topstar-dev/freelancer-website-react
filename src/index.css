@@ -27,6 +27,14 @@ code {
   box-sizing: border-box;
 }
 
+.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #336def !important;
+}
+
+.css-3eghsz-PrivatePickersYear-button.Mui-selected {
+  background-color: #336def !important;
+}
+
 .MuiMenu-list {
   max-height: 300px !important;
 }
