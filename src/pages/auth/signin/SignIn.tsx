@@ -24,6 +24,7 @@ import {
 } from '../../../redux/auth/authActions';
 import { resetDefault } from "../../../redux/auth/authSlice";
 import BlueButton from "../../../components/blueButton/BlueButton";
+import TextButton from "../../../components/textButton/TextButton";
 
 const validationSchema = yup.object({
   email: yup
@@ -116,6 +117,7 @@ export default function SignIn() {
                 label={t('signin-password')}
                 type={showPassword ? "text" : "password"}
                 value={props.values.password}
+                autoComplete="false"
                 onChange={props.handleChange}
                 helperText={props.touched.password && props.errors.password}
                 error={props.touched.password && Boolean(props.errors.password)}
@@ -134,15 +136,15 @@ export default function SignIn() {
                 }}
               />
             </FormControl>
-            <Box style={{ margin: "10px 0px" }}>
-              <Button
+            <Box style={{ marginTop: "10px" }}>
+              <TextButton
                 className="normal-text round-button"
                 variant="outlined"
                 style={{ borderRadius: 20 }}
                 onClick={() => navigate("/reset-password")}
               >
                 {t('signin-forgot-password')}
-              </Button>
+              </TextButton>
               <BlueButton
                 disabled={loading}
                 type="submit"
@@ -151,13 +153,13 @@ export default function SignIn() {
                 {t('signin-submit')}
               </BlueButton>
             </Box>
-            <Button
+            <TextButton
               className="normal-text round-button"
               variant="outlined"
               style={{ width: 'fit-content', borderRadius: 20 }}
-              onClick={(e) => setType(e.currentTarget)}>
+              onClick={(e: any) => setType(e.currentTarget)}>
               {t('signin-signup')}
-            </Button>
+            </TextButton>
             <Popover
               open={Boolean(type)}
               anchorEl={type}
