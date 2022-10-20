@@ -26,3 +26,17 @@ code {
 * {
   box-sizing: border-box;
 }
+
+.MuiMenu-list {
+  max-height: 300px !important;
+}
+
+.css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+  border-radius: 6px !important;
+  border-color: #000000 !important;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
