@@ -16,10 +16,10 @@ import {
   MenuItem
 } from "@mui/material";
 import {
-  BlueButton,
   DecideButton,
   FlexBox,
 } from "../../commonStyle";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();

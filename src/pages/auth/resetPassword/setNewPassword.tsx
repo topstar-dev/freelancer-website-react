@@ -10,10 +10,11 @@ import {
   Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { BlueButton, DecideButton } from "../../commonStyle";
+import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function SetNewPassword(mainProps: any) {
   const { formik } = mainProps;

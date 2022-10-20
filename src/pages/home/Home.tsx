@@ -5,8 +5,8 @@ import { Box, Divider, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
-import { BlueButton } from "../commonStyle";
 import { useAppDispatch } from '../../redux/hooks';
+import BlueButton from "../../components/blueButton/BlueButton";
 import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
@@ -129,8 +129,8 @@ export default function HomePage() {
                                         onChange={props.handleChange}
                                         error={props.touched.email && Boolean(props.errors.email)}
                                         helperText={props.touched.email && props.errors.email}
-                                        InputProps={{ sx: { height: 49, borderRadius: '24px' } }}
-                                        style={{ marginRight: '20px', height: '49px' }}
+                                        InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
+                                        style={{ marginRight: '20px', height: '40px' }}
                                         fullWidth
                                     />
                                     <BlueButton type="submit">{t('home-page-comming-soon-email-button')}</BlueButton>

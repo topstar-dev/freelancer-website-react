@@ -17,12 +17,13 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
-import { BlueButton, CustomForm } from "../../commonStyle";
+import { CustomForm } from "../../commonStyle";
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import {
   signInUser
 } from '../../../redux/auth/authActions';
 import { resetDefault } from "../../../redux/auth/authSlice";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 const validationSchema = yup.object({
   email: yup

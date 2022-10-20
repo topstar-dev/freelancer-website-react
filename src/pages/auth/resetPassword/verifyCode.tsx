@@ -7,9 +7,10 @@ import {
   Box,
 } from "@mui/material";
 import { useAppDispatch } from "../../../redux/hooks";
-import { BlueButton, DecideButton } from "../../commonStyle";
+import { DecideButton } from "../../commonStyle";
 import { checkCodeOfEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function VerifyCode(mainProps: any) {
   const { formik } = mainProps;

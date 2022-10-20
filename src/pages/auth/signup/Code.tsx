@@ -7,10 +7,11 @@ import {
     Box,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { BlueButton, DecideButton } from "../../commonStyle";
+import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { signUpUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function Code(mainProps: any) {
     const { formik } = mainProps;

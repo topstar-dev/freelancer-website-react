@@ -8,7 +8,8 @@ import {
     Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { BlueButton, DecideButton } from "../../commonStyle";
+import BlueButton from "../../../components/blueButton/BlueButton";
+import { DecideButton } from "../../commonStyle";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();

@@ -7,10 +7,11 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { BlueButton, DecideButton } from "../../commonStyle";
+import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function EnterEmail(mainProps: any) {
   const { formik } = mainProps;

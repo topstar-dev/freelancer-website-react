@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TextField, Typography, Box } from "@mui/material";
-import { BlueButton } from "../../commonStyle";
 import useSecurity from "./useSecurity";
+import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function Security() {
     const { t } = useTranslation();
