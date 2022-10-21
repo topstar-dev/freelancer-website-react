@@ -62,8 +62,7 @@ code {
 
 /* selected menu item */
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
-  background-color: #24336def !important;
-  color: #fff !important;
+  background-color: rgba(51, 109, 239, 0.24) !important;
 }
 
 /* field edit outling */
