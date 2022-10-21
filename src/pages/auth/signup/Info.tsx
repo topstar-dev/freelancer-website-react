@@ -78,7 +78,8 @@ export default function Info(mainProps: any) {
           inputFormat="YYYY-MM-DD"
           value={birthday}
           onChange={handleChange}
-          renderInput={(params: any) => <TextField {...params} />}
+          renderInput={(params: any) => <TextField {...params}
+            inputProps={{ placeholder: "" }} />}
         />
       </LocalizationProvider>
       <FormControl>
