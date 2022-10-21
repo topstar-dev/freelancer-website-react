@@ -13,6 +13,8 @@ export default function AboutUs() {
     <>
       <Typography style={{ fontSize: '24px' }}>{t('about-us')}</Typography>
       <br />
+      <br />
+
       <Typography marginBottom='10px'>
         <span style={{ fontWeight: 'bold' }}>2016 - </span>
         <span>{t('about-us-2016')}</span>
