@@ -10,6 +10,10 @@
     min-width: 72px !important;
 }
 
+.rounx-blue-button:hover {
+    background-color: #24336def !important;
+}
+
 .rounx-blue-button .MuiTouchRipple-root .MuiTouchRipple-rippleVisible {
     background-color: #24336def !important;
 }

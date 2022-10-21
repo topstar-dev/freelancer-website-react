@@ -38,7 +38,7 @@ export default function SignUp() {
                 }
             })
         }
-    })
+    }, [loading, doCall, countryData.records, dispatch])
 
     const handleNext = () => {
         const newActiveStep = activeStep + 1;
