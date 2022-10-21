@@ -8,6 +8,7 @@ import VerifyCode from './verifyCode';
 import SetNewPassword from './setNewPassword';
 import { CustomForm } from "../../commonStyle";
 import Card from '../../../components/card/Card';
+import '../auth.css';
 
 const validationSchema = yup.object({
 	email: yup

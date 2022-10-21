@@ -22,13 +22,7 @@ export default function Code(mainProps: any) {
 
     return (
         <>
-            <Typography
-                style={{
-                    fontSize: "17px",
-                    textAlign: "center",
-                    marginTop: "-10px",
-                }}
-            >
+            <Typography className="rounx-account-title-info">
                 {t('signup-title.code-title')}
             </Typography>
             <Typography style={{ alignSelf: 'center', fontWeight: 'bold' }}>{formik.values.primary_email}</Typography>

@@ -20,14 +20,7 @@ export default function EnterEmail(mainProps: any) {
 
   return (
     <>
-      <Typography
-        style={{
-          fontSize: "17px",
-          textAlign: "center",
-          marginTop: "-10px",
-          marginBottom: "20px"
-        }}
-      >
+      <Typography className="rounx-account-title-info">
         <b>{t('reset-password-title.title')}</b>
         <br />
         {t('reset-password-title.email-info')}

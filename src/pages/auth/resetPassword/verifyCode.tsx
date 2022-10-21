@@ -20,13 +20,7 @@ export default function VerifyCode(mainProps: any) {
 
   return (
     <>
-      <Typography
-        style={{
-          fontSize: "17px",
-          textAlign: "center",
-          marginTop: "-10px"
-        }}
-      >
+      <Typography className="rounx-account-title-info">
         {t('reset-password-title.code-info')}
       </Typography>
       <Typography style={{ alignSelf: 'center', fontWeight: 'bold', marginBottom: "20px" }}>{formik.values.email}</Typography>

@@ -11,6 +11,7 @@ import { CustomForm } from "../../commonStyle";
 import { getCountriesList } from '../../../redux/resources/resourcesActions';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Card from '../../../components/card/Card';
+import '../auth.css';
 
 const validationSchema = yup.object({
     first_name: yup

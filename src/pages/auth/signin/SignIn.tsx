@@ -25,6 +25,7 @@ import { resetDefault } from "../../../redux/auth/authSlice";
 import BlueButton from "../../../components/blueButton/BlueButton";
 import TextButton from "../../../components/textButton/TextButton";
 import Card from "../../../components/card/Card";
+import '../auth.css';
 
 const validationSchema = yup.object({
   email: yup
@@ -90,14 +91,7 @@ export default function SignIn() {
               style={{ alignSelf: "center", cursor: "pointer" }}
               onClick={() => navigate('/')}
             />
-            <Typography
-              style={{
-                fontSize: "17px",
-                textAlign: "center",
-                marginTop: "-10px",
-                marginBottom: "20px",
-              }}
-            >
+            <Typography className="rounx-account-title-info">
               <span>{t('signin-logo')} </span>
               <span style={{ fontWeight: "bold" }}>Rounx </span>
             </Typography>

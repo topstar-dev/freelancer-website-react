@@ -21,16 +21,10 @@ export default function Email(mainProps: any) {
 
     return (
         <>
-            <Typography
-                style={{
-                    fontSize: "16px",
-                    textAlign: "center",
-                    marginTop: "-10px",
-                    marginBottom: "20px",
-                }}>
+            <Typography className="rounx-account-title-info">
                 <b>{t("signup-title.email-header")}</b>
                 <br />
-                {t('signup-title.email-title')}
+                <span style={{ fontSize: '16px' }}>{t('signup-title.email-title')}</span>
             </Typography>
             <TextField
                 fullWidth

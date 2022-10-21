@@ -30,14 +30,7 @@ export default function SetNewPassword(mainProps: any) {
 
   return (
     <>
-      <Typography
-        style={{
-          fontSize: "17px",
-          textAlign: "center",
-          marginTop: "-10px",
-          marginBottom: "20px",
-        }}
-      >
+      <Typography className="rounx-account-title-info">
         {t('reset-password-title.password-info')}
       </Typography>
       <TextField

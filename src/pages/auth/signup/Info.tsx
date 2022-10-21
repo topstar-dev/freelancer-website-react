@@ -40,14 +40,7 @@ export default function Info(mainProps: any) {
 
   return (
     <>
-      <Typography
-        style={{
-          fontSize: "17px",
-          textAlign: "center",
-          marginTop: "-10px",
-          marginBottom: "20px",
-        }}
-      >
+      <Typography className="rounx-account-title-info">
         <span>{t('signup-title.join')} </span>
         <span style={{ fontWeight: "bold" }}>{t('signup-title.rounx')} </span>
         <span>{t('signup-title.account')} </span>

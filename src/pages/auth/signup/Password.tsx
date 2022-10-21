@@ -21,14 +21,7 @@ export default function Password(mainProps: any) {
 
     return (
         <>
-            <Typography
-                style={{
-                    fontSize: "16px",
-                    textAlign: "center",
-                    marginTop: "-10px",
-                    marginBottom: "20px",
-                }}
-            >
+            <Typography className="rounx-account-title-info">
                 {t('signup-title.password-title')}
             </Typography>
             <TextField
