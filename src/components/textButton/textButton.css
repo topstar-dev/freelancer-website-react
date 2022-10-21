@@ -10,3 +10,7 @@
     font-weight: 525 !important;
     min-width: 72px !important;
 }
+
+.rounx-text-button .MuiTouchRipple-root .MuiTouchRipple-rippleVisible {
+    background-color: #24336def !important;
+}
