@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
 import { useAppDispatch } from '../../redux/hooks';
-import BlueButton from "../../components/blueButton/BlueButton";
+import BlueButton from "../../components/button/Button";
 import {
     scheduleAppointment
 } from '../../redux/home/homeActions';

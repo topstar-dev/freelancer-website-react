@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Typography, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import BlueButton from "../../../components/blueButton/BlueButton";
+import BlueButton from "../../../components/button/Button";
 
 export default function Personal() {
     const { t } = useTranslation();

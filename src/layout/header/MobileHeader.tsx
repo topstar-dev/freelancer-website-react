@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from '@mui/icons-material/Close';
 import { PropsInterface } from './DesktopHeader';
-import TextButton from '../../components/textButton/TextButton';
+import Button from '../../components/button/Button';
 
 export default function MobileHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
@@ -52,7 +52,7 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         </div>
                         :
                         <div>
-                            <TextButton style={{ width: '90px' }} className="rounx-no-signin-handle" onClick={() => navigate('/sign-in')}>Sign in</TextButton>
+                            <Button style={{ width: '90px' }} className="rounx-no-signin-handle" onClick={() => navigate('/sign-in')}>Sign in</Button>
                         </div>
                 }
             </Box>

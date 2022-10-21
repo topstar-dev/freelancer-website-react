@@ -9,7 +9,7 @@ import {
 import { useAppDispatch } from "../../../redux/hooks";
 import { checkCodeOfEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/blueButton/BlueButton";
+import BlueButton from "../../../components/button/Button";
 
 export default function VerifyCode(mainProps: any) {
   const { formik } = mainProps;

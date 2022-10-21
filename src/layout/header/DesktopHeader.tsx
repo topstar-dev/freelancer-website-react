@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
-import BlueButton from '../../components/blueButton/BlueButton';
+import BlueButton from '../../components/button/Button';
 
 export interface PropsInterface {
     pages: { name: string; url: string; }[];

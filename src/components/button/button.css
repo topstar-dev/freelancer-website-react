@@ -1,0 +1,29 @@
+.rounx-blue-button {
+    border-radius: 20px !important;
+    text-transform: none !important;
+    height: 40px !important;
+    padding: 11px 21px !important;
+    font-size: 14px !important;
+    font-weight: 525 !important;
+    min-width: 72px !important;
+    transition: none !important;
+}
+
+.rounx-blue-button.MuiButton-contained {
+    background-color: #336def !important;
+    color: #fff !important;
+}
+
+.rounx-blue-button.MuiButton-outlined {
+    color: #336def !important;
+    border-color: #cccccc !important;
+}
+
+.rounx-blue-button:hover {
+    background-color: rgb(36 51 109 / 94%) !important;
+    color: #fff !important;
+}
+
+.rounx-blue-button .MuiTouchRipple-root:focus {
+    background-color: rgb(36 51 109 / 94%) !important;
+}

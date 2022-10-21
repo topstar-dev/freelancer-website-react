@@ -21,8 +21,8 @@ import {
   signInUser
 } from '../../../redux/auth/authActions';
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/blueButton/BlueButton";
-import TextButton from "../../../components/textButton/TextButton";
+import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import '../auth.css';
 
@@ -124,14 +124,14 @@ export default function SignIn() {
               />
             </FormControl>
             <Box style={{ marginTop: "10px" }}>
-              <TextButton
+              <Button
                 className="normal-text round-button"
                 variant="outlined"
                 style={{ borderRadius: 20 }}
                 onClick={() => navigate("/reset-password")}
               >
                 {t('signin-forgot-password')}
-              </TextButton>
+              </Button>
               <BlueButton
                 disabled={loading}
                 type="submit"
@@ -140,13 +140,13 @@ export default function SignIn() {
                 {t('signin-submit')}
               </BlueButton>
             </Box>
-            <TextButton
+            <Button
               className="normal-text round-button"
               variant="outlined"
               style={{ width: 'fit-content', borderRadius: 20 }}
               onClick={(e: any) => setType(e.currentTarget)}>
               {t('signin-signup')}
-            </TextButton>
+            </Button>
             <Popover
               open={Boolean(type)}
               anchorEl={type}

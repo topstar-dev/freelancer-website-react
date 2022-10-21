@@ -18,7 +18,7 @@ import {
 import {
   FlexBox,
 } from "../../commonStyle";
-import BlueButton from "../../../components/blueButton/BlueButton";
+import BlueButton from "../../../components/button/Button";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();

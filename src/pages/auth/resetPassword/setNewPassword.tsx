@@ -13,7 +13,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAppDispatch } from "../../../redux/hooks";
 import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/blueButton/BlueButton";
+import BlueButton from "../../../components/button/Button";
 
 export default function SetNewPassword(mainProps: any) {
   const { formik } = mainProps;

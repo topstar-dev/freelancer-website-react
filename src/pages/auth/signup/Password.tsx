@@ -8,7 +8,7 @@ import {
     Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import BlueButton from "../../../components/blueButton/BlueButton";
+import BlueButton from "../../../components/button/Button";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
