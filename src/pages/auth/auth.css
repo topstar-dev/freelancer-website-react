@@ -1,6 +1,17 @@
+.rounx-auth-card {
+    margin: 80px auto 0 auto !important;
+    width: 550px !important;
+}
+
 .rounx-account-title-info {
     font-size: 20px !important;
     text-align: center !important;
     margin-top: -5px !important;
     margin-bottom: 20px !important;
+}
+
+@media (max-width: 600px) {
+    .rounx-auth-card {
+        width: calc(100% - 48px) !important;
+    }
 }

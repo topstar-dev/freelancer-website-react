@@ -87,14 +87,7 @@ export default function SignUp() {
     }
 
     return (
-        <Card style={{
-            width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 1
-        }}>
+        <Card className="rounx-auth-card">
             <Formik
                 initialValues={{
                     first_name: "",
