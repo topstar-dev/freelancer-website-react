@@ -4,7 +4,7 @@ export const apiCall = async (url: string, options: RequestInit) => {
             'Content-Type': 'application/json',
             'device-type': 'WEB',
             'accept': 'application/json',
-            'Accept-Language': 'en'
+            'Accept-Language': `${localStorage.getItem('i18nextLng')}`
         }
     }
 

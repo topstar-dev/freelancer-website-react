@@ -21,7 +21,7 @@ i18n
             en: {
                 translations: require('./en/translations.json')
             },
-            cn: {
+            'zh-CN': {
                 translations: require('./cn/translations.json')
             }
         },

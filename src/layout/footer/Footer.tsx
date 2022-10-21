@@ -33,7 +33,7 @@ export default function Footer() {
                         variant="standard"
                     >
                         <MenuItem value="en">English</MenuItem>
-                        <MenuItem value="cn">{t('footer-chinese-language')}</MenuItem>
+                        <MenuItem value="zh-CN">中文</MenuItem>
                     </Select>
                 </Box>
                 <Box className="rounx-nav-items-box">
