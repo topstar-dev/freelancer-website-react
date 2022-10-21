@@ -1,4 +1,4 @@
-export const apiCall = async (url: string, options: RequestInit) => {
+export const apiCall = async (url: string, options: RequestInit, type = 'json') => {
     let _options: RequestInit = {
         headers: {
             'Content-Type': 'application/json',
@@ -22,8 +22,14 @@ export const apiCall = async (url: string, options: RequestInit) => {
             const error = await response.json();
             return { success: false, ...error };
         } else {
-            const data = await response.json();
-            return { success: true, ...data };
+            if (type === 'json') {
+                const data = await response.json();
+                return { success: true, ...data };
+            } else if (type === 'blob') {
+                const blogFile = await response.blob();
+                const url = URL.createObjectURL(blogFile)
+                return { success: true, url };
+            }
         }
     } catch (err) {
         return { success: false, message: "Error occured" }

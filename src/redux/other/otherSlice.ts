@@ -24,7 +24,7 @@ export const otherSlice = createSlice({
         })
         builder.addCase(imageDownload.fulfilled, (state: OtherState, action) => {
             state.loading = false;
-            state.image = action.payload.data;
+            state.image = action.payload.url;
             state.message = action.payload.message;
         })
         builder.addCase(imageDownload.rejected, (state: OtherState, action) => {

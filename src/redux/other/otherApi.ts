@@ -1,13 +1,13 @@
 import { apiCall } from "../apiCall";
 import { ImageDownloadInterface } from "./otherActions";
 
-interface ImageHeaderInterface extends RequestInit {
-    'function-type': string
-}
 export const downloadImage = (imageData: ImageDownloadInterface) => {
-    const requestOptions: ImageHeaderInterface = {
+    const requestOptions: RequestInit = {
         method: 'GET',
-        "function-type": imageData.functionType
+        headers: {
+            "function-type": imageData.functionType,
+            "file_name": imageData?.fileName.replace('/image/', '')
+        }
     };
-    return apiCall(`/image/${imageData.fileName}`, requestOptions);
+    return apiCall(`${imageData.fileName}`, requestOptions, 'blob');
 };
