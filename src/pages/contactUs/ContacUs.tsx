@@ -1,9 +1,11 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function ContactUs() {
+  const { t } = useTranslation();
   React.useEffect(() => {
-    document.title = "Contact us - Rounx"
+    document.title = t('title.contact-us')
   })
 
   return (

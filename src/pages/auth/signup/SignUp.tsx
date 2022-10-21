@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as yup from "yup";
 import { Formik } from "formik";
@@ -12,6 +11,7 @@ import { getCountriesList } from '../../../redux/resources/resourcesActions';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Card from '../../../components/card/Card';
 import '../auth.css';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = yup.object({
     first_name: yup
@@ -47,6 +47,7 @@ const validationSchema = yup.object({
 });
 
 export default function SignUp() {
+    const { t } = useTranslation();
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ export default function SignUp() {
     const { loading, countryData } = useAppSelector(state => state.resources)
 
     React.useEffect(() => {
-        document.title = "Sign up - Rounx"
+        document.title = t('title.signup')
     })
 
     useEffect(() => {

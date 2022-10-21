@@ -1,9 +1,11 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function PrivacyPolicy() {
+  const { t } = useTranslation();
   React.useEffect(() => {
-    document.title = "Privacy policy - Rounx"
+    document.title = t('title.privacy-policy')
   })
 
   return (

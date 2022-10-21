@@ -9,7 +9,7 @@ export default function Security() {
     useSecurity();
 
     React.useEffect(() => {
-        document.title = "Settings (Security) - Rounx"
+        document.title = t('title.security')
     })
 
     return (

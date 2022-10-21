@@ -2,13 +2,13 @@ import * as React from 'react';
 import * as yup from "yup";
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
 import EnterEmail from './enterEmail';
 import VerifyCode from './verifyCode';
 import SetNewPassword from './setNewPassword';
 import { CustomForm } from "../../commonStyle";
 import Card from '../../../components/card/Card';
 import '../auth.css';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = yup.object({
 	email: yup
@@ -31,11 +31,12 @@ const validationSchema = yup.object({
 });
 
 export default function ResetPassword() {
+	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const [activeStep, setActiveStep] = React.useState<number>(0);
 
 	React.useEffect(() => {
-		document.title = "Reset password - Rounx"
+		document.title = t('title.reset-password')
 	})
 
 	const handleNext = () => {

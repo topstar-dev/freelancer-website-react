@@ -7,7 +7,7 @@ export default function Personal() {
     const { t } = useTranslation();
 
     React.useEffect(() => {
-        document.title = "Settings (Personal info) - Rounx"
+        document.title = t('title.personal')
     })
 
     return (

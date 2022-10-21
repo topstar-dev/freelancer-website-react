@@ -26,7 +26,7 @@ export default function Currency() {
     }
 
     React.useEffect(() => {
-        document.title = "Settings (Currency) - Rounx"
+        document.title = t('title.currency')
     })
 
     React.useEffect(() => {

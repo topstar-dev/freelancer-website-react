@@ -1,10 +1,11 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function TermsOfService() {
-
+  const { t } = useTranslation()
   React.useEffect(() => {
-    document.title = "Terms of Service - Rounx"
+    document.title = t('termas-of-service');
   })
 
   return (

@@ -13,7 +13,6 @@ import {
   Popover,
   MenuItem
 } from "@mui/material";
-import { useMediaQuery } from "react-responsive";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
 import { CustomForm } from "../../commonStyle";
@@ -47,7 +46,7 @@ export default function SignIn() {
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
 
   React.useEffect(() => {
-    document.title = "Sign in - Rounx"
+    document.title = t('title.signin')
   })
 
   useEffect(() => {

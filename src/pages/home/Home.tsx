@@ -25,7 +25,7 @@ export default function HomePage() {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        document.title = "Rounx"
+        document.title = t('title.home')
     })
 
     return (

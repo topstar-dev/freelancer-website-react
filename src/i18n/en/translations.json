@@ -1,4 +1,18 @@
 {
+    "title": {
+        "about-us": "About us - Rounx",
+        "error-page": "Not found - Rounx",
+        "reset-password": "Reset password - Rounx",
+        "signin": "Sign in - Rounx",
+        "signup": "Sign up - Rounx",
+        "contact-us": "Contact us - Rounx",
+        "home": "Rounx",
+        "privacy-policy": "Privacy policy - Rounx",
+        "termas-of-service": "Terms of Service - Rounx",
+        "currency": "Settings (Currency) - Rounx",
+        "personal": "Settings (Personal info) - Rounx",
+        "security": "Settings (Security) - Rounx"
+    },
     "header-help": "Help",
     "header-blog": "Blog",
     "header-contact-us": "Contact us",

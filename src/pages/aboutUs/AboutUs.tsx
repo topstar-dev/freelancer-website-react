@@ -6,7 +6,7 @@ export default function AboutUs() {
   const { t } = useTranslation();
 
   React.useEffect(() => {
-    document.title = "About us - Rounx"
+    document.title = t('title.about-us')
   })
 
   return (

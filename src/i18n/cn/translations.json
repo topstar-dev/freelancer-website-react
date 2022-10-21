@@ -1,4 +1,18 @@
 {
+    "title": {
+        "about-us": "关于我们 - Rounx",
+        "error-page": "未找到 - Rounx",
+        "reset-password": "重设密码 - Rounx",
+        "signin": "登入 - Rounx",
+        "signup": "注册 - Rounx",
+        "contact-us": "联系我们 - Rounx",
+        "home": "Rounx",
+        "privacy-policy": "隐私政策 - Rounx",
+        "termas-of-service": "服务条款 - Rounx",
+        "currency": "设置（货币） - Rounx",
+        "personal": "设置（个人信息） - Rounx",
+        "security": "设置（安全） - Rounx"
+    },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",
     "header-contact-us": "联系我们",
