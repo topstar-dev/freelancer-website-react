@@ -13,39 +13,6 @@ import Card from '../../../components/card/Card';
 import '../auth.css';
 import { useTranslation } from 'react-i18next';
 
-const validationSchema = yup.object({
-    first_name: yup
-        .string()
-        .required("First name is required"),
-    last_name: yup
-        .string()
-        .required("Last name is required"),
-    birthday: yup
-        .string()
-        .required("Birthday is required"),
-    country_id: yup
-        .string()
-        .required("Country id is required"),
-    password: yup
-        .string()
-        .min(8, "Password should be of minimum 8 characters length")
-        .required("Password is required"),
-    confirm_password: yup
-        .string()
-        .when("password", {
-            is: (value: string) => (value && value.length > 0 ? true : false),
-            then: yup.string().oneOf([yup.ref("password")], "Passwords do not match"),
-        })
-        .required("Confirm password is required"),
-    primary_email: yup
-        .string()
-        .email("Enter a valid email")
-        .required("Email is required"),
-    email_code: yup
-        .number()
-        .required("Code is required"),
-});
-
 export default function SignUp() {
     const { t } = useTranslation();
     const [searchParams] = useSearchParams();
@@ -98,7 +65,38 @@ export default function SignUp() {
                     primary_email: "",
                     email_code: "",
                 }}
-                validationSchema={validationSchema}
+                validationSchema={yup.object({
+                    first_name: yup
+                        .string()
+                        .required(t('validation.firstname-required')),
+                    last_name: yup
+                        .string()
+                        .required(t('validation.lastname-required')),
+                    birthday: yup
+                        .string()
+                        .required(t('validation.birthday-required')),
+                    country_id: yup
+                        .string()
+                        .required(t('validation.country-required')),
+                    password: yup
+                        .string()
+                        .min(8, t('validation.password-valid'))
+                        .required(t('validation.password-required')),
+                    confirm_password: yup
+                        .string()
+                        .when("password", {
+                            is: (value: string) => (value && value.length > 0 ? true : false),
+                            then: yup.string().oneOf([yup.ref("password")], t('validation.confirm-password-not-matched')),
+                        })
+                        .required(t('validation.confirm-password-required')),
+                    primary_email: yup
+                        .string()
+                        .email(t('validation.email-valid'))
+                        .required(t('validation.email-required')),
+                    email_code: yup
+                        .number()
+                        .required(t('validation.code-required')),
+                })}
                 onSubmit={(values) => { }}
             >
                 {props =>

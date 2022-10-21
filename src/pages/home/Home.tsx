@@ -12,12 +12,6 @@ import {
 } from '../../redux/home/homeActions';
 import './home.css'
 
-const validationSchema = yup.object({
-    email: yup
-        .string()
-        .required("Email is required")
-});
-
 export default function HomePage() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
@@ -107,7 +101,11 @@ export default function HomePage() {
                             </Typography>
                         </Box>
                         <Formik
-                            validationSchema={validationSchema}
+                            validationSchema={yup.object({
+                                email: yup
+                                    .string()
+                                    .required(t('validation.email-required'))
+                            })}
                             initialValues={{ email: '' }}
                             onSubmit={(values, actions) => {
                                 dispatch(scheduleAppointment(values.email))

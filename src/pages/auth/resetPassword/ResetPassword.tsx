@@ -10,26 +10,6 @@ import Card from '../../../components/card/Card';
 import '../auth.css';
 import { useTranslation } from 'react-i18next';
 
-const validationSchema = yup.object({
-	email: yup
-		.string()
-		.email("Enter a valid email")
-		.required("Email is required"),
-	code: yup.number()
-		.required("Code is required"),
-	password: yup
-		.string()
-		.min(8, "Password should be of minimum 8 characters length")
-		.required("Password is required"),
-	confirm_password: yup
-		.string()
-		.when("password", {
-			is: (value: string) => (value && value.length > 0 ? true : false),
-			then: yup.string().oneOf([yup.ref("password")], "Passwords do not match"),
-		})
-		.required("This field is required")
-});
-
 export default function ResetPassword() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -58,7 +38,25 @@ export default function ResetPassword() {
 		<Card className="rounx-auth-card">
 			<Formik
 				initialValues={{ email: "" }}
-				validationSchema={validationSchema}
+				validationSchema={yup.object({
+					email: yup
+						.string()
+						.email(t('validation.email-valid'))
+						.required(t('validation.email-required')),
+					code: yup.number()
+						.required(t('validation.code-required')),
+					password: yup
+						.string()
+						.min(8, t('validation.password-valid'))
+						.required(t('validation.password-required')),
+					confirm_password: yup
+						.string()
+						.when("password", {
+							is: (value: string) => (value && value.length > 0 ? true : false),
+							then: yup.string().oneOf([yup.ref("password")], t('validation.confirm-password-not-matched')),
+						})
+						.required(t('validation.confirm-password-required'))
+				})}
 				onSubmit={() => { }}
 			>
 				{props => (

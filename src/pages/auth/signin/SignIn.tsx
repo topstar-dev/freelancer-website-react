@@ -26,15 +26,6 @@ import TextButton from "../../../components/textButton/TextButton";
 import Card from "../../../components/card/Card";
 import '../auth.css';
 
-const validationSchema = yup.object({
-  email: yup
-    .string()
-    .required("Email is required"),
-  password: yup
-    .string()
-    .required("Password is required"),
-});
-
 export default function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -68,7 +59,14 @@ export default function SignIn() {
             password: "",
           }
         }
-        validationSchema={validationSchema}
+        validationSchema={yup.object({
+          email: yup
+            .string()
+            .required(t('validation.email-required')),
+          password: yup
+            .string()
+            .required(t('validation.password-required')),
+        })}
         onSubmit={(values, actions) => {
           dispatch(signInUser({ email: values.email, password: values.password }));
         }}
