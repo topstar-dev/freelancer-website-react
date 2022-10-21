@@ -58,3 +58,9 @@ code {
   background-color: #24336def !important;
   color: #fff !important;
 }
+
+/* field edit outling */
+.Mui-focused fieldset {
+  border-color: #336def !important;
+  color: #336def !important;
+}
