@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { imageDownload } from '../../redux/other/otherActions';
 
 interface UserMenuPropsInterface {
     signOut: Function,
@@ -12,8 +14,17 @@ interface UserMenuPropsInterface {
 
 export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const { t } = useTranslation();
+    const { image } = useAppSelector((state) => state.other);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    useEffect(() => {
+        if (userInfo?.avatar_url) {
+            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo.avatar_url }))
+        }
+    })
+
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
@@ -29,8 +40,8 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     return (
         <>
-            {userInfo?.avatar_url ?
-                <img className='rounx-signin-handle' onClick={handleMenu} src={userInfo?.avatar_url} alt="Rounx user" />
+            {image ?
+                <img className='rounx-signin-handle' onClick={handleMenu} src={image} alt="Rounx user" />
                 :
                 <AccountCircle className='rounx-signin-handle' onClick={handleMenu} />
             }

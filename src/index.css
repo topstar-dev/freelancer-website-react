@@ -44,6 +44,10 @@ code {
   background-color: #336def !important;
 }
 
+.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #336def !important;
+}
+
 
 /* menu or dropdown list */
 .MuiMenu-list {

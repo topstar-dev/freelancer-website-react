@@ -19,6 +19,7 @@ export default function SignUp() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const type = searchParams.get('type');
+    const [doCall, setCall] = useState(false)
     const [activeStep, setActiveStep] = useState<number>(0);
     const [countries, setCountries] = useState([]);
     const { loading, countryData } = useAppSelector(state => state.resources)
@@ -28,7 +29,8 @@ export default function SignUp() {
     })
 
     useEffect(() => {
-        if (!loading && !countryData.records) {
+        if (!loading && !doCall && !countryData.records) {
+            setCall(true)
             dispatch(getCountriesList()).then(res => {
                 const { success, data } = res.payload;
                 if (success) {
