@@ -66,6 +66,7 @@
     height: 40px !important;
     width: 40px !important;
     color: #757575;
+    border-radius: 100%;
 }
 
 .rounx-no-signin-handle {

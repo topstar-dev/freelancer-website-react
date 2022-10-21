@@ -11,6 +11,7 @@ export const store = configureStore({
     resources: resourcesSlice,
     other: otherSlice
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
 });
 
 export type AppDispatch = typeof store.dispatch;

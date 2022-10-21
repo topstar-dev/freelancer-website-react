@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
 
 interface UserMenuPropsInterface {
@@ -16,13 +16,16 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
-    // const { image } = useAppSelector((state) => state.other);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [userPic, setUserPic] = useState(null)
 
     useEffect(() => {
-        // console.log(image)
-        if (userInfo?.avatar_url) {
-            // dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: '/image/870461589e6dbdb2.png' }))
+        if (userInfo?.avatar_url && !userPic) {
+            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: '/image/870461589e6dbdb2.png' })).then((res) => {
+                if (res.payload.success) {
+                    setUserPic(res.payload.file);
+                }
+            })
         }
     })
 
@@ -41,8 +44,8 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     return (
         <>
-            {userInfo?.avatar_url ?
-                <img className='rounx-signin-handle' onClick={handleMenu} src={userInfo?.avatar_url} alt="Rounx user" />
+            {userPic ?
+                <img className='rounx-signin-handle' onClick={handleMenu} src={URL.createObjectURL(userPic)} alt="Rounx user" />
                 :
                 <AccountCircle className='rounx-signin-handle' onClick={handleMenu} />
             }

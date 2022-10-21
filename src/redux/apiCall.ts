@@ -26,9 +26,8 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
                 const data = await response.json();
                 return { success: true, ...data };
             } else if (type === 'blob') {
-                const blogFile = await response.blob();
-                const url = URL.createObjectURL(blogFile)
-                return { success: true, url };
+                const file = await response.blob();
+                return { success: true, file };
             }
         }
     } catch (err) {
