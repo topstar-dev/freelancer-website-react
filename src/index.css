@@ -70,3 +70,7 @@ code {
   border-color: #336def !important;
   color: #336def !important;
 }
+
+.Mui-focused fieldset legend span {
+  color: #336def !important;
+}
