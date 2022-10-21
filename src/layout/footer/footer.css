@@ -29,7 +29,11 @@
 .rounx-language-select {
     font-size: 14px !important;
     color: #757575 !important;
-    width: 80px !important;
+    /* width: 80px !important; */
+}
+
+.rounx-language-select>div {
+    padding-right: 32px !important;
 }
 
 .rounx-language-select>div:focus {
