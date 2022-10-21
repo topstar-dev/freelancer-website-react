@@ -82,6 +82,12 @@
     opacity: 0.8;
 }
 
+@media (max-width: 499px) {
+    .rounx-footer-left-content {
+        margin-bottom: 10px;
+    }
+}
+
 @media (max-width: 900px) {
     .rounx-footer-container {
         padding: 24px;
