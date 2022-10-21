@@ -27,6 +27,8 @@ code {
   box-sizing: border-box;
 }
 
+
+/* date picker selected */
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   background-color: #336def !important;
 }
@@ -35,6 +37,8 @@ code {
   background-color: #336def !important;
 }
 
+
+/* menu or dropdown list */
 .MuiMenu-list {
   max-height: 300px !important;
 }
@@ -47,4 +51,10 @@ code {
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
   padding-top: 14px !important;
   padding-bottom: 14px !important;
+}
+
+/* selected menu item */
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+  background-color: #24336def !important;
+  color: #fff !important;
 }
