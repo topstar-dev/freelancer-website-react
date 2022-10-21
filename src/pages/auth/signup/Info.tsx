@@ -61,7 +61,7 @@ export default function Info(mainProps: any) {
           onChange={formik.handleChange}
           error={formik.touched.first_name && Boolean(formik.errors.first_name)}
           helperText={formik.touched.first_name && formik.errors.first_name}
-          sx={{ mr: 1 }} />
+          sx={{ mr: '17px' }} />
         <TextField
           fullWidth
           label={t('signup-data.last-name')}
