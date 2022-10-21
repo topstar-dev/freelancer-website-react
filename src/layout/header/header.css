@@ -84,6 +84,18 @@
     border-bottom: 1px solid #cccccc;
 }
 
+.rounx-mobile-header>div {
+    width: 33.33%;
+}
+
+.rounx-mobile-header>div:nth-child(2) {
+    text-align: center;
+}
+
+.rounx-mobile-header>div:nth-child(3) {
+    text-align: right;
+}
+
 .rounx-mobile-burger {
     cursor: pointer;
     color: #757575;
