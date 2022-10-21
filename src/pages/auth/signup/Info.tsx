@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -21,6 +21,7 @@ import BlueButton from "../../../components/blueButton/BlueButton";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();
+  const countryRef = useRef<any>();
   const options = mainProps.countries;
   const { formik } = mainProps;
 
@@ -85,9 +86,14 @@ export default function Info(mainProps: any) {
       <FormControl>
         <InputLabel>{t('signup-data.country')}</InputLabel>
         <Select
+          ref={countryRef}
           label={t('signup-data.country')}
           value={country}
           onChange={countryChange}
+          onClose={() => {
+            countryRef?.current?.classList?.remove('Mui-focused');
+            countryRef?.current?.previousSibling?.classList.remove('Mui-focused');
+          }}
         >
 
           {options.map((item: any) => {
