@@ -32,6 +32,10 @@
     width: 80px !important;
 }
 
+.rounx-language-select>div:focus {
+    background-color: transparent !important;
+}
+
 .rounx-language-select::before {
     border: none !important;
 }
