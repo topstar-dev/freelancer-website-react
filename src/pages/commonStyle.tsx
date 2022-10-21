@@ -42,11 +42,7 @@ export const BlueButton = styled(Button)((props: any) => ({
 export const CustomForm = styled("form")({
     display: "flex",
     flexDirection: "column",
-    gap: "20px",
-    border: "1px solid lightgray",
-    borderRadius: "4px",
-    padding: "30px 30px 20px",
-    marginBottom: "30px",
+    gap: "20px"
 });
 
 export const FormBox = styled(Box)({

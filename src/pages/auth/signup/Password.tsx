@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import BlueButton from "../../../components/blueButton/BlueButton";
-// import { DecideButton } from "../../commonStyle";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
@@ -67,13 +66,7 @@ export default function Password(mainProps: any) {
                 error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
                 helperText={formik.touched.confirm_password && formik.errors.confirm_password}
             />
-            <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
-                {/* <DecideButton
-                    sx={{ mr: 2 }}
-                    onClick={() => mainProps.handleBack()}
-                >
-                    {t('signup-title.back-btn')}
-                </DecideButton> */}
+            <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <BlueButton onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { password, confirm_password } = res;

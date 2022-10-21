@@ -97,7 +97,7 @@ export default function Info(mainProps: any) {
           })}
         </Select>
       </FormControl>
-      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
+      <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <BlueButton onClick={() => {
           formik.validateForm().then((res: any) => {
             const { first_name, last_name } = res;

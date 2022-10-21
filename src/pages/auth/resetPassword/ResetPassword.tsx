@@ -3,11 +3,11 @@ import * as yup from "yup";
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import Box from '@mui/material/Box';
 import EnterEmail from './enterEmail';
 import VerifyCode from './verifyCode';
 import SetNewPassword from './setNewPassword';
 import { CustomForm } from "../../commonStyle";
+import Card from '../../../components/card/Card';
 
 const validationSchema = yup.object({
 	email: yup
@@ -53,7 +53,7 @@ export default function ResetPassword() {
 	}
 
 	return (
-		<Box style={{
+		<Card style={{
 			width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
 			position: 'absolute',
 			top: '50%',
@@ -80,6 +80,6 @@ export default function ResetPassword() {
 					</CustomForm>
 				)}
 			</Formik>
-		</Box>
+		</Card>
 	);
 }

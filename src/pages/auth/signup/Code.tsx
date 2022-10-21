@@ -7,7 +7,6 @@ import {
     Box,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
-// import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { signUpUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
@@ -43,14 +42,7 @@ export default function Code(mainProps: any) {
                 error={formik.touched.email_code && Boolean(formik.errors.email_code)}
                 helperText={formik.touched.email_code && formik.errors.email_code}
             />
-            <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
-                {/* <DecideButton
-                    disabled={loading}
-                    onClick={() => mainProps.handleBack()}
-                    sx={{ marginRight: '10px' }}
-                >
-                    {t('signup-title.back-btn')}
-                </DecideButton> */}
+            <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <BlueButton disabled={loading} style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { email_code } = res;

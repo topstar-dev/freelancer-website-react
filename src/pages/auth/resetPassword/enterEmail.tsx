@@ -6,7 +6,6 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-// import { DecideButton } from "../../commonStyle";
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
@@ -43,14 +42,7 @@ export default function EnterEmail(mainProps: any) {
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
       />
-      <Box style={{ margin: "10px 0px", display: 'flex', justifyContent: 'flex-end' }}>
-        {/* <DecideButton
-          disabled={loading}
-          onClick={() => navigate("/sign-in")}
-          sx={{ marginRight: '10px' }}
-        >
-          {t('signup-title.back-btn')}
-        </DecideButton> */}
+      <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <BlueButton
           disabled={loading}
           onClick={() => {

@@ -24,6 +24,7 @@ import {
 import { resetDefault } from "../../../redux/auth/authSlice";
 import BlueButton from "../../../components/blueButton/BlueButton";
 import TextButton from "../../../components/textButton/TextButton";
+import Card from "../../../components/card/Card";
 
 const validationSchema = yup.object({
   email: yup
@@ -59,7 +60,7 @@ export default function SignIn() {
   }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
   return (
-    <Box style={{
+    <Card style={{
       width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
       position: 'absolute',
       top: '50%',
@@ -181,6 +182,6 @@ export default function SignIn() {
           </CustomForm>
         )}
       </Formik>
-    </Box>
+    </Card>
   );
 }

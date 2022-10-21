@@ -3,7 +3,6 @@ import { useMediaQuery } from 'react-responsive';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as yup from "yup";
 import { Formik } from "formik";
-import Box from '@mui/material/Box';
 import Info from './Info';
 import Password from './Password';
 import Email from './Email';
@@ -11,6 +10,7 @@ import Code from './Code';
 import { CustomForm } from "../../commonStyle";
 import { getCountriesList } from '../../../redux/resources/resourcesActions';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import Card from '../../../components/card/Card';
 
 const validationSchema = yup.object({
     first_name: yup
@@ -86,7 +86,7 @@ export default function SignUp() {
     }
 
     return (
-        <Box style={{
+        <Card style={{
             width: useMediaQuery({ query: '(max-width: 600px)' }) ? 'calc(100% - 48px)' : '550px',
             position: 'absolute',
             top: '50%',
@@ -120,6 +120,6 @@ export default function SignUp() {
                     </CustomForm >
                 }
             </Formik>
-        </Box>
+        </Card>
     );
 }
