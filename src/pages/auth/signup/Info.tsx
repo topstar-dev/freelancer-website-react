@@ -4,6 +4,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import {
   TextField,
   Typography,
@@ -66,7 +67,7 @@ export default function Info(mainProps: any) {
           error={formik.touched.last_name && Boolean(formik.errors.last_name)}
           helperText={formik.touched.last_name && formik.errors.last_name} />
       </FlexBox>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider locale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label={t('signup-data.birthday')}
           inputFormat="YYYY-MM-DD"
