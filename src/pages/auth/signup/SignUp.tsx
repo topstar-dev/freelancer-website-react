@@ -82,7 +82,6 @@ export default function SignUp() {
                         .required(t('validation.country-required')),
                     password: yup
                         .string()
-                        .min(8, t('validation.password-valid'))
                         .required(t('validation.password-required')),
                     confirm_password: yup
                         .string()

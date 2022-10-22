@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { TextField, Typography, Box } from "@mui/material";
 import useSecurity from "./useSecurity";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function Security() {
     const { t } = useTranslation();
@@ -31,7 +31,7 @@ export default function Security() {
                 <TextField fullWidth label={t('user-security-change-password-confirm')}></TextField >
                 <br />
                 <br />
-                <BlueButton>{t('user-security-change-password-change-button')}</BlueButton>
+                <Button>{t('user-security-change-password-change-button')}</Button>
             </Box >
             <br />
             <br />
@@ -47,8 +47,8 @@ export default function Security() {
                 ></TextField>
                 <br />
                 <br />
-                <BlueButton sx={{ mr: 2 }}>{t('user-security-recovery-email-delete')}</BlueButton>
-                <BlueButton>{t('user-security-recovery-email-change')}</BlueButton>
+                <Button sx={{ mr: 2 }}>{t('user-security-recovery-email-delete')}</Button>
+                <Button>{t('user-security-recovery-email-change')}</Button>
             </Box>
         </>
     )

@@ -9,7 +9,7 @@ import {
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function EnterEmail(mainProps: any) {
   const { formik } = mainProps;
@@ -21,22 +21,22 @@ export default function EnterEmail(mainProps: any) {
   return (
     <>
       <Typography className="rounx-account-title-info">
-        <b>{t('reset-password-title.title')}</b>
+        <b>{t('reset-password')}</b>
         <br />
-        {t('reset-password-title.email-info')}
+        {t('enter_email')}
       </Typography>
       <TextField
         fullWidth
         id="email"
         name="email"
-        label={t('reset-password-data.email')}
+        label={t('email')}
         value={formik.values.email}
         onChange={formik.handleChange}
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
       />
       <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <BlueButton
+        <Button
           disabled={loading}
           onClick={() => {
             formik.validateForm().then((res: any) => {
@@ -68,8 +68,8 @@ export default function EnterEmail(mainProps: any) {
               }
             })
           }}>
-          {t('signup-title.next-btn')}
-        </BlueButton>
+          {t('next')}
+        </Button>
       </Box>
     </>
   );

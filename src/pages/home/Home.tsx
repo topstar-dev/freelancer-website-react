@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
 import { useAppDispatch } from '../../redux/hooks';
-import BlueButton from "../../components/button/Button";
+import Button from "../../components/button/Button";
 import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
@@ -38,7 +38,7 @@ export default function HomePage() {
                                 {t('home-page-heading1-details2')}
                             </Typography>
                         </div>
-                        <BlueButton onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</BlueButton>
+                        <Button onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</Button>
                     </Box>
                 </Box>
                 <Box className="rounx-home-first-right">
@@ -135,7 +135,7 @@ export default function HomePage() {
                                         style={{ marginRight: '20px', height: '40px' }}
                                         fullWidth
                                     />
-                                    <BlueButton type="submit">{t('home-page-comming-soon-email-button')}</BlueButton>
+                                    <Button type="submit">{t('submit')}</Button>
                                 </form>
                             )}
                         </Formik>

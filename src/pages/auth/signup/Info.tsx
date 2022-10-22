@@ -18,7 +18,7 @@ import {
 import {
   FlexBox,
 } from "../../commonStyle";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();
@@ -42,14 +42,12 @@ export default function Info(mainProps: any) {
   return (
     <>
       <Typography className="rounx-account-title-info">
-        <span>{t('signup-title.join')} </span>
-        <span style={{ fontWeight: "bold" }}>{t('signup-title.rounx')} </span>
-        <span>{t('signup-title.account')} </span>
+        {t('signup-title')}
       </Typography>
       <FlexBox sx={{ justifyContent: 'space-between' }} >
         <TextField
           fullWidth
-          label={t('signup-data.first-name')}
+          label={t('first-name')}
           id="first_name"
           name="first_name"
           value={formik.values.first_name}
@@ -59,7 +57,7 @@ export default function Info(mainProps: any) {
           sx={{ mr: '17px' }} />
         <TextField
           fullWidth
-          label={t('signup-data.last-name')}
+          label={t('last-name')}
           id="last_name"
           name="last_name"
           value={formik.values.last_name}
@@ -69,7 +67,7 @@ export default function Info(mainProps: any) {
       </FlexBox>
       <LocalizationProvider locale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
-          label={t('signup-data.birthday')}
+          label={t('birthday')}
           inputFormat="YYYY-MM-DD"
           value={birthday}
           onChange={handleChange}
@@ -78,10 +76,10 @@ export default function Info(mainProps: any) {
         />
       </LocalizationProvider>
       <FormControl>
-        <InputLabel>{t('signup-data.country')}</InputLabel>
+        <InputLabel>{t('country')}</InputLabel>
         <Select
           ref={countryRef}
-          label={t('signup-data.country')}
+          label={t('country')}
           value={country}
           onChange={countryChange}
           onClose={() => {
@@ -98,7 +96,7 @@ export default function Info(mainProps: any) {
         </Select>
       </FormControl>
       <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <BlueButton onClick={() => {
+        <Button onClick={() => {
           formik.validateForm().then((res: any) => {
             const { first_name, last_name } = res;
             if (first_name) {
@@ -114,8 +112,8 @@ export default function Info(mainProps: any) {
             }
           })
         }}>
-          {t('signup-title.next-btn')}
-        </BlueButton>
+          {t('next')}
+        </Button>
       </Box>
     </>
   );

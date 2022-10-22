@@ -10,7 +10,7 @@ import { useSnackbar } from "notistack";
 import { useAppDispatch } from "../../../redux/hooks";
 import { signUpUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function Code(mainProps: any) {
     const { formik } = mainProps;
@@ -23,21 +23,21 @@ export default function Code(mainProps: any) {
     return (
         <>
             <Typography className="rounx-account-title-info">
-                {t('signup-title.code-title')}
+                {t('signup-code-title')}
             </Typography>
             <Typography style={{ alignSelf: 'center', fontWeight: 'bold' }}>{formik.values.primary_email}</Typography>
             <TextField
                 fullWidth
                 id="email_code"
                 name="email_code"
-                label={t('signup-data.code')}
+                label={t('code')}
                 value={formik.values.email_code}
                 onChange={formik.handleChange}
                 error={formik.touched.email_code && Boolean(formik.errors.email_code)}
                 helperText={formik.touched.email_code && formik.errors.email_code}
             />
             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <BlueButton disabled={loading} style={{ float: "right" }} onClick={() => {
+                <Button disabled={loading} style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { email_code } = res;
 
@@ -78,8 +78,8 @@ export default function Code(mainProps: any) {
                         }
                     })
                 }}>
-                    {t('signup-title.submit-btn')}
-                </BlueButton>
+                    {t('submit')}
+                </Button>
             </Box>
         </>
     );

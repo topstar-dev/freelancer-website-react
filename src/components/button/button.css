@@ -1,4 +1,4 @@
-.rounx-blue-button {
+.rounx-button {
     border-radius: 20px !important;
     text-transform: none !important;
     height: 40px !important;
@@ -9,21 +9,17 @@
     transition: none !important;
 }
 
-.rounx-blue-button.MuiButton-contained {
+.rounx-button.MuiButton-contained {
     background-color: #336def !important;
     color: #fff !important;
 }
 
-.rounx-blue-button.MuiButton-outlined {
+.rounx-button.MuiButton-outlined {
     color: #336def !important;
     border-color: #cccccc !important;
 }
 
-.rounx-blue-button:hover {
-    background-color: rgb(36 51 109 / 94%) !important;
-    color: #fff !important;
-}
-
-.rounx-blue-button .MuiTouchRipple-root:focus {
-    background-color: rgb(36 51 109 / 94%) !important;
+.rounx-button.MuiButton-outlined:hover {
+    background-color: rgba(51, 110, 239, 0.24) !important;
+    color: #336def !important;
 }

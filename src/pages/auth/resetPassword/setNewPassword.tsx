@@ -13,7 +13,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAppDispatch } from "../../../redux/hooks";
 import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function SetNewPassword(mainProps: any) {
   const { formik } = mainProps;
@@ -31,13 +31,13 @@ export default function SetNewPassword(mainProps: any) {
   return (
     <>
       <Typography className="rounx-account-title-info">
-        {t('reset-password-title.password-info')}
+        {t('password-title')}
       </Typography>
       <TextField
         fullWidth
         id="password"
         name="password"
-        label={t('reset-password-data.password')}
+        label={t('set-password')}
         type={showPassword ? "text" : "password"}
         value={formik.values.password}
         onChange={formik.handleChange}
@@ -62,14 +62,14 @@ export default function SetNewPassword(mainProps: any) {
         id="confirm_password"
         name="confirm_password"
         type="password"
-        label={t('reset-password-data.confirm-password')}
+        label={t('confirm-password')}
         value={formik.values.confirm_password}
         onChange={formik.handleChange}
         error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
         helperText={formik.touched.confirm_password && formik.errors.confirm_password}
       />
       <Box style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <BlueButton disabled={loading} onClick={() => {
+        <Button disabled={loading} onClick={() => {
           formik.validateForm().then((res: any) => {
             const { password, confirm_password } = res;
             if (password) {
@@ -105,8 +105,8 @@ export default function SetNewPassword(mainProps: any) {
             }
           })
         }}>
-          {t('signup-title.submit-btn')}
-        </BlueButton>
+          {t('submit')}
+        </Button>
       </Box>
     </>
   );

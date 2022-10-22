@@ -9,7 +9,7 @@ import {
 import { useAppDispatch } from "../../../redux/hooks";
 import { checkCodeOfEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function VerifyCode(mainProps: any) {
   const { formik } = mainProps;
@@ -21,21 +21,21 @@ export default function VerifyCode(mainProps: any) {
   return (
     <>
       <Typography className="rounx-account-title-info">
-        {t('reset-password-title.code-info')}
+        {t('send-email-code')}
       </Typography>
       <Typography style={{ alignSelf: 'center', fontWeight: 'bold', marginBottom: "20px" }}>{formik.values.email}</Typography>
       <TextField
         fullWidth
         id="code"
         name="code"
-        label={t('reset-password-data.code')}
+        label={t('code')}
         value={formik.values.code}
         onChange={formik.handleChange}
         error={formik.touched.code && Boolean(formik.errors.code)}
         helperText={formik.touched.code && formik.errors.code}
       />
       <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <BlueButton disabled={loading} onClick={() => {
+        <Button disabled={loading} onClick={() => {
           formik.validateForm().then((res: any) => {
             const { code } = res;
             if (code) {
@@ -66,8 +66,8 @@ export default function VerifyCode(mainProps: any) {
             }
           })
         }}>
-          {t('signup-title.next-btn')}
-        </BlueButton>
+          {t('next')}
+        </Button>
       </Box>
     </ >
   );

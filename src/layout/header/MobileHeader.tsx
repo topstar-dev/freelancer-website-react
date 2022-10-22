@@ -52,7 +52,7 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         </div>
                         :
                         <div>
-                            <Button style={{ width: '90px' }} className="rounx-no-signin-handle" onClick={() => navigate('/sign-in')}>Sign in</Button>
+                            <Button variant="text" color="primary" className="rounx-no-signin-handle" onClick={() => navigate('/sign-in')}>{t('signin')}</Button>
                         </div>
                 }
             </Box>

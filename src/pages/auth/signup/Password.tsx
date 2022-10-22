@@ -8,7 +8,7 @@ import {
     Box,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
@@ -22,13 +22,13 @@ export default function Password(mainProps: any) {
     return (
         <>
             <Typography className="rounx-account-title-info">
-                {t('signup-title.password-title')}
+                {t('signup-password-title')}
             </Typography>
             <TextField
                 fullWidth
                 id="password"
                 name="password"
-                label={t('signup-data.set-password')}
+                label={t('set-password')}
                 type={showPassword ? "text" : "password"}
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -53,14 +53,14 @@ export default function Password(mainProps: any) {
                 id="confirm_password"
                 name="confirm_password"
                 type="password"
-                label={t('signup-data.confirm-password')}
+                label={t('confirm-password')}
                 value={formik.values.confirm_password}
                 onChange={formik.handleChange}
                 error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
                 helperText={formik.touched.confirm_password && formik.errors.confirm_password}
             />
             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <BlueButton onClick={() => {
+                <Button onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { password, confirm_password } = res;
 
@@ -77,8 +77,8 @@ export default function Password(mainProps: any) {
                         }
                     })
                 }} >
-                    {t('signup-title.next-btn')}
-                </BlueButton>
+                    {t('next')}
+                </Button>
             </Box>
         </>
     );

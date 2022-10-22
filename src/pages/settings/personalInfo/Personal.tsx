@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Typography, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 export default function Personal() {
     const { t } = useTranslation();
@@ -25,7 +25,7 @@ export default function Personal() {
                 </TextField>
                 <br />
                 <br />
-                <BlueButton>{t('user-personal-account-email-change-button')}</BlueButton>
+                <Button>{t('user-personal-account-email-change-button')}</Button>
             </Box>
             <br />
             <br />
@@ -69,7 +69,7 @@ export default function Personal() {
                 <TextField fullWidth label={t('user-personal-account-language')}></TextField>
                 <br />
                 <br />
-                <BlueButton>{t('user-personal-account-save')}</BlueButton>
+                <Button>{t('user-personal-account-save')}</Button>
             </Box>
         </>
     )

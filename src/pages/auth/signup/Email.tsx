@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
 import { useTranslation } from "react-i18next";
-import BlueButton from "../../../components/button/Button";
+import Button from "../../../components/button/Button";
 
 
 export default function Email(mainProps: any) {
@@ -22,22 +22,22 @@ export default function Email(mainProps: any) {
     return (
         <>
             <Typography className="rounx-account-title-info">
-                <b>{t("signup-title.email-header")}</b>
+                <b>{t("signup-email-header")}</b>
                 <br />
-                <span style={{ fontSize: '16px' }}>{t('signup-title.email-title')}</span>
+                <span style={{ fontSize: '16px' }}>{t('enter_email')}</span>
             </Typography>
             <TextField
                 fullWidth
                 id="primary_email"
                 name="primary_email"
-                label={t('signup-data.email')}
+                label={t('email')}
                 value={formik.values.primary_email}
                 onChange={formik.handleChange}
                 error={formik.touched.primary_email && Boolean(formik.errors.primary_email)}
-                helperText={t('signup-title.email-helper')}
+                helperText={t('signup-email-helper')}
             />
             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <BlueButton disabled={loading} style={{ float: "right" }} onClick={() => {
+                <Button disabled={loading} style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { primary_email } = res;
 
@@ -67,8 +67,8 @@ export default function Email(mainProps: any) {
                         }
                     })
                 }}>
-                    {t('signup-title.next-btn')}
-                </BlueButton>
+                    {t('next')}
+                </Button>
             </Box>
         </>
     );

@@ -21,7 +21,6 @@ import {
   signInUser
 } from '../../../redux/auth/authActions';
 import { resetDefault } from "../../../redux/auth/authSlice";
-import BlueButton from "../../../components/button/Button";
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import '../auth.css';
@@ -82,8 +81,7 @@ export default function SignIn() {
               onClick={() => navigate('/')}
             />
             <Typography className="rounx-account-title-info">
-              <span>{t('signin-logo')} </span>
-              <span style={{ fontWeight: "bold" }}>Rounx </span>
+             {t('signin-title')}
             </Typography>
             <TextField
               fullWidth
@@ -132,20 +130,20 @@ export default function SignIn() {
               >
                 {t('signin-forgot-password')}
               </Button>
-              <BlueButton
+              <Button
                 disabled={loading}
                 type="submit"
                 style={{ float: "right" }}
               >
-                {t('signin-submit')}
-              </BlueButton>
+                {t('signin')}
+              </Button>
             </Box>
             <Button
               className="normal-text round-button"
               variant="outlined"
               style={{ width: 'fit-content', borderRadius: 20 }}
               onClick={(e: any) => setType(e.currentTarget)}>
-              {t('signin-signup')}
+              {t('create-account')}
             </Button>
             <Popover
               open={Boolean(type)}
@@ -160,8 +158,8 @@ export default function SignIn() {
                 horizontal: "left",
               }}
             >
-              <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('signin-signup-client')}</MenuItem>
-              <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('signin-signup-freelancer')}</MenuItem>
+              <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('client-account')}</MenuItem>
+              <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('freelancer-account')}</MenuItem>
             </Popover>
           </CustomForm>
         )}
