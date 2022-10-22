@@ -88,7 +88,7 @@ export default function SignIn() {
               id="email"
               name="email"
               type="text"
-              label={t('signin-email')}
+              label={t('email')}
               value={props.values.email}
               onChange={props.handleChange}
               error={props.touched.email && Boolean(props.errors.email)}

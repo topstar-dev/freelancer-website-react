@@ -127,7 +127,7 @@ export default function HomePage() {
                                         value={props.values.email}
                                         id="email"
                                         name="email"
-                                        placeholder={t('home-page-comming-soon-email')}
+                                        placeholder={t('email')}
                                         onChange={props.handleChange}
                                         error={props.touched.email && Boolean(props.errors.email)}
                                         helperText={props.touched.email && props.errors.email}
