@@ -23,3 +23,12 @@
     background-color: rgba(51, 110, 239, 0.24) !important;
     color: #336def !important;
 }
+
+.rounx-button.MuiButton-text {
+    color: #336def !important;
+}
+
+.rounx-button.MuiButton-text:hover {
+    background-color: rgba(51, 110, 239, 0.24) !important;
+    color: #336def !important;
+}
