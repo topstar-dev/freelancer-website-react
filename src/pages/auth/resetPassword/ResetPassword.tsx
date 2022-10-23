@@ -13,7 +13,7 @@ import '../auth.css';
 export default function ResetPassword() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [activeStep, setActiveStep] = React.useState<number>(0);
+	const [activeStep, setActiveStep] = React.useState<number>(1);
 
 	React.useEffect(() => {
 		document.title = t('title.reset-password')

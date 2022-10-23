@@ -22,8 +22,13 @@ export default function VerifyCode(mainProps: any) {
     <>
       <Typography className="rounx-account-title-info">
         {t('send-email-code')}
+        <br />
+        <span style={{
+          alignSelf: 'center',
+          fontWeight: 'bold',
+          fontSize: '16px'
+        }}>{formik.values.email}</span>
       </Typography>
-      <Typography style={{ alignSelf: 'center', fontWeight: 'bold', marginBottom: "20px" }}>{formik.values.email}</Typography>
       <TextField
         fullWidth
         id="code"

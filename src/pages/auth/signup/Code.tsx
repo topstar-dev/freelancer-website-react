@@ -24,8 +24,13 @@ export default function Code(mainProps: any) {
         <>
             <Typography className="rounx-account-title-info">
                 {t('signup-code-title')}
+                <br />
+                <span style={{
+                    alignSelf: 'center',
+                    fontWeight: 'bold',
+                    fontSize: '16px'
+                }}>{formik.values.primary_email}</span>
             </Typography>
-            <Typography style={{ alignSelf: 'center', fontWeight: 'bold' }}>{formik.values.primary_email}</Typography>
             <TextField
                 fullWidth
                 id="email_code"
