@@ -7,6 +7,7 @@
     font-weight: 525 !important;
     min-width: 72px !important;
     transition: none !important;
+    box-shadow: none !important;
 }
 
 .rounx-button.MuiButton-contained {
