@@ -13,7 +13,8 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
+  FormHelperText
 } from "@mui/material";
 import {
   FlexBox,
@@ -38,6 +39,8 @@ export default function Info(mainProps: any) {
     formik.setFieldValue('birthday', dayjs(newValue).format('YYYY-MM-DD'))
     setBirthday(newValue);
   };
+
+  const inputProps = dayjs(birthday).format('YYYY-MM-DD') ? {} : { inputProps: { placeholder: "" } };
 
   return (
     <>
@@ -71,17 +74,23 @@ export default function Info(mainProps: any) {
           inputFormat="YYYY-MM-DD"
           value={birthday}
           onChange={handleChange}
-          renderInput={(params: any) => <TextField {...params}
-            inputProps={{ placeholder: "" }} />}
+          renderInput={(params: any) =>
+            <TextField
+              {...params}
+              {...inputProps}
+              error={formik.touched.birthday && Boolean(formik.errors.birthday)}
+              helperText={formik.touched.birthday && formik.errors.birthday}
+            />}
         />
       </LocalizationProvider>
-      <FormControl>
-        <InputLabel>{t('country')}</InputLabel>
+      <FormControl error={formik.touched.country_id && Boolean(formik.errors.country_id)}>
+        <InputLabel>{options.length > 0 ? t('country') : t('loading-country')}</InputLabel>
         <Select
           ref={countryRef}
-          label={t('country')}
+          label={options.length > 0 ? t('country') : t('loading-country')}
           value={country}
           onChange={countryChange}
+          renderValue={(value) => t('country')}
           onClose={() => {
             countryRef?.current?.classList?.remove('Mui-focused');
             countryRef?.current?.previousSibling?.classList.remove('Mui-focused');
@@ -94,11 +103,12 @@ export default function Info(mainProps: any) {
             )
           })}
         </Select>
+        {formik.touched.country_id && formik.errors.country_id && <FormHelperText style={{ color: 'red' }}>{formik.errors.country_id}</FormHelperText>}
       </FormControl>
       <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button onClick={() => {
           formik.validateForm().then((res: any) => {
-            const { first_name, last_name } = res;
+            const { first_name, last_name, birthday, country_id } = res;
             if (first_name) {
               formik.setFieldTouched('first_name', true, true);
               formik.setFieldError('first_name', first_name);
@@ -107,7 +117,15 @@ export default function Info(mainProps: any) {
               formik.setFieldTouched('last_name', true, true);
               formik.setFieldError('last_name', last_name);
             }
-            if (!first_name && !last_name) {
+            if (birthday) {
+              formik.setFieldTouched('birthday', true, true);
+              formik.setFieldError('birthday', birthday);
+            }
+            if (country_id) {
+              formik.setFieldTouched('country_id', true, true);
+              formik.setFieldError('country_id', country_id);
+            }
+            if (!(first_name && last_name && birthday && country_id)) {
               mainProps.handleNext();
             }
           })

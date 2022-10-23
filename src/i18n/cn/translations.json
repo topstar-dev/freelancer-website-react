@@ -73,6 +73,7 @@
     "last-name": "名字",
     "birthday": "出生日期",
     "country": "国家/地区",
+    "loading-country": "加载数据中...",
     "set-password": "设置密码",
     "confirm-password": "确认密码",
     "email": "电子邮件地址",
