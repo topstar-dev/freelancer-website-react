@@ -27,10 +27,6 @@ interface RoutesInterface {
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
 
-  const height = (isWeb ? 144 : 192);
-  const minusCount = isWeb ? 72 : 73;
-  const minusHeader = isHeader ? height : (height - minusCount);
-
   const content = <>
     {isHeader && <Header />}
     <Box style={{

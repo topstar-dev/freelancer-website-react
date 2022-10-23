@@ -7,7 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
-import './fonts/SourceHanSansSC/OTF/SimplifiedChinese/SourceHanSansSC-Bold.otf'
+import './fonts/SourceHanSansSC/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf'
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
