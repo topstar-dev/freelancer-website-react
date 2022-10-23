@@ -20,8 +20,8 @@
         "password-required": "请输入密码",
         "confirm-password-required": "需要确认密码",
         "confirm-password-not-matched": "密码不匹配",
-        "firstname-required": "请输入名字",
-        "lastname-required": "请输入姓氏",
+        "firstname-required": "请输入姓氏",
+        "lastname-required": "请输入名字",
         "birthday-required": "请选择出生日期",
         "country-required": "请选择国家"
     },
