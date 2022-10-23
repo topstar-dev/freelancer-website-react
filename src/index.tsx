@@ -8,17 +8,28 @@ import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
 import './fonts/SourceHanSansSC/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf'
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#336def"
+    }
+  },
+});
+
 root.render(
   <React.StrictMode>
-    <SnackbarProvider maxSnack={1}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </SnackbarProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={customTheme}>
+        <SnackbarProvider maxSnack={1}>
+          <App />
+        </SnackbarProvider>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 
