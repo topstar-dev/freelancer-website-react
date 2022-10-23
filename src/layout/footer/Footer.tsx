@@ -17,7 +17,6 @@ export default function Footer() {
         i18n.changeLanguage(lang);
         localStorage.setItem('i18nextLng', lang);
         setLanguage(lang);
-        window.location.reload();
     }
 
     return (
