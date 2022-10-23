@@ -16,6 +16,11 @@ body,
   width: 100%;
 }
 
+#root {
+  overflow: hidden;
+  position: relative;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -35,14 +35,14 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     {isHeader && <Header />}
     <Box style={{
       overflow: 'auto',
-      padding: isWeb ? '24px 16%' : '24px',
       position: 'relative',
-      marginTop: isHeader ? isWeb ? '72px' : '73px' : 0,
-      minHeight: `calc(100% - ${minusHeader}px)`,
+      minHeight: `calc(100% - ${isWeb ? 72 : 73}px)`,
     }}>
-      <Outlet />
+      <Box style={{ padding: isWeb ? '24px 16%' : '24px', }}>
+        <Outlet />
+      </Box>
+      <Footer />
     </Box>
-    <Footer />
   </>
 
   return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;

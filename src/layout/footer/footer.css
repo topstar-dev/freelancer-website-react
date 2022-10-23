@@ -88,13 +88,15 @@
     }
 }
 
+@media (max-width: 656px) {
+    .rounx-footer-container {
+        height: 119px;
+    }
+}
+
 @media (max-width: 900px) {
     .rounx-footer-container {
         padding: 24px;
-    }
-
-    .rounx-footer-container {
-        height: 119px;
     }
 
     .rounx-footer-right-content {
