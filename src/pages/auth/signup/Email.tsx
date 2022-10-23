@@ -22,7 +22,7 @@ export default function Email(mainProps: any) {
     return (
         <>
             <Typography className="rounx-account-title-info">
-                <b>{t("signup-email-header")}</b>
+                <span>{t("signup-email-header")}</span>
                 <br />
                 <span style={{ fontSize: '16px' }}>{t('enter_email')}</span>
             </Typography>

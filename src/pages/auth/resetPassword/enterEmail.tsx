@@ -21,9 +21,9 @@ export default function EnterEmail(mainProps: any) {
   return (
     <>
       <Typography className="rounx-account-title-info">
-        <b>{t('reset-password')}</b>
+        <span>{t('reset-password')}</span>
         <br />
-        {t('enter_email')}
+        <span style={{ fontSize: '16px' }}>{t('enter_email')}</span>
       </Typography>
       <TextField
         fullWidth

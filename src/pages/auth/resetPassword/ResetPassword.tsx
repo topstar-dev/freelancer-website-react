@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as yup from "yup";
 import { Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import EnterEmail from './enterEmail';
 import VerifyCode from './verifyCode';
@@ -8,7 +9,6 @@ import SetNewPassword from './setNewPassword';
 import { CustomForm } from "../../commonStyle";
 import Card from '../../../components/card/Card';
 import '../auth.css';
-import { useTranslation } from 'react-i18next';
 
 export default function ResetPassword() {
 	const { t } = useTranslation();
