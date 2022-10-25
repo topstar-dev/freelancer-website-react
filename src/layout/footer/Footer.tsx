@@ -42,8 +42,8 @@ export default function Footer() {
                 </Box>
             </Box>
             <Box className="rounx-footer-right-content">
-                <img className="rounx-footer-brand-icon" src='images/wechat.svg' alt="wechat-icon" />
-                <img className="rounx-footer-brand-icon" src='images/weibo.svg' alt="weibo-icon" />
+                <img className="rounx-footer-brand-icon" src='/images/wechat.svg' alt="wechat-icon" />
+                <img className="rounx-footer-brand-icon" src='/images/weibo.svg' alt="weibo-icon" />
                 <TwitterIcon className="rounx-footer-brand-icon" />
                 <LinkedInIcon className="rounx-footer-brand-icon" />
             </Box>

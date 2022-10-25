@@ -32,7 +32,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     <Box style={{
       overflow: 'auto',
       position: 'relative',
-      height: `calc(100% - ${isWeb ? 72 : 73}px)`,
+      height: `calc(100% - ${!isHeader ? 0 : (isWeb ? 72 : 73)}px)`,
     }}>
       <Box style={{
         padding: isWeb ? '24px 16%' : '24px',
