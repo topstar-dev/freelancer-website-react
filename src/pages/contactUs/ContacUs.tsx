@@ -10,36 +10,36 @@ export default function ContactUs() {
 
   return (
     <>
-      <Typography style={{ fontSize: '24px' }}>Contact us</Typography>
+      <Typography style={{ fontSize: '24px' }}>{t('contact-us.title')}</Typography>
       <br />
       <br />
 
       <Grid container>
         <Grid mb={3} item xs={12} md={12} lg={4}>
           <Box>
-            <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>Rounx Technology (Dalian) Co., Ltd.</Typography>
+            <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.name')}</Typography>
             <Typography>Remote Work</Typography>
           </Box>
         </Grid>
         <Grid mb={3} item xs={12} md={12} lg={4}>
           <Box>
-            <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>Working hours</Typography>
-            <Typography>Monday-Friday: 8:00 AM - 5:00 PM UTC+8</Typography>
+            <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.timing-title')}</Typography>
+            <Typography>{t('contact-us.timing')}</Typography>
           </Box>
         </Grid>
         <Grid mb={3} item xs={12} md={12} lg={4}>
           <Box>
-            <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>Contact details</Typography>
+            <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.contact-details')}</Typography>
             <Typography>
-              <span>Customer Support: </span>
+              <span>{t('contact-us.customer')}:</span>
               <span style={{ color: '#336def', cursor: 'pointer' }}>support@rounx.com</span>
             </Typography>
             <Typography>
-              <span>Business Cooperation: </span>
+              <span>{t('contact-us.business')}: </span>
               <span style={{ color: '#336def', cursor: 'pointer' }}>business@rounx.com</span>
             </Typography>
             <Typography>
-              <span>Online customer service (24 x 7): </span>
+              <span>{t('contact-us.online')}: </span>
               <span style={{ color: '#336def', cursor: 'pointer' }}>Send message</span>
             </Typography>
           </Box>

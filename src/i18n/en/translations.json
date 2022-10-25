@@ -106,5 +106,16 @@
     "user-security-recovery-email-note": "If your Rounx account becomes inaccessible, you can reset your password from this email address.",
     "user-security-recovery-email-delete": "Delete email",
     "user-security-recovery-email-change": "Change email",
-    "user-currency-title": "Select currency"
+    "user-currency-title": "Select currency",
+    "contact-us": {
+        "title": "Contact us",
+        "name": "Rounx Technology (Dalian) Co., Ltd.",
+        "type": "Remote Work",
+        "timing-title": "Working hours",
+        "timing": "Monday-Friday: 8:00 AM - 5:00 PM UTC+8",
+        "contact-details": "Contact details",
+        "customer": "Customer Support",
+        "business": "Business Cooperation",
+        "online": "Online customer service (24 x 7)"
+    }
 }

@@ -106,5 +106,16 @@
     "user-security-recovery-email-note": "如果您的 Rounx 帐号无法访问，则可以通过此电子邮件地址重置密码。",
     "user-security-recovery-email-delete": "删除邮箱",
     "user-security-recovery-email-change": "更改邮箱",
-    "user-currency-title": "选择货币"
+    "user-currency-title": "选择货币",
+    "contact-us": {
+        "title": "联系我们",
+        "name": "至圆科技（大连）有限公司",
+        "type": "Remote Work",
+        "timing-title": "工作时间",
+        "timing": "周一至周五：8:00 AM - 5:00 PM UTC+8",
+        "contact-details": "联系方式",
+        "customer": "客户支持",
+        "business": "商务合作",
+        "online": "在线客服 (24 x 7)"
+    }
 }
