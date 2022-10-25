@@ -12,6 +12,6 @@
 
 @media (max-width: 600px) {
     .rounx-auth-card {
-        width: calc(100% - 16px) !important;
+        width: 100% !important;
     }
 }
