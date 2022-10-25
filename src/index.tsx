@@ -7,7 +7,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
-import './fonts/SourceHanSansSC/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf'
 import { createTheme, ThemeProvider } from '@mui/material';
 
 const container = document.getElementById('root')!;

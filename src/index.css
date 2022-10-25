@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "SourceHanSansSC";
-  src: local("SourceHanSansSC"),
-    url("./fonts/SourceHanSansSC/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf") format("truetype");
-}
-
 html {
   zoom: 0.95;
 }
@@ -22,15 +16,15 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Roboto', "SourceHanSansSC", sans-serif;
+  font-family: 'Roboto', sans-serif, "SourceHanSansSC", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 * {
   box-sizing: border-box;
