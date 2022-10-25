@@ -48,6 +48,7 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
             <Box className='rounx-tools-section'>
                 <TextField
                     className='rounx-search-bar'
+                    variant='outlined'
                     placeholder={t('header-search-freelancers')}
                     InputProps={{
                         className: 'rounx-search-input',
