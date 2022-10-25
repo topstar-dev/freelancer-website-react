@@ -2,7 +2,6 @@
   font-family: "SourceHanSansSC";
   src: local("SourceHanSansSC"),
     url("./fonts/SourceHanSansSC/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf") format("truetype");
-  /* font-weight: bold; */
 }
 
 html {
@@ -23,9 +22,7 @@ body,
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', "SourceHanSansSC",
-    sans-serif;
+  font-family: 'Roboto', "SourceHanSansSC", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
