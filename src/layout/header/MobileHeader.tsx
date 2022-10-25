@@ -61,6 +61,7 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                     <Box className='rounx-search-container'>
                         <TextField
                             fullWidth
+                            variant='outlined'
                             className='rounx-search-bar'
                             placeholder={t('header-search-freelancers')}
                             InputProps={{ className: 'rounx-search-input', startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> }}
