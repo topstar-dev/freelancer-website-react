@@ -34,6 +34,13 @@
     width: 550px;
 }
 
+@media (max-width: 566px) {
+    .rounx-home-first-image {
+        height: auto;
+        width: 100%;
+    }
+}
+
 .rounx-home-second-section {
     display: flex;
 }
