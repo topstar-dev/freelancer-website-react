@@ -123,10 +123,12 @@ export default function Info(mainProps: any) {
               formik.setFieldTouched('birthday', true, true);
               formik.setFieldError('birthday', birthday);
             }
-            if (country_id) {
+
+            if (options.length > 0 && country_id) {
               formik.setFieldTouched('country_id', true, true);
               formik.setFieldError('country_id', country_id);
             }
+
             if (!(first_name || last_name || birthday || country_id)) {
               mainProps.handleNext();
             }
