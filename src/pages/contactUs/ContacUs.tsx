@@ -31,7 +31,7 @@ export default function ContactUs() {
           <Box>
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.contact-details')}</Typography>
             <Typography>
-              <span>{t('contact-us.customer')}:</span>
+              <span>{t('contact-us.customer')}: </span>
               <span style={{ color: '#336def', cursor: 'pointer' }}>support@rounx.com</span>
             </Typography>
             <Typography>
@@ -40,7 +40,7 @@ export default function ContactUs() {
             </Typography>
             <Typography>
               <span>{t('contact-us.online')}: </span>
-              <span style={{ color: '#336def', cursor: 'pointer' }}>Send message</span>
+              <span style={{ color: '#336def', cursor: 'pointer' }}>{t('send-message')}</span>
             </Typography>
           </Box>
         </Grid>
