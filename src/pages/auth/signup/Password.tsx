@@ -72,7 +72,7 @@ export default function Password(mainProps: any) {
                             formik.setFieldTouched('confirm_password', true, true);
                             formik.setFieldError('confirm_password', confirm_password);
                         }
-                        if (!password && !confirm_password) {
+                        if (!password || !confirm_password) {
                             mainProps.handleNext();
                         }
                     })
