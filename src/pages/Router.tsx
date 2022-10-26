@@ -30,7 +30,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const content = <>
     {isHeader && <Header />}
     <Box style={{
-      overflow: 'auto',
+      overflowY: 'auto',
       position: 'relative',
       height: `calc(100% - ${!isHeader ? 0 : (isWeb ? 72 : 73)}px)`,
     }}>

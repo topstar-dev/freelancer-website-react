@@ -31,12 +31,17 @@ export default function SignUp() {
     useEffect(() => {
         if (!loading && !doCall && !countryData.records) {
             setCall(true)
-            dispatch(getCountriesList()).then(res => {
-                const { success, data } = res.payload;
-                if (success) {
-                    setCountries(data.records);
-                }
-            })
+            if (localStorage.getItem('country_data')) {
+                setCountries(JSON.parse(`${localStorage.getItem('country_data')}`));
+            } else {
+                dispatch(getCountriesList()).then(res => {
+                    const { success, data } = res.payload;
+                    if (success) {
+                        setCountries(data.records);
+                        localStorage.setItem('country_data', JSON.stringify(data.records))
+                    }
+                })
+            }
         }
     }, [loading, doCall, countryData.records, dispatch])
 

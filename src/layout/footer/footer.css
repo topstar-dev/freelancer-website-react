@@ -82,24 +82,15 @@
     opacity: 0.8;
 }
 
-@media (max-width: 499px) {
-    .rounx-footer-left-content {
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 656px) {
-    .rounx-footer-container {
-        height: 119px;
-    }
-}
-
 @media (max-width: 900px) {
     .rounx-footer-container {
+        height: 119px;
         padding: 24px;
+        display: block;
     }
 
     .rounx-footer-right-content {
+        margin-top: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
