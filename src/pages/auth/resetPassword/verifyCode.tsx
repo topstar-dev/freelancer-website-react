@@ -21,7 +21,7 @@ export default function VerifyCode(mainProps: any) {
   return (
     <>
       <Typography className="rounx-account-title-info">
-        {t('send-email-code')}
+        {t('signup-code-title')}
         <br />
         <span style={{
           alignSelf: 'center',
