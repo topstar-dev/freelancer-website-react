@@ -32,7 +32,6 @@ export default function Info(mainProps: any) {
 
   const countryChange = (e: SelectChangeEvent) => {
     formik.setFieldValue('country_id', e.target.value)
-    console.log(e.target.value)
     setCountry(`${e.target.value}`);
   }
 
