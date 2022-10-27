@@ -63,7 +63,7 @@ export const signOutUser = createAsyncThunk(
             // const response = await signOut();
             const response = {
                 success: true,
-                message: "Sign out successfull"
+                message: "header-user-signout-message"
             }
             return response;
         } catch (error: any) {

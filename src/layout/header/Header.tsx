@@ -28,13 +28,13 @@ export default function Header() {
 
     useEffect(() => {
         if (message) {
-            enqueueSnackbar(message);
+            enqueueSnackbar(t(message));
         }
         if (success && !userInfo) {
             dispatch(resetDefault())
             navigate('/sign-in');
         }
-    }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
+    }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
     const signOut = () => {
         dispatch(signOutUser());
