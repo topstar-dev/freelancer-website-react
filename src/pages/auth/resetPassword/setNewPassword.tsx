@@ -61,7 +61,7 @@ export default function SetNewPassword(mainProps: any) {
         fullWidth
         id="confirm_password"
         name="confirm_password"
-        type="password"
+        type={showPassword ? "text" : "password"}
         label={t('confirm-password')}
         value={formik.values.confirm_password}
         onChange={formik.handleChange}
