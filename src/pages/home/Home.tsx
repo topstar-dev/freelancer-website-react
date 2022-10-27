@@ -11,6 +11,7 @@ import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
 import './home.css'
+import WithTranslateFormErrors from "../../i18n/validationScemaOnLangChange";
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -119,24 +120,26 @@ export default function HomePage() {
                             }}
                         >
                             {props => (
-                                <form
-                                    onSubmit={props.handleSubmit}
-                                    style={{ display: 'flex', alignItems: 'flex-start' }}
-                                >
-                                    <TextField
-                                        value={props.values.email}
-                                        id="email"
-                                        name="email"
-                                        placeholder={t('email')}
-                                        onChange={props.handleChange}
-                                        error={props.touched.email && Boolean(props.errors.email)}
-                                        helperText={props.touched.email && props.errors.email}
-                                        InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
-                                        style={{ marginRight: '20px', height: '40px' }}
-                                        fullWidth
-                                    />
-                                    <Button type="submit">{t('submit')}</Button>
-                                </form>
+                                <WithTranslateFormErrors {...props}>
+                                    <form
+                                        onSubmit={props.handleSubmit}
+                                        style={{ display: 'flex', alignItems: 'flex-start' }}
+                                    >
+                                        <TextField
+                                            value={props.values.email}
+                                            id="email"
+                                            name="email"
+                                            placeholder={t('email')}
+                                            onChange={props.handleChange}
+                                            error={props.touched.email && Boolean(props.errors.email)}
+                                            helperText={props.touched.email && props.errors.email}
+                                            InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
+                                            style={{ marginRight: '20px', height: '40px' }}
+                                            fullWidth
+                                        />
+                                        <Button type="submit">{t('submit')}</Button>
+                                    </form>
+                                </WithTranslateFormErrors>
                             )}
                         </Formik>
                     </Box>

@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Card from '../../../components/card/Card';
 import '../auth.css';
 import { useTranslation } from 'react-i18next';
+import WithTranslateFormErrors from '../../../i18n/validationScemaOnLangChange';
 
 export default function SignUp() {
     const { t } = useTranslation();
@@ -106,17 +107,19 @@ export default function SignUp() {
                 onSubmit={(values) => { }}
             >
                 {props =>
-                    <CustomForm>
-                        <img
-                            src="images/rounx-symbol.png"
-                            alt="Rounx admin"
-                            width="60px"
-                            height="60px"
-                            style={{ alignSelf: "center", cursor: "pointer" }}
-                            onClick={() => navigate('/')}
-                        />
-                        {steps[`${activeStep}`](props)}
-                    </CustomForm >
+                    <WithTranslateFormErrors {...props}>
+                        <CustomForm>
+                            <img
+                                src="images/rounx-symbol.png"
+                                alt="Rounx admin"
+                                width="60px"
+                                height="60px"
+                                style={{ alignSelf: "center", cursor: "pointer" }}
+                                onClick={() => navigate('/')}
+                            />
+                            {steps[`${activeStep}`](props)}
+                        </CustomForm >
+                    </WithTranslateFormErrors>
                 }
             </Formik>
         </Card>

@@ -9,6 +9,7 @@ import SetNewPassword from './setNewPassword';
 import { CustomForm } from "../../commonStyle";
 import Card from '../../../components/card/Card';
 import '../auth.css';
+import WithTranslateFormErrors from '../../../i18n/validationScemaOnLangChange';
 
 export default function ResetPassword() {
 	const { t } = useTranslation();
@@ -59,17 +60,19 @@ export default function ResetPassword() {
 				onSubmit={() => { }}
 			>
 				{props => (
-					<CustomForm>
-						<img
-							src="images/rounx-symbol.png"
-							alt="Rounx admin"
-							width="60px"
-							height="60px"
-							style={{ color: "#336def", alignSelf: "center", cursor: "pointer" }}
-							onClick={() => navigate('/')}
-						/>
-						{steps[activeStep](props)}
-					</CustomForm>
+					<WithTranslateFormErrors {...props}>
+						<CustomForm>
+							<img
+								src="images/rounx-symbol.png"
+								alt="Rounx admin"
+								width="60px"
+								height="60px"
+								style={{ color: "#336def", alignSelf: "center", cursor: "pointer" }}
+								onClick={() => navigate('/')}
+							/>
+							{steps[activeStep](props)}
+						</CustomForm>
+					</WithTranslateFormErrors>
 				)}
 			</Formik>
 		</Card>
