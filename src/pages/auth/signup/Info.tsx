@@ -74,7 +74,7 @@ export default function Info(mainProps: any) {
           inputFormat="YYYY-MM-DD"
           value={birthday}
           onChange={handleChange}
-          maxDate={dayjs().subtract(1, 'day')}
+          maxDate={dayjs()}
           renderInput={(params: any) =>
             <TextField
               {...params}
