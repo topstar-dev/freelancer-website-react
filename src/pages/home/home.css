@@ -62,6 +62,17 @@
     width: 45%;
 }
 
+.mobilePhone {
+    height: 692px;
+}
+
+@media (max-width:490px) {
+    .mobilePhone {
+        height: auto;
+        width: 100%;
+    }
+}
+
 @media (max-width:1170px) {
     .rounx-home-first-section {
         display: unset;
@@ -89,6 +100,7 @@
 
     .rounx-home-third-right {
         width: 100%;
+        display: flex;
         justify-content: center;
     }
 }

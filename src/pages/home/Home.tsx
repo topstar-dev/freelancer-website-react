@@ -142,20 +142,11 @@ export default function HomePage() {
                     </Box>
                 </Box>
                 <Box className="rounx-home-third-right">
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <img
-                            className="samsungGalaxyPhone"
-                            alt="Mobile phone"
-                            height='692px'
-                            style={{ marginTop: '30px' }}
-                            src="images/samsung-galaxy.png" />
-                        <img
-                            className="googlePixelPhone"
-                            alt="Half mobile phone"
-                            height='727px'
-                            style={{ marginLeft: '-200px', zIndex: '-1' }}
-                            src="images/google-pixel.png" />
-                    </Box>
+                    <img
+                        className="mobilePhone"
+                        alt="Mobile phone"
+                        height='692px'
+                        src="images/mobile-phone.png" />
                 </Box>
             </Box>
         </>
