@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Select, MenuItem, Box, Typography } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import './footer.css';
 
 export default function Footer() {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const { i18n, t } = useTranslation();
 
-    const [language, setLanguage] = React.useState(localStorage.getItem('i18nextLng') || 'en');
+    const { language } = useAppSelector(state => state.resources);
+
+    useEffect(() => {
+        i18n.changeLanguage(language);
+    }, [language, i18n])
 
     const changeLang = (lang: string) => {
-        i18n.changeLanguage(lang);
-        localStorage.setItem('i18nextLng', lang);
-        setLanguage(lang);
+        dispatch(changeLanguage(lang))
     }
 
     return (

@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCountriesList } from './resourcesActions';
 
+// initialize userToken from local storage
+var selectedLanguage = localStorage.getItem('i18nextLng') || 'en';
+
 export interface CountryData {
     page_size?: number;
     total_size?: number;
@@ -9,12 +12,12 @@ export interface CountryData {
 
 export interface ResourcesState {
     message?: string | null,
-    loading: boolean;
+    language: string,
     countryData: CountryData;
 }
 
 const initialState: ResourcesState = {
-    loading: false,
+    language: selectedLanguage,
     message: null,
     countryData: {}
 }
@@ -22,23 +25,28 @@ const initialState: ResourcesState = {
 export const resourceslice = createSlice({
     name: 'resources',
     initialState,
-    reducers: {},
+    reducers: {
+        changeLanguage: (state, action) => {
+            state.language = action.payload;
+            state.countryData = {};
+            localStorage.setItem('i18nextLng', action.payload);
+        }
+    },
     extraReducers: (builder) => {
         //getCountries
         builder.addCase(getCountriesList.pending, (state: ResourcesState, _action) => {
-            state.loading = true
         })
         builder.addCase(getCountriesList.fulfilled, (state: ResourcesState, action) => {
-            state.loading = false;
             state.countryData = action.payload.data;
             state.message = action.payload.message;
         })
         builder.addCase(getCountriesList.rejected, (state: ResourcesState, action) => {
             const payload = action.payload as ResourcesState;
-            state.loading = false
             state.message = payload.message;
         })
     }
 });
 
+const { changeLanguage } = resourceslice.actions;
+export { changeLanguage }
 export default resourceslice.reducer;

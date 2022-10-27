@@ -22,28 +22,28 @@ export default function SignUp() {
     const [doCall, setCall] = useState(false)
     const [activeStep, setActiveStep] = useState<number>(0);
     const [countries, setCountries] = useState([]);
-    const { loading, countryData } = useAppSelector(state => state.resources)
+    const { countryData, language } = useAppSelector(state => state.resources)
 
     React.useEffect(() => {
-        document.title = t('title.signup')
+        document.title = t('title.signup');
+
     })
 
     useEffect(() => {
-        if (!loading && !doCall && !countryData.records) {
+        setCall(false);
+    }, [language])
+
+    useEffect(() => {
+        if (!doCall && !countryData.records) {
             setCall(true)
-            if (localStorage.getItem('country_data')) {
-                setCountries(JSON.parse(`${localStorage.getItem('country_data')}`));
-            } else {
-                dispatch(getCountriesList()).then(res => {
-                    const { success, data } = res.payload;
-                    if (success) {
-                        setCountries(data.records);
-                        localStorage.setItem('country_data', JSON.stringify(data.records))
-                    }
-                })
-            }
+            dispatch(getCountriesList()).then(res => {
+                const { success, data } = res.payload;
+                if (success) {
+                    setCountries(data.records);
+                }
+            })
         }
-    }, [loading, doCall, countryData.records, dispatch])
+    }, [doCall, countryData.records, dispatch])
 
     const handleNext = () => {
         const newActiveStep = activeStep + 1;

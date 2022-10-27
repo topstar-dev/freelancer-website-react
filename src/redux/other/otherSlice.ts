@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { imageDownload } from './otherActions';
 
 export interface OtherState {
     message?: string | null,
