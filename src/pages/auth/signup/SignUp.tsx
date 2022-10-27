@@ -27,7 +27,6 @@ export default function SignUp() {
 
     React.useEffect(() => {
         document.title = t('title.signup');
-
     })
 
     useEffect(() => {

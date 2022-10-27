@@ -32,7 +32,8 @@ export default function Info(mainProps: any) {
 
   const countryChange = (e: SelectChangeEvent) => {
     formik.setFieldValue('country_id', e.target.value)
-    setCountry(e.target.value);
+    console.log(e.target.value)
+    setCountry(`${e.target.value}`);
   }
 
   const handleChange = (newValue: Dayjs | null) => {
@@ -88,11 +89,9 @@ export default function Info(mainProps: any) {
         <InputLabel id="country_helper">{options.length > 0 ? t('country') : t('loading-country')}</InputLabel>
         <Select
           ref={countryRef}
-          id="country_ids"
           label={options.length > 0 ? t('country') : t('loading-country')}
           value={country}
           onChange={countryChange}
-          renderValue={(value) => t('country')}
           onClose={() => {
             countryRef?.current?.classList?.remove('Mui-focused');
             countryRef?.current?.previousSibling?.classList.remove('Mui-focused');
