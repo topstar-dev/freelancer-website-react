@@ -22,7 +22,6 @@ export default function SignUp() {
     const type = searchParams.get('type');
     const [doCall, setCall] = useState(false)
     const [activeStep, setActiveStep] = useState<number>(0);
-    const [countries, setCountries] = useState([]);
     const { countryData, language } = useAppSelector(state => state.resources)
 
     React.useEffect(() => {
@@ -36,12 +35,7 @@ export default function SignUp() {
     useEffect(() => {
         if (!doCall && !countryData.records) {
             setCall(true)
-            dispatch(getCountriesList()).then(res => {
-                const { success, data } = res.payload;
-                if (success) {
-                    setCountries(data.records);
-                }
-            })
+            dispatch(getCountriesList());
         }
     }, [doCall, countryData.records, dispatch])
 
@@ -55,7 +49,7 @@ export default function SignUp() {
     };
 
     const steps: any = {
-        0: (props: any) => <Info formik={props} handleNext={handleNext} countries={countries} />,
+        0: (props: any) => <Info formik={props} handleNext={handleNext} countries={countryData?.records || []} />,
         1: (props: any) => <Password formik={props} handleBack={handleBack} handleNext={handleNext} />,
         2: (props: any) => <Email formik={props} handleBack={handleBack} handleNext={handleNext} />,
         3: (props: any) => <Code formik={props} handleBack={handleBack} type={type} />
