@@ -54,9 +54,9 @@ export const authSlice = createSlice({
             state.message = action.payload.message;
             state.userInfo = action.payload.data;
             localStorage.setItem('userInfo', JSON.stringify(action.payload.data))
-            localStorage.setItem('access_token', JSON.stringify(action.payload.data.access_token))
-            localStorage.setItem('refresh_token', JSON.stringify(action.payload.data.refresh_token))
-            localStorage.setItem('device_token', JSON.stringify(action.payload.data.device_token))
+            localStorage.setItem('access_token', action.payload.data.access_token)
+            localStorage.setItem('refresh_token', action.payload.data.refresh_token)
+            localStorage.setItem('device_token', action.payload.data.device_token)
         })
         builder.addCase(signInUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;
