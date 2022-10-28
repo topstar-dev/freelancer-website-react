@@ -85,10 +85,10 @@ export default function Info(mainProps: any) {
         />
       </LocalizationProvider>
       <FormControl error={formik.touched.country_id && Boolean(formik.errors.country_id)}>
-        <InputLabel id="country_helper">{options.length > 0 ? t('country') : t('loading-country')}</InputLabel>
+        <InputLabel id="country_helper">{t('country')}</InputLabel>
         <Select
           ref={countryRef}
-          label={options.length > 0 ? t('country') : t('loading-country')}
+          label={t('country')}
           value={country}
           onChange={countryChange}
           onClose={() => {
