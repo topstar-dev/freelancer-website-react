@@ -19,7 +19,7 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
     _options.headers = temp;
 
     try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}${url}`, _options);
+        const response = await fetch(`${process.env.REACT_APP_PROXY_URL}${url}`, _options);
         if (!response.ok) {
             const error = await response.json();
             return { success: false, ...error };
