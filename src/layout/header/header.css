@@ -34,11 +34,11 @@
 }
 
 .menu-item-selected {
-    color: #336def !important;
+    color: var(--color-primary) !important;
 }
 
 .rounx-nav-item:hover {
-    color: #336def;
+    color: var(--color-primary);
     cursor: pointer;
 }
 

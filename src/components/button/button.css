@@ -11,25 +11,25 @@
 }
 
 .rounx-button.MuiButton-contained {
-    background-color: #336def !important;
+    background-color: var(--color-primary) !important;
     color: #fff !important;
 }
 
 .rounx-button.MuiButton-outlined {
-    color: #336def !important;
+    color: var(--color-primary) !important;
     border-color: #cccccc !important;
 }
 
 .rounx-button.MuiButton-outlined:hover {
     background-color: rgba(51, 110, 239, 0.24) !important;
-    color: #336def !important;
+    color: var(--color-primary) !important;
 }
 
 .rounx-button.MuiButton-text {
-    color: #336def !important;
+    color: var(--color-primary) !important;
 }
 
 .rounx-button.MuiButton-text:hover {
     background-color: rgba(51, 110, 239, 0.24) !important;
-    color: #336def !important;
+    color: var(--color-primary) !important;
 }

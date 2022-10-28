@@ -32,15 +32,15 @@ export default function ContactUs() {
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.contact-details')}</Typography>
             <Typography>
               <span>{t('contact-us.customer')}: </span>
-              <span style={{ color: '#336def', cursor: 'pointer' }}>support@rounx.com</span>
+              <span className="primary-color" style={{ cursor: 'pointer' }}>support@rounx.com</span>
             </Typography>
             <Typography>
               <span>{t('contact-us.business')}: </span>
-              <span style={{ color: '#336def', cursor: 'pointer' }}>business@rounx.com</span>
+              <span className="primary-color" style={{ cursor: 'pointer' }}>business@rounx.com</span>
             </Typography>
             <Typography>
               <span>{t('contact-us.online')}: </span>
-              <span style={{ color: '#336def', cursor: 'pointer' }}>{t('send-message')}</span>
+              <span className="primary-color" style={{ cursor: 'pointer' }}>{t('send-message')}</span>
             </Typography>
           </Box>
         </Grid>

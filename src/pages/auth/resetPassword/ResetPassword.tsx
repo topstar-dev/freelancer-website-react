@@ -67,7 +67,8 @@ export default function ResetPassword() {
 								alt="Rounx admin"
 								width="60px"
 								height="60px"
-								style={{ color: "#336def", alignSelf: "center", cursor: "pointer" }}
+								className='primary-color'
+								style={{ alignSelf: "center", cursor: "pointer" }}
 								onClick={() => navigate('/')}
 							/>
 							{steps[activeStep](props)}

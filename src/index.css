@@ -1,3 +1,7 @@
+:root {
+  --color-primary: #336def;
+}
+
 html {
   zoom: 0.95;
 }
@@ -30,18 +34,22 @@ body {
   box-sizing: border-box;
 }
 
+.primary-color {
+  color: var(--color-primary) !important;
+}
+
 
 /* date picker selected */
 .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-  background-color: #336def !important;
+  background-color: var(--color-primary) !important;
 }
 
 .css-3eghsz-PrivatePickersYear-button.Mui-selected {
-  background-color: #336def !important;
+  background-color: var(--color-primary) !important;
 }
 
 .css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-  background-color: #336def !important;
+  background-color: var(--color-primary) !important;
 }
 
 
@@ -67,12 +75,12 @@ body {
 
 /* field edit outling */
 .Mui-focused fieldset {
-  border-color: #336def !important;
-  color: #336def !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
 }
 
 .Mui-focused fieldset legend span {
-  color: #336def !important;
+  color: var(--color-primary) !important;
 }
 
 /* modal menu */
