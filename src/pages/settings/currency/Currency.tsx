@@ -15,7 +15,7 @@ export default function Currency() {
             "Accept-Language": 'en',
             "device-type": 'WEB'
         }
-        axios.get(`/apicall/settings/currency`, {
+        axios.get(`${process.env.REACT_APP_PROXY_URL}/settings/currency`, {
             headers: headers
         }).then((res) => {
             setCurrency(res.data);
