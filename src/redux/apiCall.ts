@@ -1,41 +1,43 @@
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+
 export const apiCall = async (url: string, options: RequestInit, type = 'json') => {
-    let _options: RequestInit = {
-        headers: {
-            'Content-Type': 'application/json',
-            'device-type': 'WEB',
-            'accept': 'application/json',
-            'Accept-Language': `${localStorage.getItem('i18nextLng')}`
-        }
+    let headers: any = {
+        'Content-Type': 'application/json',
+        'device-type': 'WEB',
+        'accept': 'application/json',
+        'Accept-Language': `${localStorage.getItem('i18nextLng')}`
     }
 
-    let temp = { ..._options.headers };
-
     if (localStorage.getItem('access_token') && localStorage.getItem('refresh_token') && localStorage.getItem('device_token')) {
-        temp = {
-            "device_token": `${localStorage.getItem('device_token')}`,
-            "access_token": `${localStorage.getItem('access_token')}`
+        headers = {
+            ...headers,
+            "device_token": `${localStorage.getItem('device_token')} `,
+            "access_token": `${localStorage.getItem('access_token')} `
         }
     }
 
     if (options.headers) {
-        temp = { ...options.headers };
+        headers = { ...headers, ...options.headers };
     }
 
-    _options = { ...options, ...options };
-    _options.headers = temp;
-
     try {
-        const response = await fetch(`${process.env.REACT_APP_PROXY_URL}${url}`, _options);
-        if (!response.ok) {
-            const error = await response.json();
-            return { success: false, ...error };
+        const response: any = await axios({
+            method: options.method,
+            data: options.body,
+            url: `${url} `,
+            headers: {
+                ...headers
+            }
+        });
+        if (response.status !== 200) {
+            return { success: false };
         } else {
             if (type === 'json') {
-                const data = await response.json();
-                return { success: true, ...data };
+                return { success: true, ...response.data };
             } else if (type === 'blob') {
-                const file = await response.blob();
-                return { success: true, file };
+                return { success: true, file: response.data };
             }
         }
     } catch (err) {
