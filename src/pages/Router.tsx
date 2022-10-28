@@ -37,7 +37,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     }}>
       <Box style={{
         padding: isWeb ? '24px 16%' : '24px',
-        minHeight: `calc(100% - ${useMediaQuery({ query: '(min-width: 900px)' }) ? 72 : 119}px`
+        minHeight: `calc(100% - ${useMediaQuery({ query: '(min-width: 901px)' }) ? 72 : 119}px`
       }}>
         <Outlet />
       </Box>
