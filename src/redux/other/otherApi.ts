@@ -7,7 +7,8 @@ export const downloadImage = (imageData: ImageDownloadInterface) => {
         headers: {
             "function-type": imageData.functionType,
             "file_name": imageData?.fileName.replace('/image/', ''),
-            "Authorization": `Bearer ${localStorage.getItem('access_token')}`
+            "device-token": `${localStorage.getItem('device-token')}`,
+            "access_token": `${localStorage.getItem('access_token')}`
         }
     };
     return apiCall(`/image/${imageData.fileName}`, requestOptions, 'blob');
