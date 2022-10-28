@@ -21,7 +21,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     useEffect(() => {
         if (userInfo?.avatar_url && !userPic) {
-            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: '/image/870461589e6dbdb2.png' })).then((res) => {
+            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo?.avatar_url })).then((res) => {
                 if (res.payload.success) {
                     setUserPic(res.payload.file);
                 }
