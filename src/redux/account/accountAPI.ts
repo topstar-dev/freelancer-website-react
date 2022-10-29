@@ -2,21 +2,35 @@ import axios from "axios";
 import { apiCall, baseURL } from "../apiCall";
 
 export const setTokens = (data: any) => {
-    localStorage.setItem('userInfo', JSON.stringify(data))
-    localStorage.setItem('access-token', data.access_token)
-    localStorage.setItem('refresh-token', data.refresh_token)
-    localStorage.setItem('device-token', data.device_token)
+    localStorage.setItem('user-info', JSON.stringify(data));
 }
 
 export const removeTokens = () => {
-    localStorage.removeItem('userInfo')
-    localStorage.removeItem('access-token')
-    localStorage.removeItem('refresh-token')
-    localStorage.removeItem('device-token')
+    localStorage.removeItem('user-info')
     window.location.reload();
 }
 
+export const getuserDataFromStorage = () => {
+    const userInfo = localStorage.getItem('user-info');
+    if (userInfo) {
+        try {
+            const parseData = JSON.parse(userInfo);
+            return parseData;
+        } catch (err) {
+            return null;
+        }
+    }
+}
+
 export const refreshToken = (previous: boolean, error?: any) => {
+    const userData = getuserDataFromStorage();
+    const tempHeader: any = {};
+    if (userData) {
+        tempHeader['refresh-token'] = userData['refresh_token'];
+        tempHeader['device-token'] = userData['device_token'];
+        tempHeader['access-token'] = userData['access_token'];
+    }
+
     return axios(`${baseURL}/refresh-token`, {
         method: 'post',
         headers: {
@@ -24,9 +38,7 @@ export const refreshToken = (previous: boolean, error?: any) => {
             'device-type': 'WEB',
             'accept': 'application/json',
             'Accept-Language': `${localStorage.getItem('i18nextLng')}`,
-            'refresh-token': localStorage.getItem('refresh-token'),
-            'device-token': localStorage.getItem('device-token'),
-            'access-token': localStorage.getItem('access-token'),
+            ...tempHeader
         }
     } as any).then(response => {
         setTokens(response.data.data);

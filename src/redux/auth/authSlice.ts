@@ -1,16 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { removeTokens, setTokens } from '../account/accountAPI';
+import { getuserDataFromStorage, removeTokens, setTokens } from '../account/accountAPI';
 import { signInUser, signOutUser } from './authActions';
 
 // initialize userToken from local storage
-var userToken = null;
-try {
-    if (localStorage.getItem('access-token') && localStorage.getItem('refresh-token') && localStorage.getItem('device-token')) {
-        userToken = JSON.parse(`${localStorage.getItem('userInfo')}`);
-    }
-} catch (err) {
-    userToken = null;
-}
+var userToken = getuserDataFromStorage();
 
 export interface UserInterface {
     avatar_url: string | null;

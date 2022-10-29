@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { refreshToken } from './account/accountAPI';
+import { getuserDataFromStorage, refreshToken } from './account/accountAPI';
 
 export const baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -26,11 +26,12 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
         headers = { ...headers, ...options.headers };
     }
 
-    if (localStorage.getItem('access-token') && localStorage.getItem('refresh-token') && localStorage.getItem('device-token')) {
+    const userData = getuserDataFromStorage();
+    if (userData) {
         headers = {
             ...headers,
-            "device-token": `${localStorage.getItem('device-token')} `,
-            "access-token": `${localStorage.getItem('access-token')} `
+            "device-token": `${userData['device_token']} `,
+            "access-token": `${userData['access_token']} `
         }
     }
 
