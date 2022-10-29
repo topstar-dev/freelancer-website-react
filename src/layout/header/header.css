@@ -134,6 +134,16 @@
 .rounx-user-menu-list .MuiPaper-root {
     padding: 0 !important;
     border-radius: 7px;
+    top: 78px !important;
+    right: 6px !important;
+    left: unset !important;
+    width: 274px !important;
+}
+
+@media (max-width: 900px) {
+    .rounx-user-menu-list .MuiPaper-root {
+        top: 79px !important;
+    }
 }
 
 .rounx-user-menu-list .MuiList-root {
