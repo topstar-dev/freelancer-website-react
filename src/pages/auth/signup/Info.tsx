@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -23,12 +24,13 @@ import Button from "../../../components/button/Button";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const countryRef = useRef<any>();
   const options = mainProps.countries;
   const { formik } = mainProps;
 
-  const [country, setCountry] = React.useState('');
-  const [birthday, setBirthday] = React.useState<Dayjs | null>(null);
+  const [country, setCountry] = React.useState(formik.values.country_id || '');
+  const [birthday, setBirthday] = React.useState<Dayjs | null>(formik.values.birthday);
 
   const countryChange = (e: SelectChangeEvent) => {
     formik.setFieldValue('country_id', e.target.value)
@@ -68,7 +70,7 @@ export default function Info(mainProps: any) {
           error={formik.touched.last_name && Boolean(formik.errors.last_name)}
           helperText={formik.touched.last_name && formik.errors.last_name} />
       </FlexBox>
-      <LocalizationProvider locale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
+      <LocalizationProvider adapterLocale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label={t('birthday')}
           inputFormat="YYYY-MM-DD"
@@ -128,7 +130,7 @@ export default function Info(mainProps: any) {
             }
 
             if (!(first_name || last_name || birthday || country_id)) {
-              mainProps.handleNext();
+              mainProps.handleNext(formik);
             }
           })
         }}>

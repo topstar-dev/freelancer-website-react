@@ -73,7 +73,7 @@ export default function Password(mainProps: any) {
                             formik.setFieldError('confirm_password', confirm_password);
                         }
                         if (!password || !confirm_password) {
-                            mainProps.handleNext();
+                            mainProps.handleNext(formik);
                         }
                     })
                 }} >

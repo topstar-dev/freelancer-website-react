@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import * as yup from "yup";
 import { Formik } from "formik";
 import Info from './Info';
@@ -17,6 +17,7 @@ import WithTranslateFormErrors from '../../../i18n/validationScemaOnLangChange';
 export default function SignUp() {
     const { t } = useTranslation();
     const [searchParams] = useSearchParams();
+    const { state } = useLocation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const type = searchParams.get('type');
@@ -26,6 +27,12 @@ export default function SignUp() {
 
     React.useEffect(() => {
         document.title = t('title.signup');
+        window.onpopstate = e => {
+            e.preventDefault();
+            if (activeStep > 0) {
+                handleBack();
+            }
+        };
     })
 
     useEffect(() => {
@@ -39,9 +46,10 @@ export default function SignUp() {
         }
     }, [doCall, countryData.records, dispatch])
 
-    const handleNext = () => {
+    const handleNext = (formik: any) => {
         const newActiveStep = activeStep + 1;
         setActiveStep(newActiveStep);
+        navigate(`/sign-up${window.location.search}`, { state: formik.values })
     };
 
     const handleBack = () => {
@@ -58,7 +66,7 @@ export default function SignUp() {
     return (
         <Card className="rounx-auth-card">
             <Formik
-                initialValues={{
+                initialValues={state || {
                     first_name: "",
                     last_name: "",
                     confirm_password: "",
