@@ -14,7 +14,7 @@ export const removeTokens = () => {
     localStorage.removeItem('access-token')
     localStorage.removeItem('refresh-token')
     localStorage.removeItem('device-token')
-    // window.location.reload();
+    window.location.reload();
 }
 
 const service = axios.create({ baseURL })
@@ -45,7 +45,6 @@ service.interceptors.response.use(
         })
     }
 );
-
 
 export const apiCall = async (url: string, options: RequestInit, type = 'json') => {
     let headers: any = {
@@ -86,16 +85,13 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
                 }
             });
         }
-        if (response.status !== 200) {
-            return { success: false };
-        } else {
-            if (type === 'blob') {
-                const file = await response.blob();
-                return { success: true, file };
-            }
-            return { success: true, ...response.data };
+        if (type === 'blob') {
+            const file = await response.blob();
+            return { success: true, file };
         }
+        return { success: true, ...response.data };
     } catch (err: any) {
+        console.log(err)
         return { success: false, ...err.response.data }
     }
 }
