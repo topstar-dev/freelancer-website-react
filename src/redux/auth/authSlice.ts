@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { removeTokens, setTokens } from '../apiCall';
 import { signInUser, signOutUser } from './authActions';
 
 // initialize userToken from local storage
@@ -53,10 +54,7 @@ export const authSlice = createSlice({
             state.success = true;
             state.message = action.payload.message;
             state.userInfo = action.payload.data;
-            localStorage.setItem('userInfo', JSON.stringify(action.payload.data))
-            localStorage.setItem('access-token', action.payload.data.access_token)
-            localStorage.setItem('refresh-token', action.payload.data.refresh_token)
-            localStorage.setItem('device-token', action.payload.data.device_token)
+            setTokens(action.payload.data);
         })
         builder.addCase(signInUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;
@@ -75,10 +73,7 @@ export const authSlice = createSlice({
             state.success = true;
             state.userInfo = null;
             state.message = action.payload.message;
-            localStorage.removeItem('userInfo')
-            localStorage.removeItem('access-token')
-            localStorage.removeItem('refresh-token')
-            localStorage.removeItem('device-token')
+            removeTokens();
         })
         builder.addCase(signOutUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;

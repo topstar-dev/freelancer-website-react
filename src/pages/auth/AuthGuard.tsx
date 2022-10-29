@@ -8,7 +8,7 @@ export default function AuthGuard(props: any) {
 
     React.useEffect(() => {
         if (!userInfo) {
-            navigate('/');
+            navigate(window.location.pathname);
         }
     }, [userInfo, navigate])
 

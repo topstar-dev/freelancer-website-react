@@ -32,7 +32,6 @@ export default function Header() {
         }
         if (success && !userInfo) {
             dispatch(resetDefault())
-            navigate('/sign-in');
         }
     }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
