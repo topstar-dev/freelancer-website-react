@@ -4,13 +4,13 @@ import { imageDownload } from './otherActions';
 export interface OtherState {
     message?: string | null;
     loading: boolean;
-    userPic: any;
+    userAvatar: any;
 }
 
 const initialState: OtherState = {
     loading: false,
     message: null,
-    userPic: null
+    userAvatar: null
 }
 
 export const otherSlice = createSlice({
@@ -19,11 +19,11 @@ export const otherSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(imageDownload.pending, (state: OtherState) => {
-            state.userPic = null;
+            state.userAvatar = null;
             state.loading = true;
         });
         builder.addCase(imageDownload.fulfilled, (state: OtherState, action) => {
-            state.userPic = action.payload.file;
+            state.userAvatar = action.payload.file;
             state.loading = false;
         });
         builder.addCase(imageDownload.rejected, () => {

@@ -10,11 +10,11 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
         'Accept-Language': `${localStorage.getItem('i18nextLng')}`
     }
 
-    if (localStorage.getItem('access_token') && localStorage.getItem('refresh_token') && localStorage.getItem('device_token')) {
+    if (localStorage.getItem('access-token') && localStorage.getItem('refresh-token') && localStorage.getItem('device-token')) {
         headers = {
             ...headers,
-            "device_token": `${localStorage.getItem('device_token')} `,
-            "access_token": `${localStorage.getItem('access_token')} `
+            "device-token": `${localStorage.getItem('device-token')} `,
+            "access-token": `${localStorage.getItem('access-token')} `
         }
     }
 
@@ -23,24 +23,34 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
     }
 
     try {
-        const response: any = await axios({
-            method: options.method,
-            data: options.body,
-            url: `${url} `,
-            headers: {
-                ...headers
-            }
-        });
+        let response: any;
+        if (type === 'blob') {
+            response = await fetch(`${process.env.REACT_APP_BASE_URL}${url}`, {
+                ...options,
+                headers: {
+                    ...headers
+                }
+            });
+        } else {
+            response = await axios({
+                method: options.method,
+                data: options.body,
+                url: `${url} `,
+                headers: {
+                    ...headers
+                }
+            });
+        }
         if (response.status !== 200) {
             return { success: false };
         } else {
-            if (type === 'json') {
-                return { success: true, ...response.data };
-            } else if (type === 'blob') {
-                return { success: true, file: response.data };
+            if (type === 'blob') {
+                const file = await response.blob();
+                return { success: true, file };
             }
+            return { success: true, ...response.data };
         }
-    } catch (err) {
-        return { success: false, message: "Error occured" }
+    } catch (err: any) {
+        return { success: false, ...err.response.data }
     }
 }

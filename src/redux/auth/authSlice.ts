@@ -4,7 +4,7 @@ import { signInUser, signOutUser } from './authActions';
 // initialize userToken from local storage
 var userToken = null;
 try {
-    if (localStorage.getItem('access_token') && localStorage.getItem('refresh_token') && localStorage.getItem('device_token')) {
+    if (localStorage.getItem('access-token') && localStorage.getItem('refresh-token') && localStorage.getItem('device-token')) {
         userToken = JSON.parse(`${localStorage.getItem('userInfo')}`);
     }
 } catch (err) {
@@ -54,9 +54,9 @@ export const authSlice = createSlice({
             state.message = action.payload.message;
             state.userInfo = action.payload.data;
             localStorage.setItem('userInfo', JSON.stringify(action.payload.data))
-            localStorage.setItem('access_token', action.payload.data.access_token)
-            localStorage.setItem('refresh_token', action.payload.data.refresh_token)
-            localStorage.setItem('device_token', action.payload.data.device_token)
+            localStorage.setItem('access-token', action.payload.data.access_token)
+            localStorage.setItem('refresh-token', action.payload.data.refresh_token)
+            localStorage.setItem('device-token', action.payload.data.device_token)
         })
         builder.addCase(signInUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;
@@ -76,9 +76,9 @@ export const authSlice = createSlice({
             state.userInfo = null;
             state.message = action.payload.message;
             localStorage.removeItem('userInfo')
-            localStorage.removeItem('access_token')
-            localStorage.removeItem('refresh_token')
-            localStorage.removeItem('device_token')
+            localStorage.removeItem('access-token')
+            localStorage.removeItem('refresh-token')
+            localStorage.removeItem('device-token')
         })
         builder.addCase(signOutUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;

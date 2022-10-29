@@ -17,13 +17,13 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const { userPic, loading } = useAppSelector(state => state.other);
+    const { userAvatar, loading } = useAppSelector(state => state.other);
 
     useEffect(() => {
-        if (userInfo?.avatar_url && !userPic && !loading) {
+        if (userInfo?.avatar_url && !userAvatar && !loading) {
             dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo?.avatar_url }))
         }
-    }, [dispatch, userInfo?.avatar_url, userPic, loading])
+    }, [dispatch, userInfo?.avatar_url, userAvatar, loading])
 
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
@@ -40,8 +40,8 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     return (
         <>
-            {userPic ?
-                <img className='rounx-signin-handle' onClick={handleMenu} src={URL.createObjectURL(userPic)} alt="Rounx user" />
+            {userAvatar ?
+                <img className='rounx-signin-handle' onClick={handleMenu} src={URL.createObjectURL(userAvatar)} alt="Rounx user" />
                 :
                 <AccountCircle className='rounx-signin-handle' onClick={handleMenu} />
             }
