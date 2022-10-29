@@ -29,10 +29,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
         refreshToken(false).then((res) => {
-            const { name, email } = userInfo || {};
-            if (name !== res.data.name || email !== userInfo?.email) {
-                dispatch(updateUserInfo(res.data))
-            }
+            dispatch(updateUserInfo(res.data))
         })
     };
 
