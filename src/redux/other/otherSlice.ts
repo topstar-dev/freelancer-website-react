@@ -23,7 +23,7 @@ export const otherSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(imageDownload.fulfilled, (state: OtherState, action) => {
-            state.userAvatar = action.payload.file;
+            state.userAvatar = URL.createObjectURL(action.payload.file);
             state.loading = false;
         });
         builder.addCase(imageDownload.rejected, () => {

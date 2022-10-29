@@ -41,7 +41,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
     return (
         <>
             {userAvatar ?
-                <img className='rounx-signin-handle' onClick={handleMenu} src={URL.createObjectURL(userAvatar)} alt="Rounx user" />
+                <img className='rounx-signin-handle' onClick={handleMenu} src={userAvatar} alt="Rounx user" />
                 :
                 <AccountCircle className='rounx-signin-handle' onClick={handleMenu} />
             }
