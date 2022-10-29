@@ -34,7 +34,7 @@ export default function VerifyCode(mainProps: any) {
         id="code"
         name="code"
         label={t('code')}
-        value={formik.values.code}
+        value={formik.values.code || ''}
         onChange={formik.handleChange}
         error={formik.touched.code && Boolean(formik.errors.code)}
         helperText={formik.touched.code && formik.errors.code}
@@ -61,7 +61,7 @@ export default function VerifyCode(mainProps: any) {
                 enqueueSnackbar(message);
                 if (success) {
                   dispatch(resetDefault());
-                  mainProps.handleNext();
+                  mainProps.handleNext(formik);
                 }
                 setLoading(false);
               }).catch((err) => {

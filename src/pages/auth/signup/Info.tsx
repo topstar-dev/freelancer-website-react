@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -24,13 +23,12 @@ import Button from "../../../components/button/Button";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const countryRef = useRef<any>();
   const options = mainProps.countries;
   const { formik } = mainProps;
 
   const [country, setCountry] = React.useState(formik.values.country_id || '');
-  const [birthday, setBirthday] = React.useState<Dayjs | null>(formik.values.birthday);
+  const [birthday, setBirthday] = React.useState<Dayjs | null>(formik.values.birthday || null);
 
   const countryChange = (e: SelectChangeEvent) => {
     formik.setFieldValue('country_id', e.target.value)

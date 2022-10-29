@@ -58,7 +58,7 @@ export default function EnterEmail(mainProps: any) {
                   enqueueSnackbar(message);
                   if (success) {
                     dispatch(resetDefault());
-                    mainProps.handleNext();
+                    mainProps.handleNext(formik);
                   }
                   setLoading(false);
                 }).catch((err) => {

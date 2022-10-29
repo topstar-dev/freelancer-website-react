@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as yup from "yup";
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import EnterEmail from './enterEmail';
 import VerifyCode from './verifyCode';
 import SetNewPassword from './setNewPassword';
@@ -13,16 +13,24 @@ import WithTranslateFormErrors from '../../../i18n/validationScemaOnLangChange';
 
 export default function ResetPassword() {
 	const { t } = useTranslation();
+	const { state } = useLocation();
 	const navigate = useNavigate();
 	const [activeStep, setActiveStep] = React.useState<number>(0);
 
 	React.useEffect(() => {
 		document.title = t('title.reset-password')
+		window.onpopstate = e => {
+			e.preventDefault();
+			if (activeStep > 0) {
+				handleBack();
+			}
+		};
 	})
 
-	const handleNext = () => {
+	const handleNext = (formik: any) => {
 		const newActiveStep = activeStep + 1;
 		setActiveStep(newActiveStep);
+		navigate(`/reset-password`, { state: formik.values })
 	};
 
 	const handleBack = () => {
@@ -38,7 +46,7 @@ export default function ResetPassword() {
 	return (
 		<Card className="rounx-auth-card">
 			<Formik
-				initialValues={{ email: "" }}
+				initialValues={state || { email: "" }}
 				validationSchema={yup.object({
 					email: yup
 						.string()
