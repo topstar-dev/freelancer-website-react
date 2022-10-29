@@ -55,15 +55,18 @@
 
 .rounx-home-third-left {
     width: 55%;
+    max-width: 550px;
     padding-right: 48px;
 }
 
 .rounx-home-third-right {
     width: 45%;
+    margin-left: auto;
 }
 
 .mobilePhone {
     height: 692px;
+    float: right;
 }
 
 @media (max-width:490px) {
