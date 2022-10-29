@@ -28,8 +28,7 @@ export const resetPassword = (resetPasswordData: ResetPasswordInterface) => {
 export const sendEmailCode = (sendEmailObj: SendEmailCodeInterface) => {
     const requestOptions: RequestInit = {
         method: 'POST',
-        body: JSON.stringify(sendEmailObj),
-        credentials: "include"
+        body: JSON.stringify(sendEmailObj)
     };
     return apiCall(`/send-email-code`, requestOptions);
 };
@@ -37,8 +36,7 @@ export const sendEmailCode = (sendEmailObj: SendEmailCodeInterface) => {
 export const checkEmailCode = (checkEmailObj: CheckEmailCodeInterface) => {
     const requestOptions: RequestInit = {
         method: 'POST',
-        body: JSON.stringify(checkEmailObj),
-        credentials: "include"
+        body: JSON.stringify(checkEmailObj)
     };
     return apiCall(`/check-email-code`, requestOptions);
 }; 

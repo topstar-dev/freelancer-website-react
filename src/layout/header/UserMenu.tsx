@@ -6,6 +6,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
+import { refreshToken } from '../../redux/account/accountAPI';
 
 interface UserMenuPropsInterface {
     signOut: Function,
@@ -27,6 +28,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
+        refreshToken(false)
     };
 
     const handleClose = () => {

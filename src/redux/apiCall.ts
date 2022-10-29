@@ -1,21 +1,7 @@
 import axios from 'axios';
+import { refreshToken } from './account/accountAPI';
 
-const baseURL = process.env.REACT_APP_BASE_URL;
-
-export const setTokens = (data: any) => {
-    localStorage.setItem('userInfo', JSON.stringify(data))
-    localStorage.setItem('access-token', data.access_token)
-    localStorage.setItem('refresh-token', data.refresh_token)
-    localStorage.setItem('device-token', data.device_token)
-}
-
-export const removeTokens = () => {
-    localStorage.removeItem('userInfo')
-    localStorage.removeItem('access-token')
-    localStorage.removeItem('refresh-token')
-    localStorage.removeItem('device-token')
-    window.location.reload();
-}
+export const baseURL = process.env.REACT_APP_BASE_URL;
 
 const service = axios.create({ baseURL })
 service.interceptors.response.use(
@@ -24,25 +10,7 @@ service.interceptors.response.use(
         if (error.response.status !== 401) {
             return Promise.reject(error);
         }
-        return axios(`${baseURL}/refresh-token`, {
-            method: 'post',
-            headers: {
-                'device-type': 'WEB',
-                'Accept-Language': `${localStorage.getItem('i18nextLng')}`,
-                'refresh-token': localStorage.getItem('refresh-token')
-            }
-        } as any).then(response => {
-            setTokens(response.data);
-            const { config } = error.response;
-            return apiCall(config.url, {
-                method: config.method,
-                body: config.data,
-                headers: config.headers
-            } as any);
-        }).catch(error => {
-            removeTokens();
-            return Promise.reject(error);
-        })
+        return refreshToken(true, error)
     }
 );
 
@@ -91,7 +59,6 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
         }
         return { success: true, ...response.data };
     } catch (err: any) {
-        console.log(err)
         return { success: false, ...err.response.data }
     }
 }
