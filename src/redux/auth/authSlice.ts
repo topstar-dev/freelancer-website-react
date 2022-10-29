@@ -41,6 +41,9 @@ export const authSlice = createSlice({
         resetDefault: (state) => {
             state.success = false;
             state.message = null;
+        },
+        updateUserInfo: (state, action) => {
+            state.userInfo = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -85,7 +88,7 @@ export const authSlice = createSlice({
     }
 });
 
-const { resetDefault } = authSlice.actions;
+const { resetDefault, updateUserInfo } = authSlice.actions;
 
-export { resetDefault }
+export { resetDefault, updateUserInfo }
 export default authSlice.reducer;

@@ -20,12 +20,16 @@ export const refreshToken = (previous: boolean, error?: any) => {
     return axios(`${baseURL}/refresh-token`, {
         method: 'post',
         headers: {
+            'Content-Type': 'application/json',
             'device-type': 'WEB',
+            'accept': 'application/json',
             'Accept-Language': `${localStorage.getItem('i18nextLng')}`,
-            'refresh-token': localStorage.getItem('refresh-token')
+            'refresh-token': localStorage.getItem('refresh-token'),
+            'device-token': localStorage.getItem('device-token'),
+            'access-token': localStorage.getItem('access-token'),
         }
     } as any).then(response => {
-        setTokens(response.data);
+        setTokens(response.data.data);
         if (previous && error) {
             const { config } = error.response;
             return apiCall(config.url, {
@@ -34,7 +38,7 @@ export const refreshToken = (previous: boolean, error?: any) => {
                 headers: config.headers
             } as any);
         } else {
-            Promise.resolve();
+            return Promise.resolve(response.data);
         }
     }).catch(error => {
         removeTokens();

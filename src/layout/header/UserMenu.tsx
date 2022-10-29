@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { UserInterface } from '../../redux/auth/authSlice';
+import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
 import { refreshToken } from '../../redux/account/accountAPI';
@@ -28,7 +28,12 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
 
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
-        refreshToken(false)
+        refreshToken(false).then((res) => {
+            const { name, email } = userInfo || {};
+            if (name !== res.data.name || email !== userInfo?.email) {
+                dispatch(updateUserInfo(res.data))
+            }
+        })
     };
 
     const handleClose = () => {
