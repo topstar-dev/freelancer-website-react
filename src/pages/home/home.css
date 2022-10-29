@@ -73,6 +73,7 @@
     .mobilePhone {
         height: auto;
         width: 100%;
+        float: unset;
     }
 }
 
