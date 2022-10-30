@@ -25,7 +25,7 @@ html {
 }
 
 html[lang="en"] {
-  font-family: 'Roboto Serif', serif;
+  font-family: 'Roboto Serif', sans-serif;
 }
 
 html[lang="zh-CN"] {

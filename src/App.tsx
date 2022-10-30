@@ -1,13 +1,31 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material';
 import Router from './pages/Router';
+import './App.css';
+import { useAppSelector } from './redux/hooks';
 
 function App() {
+  const { language } = useAppSelector(state => state.resources)
+  const enFamily = ["Roboto Serif", "sans-serif"].join(',');
+  const chFamily = ["SourceHanSansSC"].join(',');
+  const customTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#336def"
+      }
+    },
+    typography: {
+      fontFamily: language === 'en' ? enFamily : chFamily
+    }
+  });
+
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <ThemeProvider theme={customTheme}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

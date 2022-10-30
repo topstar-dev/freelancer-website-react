@@ -7,29 +7,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
-import { createTheme, ThemeProvider } from '@mui/material';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
-const customTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#336def"
-    }
-  },
-});
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={customTheme}>
-        <SnackbarProvider maxSnack={1}>
-          <App />
-        </SnackbarProvider>
-      </ThemeProvider>
+      <SnackbarProvider maxSnack={1}>
+        <App />
+      </SnackbarProvider>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function
