@@ -19,33 +19,25 @@
 .rounx-language-box {
     display: flex;
     margin-right: 26px;
+    cursor: pointer;
 }
 
 .rounx-language-icon {
     font-size: 25px !important;
     margin-right: 10px;
+    margin-top: -1px;
 }
 
 .rounx-language-select {
     font-size: 14px !important;
     color: #757575 !important;
-    /* width: 80px !important; */
+    padding-top: 1px !important;
+    padding-right: 10px !important;
 }
 
-.rounx-language-select>div {
-    padding-right: 32px !important;
-}
-
-.rounx-language-select>div:focus {
-    background-color: transparent !important;
-}
-
-.rounx-language-select::before {
-    border: none !important;
-}
-
-.rounx-language-select::after {
-    border: none !important;
+.rounx-language-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+    top: unset !important;
+    bottom: 78px !important;
 }
 
 .rounx-nav-items-box {
@@ -95,5 +87,10 @@
         justify-content: center;
         align-items: center;
         margin-right: auto;
+    }
+
+    .rounx-language-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+        top: unset !important;
+        bottom: 125px !important;
     }
 }

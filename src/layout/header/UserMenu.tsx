@@ -7,12 +7,14 @@ import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
 import { refreshToken } from '../../redux/account/accountAPI';
+import axios from 'axios';
 
 interface UserMenuPropsInterface {
     signOut: Function,
     userInfo: UserInterface | null
 }
 
+let source = axios.CancelToken.source();
 export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -27,8 +29,9 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
     }, [dispatch, userInfo?.avatar_url, userAvatar, loading])
 
     const handleMenu = (event: any) => {
+        source = axios.CancelToken.source();
         setAnchorEl(event.currentTarget);
-        refreshToken(false).then((res) => {
+        refreshToken(false, null, source).then((res) => {
             dispatch(updateUserInfo(res.data))
         })
     };
@@ -57,7 +60,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
                     vertical: "bottom",
                     horizontal: "right",
                 }}
-                keepMounted
+                keepMounted={false}
                 transformOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -80,7 +83,12 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
                     <MenuItem className='rounx-user-menu-items' onClick={settingsClick}>
                         {t('header-user-settings')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items' onClick={() => signOut()}>
+                    <MenuItem className='rounx-user-menu-items' onClick={() => {
+                        if (source) {
+                            source.cancel();
+                        }
+                        signOut()
+                    }}>
                         {t('header-user-signout')}
                     </MenuItem>
                 </MenuList>
