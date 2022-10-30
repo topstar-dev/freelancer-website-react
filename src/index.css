@@ -90,6 +90,10 @@ body,
   color: var(--color-primary) !important;
 }
 
+fieldset legend span {
+  color: var(--color-primary) !important;
+}
+
 .Mui-focused fieldset legend span {
   color: var(--color-primary) !important;
 }
