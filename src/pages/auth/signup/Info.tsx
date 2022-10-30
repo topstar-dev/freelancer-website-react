@@ -103,7 +103,7 @@ export default function Info(mainProps: any) {
             )
           })}
         </Select>
-        {formik.touched.country_id && formik.errors.country_id && <FormHelperText style={{ color: 'red' }}>{formik.errors.country_id}</FormHelperText>}
+        {formik.touched.country_id && formik.errors.country_id && <FormHelperText>{formik.errors.country_id}</FormHelperText>}
       </FormControl>
       <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button onClick={() => {

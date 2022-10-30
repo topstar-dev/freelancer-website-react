@@ -94,6 +94,10 @@ body,
   color: var(--color-primary) !important;
 }
 
+.Mui-error legend span {
+  color: #d32f2f !important;
+}
+
 /* modal menu */
 .css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root {
   overflow: hidden;
