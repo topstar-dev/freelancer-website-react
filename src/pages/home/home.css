@@ -59,6 +59,11 @@
     padding-right: 48px;
 }
 
+.rounx-qr-code-image {
+    margin-left: -20px;
+    width: 258px;
+}
+
 .rounx-home-third-right {
     width: 45%;
     margin-left: auto;

@@ -146,7 +146,7 @@ export default function HomePage() {
                                 )}
                             </Formik>
                             :
-                            <img alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
+                            <img className="rounx-qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
                         }
                     </Box>
                 </Box>
