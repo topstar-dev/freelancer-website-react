@@ -5,20 +5,20 @@ import { Box, Divider, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Button from "../../components/button/Button";
+import WithTranslateFormErrors from "../../i18n/validationScemaOnLangChange";
 import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
 import './home.css'
-import WithTranslateFormErrors from "../../i18n/validationScemaOnLangChange";
 
 export default function HomePage() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-
+    const { language } = useAppSelector(state => state.resources)
     React.useEffect(() => {
         document.title = t('title.home')
     })
@@ -101,47 +101,51 @@ export default function HomePage() {
                                 {t('home-page-comming-soon-info')}
                             </Typography>
                         </Box>
-                        <Formik
-                            validationSchema={yup.object({
-                                email: yup
-                                    .string()
-                                    .required(t('validation.email-required'))
-                            })}
-                            initialValues={{ email: '' }}
-                            onSubmit={(values, actions) => {
-                                dispatch(scheduleAppointment(values.email))
-                                    .then((res) => {
-                                        enqueueSnackbar(res.payload.message)
-                                        actions.resetForm();
-                                    }).catch((error) => {
-                                        enqueueSnackbar(error.message);
-                                        actions.resetForm();
-                                    })
-                            }}
-                        >
-                            {props => (
-                                <WithTranslateFormErrors {...props}>
-                                    <form
-                                        onSubmit={props.handleSubmit}
-                                        style={{ display: 'flex', alignItems: 'flex-start' }}
-                                    >
-                                        <TextField
-                                            value={props.values.email}
-                                            id="email"
-                                            name="email"
-                                            placeholder={t('email')}
-                                            onChange={props.handleChange}
-                                            error={props.touched.email && Boolean(props.errors.email)}
-                                            helperText={props.touched.email && props.errors.email}
-                                            InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
-                                            style={{ marginRight: '20px', height: '40px' }}
-                                            fullWidth
-                                        />
-                                        <Button type="submit">{t('submit')}</Button>
-                                    </form>
-                                </WithTranslateFormErrors>
-                            )}
-                        </Formik>
+                        {language === 'en' ?
+                            <Formik
+                                validationSchema={yup.object({
+                                    email: yup
+                                        .string()
+                                        .required(t('validation.email-required'))
+                                })}
+                                initialValues={{ email: '' }}
+                                onSubmit={(values, actions) => {
+                                    dispatch(scheduleAppointment(values.email))
+                                        .then((res) => {
+                                            enqueueSnackbar(res.payload.message)
+                                            actions.resetForm();
+                                        }).catch((error) => {
+                                            enqueueSnackbar(error.message);
+                                            actions.resetForm();
+                                        })
+                                }}
+                            >
+                                {props => (
+                                    <WithTranslateFormErrors {...props}>
+                                        <form
+                                            onSubmit={props.handleSubmit}
+                                            style={{ display: 'flex', alignItems: 'flex-start' }}
+                                        >
+                                            <TextField
+                                                value={props.values.email}
+                                                id="email"
+                                                name="email"
+                                                placeholder={t('email')}
+                                                onChange={props.handleChange}
+                                                error={props.touched.email && Boolean(props.errors.email)}
+                                                helperText={props.touched.email && props.errors.email}
+                                                InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
+                                                style={{ marginRight: '20px', height: '40px' }}
+                                                fullWidth
+                                            />
+                                            <Button type="submit">{t('submit')}</Button>
+                                        </form>
+                                    </WithTranslateFormErrors>
+                                )}
+                            </Formik>
+                            :
+                            <img alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
+                        }
                     </Box>
                 </Box>
                 <Box className="rounx-home-third-right">
