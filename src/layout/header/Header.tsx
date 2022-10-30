@@ -13,9 +13,11 @@ import {
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
+import useAnalyticsEventTracker from "../../services/useAnalyticsEventTracker";
 
 export default function Header() {
     const navigate = useNavigate();
+    const gaEventTracker = useAnalyticsEventTracker('Pages');
     const [selectedPage, setSelectedPage] = useState(window.location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
@@ -53,6 +55,7 @@ export default function Header() {
         userMenu: userMenu,
         selectedPage: selectedPage,
         setSelectedPage: (url: string) => {
+            gaEventTracker(url);
             setSelectedPage(url)
             navigate(url)
         }

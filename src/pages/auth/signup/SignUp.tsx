@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Card from '../../../components/card/Card';
 import '../auth.css';
 import { useTranslation } from 'react-i18next';
-import WithTranslateFormErrors from '../../../i18n/validationScemaOnLangChange';
+import WithTranslateFormErrors from '../../../services/validationScemaOnLangChange';
 
 export default function SignUp() {
     const { t } = useTranslation();

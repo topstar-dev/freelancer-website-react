@@ -2,11 +2,15 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { SnackbarProvider } from "notistack";
 import { Provider } from 'react-redux';
+import ReactGA from 'react-ga';
 import { store } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
+
+const TRACKING_ID = "G-6V10ZL15WZ";
+ReactGA.initialize(TRACKING_ID);
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

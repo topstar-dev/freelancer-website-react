@@ -9,7 +9,7 @@ import SetNewPassword from './setNewPassword';
 import { CustomForm } from "../../commonStyle";
 import Card from '../../../components/card/Card';
 import '../auth.css';
-import WithTranslateFormErrors from '../../../i18n/validationScemaOnLangChange';
+import WithTranslateFormErrors from '../../../services/validationScemaOnLangChange';
 
 export default function ResetPassword() {
 	const { t } = useTranslation();

@@ -10,8 +10,10 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import './footer.css';
+import useAnalyticsEventTracker from "../../services/useAnalyticsEventTracker";
 
 export default function Footer() {
+    const gaEventTracker = useAnalyticsEventTracker();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { i18n, t } = useTranslation();
@@ -72,8 +74,14 @@ export default function Footer() {
                     </MenuList>
                 </Menu>
                 <Box className="rounx-nav-items-box">
-                    <Typography className="rounx-footer-items" onClick={() => navigate('/privacy')}>{t('footer-privacy-policy')}</Typography>
-                    <Typography className="rounx-footer-items" onClick={() => navigate('/terms')}>{t('footer-terms-of-service')}</Typography>
+                    <Typography className="rounx-footer-items" onClick={() => {
+                        gaEventTracker("/privacy")
+                        navigate('/privacy')
+                    }}>{t('footer-privacy-policy')}</Typography>
+                    <Typography className="rounx-footer-items" onClick={() => {
+                        gaEventTracker("/terms")
+                        navigate('/terms')
+                    }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>
                 </Box>
             </Box>

@@ -24,7 +24,7 @@ import { resetDefault } from "../../../redux/auth/authSlice";
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import '../auth.css';
-import WithTranslateFormErrors from "../../../i18n/validationScemaOnLangChange";
+import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 
 export default function SignIn() {
   const { t } = useTranslation();

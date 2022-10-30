@@ -7,7 +7,7 @@ import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Button from "../../components/button/Button";
-import WithTranslateFormErrors from "../../i18n/validationScemaOnLangChange";
+import WithTranslateFormErrors from "../../services/validationScemaOnLangChange";
 import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
