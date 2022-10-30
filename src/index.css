@@ -54,18 +54,15 @@ body,
 
 
 /* date picker selected */
-.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+.MuiPickersDay-root.Mui-selected {
   background-color: var(--color-primary) !important;
+  opacity: 0.98 !important;
 }
 
-.css-3eghsz-PrivatePickersYear-button.Mui-selected {
+.PrivatePickersYear-yearButton.Mui-selected {
   background-color: var(--color-primary) !important;
+  opacity: 0.98;
 }
-
-.css-195y93z-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-  background-color: var(--color-primary) !important;
-}
-
 
 /* menu or dropdown list */
 .MuiMenu-list {
