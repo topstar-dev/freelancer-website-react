@@ -5,9 +5,11 @@ export const setTokens = (data: any) => {
     localStorage.setItem('user-info', JSON.stringify(data));
 }
 
-export const removeTokens = () => {
+export const removeTokens = (doRefresh: boolean = false) => {
     localStorage.removeItem('user-info')
-    window.location.reload();
+    if (doRefresh) {
+        window.location.reload();
+    }
 }
 
 export const getuserDataFromStorage = () => {
@@ -53,7 +55,7 @@ export const refreshToken = (previous: boolean, error?: any) => {
             return Promise.resolve(response.data);
         }
     }).catch(error => {
-        removeTokens();
+        removeTokens(previous);
         return Promise.reject(error);
     })
 }; 

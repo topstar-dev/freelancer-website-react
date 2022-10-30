@@ -138,6 +138,7 @@
     right: 24px !important;
     left: unset !important;
     width: 274px !important;
+    max-height: 276px !important;
 }
 
 @media (max-width: 900px) {
@@ -148,6 +149,7 @@
 
 .rounx-user-menu-list .MuiList-root {
     padding: 0 !important;
+    width: 100% !important;
 }
 
 .rounx-user-menu-items {
