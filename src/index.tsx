@@ -11,6 +11,7 @@ import './index.css';
 
 const TRACKING_ID = "G-6V10ZL15WZ";
 ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
