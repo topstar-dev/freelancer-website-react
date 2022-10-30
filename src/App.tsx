@@ -7,7 +7,7 @@ import { useAppSelector } from './redux/hooks';
 
 function App() {
   const { language } = useAppSelector(state => state.resources)
-  const enFamily = ["Roboto Serif", "sans-serif"].join(',');
+  const enFamily = ["Roboto Serif", "serif"].join(',');
   const chFamily = ["SourceHanSansSC"].join(',');
   const customTheme = createTheme({
     palette: {
