@@ -14,7 +14,7 @@ service.interceptors.response.use(
     }
 );
 
-export const apiCall = async (url: string, options: RequestInit, type = 'json') => {
+export const apiCall = async (url: string, options: RequestInit, authRequired = false, type = 'json') => {
     let headers: any = {
         'Content-Type': 'application/json',
         'device-type': 'WEB',
@@ -27,7 +27,7 @@ export const apiCall = async (url: string, options: RequestInit, type = 'json') 
     }
 
     const userData = getuserDataFromStorage();
-    if (userData) {
+    if (userData && authRequired) {
         headers = {
             ...headers,
             "device-token": `${userData['device_token']} `,

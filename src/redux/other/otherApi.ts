@@ -9,5 +9,5 @@ export const downloadImage = (imageData: ImageDownloadInterface) => {
             "file_name": imageData?.fileName.replace('/image/', '')
         }
     };
-    return apiCall(`${imageData.fileName}`, requestOptions, 'blob');
+    return apiCall(`${imageData.fileName}`, requestOptions, false, 'blob');
 };

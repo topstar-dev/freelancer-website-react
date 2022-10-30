@@ -10,11 +10,6 @@ function App() {
   const enFamily = ["Roboto"].join(',');
   const chFamily = ["SourceHanSansSC"].join(',');
   const customTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#336def"
-      }
-    },
     typography: {
       fontFamily: language === 'zh-CN' ? chFamily : enFamily
     }
