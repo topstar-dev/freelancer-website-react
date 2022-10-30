@@ -1,9 +1,39 @@
+@font-face {
+  font-family: "SourceHanSansSC";
+  src: local("SourceHanSansSC"),
+    url("./fonts/SourceHanSansSC/SimplifiedChinese/SourceHanSansSC-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("SourceHanSansSC"),
+    url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
 :root {
   --color-primary: #336def;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   zoom: 0.95;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang="en"] {
+  font-family: 'Roboto Serif', serif;
+}
+
+html[lang="zh-CN"] {
+  font-family: 'SourceHanSansSC';
+}
+
+body {
+  margin: 0;
 }
 
 html,
@@ -16,22 +46,6 @@ body,
 #root {
   overflow: hidden;
   position: relative;
-}
-
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif, "SourceHanSansSC", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
-* {
-  box-sizing: border-box;
 }
 
 .primary-color {

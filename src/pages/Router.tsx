@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRoutes, RouteObject, Outlet } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
@@ -26,6 +26,10 @@ interface RoutesInterface {
 }
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
+
+  useEffect(() => {
+    document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
+  })
 
   const content = <>
     {isHeader && <Header />}

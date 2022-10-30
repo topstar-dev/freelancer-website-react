@@ -21,6 +21,7 @@ export default function Footer() {
     }, [language, i18n])
 
     const changeLang = (lang: string) => {
+        document.documentElement.lang = lang;
         dispatch(changeLanguage(lang))
     }
 
