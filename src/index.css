@@ -1,12 +1,12 @@
 @font-face {
   font-family: "SourceHanSansSC";
   src: local("SourceHanSansSC"),
-    url("./fonts/SourceHanSansSC/SimplifiedChinese/SourceHanSansSC-Regular.otf") format("truetype");
+    url("./fonts/SourceHanSansSC/SourceHanSansSC-Regular.otf") format("truetype");
 }
 
 @font-face {
-  font-family: "Roboto Serif";
-  src: local("Roboto Serif"),
+  font-family: "Roboto";
+  src: local("Roboto"),
     url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
 
@@ -25,7 +25,7 @@ html {
 }
 
 html[lang="en"] {
-  font-family: 'Roboto Serif', serif;
+  font-family: 'Roboto';
 }
 
 html[lang="zh-CN"] {
