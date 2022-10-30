@@ -10,10 +10,9 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import './footer.css';
-import useAnalyticsEventTracker from "../../services/useAnalyticsEventTracker";
+import eventTracker from "../../services/eventTracker";
 
 export default function Footer() {
-    const gaEventTracker = useAnalyticsEventTracker();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { i18n, t } = useTranslation();
@@ -75,11 +74,11 @@ export default function Footer() {
                 </Menu>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {
-                        gaEventTracker("/privacy")
+                        eventTracker("footer","privacy")
                         navigate('/privacy')
                     }}>{t('footer-privacy-policy')}</Typography>
                     <Typography className="rounx-footer-items" onClick={() => {
-                        gaEventTracker("/terms")
+                        eventTracker("footer","terms")
                         navigate('/terms')
                     }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>

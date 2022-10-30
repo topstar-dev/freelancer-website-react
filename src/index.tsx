@@ -9,8 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
 
-const TRACKING_ID = "G-6V10ZL15WZ";
-ReactGA.initialize(TRACKING_ID);
+ReactGA.initialize("G-6V10ZL15WZ");
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 const container = document.getElementById('root')!;
