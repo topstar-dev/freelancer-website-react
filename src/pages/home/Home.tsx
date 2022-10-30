@@ -71,6 +71,7 @@ export default function HomePage() {
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point2')}</Typography>
+                            <br />
                             <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point2-info')}</Typography>
                             <br />
                         </Box>
@@ -81,6 +82,7 @@ export default function HomePage() {
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point3')}</Typography>
+                            <br />
                             <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point3-info')}</Typography>
                             <br />
                         </Box>
