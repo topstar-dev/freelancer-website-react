@@ -18,7 +18,7 @@
         "email-required": "Email is required",
         "code-required": "Code is required",
         "password-required": "Password is required",
-        "password-length": "At least 8 characters",
+        "password-length": "Password must be at least 8 characters",
         "set-password-required": "Set password is required",
         "confirm-password-required": "Confirm password is required",
         "two-passwords-do-not-match": "The two passwords do not match",
@@ -111,6 +111,7 @@
     "user-security-recovery-email-delete": "Delete email",
     "user-security-recovery-email-change": "Change email",
     "user-currency-title": "Select currency",
+    "at_least_8_characters": "At least 8 characters",
     "contact-us": {
         "title": "Contact us",
         "name": "Rounx Technology (Dalian) Co., Ltd.",

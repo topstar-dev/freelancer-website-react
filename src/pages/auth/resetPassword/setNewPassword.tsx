@@ -41,7 +41,7 @@ export default function SetNewPassword(mainProps: any) {
         type={showPassword ? "text" : "password"}
         value={formik.values.password}
         onChange={formik.handleChange}
-        helperText={formik.touched.password && formik.errors.password ? formik.errors.password : t('validation.password-length')}
+        helperText={formik.touched.password && formik.errors.password ? formik.errors.password : t('at_least_8_characters')}
         error={formik.touched.password && Boolean(formik.errors.password)}
         InputProps={{
           endAdornment: (
