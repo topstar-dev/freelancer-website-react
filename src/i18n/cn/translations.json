@@ -20,7 +20,7 @@
         "password-required": "请输入密码",
         "set-password-required": "请输入设置密码",
         "confirm-password-required": "请输入确认密码",
-        "confirm-password-not-matched": "密码不匹配",
+        "two-passwords-do-not-match": "两次密码不一致",
         "firstname-required": "请输入姓氏",
         "lastname-required": "请输入名字",
         "birthday-required": "请选择出生日期",

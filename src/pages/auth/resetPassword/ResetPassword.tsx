@@ -61,7 +61,7 @@ export default function ResetPassword() {
 						.string()
 						.when("password", {
 							is: (value: string) => (value && value.length > 0 ? true : false),
-							then: yup.string().oneOf([yup.ref("password")], t('validation.confirm-password-not-matched')),
+							then: yup.string().oneOf([yup.ref("password")], t('validation.two-passwords-do-not-match')),
 						})
 						.required(t('validation.confirm-password-required'))
 				})}
