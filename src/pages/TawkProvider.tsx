@@ -5,19 +5,20 @@ const TawkContext = React.createContext<any>(null);
 
 const TawkProvider = (props: any) => {
     const tawkMessengerRef = React.useRef<any>();
-
-    const location = useLocation();
-    React.useEffect(() => {
-        tawkMessengerRef.current.hideWidget()
-    }, [location])
-
+    const [loaded, setLoaded] = React.useState(false)
     return (
         <TawkContext.Provider value={tawkMessengerRef}>
-            {props.children}
+            {loaded && props.children}
             <TawkMessengerReact
                 propertyId="60d7fbc17f4b000ac039bd84"
                 widgetId="1ggn2lnfe"
                 ref={tawkMessengerRef}
+                onLoad={() => {
+                    if (tawkMessengerRef.current) {
+                        tawkMessengerRef.current.hideWidget()
+                        setLoaded(true);
+                    }
+                }}
             />
         </TawkContext.Provider>
     )

@@ -20,11 +20,23 @@ export default function HomePage() {
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-    const { language } = useAppSelector(state => state.resources)
+    const { language } = useAppSelector(state => state.resources);
+
     React.useEffect(() => {
         document.title = t('title.home');
-        tawkObj.showWidget();
     })
+
+    React.useEffect(() => {
+        if (tawkObj) {
+            tawkObj.showWidget();
+        }
+
+        return () => {
+            if (tawkObj) {
+                tawkObj.hideWidget();
+            }
+        }
+    }, [tawkObj])
 
     return (
         <>

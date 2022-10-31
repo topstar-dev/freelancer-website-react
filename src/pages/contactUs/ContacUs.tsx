@@ -8,8 +8,20 @@ export default function ContactUs() {
   const tawkObj = useTawkRef();
   React.useEffect(() => {
     document.title = t('title.contact-us');
-    tawkObj.showWidget();
+
   })
+
+  React.useEffect(() => {
+    if (tawkObj) {
+      tawkObj.showWidget();
+    }
+
+    return () => {
+      if (tawkObj) {
+        tawkObj.hideWidget();
+      }
+    }
+  }, [tawkObj])
 
   return (
     <>
