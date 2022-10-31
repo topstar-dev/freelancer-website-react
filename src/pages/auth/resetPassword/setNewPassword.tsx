@@ -82,7 +82,7 @@ export default function SetNewPassword(mainProps: any) {
               formik.setFieldError('confirm_password', confirm_password);
             }
 
-            if (!confirm_password || !password) {
+            if (!(confirm_password || password)) {
               const resetPasswordObj = {
                 email: formik.values.email,
                 code: formik.values.code,

@@ -74,11 +74,11 @@ export default function Footer() {
                 </Menu>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {
-                        eventTracker("footer","privacy")
+                        eventTracker("footer", "privacy")
                         navigate('/privacy')
                     }}>{t('footer-privacy-policy')}</Typography>
                     <Typography className="rounx-footer-items" onClick={() => {
-                        eventTracker("footer","terms")
+                        eventTracker("footer", "terms")
                         navigate('/terms')
                     }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>

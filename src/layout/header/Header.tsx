@@ -54,7 +54,7 @@ export default function Header() {
         userMenu: userMenu,
         selectedPage: selectedPage,
         setSelectedPage: (url: string) => {
-            eventTracker("header",url);
+            eventTracker("header", url);
             setSelectedPage(url)
             navigate(url)
         }
