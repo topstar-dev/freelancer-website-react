@@ -56,14 +56,16 @@ export default function ResetPassword() {
 						.required(t('validation.code-required')),
 					password: yup
 						.string()
-						.required(t('validation.set-password-required')),
+						.required(t('validation.set-password-required'))
+						.min(8, t('validation.password-length')),
 					confirm_password: yup
 						.string()
+						.required(t('validation.confirm-password-required'))
+						.min(8, t('validation.password-length'))
 						.when("password", {
 							is: (value: string) => (value && value.length > 0 ? true : false),
 							then: yup.string().oneOf([yup.ref("password")], t('validation.two-passwords-do-not-match')),
 						})
-						.required(t('validation.confirm-password-required'))
 				})}
 				onSubmit={() => { }}
 			>

@@ -18,6 +18,7 @@
         "email-required": "请输入电子邮件地址",
         "code-required": "请输入验证码",
         "password-required": "请输入密码",
+        "password-length": "长度必须至少为 8 个字符",
         "set-password-required": "请输入设置密码",
         "confirm-password-required": "请输入确认密码",
         "two-passwords-do-not-match": "两次密码不一致",

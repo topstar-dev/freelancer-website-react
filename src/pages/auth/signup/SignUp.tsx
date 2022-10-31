@@ -22,7 +22,7 @@ export default function SignUp() {
     const navigate = useNavigate();
     const type = searchParams.get('type');
     const [doCall, setCall] = useState(false)
-    const [activeStep, setActiveStep] = useState<number>(0);
+    const [activeStep, setActiveStep] = useState<number>(1);
     const { countryData, language } = useAppSelector(state => state.resources)
 
     React.useEffect(() => {
@@ -89,14 +89,16 @@ export default function SignUp() {
                         .required(t('validation.country-required')),
                     password: yup
                         .string()
-                        .required(t('validation.set-password-required')),
+                        .required(t('validation.set-password-required'))
+                        .min(8, t('validation.password-length')),
                     confirm_password: yup
                         .string()
+                        .required(t('validation.confirm-password-required'))
+                        .min(8, t('validation.password-length'))
                         .when("password", {
                             is: (value: string) => (value && value.length > 0 ? true : false),
                             then: yup.string().oneOf([yup.ref("password")], t('validation.two-passwords-do-not-match')),
-                        })
-                        .required(t('validation.confirm-password-required')),
+                        }),
                     primary_email: yup
                         .string()
                         .email(t('validation.email-valid'))
