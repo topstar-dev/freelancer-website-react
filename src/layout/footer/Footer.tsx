@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { MenuItem, Box, Typography, Menu, MenuList } from "@mui/material";
+import { MenuItem, Box, Typography, Menu } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -67,10 +67,8 @@ export default function Footer() {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuList className="rounx-language-menu-list" sx={{ width: "100px", maxWidth: "100%", padding: 0 }}>
-                        <MenuItem selected={language === 'en'} onClick={() => changeLang("en")}>English</MenuItem>
-                        <MenuItem selected={language === 'zh-CN'} onClick={() => changeLang("zh-CN")}>中文</MenuItem>
-                    </MenuList>
+                    <MenuItem selected={language === 'en'} onClick={() => changeLang("en")}>English</MenuItem>
+                    <MenuItem selected={language === 'zh-CN'} onClick={() => changeLang("zh-CN")}>中文</MenuItem>
                 </Menu>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {

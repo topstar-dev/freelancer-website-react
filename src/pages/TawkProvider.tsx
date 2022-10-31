@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useLocation } from 'react-router-dom';
 const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 const TawkContext = React.createContext<any>(null);
 
