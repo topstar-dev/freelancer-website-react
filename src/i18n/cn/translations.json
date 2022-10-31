@@ -18,7 +18,7 @@
         "email-required": "请输入电子邮件地址",
         "code-required": "请输入验证码",
         "password-required": "请输入密码",
-        "password-length": "长度必须至少为 8 个字符",
+        "password-length": "至少8个字符",
         "set-password-required": "请输入设置密码",
         "confirm-password-required": "请输入确认密码",
         "two-passwords-do-not-match": "两次密码不一致",
@@ -111,7 +111,6 @@
     "user-security-recovery-email-delete": "删除邮箱",
     "user-security-recovery-email-change": "更改邮箱",
     "user-currency-title": "选择货币",
-    "at-least-8-characters": "至少8个字符",
     "contact-us": {
         "title": "联系我们",
         "name": "至圆科技（大连）有限公司",
