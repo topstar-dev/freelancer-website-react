@@ -19,6 +19,7 @@ import PrivacyPolicy from "./privacy/PrivacyPolicy";
 import TermsOfService from "./termsOfService/TermsOfService";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
+import TawkProvider from "./TawkProvider";
 
 interface RoutesInterface {
   isHeader: boolean,
@@ -31,7 +32,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
   })
 
-  const content = <>
+  const content = <TawkProvider>
     {isHeader && <Header />}
     <Box style={{
       overflowY: 'auto',
@@ -47,7 +48,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
       </Box>
       <Footer />
     </Box>
-  </>
+  </TawkProvider>
 
   return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;
 }

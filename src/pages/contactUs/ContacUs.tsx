@@ -1,11 +1,14 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useTawkRef } from "../TawkProvider";
 
 export default function ContactUs() {
   const { t } = useTranslation();
+  const tawkObj = useTawkRef();
   React.useEffect(() => {
-    document.title = t('title.contact-us')
+    document.title = t('title.contact-us');
+    tawkObj.showWidget();
   })
 
   return (
@@ -46,7 +49,15 @@ export default function ContactUs() {
             </Typography>
             <Typography>
               <span>{t('contact-us.online')}: </span>
-              <span className="primary-color" style={{ cursor: 'pointer' }}>{t('send-message')}</span>
+              <span
+                className="primary-color"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  tawkObj.maximize();
+                }}
+              >
+                {t('send-message')}
+              </span>
             </Typography>
           </Box>
         </Grid>

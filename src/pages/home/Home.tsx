@@ -12,15 +12,18 @@ import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
 import './home.css'
+import { useTawkRef } from "../TawkProvider";
 
 export default function HomePage() {
     const { t } = useTranslation();
+    const tawkObj = useTawkRef();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const { language } = useAppSelector(state => state.resources)
     React.useEffect(() => {
-        document.title = t('title.home')
+        document.title = t('title.home');
+        tawkObj.showWidget();
     })
 
     return (
