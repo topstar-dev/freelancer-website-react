@@ -22,7 +22,7 @@ export default function SignUp() {
     const navigate = useNavigate();
     const type = searchParams.get('type');
     const [doCall, setCall] = useState(false)
-    const [activeStep, setActiveStep] = useState<number>(1);
+    const [activeStep, setActiveStep] = useState<number>(0);
     const { countryData, language } = useAppSelector(state => state.resources)
 
     React.useEffect(() => {
