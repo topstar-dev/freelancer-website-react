@@ -44,9 +44,9 @@ export default function HomePage() {
                 </Box>
                 <Box className="rounx-home-first-right">
                     <img
-                        alt="Tools"
+                        alt="Skills"
                         className="rounx-home-first-image"
-                        src="images/tools.png" />
+                        src="images/skills.png" />
                 </Box>
             </Box>
             <Divider style={{ margin: '96px 0' }} />
@@ -152,10 +152,10 @@ export default function HomePage() {
                 </Box>
                 <Box className="rounx-home-third-right">
                     <img
-                        className="mobilePhone"
-                        alt="Mobile phone"
+                        className="screenshots"
+                        alt="Screenshots"
                         height='692px'
-                        src="images/mobile-phone.png" />
+                        src="images/screenshots.png" />
                 </Box>
             </Box>
         </>

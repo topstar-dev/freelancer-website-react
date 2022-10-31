@@ -69,13 +69,13 @@
     margin-left: auto;
 }
 
-.mobilePhone {
+.screenshots {
     height: 692px;
     float: right;
 }
 
 @media (max-width:490px) {
-    .mobilePhone {
+    .screenshots {
         height: auto;
         width: 100%;
         float: unset;
