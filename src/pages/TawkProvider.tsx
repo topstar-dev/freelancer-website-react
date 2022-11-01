@@ -12,6 +12,14 @@ const TawkProvider = (props: any) => {
                 propertyId="60d7fbc17f4b000ac039bd84"
                 widgetId="1ggn2lnfe"
                 ref={tawkMessengerRef}
+                customStyle={{
+                    visibility: {
+                        desktop: {
+                            xOffset: '34',
+                            position: 'br'
+                        }
+                    }
+                }}
                 onLoad={() => {
                     if (tawkMessengerRef.current) {
                         tawkMessengerRef.current.hideWidget()
