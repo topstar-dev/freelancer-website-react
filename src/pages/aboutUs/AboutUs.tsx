@@ -1,12 +1,14 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Typography } from "@mui/material";
+import { pageView } from "../../services/eventTracker";
 
 export default function AboutUs() {
   const { t } = useTranslation();
 
   React.useEffect(() => {
     document.title = t('title.about-us')
+    pageView(window.location.pathname)
   })
 
   return (

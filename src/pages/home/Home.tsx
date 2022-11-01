@@ -13,6 +13,7 @@ import {
 } from '../../redux/home/homeActions';
 import './home.css'
 import { useTawkRef } from "../TawkProvider";
+import { pageView } from "../../services/eventTracker";
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -24,6 +25,7 @@ export default function HomePage() {
 
     React.useEffect(() => {
         document.title = t('title.home');
+        pageView(window.location.pathname)
     })
 
     React.useEffect(() => {

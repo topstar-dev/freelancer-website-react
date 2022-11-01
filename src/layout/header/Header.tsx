@@ -13,7 +13,6 @@ import {
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
-import eventTracker from "../../services/eventTracker";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -54,7 +53,6 @@ export default function Header() {
         userMenu: userMenu,
         selectedPage: selectedPage,
         setSelectedPage: (url: string) => {
-            eventTracker("header", url);
             setSelectedPage(url)
             navigate(url)
         }

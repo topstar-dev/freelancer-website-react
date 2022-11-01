@@ -10,7 +10,7 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import './footer.css';
-import eventTracker from "../../services/eventTracker";
+import { eventTracker } from "../../services/eventTracker";
 
 export default function Footer() {
     const navigate = useNavigate();
@@ -32,6 +32,7 @@ export default function Footer() {
     };
 
     const changeLang = (lang: string) => {
+        eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
         document.documentElement.lang = lang;
         setAnchorEl(null);
         dispatch(changeLanguage(lang))
@@ -72,11 +73,9 @@ export default function Footer() {
                 </Menu>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {
-                        eventTracker("footer", "privacy")
                         navigate('/privacy')
                     }}>{t('footer-privacy-policy')}</Typography>
                     <Typography className="rounx-footer-items" onClick={() => {
-                        eventTracker("footer", "terms")
                         navigate('/terms')
                     }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>

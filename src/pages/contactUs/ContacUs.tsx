@@ -2,13 +2,14 @@ import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTawkRef } from "../TawkProvider";
+import { pageView } from "../../services/eventTracker";
 
 export default function ContactUs() {
   const { t } = useTranslation();
   const tawkObj = useTawkRef();
   React.useEffect(() => {
     document.title = t('title.contact-us');
-
+    pageView(window.location.pathname)
   })
 
   React.useEffect(() => {

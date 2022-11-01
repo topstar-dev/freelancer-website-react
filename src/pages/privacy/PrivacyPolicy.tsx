@@ -1,11 +1,13 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { pageView } from "../../services/eventTracker";
 
 export default function PrivacyPolicy() {
   const { t } = useTranslation();
   React.useEffect(() => {
     document.title = t('title.privacy-policy')
+    pageView(window.location.pathname)
   })
 
   return (
