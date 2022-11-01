@@ -15,8 +15,8 @@ import Currency from "./settings/currency/Currency";
 import HomePage from "./home/Home";
 import ContactUs from "./contactUs/ContacUs";
 import AboutUs from "./aboutUs/AboutUs";
-import PrivacyPolicy from "./privacy/PrivacyPolicy";
-import TermsOfService from "./termsOfService/TermsOfService";
+import Privacy from "./policies/Privacy";
+import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
 import TawkProvider from "./TawkProvider";
@@ -90,11 +90,11 @@ export default function Router() {
         },
         {
           path: "/privacy",
-          element: <PrivacyPolicy />
+          element: <Privacy />
         },
         {
           path: "terms",
-          element: <TermsOfService />,
+          element: <Terms />,
         }
       ],
     },

@@ -3,16 +3,16 @@ import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { pageView } from "../../services/eventTracker";
 
-export default function PrivacyPolicy() {
-  const { t } = useTranslation();
+export default function Terms() {
+  const { t } = useTranslation()
   React.useEffect(() => {
-    document.title = t('title.privacy-policy')
+    document.title = t('title.termas-of-service');
     pageView(window.location.pathname)
   })
 
   return (
     <>
-      <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Privacy Policy</Typography>
+      <Typography style={{ fontSize: '24px', fontWeight: 'bold' }}>Terms of Service</Typography>
       <br />
       <Typography>Effective February 4, 2021</Typography>
       <br />
