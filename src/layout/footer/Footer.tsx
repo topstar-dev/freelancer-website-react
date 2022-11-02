@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { MenuItem, Box, Typography, Menu } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
+import Modal from '@mui/material/Modal';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -18,6 +19,7 @@ export default function Footer() {
     const { i18n, t } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         i18n.changeLanguage(language);
@@ -82,11 +84,34 @@ export default function Footer() {
                 </Box>
             </Box>
             <Box className="rounx-footer-right-content">
-                <img className="rounx-footer-brand-icon" src='/images/wechat.svg' alt="wechat-icon" />
-                <img className="rounx-footer-brand-icon" src='/images/weibo.svg' alt="weibo-icon" />
-                <TwitterIcon className="rounx-footer-brand-icon" />
-                <LinkedInIcon className="rounx-footer-brand-icon" />
+                <img className="rounx-footer-brand-icon" src='/images/wechat.svg' onClick={() => setOpen(true)} alt="wechat-icon" />
+                <Modal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                >
+                    <img
+                        style={{
+                            position: 'absolute' as 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            outline: 'none',
+                            transform: 'translate(-50%, -50%)'
+                        }}
+                        className="rounx-qr-code-image"
+                        alt="rounx-qrcode"
+                        src="/images/rounx-qrcode.jpg"
+                    />
+                </Modal>
+                <a target="_blank" rel="noreferrer" href="https://weibo.com/rounx">
+                    <img className="rounx-footer-brand-icon" src='/images/weibo.svg' alt="weibo-icon" />
+                </a>
+                <a target="_blank" rel="noreferrer" href="https://twitter.com/rounxofficial">
+                    <TwitterIcon className="rounx-footer-brand-icon" />
+                </a>
+                <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/rounx">
+                    <LinkedInIcon className="rounx-footer-brand-icon" />
+                </a>
             </Box>
-        </Box>
+        </Box >
     )
 }

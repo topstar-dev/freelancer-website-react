@@ -59,6 +59,12 @@
     justify-content: flex-end;
     align-items: center;
     margin-left: auto;
+    text-decoration: none;
+}
+
+.rounx-footer-right-content a {
+    text-decoration: none;
+    color: #757575;
 }
 
 .rounx-footer-brand-icon {
