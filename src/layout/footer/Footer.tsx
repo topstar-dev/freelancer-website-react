@@ -91,9 +91,10 @@ export default function Footer() {
                 >
                     <img
                         style={{
-                            position: 'absolute' as 'absolute',
+                            position: 'absolute',
                             top: '50%',
                             left: '50%',
+                            margin: 'auto',
                             outline: 'none',
                             transform: 'translate(-50%, -50%)'
                         }}
