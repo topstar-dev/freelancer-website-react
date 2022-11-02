@@ -2,15 +2,11 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { SnackbarProvider } from "notistack";
 import { Provider } from 'react-redux';
-import ReactGA from 'react-ga4';
 import { store } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n/i18nextConf';
 import './index.css';
-
-ReactGA.initialize("G-6V10ZL15WZ");
-ReactGA.send(window.location.pathname + window.location.search);
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
