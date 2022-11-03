@@ -3,6 +3,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTawkRef } from "../TawkProvider";
 import { pageView } from "../../services/eventTracker";
+import './contactUs.css';
 
 export default function ContactUs() {
   const { t } = useTranslation();
@@ -30,20 +31,20 @@ export default function ContactUs() {
       <br />
       <br />
 
-      <Grid container>
-        <Grid mb={3} item xs={12} md={12} lg={4}>
+      <Box className="rounx-contact-us">
+        <Box>
           <Box>
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.name')}</Typography>
             <Typography>Remote Work</Typography>
           </Box>
-        </Grid>
-        <Grid mb={3} item xs={12} md={12} lg={4}>
+        </Box>
+        <Box>
           <Box>
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.timing-title')}</Typography>
             <Typography>{t('contact-us.timing')}</Typography>
           </Box>
-        </Grid>
-        <Grid mb={3} item xs={12} md={12} lg={4}>
+        </Box>
+        <Box>
           <Box>
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.contact-details')}</Typography>
             <Typography>
@@ -73,8 +74,8 @@ export default function ContactUs() {
               </span>
             </Typography>
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </>
   )
 }
