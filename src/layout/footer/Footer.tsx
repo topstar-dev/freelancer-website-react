@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { MenuItem, Box, Typography, Menu } from "@mui/material";
+import { MenuItem, Box, Typography, Popover, MenuList } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import Modal from '@mui/material/Modal';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -10,8 +10,8 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import './footer.css';
 import { eventTracker } from "../../services/eventTracker";
+import './footer.css';
 
 export default function Footer() {
     const navigate = useNavigate();
@@ -43,7 +43,14 @@ export default function Footer() {
     return (
         <Box className="rounx-footer-container">
             <Box className="rounx-footer-left-content">
-                <Box className="rounx-language-box" onClick={(e) => handleMenu(e)}>
+                <Box
+                    className="rounx-language-box"
+                    id="language-button"
+                    aria-controls={open ? 'menu-language' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={(e) => handleMenu(e)}
+                >
                     <LanguageIcon className="rounx-language-icon" />
                     <Typography className="rounx-language-select">
                         {language === 'en' ? 'English' : '中文'}
@@ -54,25 +61,25 @@ export default function Footer() {
                         <ArrowDropDownIcon />
                     }
                 </Box>
-                <Menu
-                    id="menu-language"
+                <Popover
                     className='rounx-language-menu'
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "right",
-                    }}
-                    keepMounted={false}
-                    transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                    }}
                     open={Boolean(anchorEl)}
+                    anchorEl={anchorEl}
                     onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "left",
+                    }}
+                    transformOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left",
+                    }}
                 >
-                    <MenuItem selected={language === 'en'} onClick={() => changeLang("en")}>English</MenuItem>
-                    <MenuItem selected={language === 'zh-CN'} onClick={() => changeLang("zh-CN")}>中文</MenuItem>
-                </Menu>
+                    <MenuList>
+                        <MenuItem selected={language === 'en'} onClick={() => changeLang("en")}>English</MenuItem>
+                        <MenuItem selected={language === 'zh-CN'} onClick={() => changeLang("zh-CN")}>中文</MenuItem>
+                    </MenuList>
+                </Popover>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {
                         navigate('/privacy')

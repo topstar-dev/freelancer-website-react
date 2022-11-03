@@ -34,7 +34,7 @@
     padding-right: 6px !important;
 }
 
-.rounx-language-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+.rounx-language-menu .MuiPaper-root {
     top: unset !important;
     bottom: 78px !important;
 }
@@ -94,7 +94,7 @@
         margin-right: auto;
     }
 
-    .rounx-language-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+    .rounx-language-menu .MuiPaper-root {
         top: unset !important;
         bottom: 125px !important;
     }
