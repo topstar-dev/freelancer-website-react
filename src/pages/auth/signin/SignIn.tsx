@@ -11,7 +11,8 @@ import {
   InputAdornment,
   IconButton,
   Popover,
-  MenuItem
+  MenuItem,
+  MenuList
 } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
@@ -160,8 +161,10 @@ export default function SignIn() {
                   horizontal: "left",
                 }}
               >
-                <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('client-account')}</MenuItem>
-                <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('freelancer-account')}</MenuItem>
+                <MenuList>
+                  <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('client-account')}</MenuItem>
+                  <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('freelancer-account')}</MenuItem>
+                </MenuList>
               </Popover>
             </CustomForm>
           </WithTranslateFormErrors>
