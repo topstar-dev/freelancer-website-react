@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTawkRef } from "../TawkProvider";
 import { pageView } from "../../services/eventTracker";
