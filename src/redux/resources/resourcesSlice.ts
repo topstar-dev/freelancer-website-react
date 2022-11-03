@@ -37,7 +37,14 @@ export const resourceslice = createSlice({
         builder.addCase(getCountriesList.pending, (state: ResourcesState, _action) => {
         })
         builder.addCase(getCountriesList.fulfilled, (state: ResourcesState, action) => {
-            state.countryData = action.payload.data;
+            const temp = action.payload.data.records.map((c: any) => ({
+                label: c.country_name,
+                id: c.country_id
+            }));
+            state.countryData = {
+                ...action.payload.data,
+                records: temp
+            }
             state.message = action.payload.message;
         })
         builder.addCase(getCountriesList.rejected, (state: ResourcesState, action) => {
