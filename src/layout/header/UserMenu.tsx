@@ -40,10 +40,10 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
         setAnchorEl(null);
     };
 
-    const settingsClick = () => {
-        setAnchorEl(null);
-        navigate('/settings/personal')
-    }
+    // const settingsClick = () => {
+    //     setAnchorEl(null);
+    //     navigate('/settings/personal')
+    // }
 
     return (
         <>
@@ -80,7 +80,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
                     <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-profile')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items' onClick={settingsClick}>
+                    <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-settings')}
                     </MenuItem>
                     <MenuItem className='rounx-user-menu-items' onClick={() => {
