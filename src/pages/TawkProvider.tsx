@@ -16,7 +16,7 @@ const TawkProvider = (props: any) => {
                     divTag.style.width = '56px';
                 }
             }
-        }, 1000);
+        }, 50);
     })
 
     return (
