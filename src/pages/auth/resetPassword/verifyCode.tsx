@@ -61,7 +61,12 @@ export default function VerifyCode(mainProps: any) {
                 enqueueSnackbar(message);
                 if (success) {
                   dispatch(resetDefault());
-                  mainProps.handleNext(formik);
+                  mainProps.handleNext({
+                    email: formik.values.email,
+                    code: formik.values.code,
+                    password: '',
+                    confirm_password: ''
+                  }, formik);
                 }
                 setLoading(false);
               }).catch((err) => {

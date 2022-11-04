@@ -58,7 +58,12 @@ export default function EnterEmail(mainProps: any) {
                   enqueueSnackbar(message);
                   if (success) {
                     dispatch(resetDefault());
-                    mainProps.handleNext(formik);
+                    mainProps.handleNext({
+                      email: formik.values.email,
+                      code: '',
+                      password: '',
+                      confirm_password: ''
+                    }, formik);
                   }
                   setLoading(false);
                 }).catch((err) => {
@@ -66,6 +71,13 @@ export default function EnterEmail(mainProps: any) {
                   enqueueSnackbar("Error occured");
                 })
               }
+
+              mainProps.handleNext({
+                email: formik.values.email,
+                code: '',
+                password: '',
+                confirm_password: ''
+              }, formik);
             })
           }}>
           {t('next')}

@@ -109,7 +109,7 @@ export default function Info(mainProps: any) {
               formik.setFieldError('birthday', birthday);
             }
 
-            if (mainProps.countries.length > 0 && country_id) {
+            if (country_id) {
               formik.setFieldTouched('country_id', true, true);
               formik.setFieldError('country_id', country_id);
             }

@@ -13,8 +13,15 @@ import WithTranslateFormErrors from '../../../services/validationScemaOnLangChan
 
 export default function ResetPassword() {
 	const { t } = useTranslation();
-	const { state } = useLocation();
 	const navigate = useNavigate();
+
+	const [formData, setFormData] = React.useState({
+		email: "",
+		code: '',
+		password: '',
+		confirm_password: ''
+	});
+	const [animate, setAnimate] = React.useState('');
 	const [activeStep, setActiveStep] = React.useState<number>(0);
 
 	React.useEffect(() => {
@@ -23,14 +30,24 @@ export default function ResetPassword() {
 			e.preventDefault();
 			if (activeStep > 0) {
 				handleBack();
+				setAnimate('rounx-previous-slide');
+				setTimeout(() => {
+					setAnimate('')
+				}, 1000);
 			}
 		};
 	})
 
-	const handleNext = (formik: any) => {
+	const handleNext = (values: any, formik: any) => {
 		const newActiveStep = activeStep + 1;
 		setActiveStep(newActiveStep);
-		navigate(`/reset-password`, { state: formik.values })
+		formik.resetForm();
+		setFormData(values)
+		setAnimate('rounx-next-slide');
+		setTimeout(() => {
+			setAnimate('')
+		}, 1000);
+		navigate(`/reset-password`, { state: values })
 	};
 
 	const handleBack = () => {
@@ -44,9 +61,9 @@ export default function ResetPassword() {
 	}
 
 	return (
-		<Card className="rounx-auth-card">
+		<Card className={`rounx-auth-card ${animate}`}>
 			<Formik
-				initialValues={state || { email: "" }}
+				initialValues={formData}
 				validationSchema={yup.object({
 					email: yup
 						.string()
