@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as yup from "yup";
 import { Formik } from "formik";
 import Info from './Info';
@@ -18,12 +18,18 @@ export default function SignUp() {
     const { t, i18n } = useTranslation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { state } = useLocation();
 
     const [searchParams] = useSearchParams();
     const type = searchParams.get('type');
 
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        confirm_password: "",
+        password: "",
+        primary_email: "",
+        email_code: "",
+    });
     const [activeStep, setActiveStep] = useState<number>(0);
     const [animate, setAnimate] = useState('');
     const { countryData } = useAppSelector(state => state.resources);
@@ -37,7 +43,7 @@ export default function SignUp() {
                 setAnimate('rounx-previous-slide');
                 setTimeout(() => {
                     setAnimate('')
-                }, 1500);
+                }, 1000);
             }
         };
     })
@@ -65,7 +71,7 @@ export default function SignUp() {
         setAnimate('rounx-next-slide');
         setTimeout(() => {
             setAnimate('')
-        }, 1500);
+        }, 1000);
         navigate(`/sign-up${window.location.search}`, { state: values })
     };
 
@@ -84,14 +90,7 @@ export default function SignUp() {
         <Card className={`rounx-auth-card ${animate}`}>
             <Formik
                 enableReinitialize
-                initialValues={formData || {
-                    first_name: "",
-                    last_name: "",
-                    confirm_password: "",
-                    password: "",
-                    primary_email: "",
-                    email_code: "",
-                }}
+                initialValues={formData}
                 validationSchema={yup.object({
                     first_name: yup
                         .string()
