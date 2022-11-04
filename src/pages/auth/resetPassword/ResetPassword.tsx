@@ -54,6 +54,7 @@ export default function ResetPassword() {
 	return (
 		<Card className={`rounx-auth-card`}>
 			<Formik
+				enableReinitialize
 				initialValues={formData}
 				validationSchema={yup.object({
 					email: yup

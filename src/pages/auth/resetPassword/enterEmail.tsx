@@ -71,13 +71,6 @@ export default function EnterEmail(mainProps: any) {
                   enqueueSnackbar("Error occured");
                 })
               }
-
-              mainProps.handleNext({
-                email: formik.values.email,
-                code: '',
-                password: '',
-                confirm_password: ''
-              }, formik);
             })
           }}>
           {t('next')}
