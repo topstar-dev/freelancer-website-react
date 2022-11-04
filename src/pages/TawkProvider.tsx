@@ -6,6 +6,14 @@ const TawkProvider = (props: any) => {
     const tawkMessengerRef = React.useRef<any>();
     const [loaded, setLoaded] = React.useState(false);
 
+    React.useEffect(() => {
+        setTimeout(() => {
+            if (!loaded) {
+                setLoaded(true)
+            }
+        }, 3000);
+    })
+
     return (
         <TawkContext.Provider value={tawkMessengerRef}>
             {loaded && props.children}

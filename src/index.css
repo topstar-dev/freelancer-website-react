@@ -85,17 +85,13 @@ body,
 }
 
 /* field edit outling */
-.Mui-focused fieldset {
+.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: var(--color-primary) !important;
   color: var(--color-primary) !important;
 }
 
-fieldset legend span {
-  color: var(--color-primary) !important;
-}
-
-.Mui-focused fieldset legend span {
-  color: var(--color-primary) !important;
+.Mui-focused .MuiOutlinedInput-notchedOutline fieldset legend span {
+  color: red !important;
 }
 
 .Mui-error legend span {
