@@ -6,19 +6,6 @@ const TawkProvider = (props: any) => {
     const tawkMessengerRef = React.useRef<any>();
     const [loaded, setLoaded] = React.useState(false);
 
-    React.useEffect(() => {
-        setTimeout(() => {
-            const ifr = document.querySelector('iframe');
-            if (ifr) {
-                const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
-                if (divTag) {
-                    divTag.style.height = '56px';
-                    divTag.style.width = '56px';
-                }
-            }
-        }, 50);
-    })
-
     return (
         <TawkContext.Provider value={tawkMessengerRef}>
             {loaded && props.children}
@@ -37,6 +24,16 @@ const TawkProvider = (props: any) => {
                 onLoad={() => {
                     if (tawkMessengerRef.current) {
                         tawkMessengerRef.current.hideWidget();
+                        setTimeout(() => {
+                            const ifr = document.querySelector('iframe');
+                            if (ifr) {
+                                const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
+                                if (divTag) {
+                                    divTag.style.height = '56px';
+                                    divTag.style.width = '56px';
+                                }
+                            }
+                        }, 100);
                         setLoaded(true);
                     }
                 }}
