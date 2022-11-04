@@ -15,15 +15,18 @@ import { useTranslation } from 'react-i18next';
 import WithTranslateFormErrors from '../../../services/validationScemaOnLangChange';
 
 export default function SignUp() {
-    const { t } = useTranslation();
-    const [searchParams] = useSearchParams();
-    const { state } = useLocation();
+    const { t, i18n } = useTranslation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { state } = useLocation();
+
+    const [searchParams] = useSearchParams();
     const type = searchParams.get('type');
-    const [doCall, setCall] = useState(false)
+
+    const [formData, setFormData] = useState({});
     const [activeStep, setActiveStep] = useState<number>(0);
-    const { countryData, language } = useAppSelector(state => state.resources)
+    const [animate, setAnimate] = useState('');
+    const { countryData } = useAppSelector(state => state.resources);
 
     React.useEffect(() => {
         document.title = t('title.signup');
@@ -31,25 +34,39 @@ export default function SignUp() {
             e.preventDefault();
             if (activeStep > 0) {
                 handleBack();
+                setAnimate('rounx-previous-slide');
+                setTimeout(() => {
+                    setAnimate('')
+                }, 1500);
             }
         };
     })
 
     useEffect(() => {
-        setCall(false);
-    }, [language])
+        i18n.on('languageChanged', lng => {
+            dispatch(getCountriesList());
+        });
+        return () => {
+            i18n.off('languageChanged', lng => { });
+        };
+    }, [i18n, dispatch])
 
     useEffect(() => {
-        if (!doCall && !countryData.records) {
-            setCall(true)
+        if (!countryData.records) {
             dispatch(getCountriesList());
         }
-    }, [doCall, countryData.records, dispatch])
+    }, [countryData.records, dispatch])
 
-    const handleNext = (formik: any) => {
+    const handleNext = (values: any, formik?: any) => {
         const newActiveStep = activeStep + 1;
         setActiveStep(newActiveStep);
-        navigate(`/sign-up${window.location.search}`, { state: formik.values })
+        formik.resetForm();
+        setFormData(values)
+        setAnimate('rounx-next-slide');
+        setTimeout(() => {
+            setAnimate('')
+        }, 1500);
+        navigate(`/sign-up${window.location.search}`, { state: values })
     };
 
     const handleBack = () => {
@@ -64,9 +81,10 @@ export default function SignUp() {
     }
 
     return (
-        <Card className="rounx-auth-card">
+        <Card className={`rounx-auth-card ${animate}`}>
             <Formik
-                initialValues={state || {
+                enableReinitialize
+                initialValues={formData || {
                     first_name: "",
                     last_name: "",
                     confirm_password: "",

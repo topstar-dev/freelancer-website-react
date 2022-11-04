@@ -57,7 +57,16 @@ export default function Email(mainProps: any) {
                                 enqueueSnackbar(message);
                                 if (success) {
                                     dispatch(resetDefault());
-                                    mainProps.handleNext(formik);
+                                    mainProps.handleNext({
+                                        first_name: formik.values.first_name,
+                                        last_name: formik.values.last_name,
+                                        birthday: formik.values.birthday,
+                                        country_id: formik.values.country_id,
+                                        password: formik.values.password,
+                                        confirm_password: formik.values.confirm_password,
+                                        primary_email: formik.values.primary_email,
+                                        email_code: ''
+                                    }, formik);
                                 }
                                 setLoading(false);
                             }).catch((err) => {

@@ -73,7 +73,16 @@ export default function Password(mainProps: any) {
                             formik.setFieldError('confirm_password', confirm_password);
                         }
                         if (!(password || confirm_password)) {
-                            mainProps.handleNext(formik);
+                            mainProps.handleNext({
+                                first_name: formik.values.first_name,
+                                last_name: formik.values.last_name,
+                                birthday: formik.values.birthday,
+                                country_id: formik.values.country_id,
+                                password: formik.values.password,
+                                confirm_password: formik.values.confirm_password,
+                                primary_email: '',
+                                email_code: ''
+                            }, formik);
                         }
                     })
                 }} >
