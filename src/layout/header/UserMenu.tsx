@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
@@ -16,7 +16,7 @@ interface UserMenuPropsInterface {
 
 let source = axios.CancelToken.source();
 export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);

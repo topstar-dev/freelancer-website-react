@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,7 +15,6 @@ import Button from "../../../components/button/Button";
 export default function Code(mainProps: any) {
     const { formik } = mainProps;
     const { t } = useTranslation();
-    const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -42,7 +41,7 @@ export default function Code(mainProps: any) {
                 helperText={formik.touched.email_code && formik.errors.email_code}
             />
             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button disabled={loading} style={{ float: "right" }} onClick={() => {
+                <Button style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { email_code } = res;
 
@@ -66,7 +65,7 @@ export default function Code(mainProps: any) {
                                 email_code
                             }
 
-                            setLoading(true);
+                            mainProps.setBackdrop(true);
                             dispatch(signUpUser(signUpData)).then((res: any) => {
                                 const { payload } = res;
                                 const { success, message } = payload;
@@ -75,9 +74,9 @@ export default function Code(mainProps: any) {
                                     dispatch(resetDefault());
                                     navigate('/sign-in')
                                 }
-                                setLoading(false);
+                                mainProps.setBackdrop(false);
                             }).catch((err) => {
-                                setLoading(false);
+                                mainProps.setBackdrop(false);
                                 enqueueSnackbar("Error occured");
                             })
                         }

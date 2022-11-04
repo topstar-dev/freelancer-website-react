@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
@@ -16,7 +16,6 @@ export default function EnterEmail(mainProps: any) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  const [loading, setLoading] = useState(false);
 
   return (
     <>
@@ -37,7 +36,6 @@ export default function EnterEmail(mainProps: any) {
       />
       <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
-          disabled={loading}
           onClick={() => {
             formik.validateForm().then((res: any) => {
               const { email } = res;
@@ -51,7 +49,7 @@ export default function EnterEmail(mainProps: any) {
                   email: formik.values.email,
                   function_type: "RESET_PASSWORD"
                 }
-                setLoading(true);
+                mainProps.setBackdrop(false);
                 dispatch(sendCodeToEmail(sendEmailCodeObj)).then((res: any) => {
                   const { payload } = res;
                   const { message, success } = payload;
@@ -65,9 +63,9 @@ export default function EnterEmail(mainProps: any) {
                       confirm_password: ''
                     }, formik);
                   }
-                  setLoading(false);
+                  mainProps.setBackdrop(false);
                 }).catch((err) => {
-                  setLoading(false);
+                  mainProps.setBackdrop(false);
                   enqueueSnackbar("Error occured");
                 })
               }

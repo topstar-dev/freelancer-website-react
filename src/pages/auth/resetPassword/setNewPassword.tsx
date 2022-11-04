@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
@@ -21,7 +21,6 @@ export default function SetNewPassword(mainProps: any) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
@@ -69,7 +68,7 @@ export default function SetNewPassword(mainProps: any) {
         helperText={formik.touched.confirm_password && formik.errors.confirm_password}
       />
       <Box style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <Button disabled={loading} onClick={() => {
+        <Button onClick={() => {
           formik.validateForm().then((res: any) => {
             const { password, confirm_password } = res;
             if (password) {
@@ -88,7 +87,7 @@ export default function SetNewPassword(mainProps: any) {
                 code: formik.values.code,
                 password: formik.values.password
               }
-              setLoading(true);
+              mainProps.setBackdrop(false);
               dispatch(resetPasswordUser(resetPasswordObj)).then((res: any) => {
                 const { payload } = res;
                 const { message, success } = payload;
@@ -97,9 +96,9 @@ export default function SetNewPassword(mainProps: any) {
                   dispatch(resetDefault());
                   navigate('/sign-in');
                 }
-                setLoading(false);
+                mainProps.setBackdrop(false);
               }).catch((err) => {
-                setLoading(false);
+                mainProps.setBackdrop(false);
                 enqueueSnackbar("Error occured");
               })
             }

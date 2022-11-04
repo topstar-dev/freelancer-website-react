@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     TextField,
     Typography,
@@ -15,7 +15,6 @@ import Button from "../../../components/button/Button";
 export default function Email(mainProps: any) {
     const { t } = useTranslation();
     const { formik } = mainProps;
-    const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
 
@@ -37,7 +36,7 @@ export default function Email(mainProps: any) {
                 helperText={t('signup-email-helper')}
             />
             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button disabled={loading} style={{ float: "right" }} onClick={() => {
+                <Button style={{ float: "right" }} onClick={() => {
                     formik.validateForm().then((res: any) => {
                         const { primary_email } = res;
 
@@ -50,7 +49,7 @@ export default function Email(mainProps: any) {
                                 email: formik.values.primary_email,
                                 function_type: "SIGN_UP"
                             }
-                            setLoading(true);
+                            mainProps.setBackdrop(true);
                             dispatch(sendCodeToEmail(sendEmailCodeObj)).then((res: any) => {
                                 const { payload } = res;
                                 const { message, success } = payload;
@@ -68,9 +67,9 @@ export default function Email(mainProps: any) {
                                         email_code: ''
                                     }, formik);
                                 }
-                                setLoading(false);
+                                mainProps.setBackdrop(false);
                             }).catch((err) => {
-                                setLoading(false);
+                                mainProps.setBackdrop(false);
                                 enqueueSnackbar("Error occured");
                             })
                         }

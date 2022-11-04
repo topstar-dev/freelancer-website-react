@@ -10,6 +10,7 @@ import { CustomForm } from "../../commonStyle";
 import Card from '../../../components/card/Card';
 import '../auth.css';
 import WithTranslateFormErrors from '../../../services/validationScemaOnLangChange';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 export default function ResetPassword() {
 	const { t } = useTranslation();
@@ -22,6 +23,7 @@ export default function ResetPassword() {
 		confirm_password: ''
 	});
 	const [activeStep, setActiveStep] = React.useState<number>(0);
+	const [backdrop, setBackdrop] = React.useState(false);
 
 	React.useEffect(() => {
 		document.title = t('title.reset-password')
@@ -46,9 +48,9 @@ export default function ResetPassword() {
 	};
 
 	const steps: any = {
-		0: (props: any) => <EnterEmail formik={props} handleNext={handleNext} />,
-		1: (props: any) => <VerifyCode formik={props} handleBack={handleBack} handleNext={handleNext} />,
-		2: (props: any) => <SetNewPassword formik={props} handleBack={handleBack} />
+		0: (props: any) => <EnterEmail formik={props} handleNext={handleNext} setBackdrop={setBackdrop} />,
+		1: (props: any) => <VerifyCode formik={props} handleBack={handleBack} handleNext={handleNext} setBackdrop={setBackdrop} />,
+		2: (props: any) => <SetNewPassword formik={props} handleBack={handleBack} setBackdrop={setBackdrop} />
 	}
 
 	return (
@@ -94,6 +96,12 @@ export default function ResetPassword() {
 					</WithTranslateFormErrors>
 				)}
 			</Formik>
+			<Backdrop
+				sx={{ color: '#fff', zIndex: 999 }}
+				open={backdrop}
+			>
+				<CircularProgress color="inherit" />
+			</Backdrop>
 		</Card>
 	);
 }

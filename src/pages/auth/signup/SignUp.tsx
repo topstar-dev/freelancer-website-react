@@ -13,6 +13,7 @@ import Card from '../../../components/card/Card';
 import '../auth.css';
 import { useTranslation } from 'react-i18next';
 import WithTranslateFormErrors from '../../../services/validationScemaOnLangChange';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 export default function SignUp() {
     const { t, i18n } = useTranslation();
@@ -32,6 +33,7 @@ export default function SignUp() {
     });
     const [activeStep, setActiveStep] = useState<number>(0);
     const { countryData } = useAppSelector(state => state.resources);
+    const [backdrop, setBackdrop] = React.useState(false);
 
     React.useEffect(() => {
         document.title = t('title.signup');
@@ -73,8 +75,8 @@ export default function SignUp() {
     const steps: any = {
         0: (props: any) => <Info formik={props} handleNext={handleNext} countries={countryData?.records || []} />,
         1: (props: any) => <Password formik={props} handleBack={handleBack} handleNext={handleNext} />,
-        2: (props: any) => <Email formik={props} handleBack={handleBack} handleNext={handleNext} />,
-        3: (props: any) => <Code formik={props} handleBack={handleBack} type={type} />
+        2: (props: any) => <Email formik={props} handleBack={handleBack} handleNext={handleNext} setBackdrop={setBackdrop} />,
+        3: (props: any) => <Code formik={props} handleBack={handleBack} type={type} setBackdrop={setBackdrop} />
     }
 
     return (
@@ -132,6 +134,12 @@ export default function SignUp() {
                     </WithTranslateFormErrors>
                 }
             </Formik>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={backdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Card>
     );
 }

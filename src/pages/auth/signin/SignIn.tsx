@@ -12,7 +12,9 @@ import {
   IconButton,
   Popover,
   MenuItem,
-  MenuList
+  MenuList,
+  Backdrop,
+  CircularProgress
 } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
@@ -36,6 +38,7 @@ export default function SignIn() {
   const { loading, userInfo, success, message } = useAppSelector((state) => state.auth)
   const [showPassword, setShowPassword] = React.useState(false);
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
+  const [backdrop, setBackdrop] = React.useState(false);
 
   React.useEffect(() => {
     document.title = t('title.signin')
@@ -44,9 +47,11 @@ export default function SignIn() {
   useEffect(() => {
     if (message) {
       dispatch(resetDefault())
+      setBackdrop(false);
       enqueueSnackbar(message);
     }
     if (success && userInfo) {
+      setBackdrop(false);
       navigate('/');
     }
   }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
@@ -69,6 +74,7 @@ export default function SignIn() {
             .required(t('validation.password-required')),
         })}
         onSubmit={(values, actions) => {
+          setBackdrop(true);
           dispatch(signInUser({ email: values.email, password: values.password }));
         }}
       >
@@ -176,6 +182,12 @@ export default function SignIn() {
           </WithTranslateFormErrors>
         )}
       </Formik>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: 999 }}
+        open={backdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Card>
   );
 }
