@@ -114,18 +114,18 @@ export default function Info(mainProps: any) {
               formik.setFieldError('country_id', country_id);
             }
 
-            // if (!(first_name || last_name || birthday || country_id)) {
-            mainProps.handleNext({
-              first_name: formik.values.first_name,
-              last_name: formik.values.last_name,
-              birthday: formik.values.birthday,
-              country_id: formik.values.country_id,
-              password: '',
-              confirm_password: '',
-              primary_email: '',
-              email_code: ''
-            }, formik);
-            // }
+            if (!(first_name || last_name || birthday || country_id)) {
+              mainProps.handleNext({
+                first_name: formik.values.first_name,
+                last_name: formik.values.last_name,
+                birthday: formik.values.birthday,
+                country_id: formik.values.country_id,
+                password: '',
+                confirm_password: '',
+                primary_email: '',
+                email_code: ''
+              }, formik);
+            }
           })
         }}>
           {t('next')}
