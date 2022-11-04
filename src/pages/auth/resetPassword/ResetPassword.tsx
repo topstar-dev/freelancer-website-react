@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as yup from "yup";
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import EnterEmail from './enterEmail';
 import VerifyCode from './verifyCode';
 import SetNewPassword from './setNewPassword';

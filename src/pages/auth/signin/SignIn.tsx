@@ -33,6 +33,7 @@ export default function SignIn() {
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
+  const [animate, setAnimate] = React.useState('');
   const { loading, userInfo, success, message } = useAppSelector((state) => state.auth)
   const [showPassword, setShowPassword] = React.useState(false);
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
@@ -52,7 +53,7 @@ export default function SignIn() {
   }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
   return (
-    <Card className="rounx-auth-card">
+    <Card className={`rounx-auth-card ${animate}`}>
       <Formik
         initialValues={
           {
@@ -129,7 +130,13 @@ export default function SignIn() {
                   className="normal-text round-button"
                   variant="outlined"
                   style={{ borderRadius: 20 }}
-                  onClick={() => navigate("/reset-password")}
+                  onClick={() => {
+                    setAnimate('rounx-next-slide');
+                    setTimeout(() => {
+                      setAnimate('')
+                      navigate("/reset-password")
+                    }, 1000);
+                  }}
                 >
                   {t('signin-forgot-password')}
                 </Button>
@@ -162,8 +169,22 @@ export default function SignIn() {
                 }}
               >
                 <MenuList>
-                  <MenuItem onClick={() => navigate('/sign-up?type=CLIENT')}>{t('client-account')}</MenuItem>
-                  <MenuItem onClick={() => navigate('/sign-up?type=FREELANCER')}>{t('freelancer-account')}</MenuItem>
+                  <MenuItem onClick={() => {
+                    setAnimate('rounx-next-slide');
+                    setType(null)
+                    setTimeout(() => {
+                      setAnimate('')
+                      navigate('/sign-up?type=CLIENT')
+                    }, 1000);
+                  }}>{t('client-account')}</MenuItem>
+                  <MenuItem onClick={() => {
+                    setAnimate('rounx-next-slide');
+                    setType(null)
+                    setTimeout(() => {
+                      setAnimate('')
+                      navigate('/sign-up?type=FREELANCER')
+                    }, 1000);
+                  }}>{t('freelancer-account')}</MenuItem>
                 </MenuList>
               </Popover>
             </CustomForm>
