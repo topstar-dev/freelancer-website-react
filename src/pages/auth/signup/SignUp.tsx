@@ -31,7 +31,6 @@ export default function SignUp() {
         email_code: "",
     });
     const [activeStep, setActiveStep] = useState<number>(0);
-    const [animate, setAnimate] = useState('');
     const { countryData } = useAppSelector(state => state.resources);
 
     React.useEffect(() => {
@@ -40,10 +39,6 @@ export default function SignUp() {
             e.preventDefault();
             if (activeStep > 0) {
                 handleBack();
-                setAnimate('rounx-previous-slide');
-                setTimeout(() => {
-                    setAnimate('')
-                }, 1000);
             }
         };
     })
@@ -67,11 +62,7 @@ export default function SignUp() {
         const newActiveStep = activeStep + 1;
         setActiveStep(newActiveStep);
         formik.resetForm();
-        setFormData(values)
-        setAnimate('rounx-next-slide');
-        setTimeout(() => {
-            setAnimate('')
-        }, 1000);
+        setFormData(values);
         navigate(`/sign-up${window.location.search}`, { state: values })
     };
 
@@ -87,7 +78,7 @@ export default function SignUp() {
     }
 
     return (
-        <Card className={`rounx-auth-card ${animate}`}>
+        <Card className={`rounx-auth-card`}>
             <Formik
                 enableReinitialize
                 initialValues={formData}

@@ -21,7 +21,6 @@ export default function ResetPassword() {
 		password: '',
 		confirm_password: ''
 	});
-	const [animate, setAnimate] = React.useState('');
 	const [activeStep, setActiveStep] = React.useState<number>(0);
 
 	React.useEffect(() => {
@@ -30,10 +29,6 @@ export default function ResetPassword() {
 			e.preventDefault();
 			if (activeStep > 0) {
 				handleBack();
-				setAnimate('rounx-previous-slide');
-				setTimeout(() => {
-					setAnimate('')
-				}, 1000);
 			}
 		};
 	})
@@ -42,11 +37,7 @@ export default function ResetPassword() {
 		const newActiveStep = activeStep + 1;
 		setActiveStep(newActiveStep);
 		formik.resetForm();
-		setFormData(values)
-		setAnimate('rounx-next-slide');
-		setTimeout(() => {
-			setAnimate('')
-		}, 1000);
+		setFormData(values);
 		navigate(`/reset-password`, { state: values })
 	};
 
@@ -61,7 +52,7 @@ export default function ResetPassword() {
 	}
 
 	return (
-		<Card className={`rounx-auth-card ${animate}`}>
+		<Card className={`rounx-auth-card`}>
 			<Formik
 				initialValues={formData}
 				validationSchema={yup.object({
