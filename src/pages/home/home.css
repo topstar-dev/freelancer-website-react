@@ -51,22 +51,17 @@
 
 .rounx-home-third-section {
     display: flex;
+    flex-direction: row;
+    gap: 96px;
 }
 
 .rounx-home-third-left {
-    width: 55%;
-    max-width: 550px;
-    padding-right: 48px;
+    width: 550px;
 }
 
 .rounx-qr-code-image {
     margin-left: -16px;
     width: 258px;
-}
-
-.rounx-home-third-right {
-    width: 45%;
-    margin-left: auto;
 }
 
 .screenshots {
@@ -97,14 +92,13 @@
     }
 
     .rounx-home-third-section {
-        display: unset;
+        flex-direction: column;
+        gap: 32px;
     }
 
     .rounx-home-third-left {
         width: 100%;
         text-align: center;
-        padding-right: 0;
-        padding-bottom: 10%;
         margin-left: auto;
         margin-right: auto;
     }
