@@ -5,8 +5,12 @@ import { Box } from "@mui/material";
 import Header from "../layout/header/Header";
 import Footer from "../layout/footer/Footer";
 import SignIn from "./auth/signin/SignIn";
-import SignUp from "./auth/signup/SignUp";
+import Info from "./auth/signup/Info";
+import Password from "./auth/signup/Password";
+import Email from "./auth/signup/Email";
+import Code from "./auth/signup/Code";
 import ResetPassword from "./auth/resetPassword/ResetPassword";
+
 import Settings from "./settings/Settings";
 import Personal from "./settings/personalInfo/Personal";
 import Security from "./settings/security/Security";
@@ -64,7 +68,24 @@ export default function Router() {
         },
         {
           path: "/sign-up",
-          element: <SignUp />,
+          children: [
+            {
+              path: "/sign-up",
+              element: <Info />,
+            },
+            {
+              path: "/sign-up/set-password",
+              element: <Password />,
+            },
+            {
+              path: "/sign-up/email",
+              element: <Email />,
+            },
+            {
+              path: "/sign-up/code",
+              element: <Code />,
+            },
+          ]
         },
         {
           path: "/reset-password",
