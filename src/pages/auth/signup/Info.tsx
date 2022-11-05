@@ -26,8 +26,8 @@ export default function Info(mainProps: any) {
   const [birthday, setBirthday] = React.useState<Dayjs | null>(formik.values.birthday || null);
 
   const countryChange = (e: any) => {
-    formik.setFieldValue('country_id', e.id)
-    setCountry(e);
+    formik.setFieldValue('country_id', e ? e.id : '')
+    setCountry(e ? e : null);
   }
 
   const handleChange = (newValue: Dayjs | null) => {
@@ -86,6 +86,7 @@ export default function Info(mainProps: any) {
           id="combo-box-demo"
           isOptionEqualToValue={(option, value) => option.id === value.id}
           value={country}
+          onInputChange={(e, value) => countryChange(value)}
           onChange={(e: any, newValue: string) => countryChange(newValue)}
           options={mainProps.countries || []}
           renderInput={(params) => <TextField {...params} error={formik.touched.country_id && Boolean(formik.errors.country_id)} label={t('country')} />}
