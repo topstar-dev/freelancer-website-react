@@ -6,7 +6,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
-import { refreshToken } from '../../redux/account/accountAPI';
+import { refreshToken } from '../../redux/account/accountApi';
 import axios from 'axios';
 
 interface UserMenuPropsInterface {

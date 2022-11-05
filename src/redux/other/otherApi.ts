@@ -5,9 +5,8 @@ export const downloadImage = (imageData: ImageDownloadInterface) => {
     const requestOptions: RequestInit = {
         method: 'GET',
         headers: {
-            "function-type": imageData.functionType,
-            "file_name": imageData?.fileName.replace('/image/', '')
+            "function-type": imageData.functionType
         }
     };
-    return apiCall(`${imageData.fileName}`, requestOptions, false, 'blob');
+    return apiCall(`/image/${imageData.fileName}`, requestOptions, false, 'blob');
 };
