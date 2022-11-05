@@ -33,7 +33,7 @@ export default function Email(mainProps: any) {
                 value={formik.values.primary_email}
                 onChange={formik.handleChange}
                 error={formik.touched.primary_email && Boolean(formik.errors.primary_email)}
-                helperText={t('signup-email-helper')}
+                helperText={formik.touched.primary_email && Boolean(formik.errors.primary_email) ? formik.errors.primary_email : t('signup-email-helper')}
             />
             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button style={{ float: "right" }} onClick={() => {

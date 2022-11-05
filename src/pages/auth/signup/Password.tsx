@@ -33,7 +33,7 @@ export default function Password(mainProps: any) {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 error={formik.touched.password && Boolean(formik.errors.password)}
-                helperText={formik.touched.password && formik.errors.password ? formik.errors.password : t('at_least_8_characters')}
+                helperText={formik.touched.password && Boolean(formik.errors.password) ? formik.errors.password : t('at_least_8_characters')}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
