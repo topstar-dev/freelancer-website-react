@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next';
 import { Box } from "@mui/material";
@@ -16,7 +16,8 @@ import './header.css';
 
 export default function Header() {
     const navigate = useNavigate();
-    const [selectedPage, setSelectedPage] = useState(window.location.pathname);
+    const location = useLocation();
+    const [selectedPage, setSelectedPage] = useState(location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
     const { t } = useTranslation();
@@ -25,6 +26,9 @@ export default function Header() {
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
+    useEffect(() => {
+        setSelectedPage(location.pathname)
+    }, [location])
 
     useEffect(() => {
         if (message) {
