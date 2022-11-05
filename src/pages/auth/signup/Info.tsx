@@ -35,8 +35,6 @@ export default function Info(mainProps: any) {
     setBirthday(newValue);
   };
 
-  const inputProps = dayjs(birthday).format('YYYY-MM-DD') ? {} : { inputProps: { placeholder: "" } };
-
   return (
     <>
       <Typography className="rounx-account-title-info">
@@ -65,18 +63,27 @@ export default function Info(mainProps: any) {
       </FlexBox>
       <LocalizationProvider adapterLocale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
-          label={t('birthday')}
+          label={birthday ? '' : t('birthday')}
           inputFormat="YYYY-MM-DD"
           value={birthday}
+          mask={t('birthday')}
           onChange={handleChange}
           maxDate={dayjs()}
-          renderInput={(params: any) =>
-            <TextField
-              {...params}
-              {...inputProps}
+          renderInput={(params: any) => {
+            const newParams = {
+              ...params,
+              inputProps: {
+                ...params.inputProps,
+                placeholder: ''
+              }
+            }
+            return <TextField
+              {...newParams}
               error={formik.touched.birthday && Boolean(formik.errors.birthday)}
               helperText={formik.touched.birthday && formik.errors.birthday}
-            />}
+            />
+          }
+          }
         />
       </LocalizationProvider>
       <FormControl error={formik.touched.country_id && Boolean(formik.errors.country_id)}>
