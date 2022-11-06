@@ -35,7 +35,7 @@ export default function Email(mainProps: any) {
 
     useEffect(() => {
         document.title = t('title.signup');
-        sessionStorage.removeItem('ssignup-code')
+        sessionStorage.removeItem('signup-code')
     })
 
     return (

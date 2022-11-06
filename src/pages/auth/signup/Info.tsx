@@ -51,7 +51,7 @@ export default function Info(mainProps: any) {
     document.title = t('title.signup');
     sessionStorage.removeItem('signup-password')
     sessionStorage.removeItem('signup-email')
-    sessionStorage.removeItem('ssignup-code')
+    sessionStorage.removeItem('signup-code')
   })
 
   useEffect(() => {

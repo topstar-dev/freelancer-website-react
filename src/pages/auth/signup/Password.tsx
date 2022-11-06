@@ -33,7 +33,7 @@ export default function Password(mainProps: any) {
     useEffect(() => {
         document.title = t('title.signup');
         sessionStorage.removeItem('signup-email')
-        sessionStorage.removeItem('ssignup-code')
+        sessionStorage.removeItem('signup-code')
     })
 
     return (

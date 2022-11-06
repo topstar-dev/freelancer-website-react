@@ -40,11 +40,10 @@ export default function SignIn() {
   const [type, setType] = React.useState<HTMLButtonElement | null>(null);
   const [backdrop, setBackdrop] = React.useState(false);
 
-  React.useEffect(() => {
-    document.title = t('title.signin')
-  })
-
   useEffect(() => {
+    document.title = t('title.signin')
+    sessionStorage.removeItem('signup-type')
+    sessionStorage.removeItem('signup-info')
     if (message) {
       dispatch(resetDefault())
       setBackdrop(false);
