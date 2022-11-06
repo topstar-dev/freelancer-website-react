@@ -34,12 +34,22 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
         setAnchorEl(event.currentTarget);
         refreshToken(false, null, source).then((res) => {
             dispatch(updateUserInfo(res.data))
+        }).catch((err) => {
+            signOutMethod();
         })
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const signOutMethod = () => {
+        if (source) {
+            source.cancel();
+        }
+        dispatch(clearAvatar())
+        signOut()
+    }
 
     // const settingsClick = () => {
     //     setAnchorEl(null);
@@ -84,13 +94,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
                     <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-settings')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items' onClick={() => {
-                        if (source) {
-                            source.cancel();
-                        }
-                        dispatch(clearAvatar())
-                        signOut()
-                    }}>
+                    <MenuItem className='rounx-user-menu-items' onClick={() => signOutMethod()}>
                         {t('header-user-signout')}
                     </MenuItem>
                 </MenuList>
