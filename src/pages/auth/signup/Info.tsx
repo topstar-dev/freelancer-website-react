@@ -55,6 +55,7 @@ export default function Info(mainProps: any) {
   })
 
   useEffect(() => {
+    setLoad(false)
     setCountryData([]);
   }, [language])
 
