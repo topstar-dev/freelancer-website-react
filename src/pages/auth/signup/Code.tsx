@@ -89,16 +89,20 @@ export default function Code(mainProps: any) {
 
                                         if (!email_code) {
                                             const { values } = formik;
-                                            const { first_name, last_name, birthday, country_id, password, primary_email, email_code } = values;
+                                            const { email_code } = values;
+                                            const signupType = `${sessionStorage.getItem('signup-type')}`;
+                                            const signupInfo = JSON.parse(`${sessionStorage.getItem('signup-info')}`);
+                                            const signupPassword = JSON.parse(`${sessionStorage.getItem('signup-password')}`);
+                                            const signupEmail = JSON.parse(`${sessionStorage.getItem('signup-email')}`);
 
                                             const signUpData = {
-                                                account_type: mainProps.type,
-                                                first_name,
-                                                last_name,
-                                                birthday,
-                                                country_id,
-                                                password,
-                                                primary_email,
+                                                account_type: signupType as 'CLIENT' | 'FREELANCER',
+                                                first_name: signupInfo.first_name,
+                                                last_name: signupInfo.last_name,
+                                                birthday: signupInfo.birthday,
+                                                country_id: signupInfo.countr_id,
+                                                password: signupPassword.password,
+                                                primary_email: signupEmail.primary_email,
                                                 email_code
                                             }
 
@@ -112,7 +116,7 @@ export default function Code(mainProps: any) {
                                                     sessionStorage.removeItem('signup-info')
                                                     sessionStorage.removeItem('signup-password')
                                                     sessionStorage.removeItem('signup-email')
-                                                    sessionStorage.removeItem('ssignup-code')
+                                                    sessionStorage.removeItem('ssignup-type')
                                                     navigate('/sign-in')
                                                 }
                                                 setBackdrop(false);

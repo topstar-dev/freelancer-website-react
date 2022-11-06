@@ -14,12 +14,14 @@ export interface ResourcesState {
     message?: string | null,
     language: string,
     countryData: CountryData;
+    loading: boolean;
 }
 
 const initialState: ResourcesState = {
     language: selectedLanguage,
     message: null,
-    countryData: {}
+    countryData: {},
+    loading: false
 }
 
 export const resourceslice = createSlice({
@@ -35,6 +37,7 @@ export const resourceslice = createSlice({
     extraReducers: (builder) => {
         //getCountries
         builder.addCase(getCountriesList.pending, (state: ResourcesState, _action) => {
+            state.loading = true
         })
         builder.addCase(getCountriesList.fulfilled, (state: ResourcesState, action) => {
             const temp = action.payload.data.records.map((c: any) => ({
@@ -46,10 +49,12 @@ export const resourceslice = createSlice({
                 records: temp
             }
             state.message = action.payload.message;
+            state.loading = false
         })
         builder.addCase(getCountriesList.rejected, (state: ResourcesState, action) => {
             const payload = action.payload as ResourcesState;
             state.message = payload.message;
+            state.loading = false
         })
     }
 });

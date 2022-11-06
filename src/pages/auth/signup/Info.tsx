@@ -22,17 +22,19 @@ import {
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { getCountriesList } from "../../../redux/resources/resourcesActions";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useAppSelector } from "../../../redux/hooks";
+import { getCountries } from "../../../redux/resources/resourcesAPI";
 
 export default function Info(mainProps: any) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const [order, setOrder] = useState(localStorage.getItem('i18nextLng'))
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get('type');
 
-  const { countryData } = useAppSelector(state => state.resources);
+  const [load, setLoad] = useState(false);
+  const { language } = useAppSelector(state => state.resources);
+  const [countryData, setCountryData] = useState([]);
 
   const signupInfo = sessionStorage.getItem('signup-info');
   const [formData] = useState(signupInfo ? JSON.parse(signupInfo) : {
@@ -41,7 +43,8 @@ export default function Info(mainProps: any) {
     birthday: null,
     country_id: null
   });
-  const [country, setCountry] = React.useState<any>(formData.country_id ? countryData.records?.find((e: any) => e.id === formData.country_id) : null);
+
+  const [country, setCountry] = React.useState<any>(formData.country_id ? countryData.find((e: any) => e.id === formData.country_id) : null);
   const [birthday, setBirthday] = React.useState<Dayjs | null>(formData.birthday);
 
   useEffect(() => {
@@ -52,25 +55,29 @@ export default function Info(mainProps: any) {
   })
 
   useEffect(() => {
-    i18n.on('languageChanged', lng => {
-      dispatch(getCountriesList());
-      setOrder(lng)
-    });
-    return () => {
-      i18n.off('languageChanged', lng => { });
-    };
-  }, [i18n, dispatch])
+    setCountryData([]);
+  }, [language])
 
   useEffect(() => {
-    if (!countryData.records) {
-      dispatch(getCountriesList());
+    if (!load && countryData.length <= 0) {
+      getCountries().then((res) => {
+        const countryArr = res.data.records.map((c: any) => ({
+          label: c.country_name,
+          id: c.country_id
+        }))
+        setCountryData(countryArr)
+        const country = countryArr.find((e: any) => e.id === formData.country_id)
+        setCountry(country)
+        setLoad(true);
+      }).catch((err) => {
+        setLoad(true)
+      })
     }
-  }, [countryData.records, dispatch])
+  }, [countryData, load, formData])
 
   return (
     <Card className={`rounx-auth-card`}>
       <Formik
-        enableReinitialize
         initialValues={formData}
         validationSchema={yup.object({
           first_name: yup
@@ -102,7 +109,7 @@ export default function Info(mainProps: any) {
               <Typography className="rounx-account-title-info">
                 {t('signup-title')}
               </Typography>
-              <FlexBox sx={{ gap: '24px', flexDirection: order === 'en' ? 'row' : 'row-reverse' }} >
+              <FlexBox sx={{ gap: '24px', flexDirection: language === 'en' ? 'row' : 'row-reverse' }} >
                 <TextField
                   fullWidth
                   label={t('first-name')}
@@ -156,16 +163,20 @@ export default function Info(mainProps: any) {
                   blurOnSelect
                   id="combo-box-demo"
                   isOptionEqualToValue={(option, value) => option.id === value.id}
-                  value={country}
+                  value={country ? country : ''}
                   onInputChange={(e, value) => {
-                    formik.setFieldValue('country_id', value)
-                    setCountry(value)
+                    if (!value) {
+                      formik.setFieldValue('country_id', value)
+                      setCountry(value)
+                    }
                   }}
                   onChange={(e, value) => {
-                    formik.setFieldValue('country_id', value.id)
-                    setCountry(value)
+                    if (value) {
+                      formik.setFieldValue('country_id', value.id)
+                      setCountry(value)
+                    }
                   }}
-                  options={countryData.records || []}
+                  options={countryData}
                   renderInput={(params) => <TextField {...params} error={formik.touched.country_id && Boolean(formik.errors.country_id)} label={t('country')} />}
                 />
                 {formik.touched.country_id && formik.errors.country_id && <FormHelperText>{formik.errors.country_id as ReactNode}</FormHelperText>}
@@ -193,6 +204,7 @@ export default function Info(mainProps: any) {
                     }
 
                     if (!(first_name || last_name || birthday || country_id)) {
+                      sessionStorage.setItem('signup-type', `${type}`);
                       sessionStorage.setItem('signup-info', JSON.stringify(formik.values))
                       navigate('/sign-up/set-password')
                     }
