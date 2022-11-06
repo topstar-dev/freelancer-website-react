@@ -24,7 +24,7 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
-import { getCountries } from "../../../redux/resources/resourcesAPI";
+import { getCountries } from "../../../redux/resources/resourcesApi";
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();
