@@ -101,7 +101,7 @@ export default function Code(mainProps: any) {
                                                 last_name: signupInfo.last_name,
                                                 birthday: signupInfo.birthday,
                                                 country_id: signupInfo.countr_id,
-                                                password: signupPassword.password,
+                                                password: signupPassword.confirm_password,
                                                 primary_email: signupEmail.primary_email,
                                                 email_code
                                             }

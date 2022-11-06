@@ -22,7 +22,7 @@ export default function Password(mainProps: any) {
 
     const signupPassword = sessionStorage.getItem('signup-password');
     const [formData] = useState(signupPassword ? JSON.parse(signupPassword) : {
-        password: "",
+        set_password: "",
         confirm_password: "",
     });
     const [showPassword, setShowPassword] = React.useState(false);
@@ -42,16 +42,16 @@ export default function Password(mainProps: any) {
                 enableReinitialize
                 initialValues={formData}
                 validationSchema={yup.object({
-                    password: yup
+                    set_password: yup
                         .string()
                         .required(t('validation.set-password-required')),
                     confirm_password: yup
                         .string()
                         .required(t('validation.confirm-password-required'))
                         .min(8, t('validation.password-length'))
-                        .when("password", {
+                        .when("set_password", {
                             is: (value: string) => (value && value.length > 0 ? true : false),
-                            then: yup.string().oneOf([yup.ref("password")], t('validation.two-passwords-do-not-match')),
+                            then: yup.string().oneOf([yup.ref("set_password")], t('validation.two-passwords-do-not-match')),
                         })
                 })}
                 onSubmit={(values) => { }}
@@ -72,14 +72,14 @@ export default function Password(mainProps: any) {
                             </Typography>
                             <TextField
                                 fullWidth
-                                id="password"
-                                name="password"
+                                id="set_password"
+                                name="set_password"
                                 label={t('set-password')}
                                 type={showPassword ? "text" : "password"}
-                                value={formik.values.password}
+                                value={formik.values.set_password}
                                 onChange={formik.handleChange}
-                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                helperText={(formik.touched.password && Boolean(formik.errors.password) ? formik.errors.password : t('at_least_8_characters')) as ReactNode}
+                                error={formik.touched.set_password && Boolean(formik.errors.set_password)}
+                                helperText={(formik.touched.set_password && Boolean(formik.errors.set_password) ? formik.errors.set_password : t('at_least_8_characters')) as ReactNode}
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
@@ -108,17 +108,17 @@ export default function Password(mainProps: any) {
                             <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
                                 <Button onClick={() => {
                                     formik.validateForm().then((res: any) => {
-                                        const { password, confirm_password } = res;
+                                        const { set_password, confirm_password } = res;
 
-                                        if (password) {
-                                            formik.setFieldTouched('password', true, true);
-                                            formik.setFieldError('password', password);
+                                        if (set_password) {
+                                            formik.setFieldTouched('set_password', true, true);
+                                            formik.setFieldError('set_password', set_password);
                                         }
                                         if (confirm_password) {
                                             formik.setFieldTouched('confirm_password', true, true);
                                             formik.setFieldError('confirm_password', confirm_password);
                                         }
-                                        if (!(password || confirm_password)) {
+                                        if (!(set_password || confirm_password)) {
                                             sessionStorage.setItem('signup-password', JSON.stringify(formik.values))
                                             navigate('/sign-up/email')
                                         }
