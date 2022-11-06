@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRoutes, RouteObject, Outlet } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
@@ -24,6 +24,10 @@ import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
 import TawkProvider from "./TawkProvider";
+import { refreshToken } from "../redux/account/accountApi";
+import { updateUserInfo } from "../redux/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { signOutUser } from "../redux/auth/authActions";
 
 interface RoutesInterface {
   isHeader: boolean,
@@ -31,10 +35,24 @@ interface RoutesInterface {
 }
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
+  const [called, setCalled] = useState(false);
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
   })
+
+  useEffect(() => {
+    if (isHeader && userInfo && !called) {
+      setCalled(true);
+      refreshToken(false, null).then((res: any) => {
+        dispatch(updateUserInfo(res.data))
+      }).catch((err: any) => {
+        dispatch(signOutUser());
+      })
+    }
+  }, [isHeader, userInfo, called, dispatch])
 
   const content = <TawkProvider>
     {isHeader && <Header />}

@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 // import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
+import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
-import { refreshToken } from '../../redux/account/accountApi';
 import axios from 'axios';
 import { clearAvatar } from '../../redux/other/otherSlice';
 
@@ -32,11 +31,6 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
     const handleMenu = (event: any) => {
         source = axios.CancelToken.source();
         setAnchorEl(event.currentTarget);
-        refreshToken(false, null, source).then((res) => {
-            dispatch(updateUserInfo(res.data))
-        }).catch((err) => {
-            signOutMethod();
-        })
     };
 
     const handleClose = () => {

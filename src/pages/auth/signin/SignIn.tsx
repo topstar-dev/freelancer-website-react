@@ -42,6 +42,9 @@ export default function SignIn() {
 
   useEffect(() => {
     document.title = t('title.signin')
+  })
+
+  useEffect(() => {
     sessionStorage.removeItem('signup-type')
     sessionStorage.removeItem('signup-info')
     if (message) {

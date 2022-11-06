@@ -22,7 +22,6 @@ export default function HomePage() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const { language } = useAppSelector(state => state.resources);
-    const { userInfo } = useAppSelector((state) => state.auth);
 
     React.useEffect(() => {
         document.title = t('title.home');
@@ -110,7 +109,7 @@ export default function HomePage() {
             <Divider style={{ margin: '96px 0' }} />
             <Box className="rounx-home-third-section" style={{ marginBottom: '95px' }}>
                 <Box className="rounx-home-third-left">
-                    {false &&
+                    {false ?
                         <Box>
                             <Box>
                                 <Typography sx={{ fontSize: '48px', fontWeight: '500' }}>
@@ -123,68 +122,68 @@ export default function HomePage() {
                                 </Typography>
                             </Box>
                             <Box style={{ margin: '24px 0' }}>
-                                <img src="/images/button.jpg" alt="anywhere" />
+                                <img style={{ cursor: "pointer" }} height="50" src="/images/google-play.png" alt="google-play" />
                             </Box>
                         </Box>
-                    }
-
-                    <Box>
+                        :
                         <Box>
-                            <Typography sx={{ fontSize: '48px', fontWeight: '500' }}>
-                                {t('home-page-comming-soon')}
-                            </Typography>
+                            <Box>
+                                <Typography sx={{ fontSize: '48px', fontWeight: '500' }}>
+                                    {t('home-page-comming-soon')}
+                                </Typography>
+                            </Box>
+                            <Box style={{ margin: '24px 0' }}>
+                                <Typography sx={{ fontSize: '24px', color: '#757575' }}>
+                                    {t('home-page-comming-soon-info')}
+                                </Typography>
+                            </Box>
+                            {language === 'en' ?
+                                <Formik
+                                    validationSchema={yup.object({
+                                        email: yup
+                                            .string()
+                                            .required(t('validation.email-required'))
+                                    })}
+                                    initialValues={{ email: '' }}
+                                    onSubmit={(values, actions) => {
+                                        dispatch(scheduleAppointment(values.email))
+                                            .then((res) => {
+                                                enqueueSnackbar(res.payload.message)
+                                                actions.resetForm();
+                                            }).catch((error) => {
+                                                enqueueSnackbar(error.message);
+                                                actions.resetForm();
+                                            })
+                                    }}
+                                >
+                                    {props => (
+                                        <WithTranslateFormErrors {...props}>
+                                            <form
+                                                onSubmit={props.handleSubmit}
+                                                style={{ display: 'flex', alignItems: 'flex-start' }}
+                                            >
+                                                <TextField
+                                                    value={props.values.email}
+                                                    id="email"
+                                                    name="email"
+                                                    placeholder={t('email')}
+                                                    onChange={props.handleChange}
+                                                    error={props.touched.email && Boolean(props.errors.email)}
+                                                    helperText={props.touched.email && props.errors.email}
+                                                    InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
+                                                    style={{ marginRight: '20px', height: '40px' }}
+                                                    fullWidth
+                                                />
+                                                <Button type="submit">{t('submit')}</Button>
+                                            </form>
+                                        </WithTranslateFormErrors>
+                                    )}
+                                </Formik>
+                                :
+                                <img className="rounx-qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
+                            }
                         </Box>
-                        <Box style={{ margin: '24px 0' }}>
-                            <Typography sx={{ fontSize: '24px', color: '#757575' }}>
-                                {t('home-page-comming-soon-info')}
-                            </Typography>
-                        </Box>
-                        {language === 'en' ?
-                            <Formik
-                                validationSchema={yup.object({
-                                    email: yup
-                                        .string()
-                                        .required(t('validation.email-required'))
-                                })}
-                                initialValues={{ email: '' }}
-                                onSubmit={(values, actions) => {
-                                    dispatch(scheduleAppointment(values.email))
-                                        .then((res) => {
-                                            enqueueSnackbar(res.payload.message)
-                                            actions.resetForm();
-                                        }).catch((error) => {
-                                            enqueueSnackbar(error.message);
-                                            actions.resetForm();
-                                        })
-                                }}
-                            >
-                                {props => (
-                                    <WithTranslateFormErrors {...props}>
-                                        <form
-                                            onSubmit={props.handleSubmit}
-                                            style={{ display: 'flex', alignItems: 'flex-start' }}
-                                        >
-                                            <TextField
-                                                value={props.values.email}
-                                                id="email"
-                                                name="email"
-                                                placeholder={t('email')}
-                                                onChange={props.handleChange}
-                                                error={props.touched.email && Boolean(props.errors.email)}
-                                                helperText={props.touched.email && props.errors.email}
-                                                InputProps={{ sx: { height: 40, borderRadius: '24px' } }}
-                                                style={{ marginRight: '20px', height: '40px' }}
-                                                fullWidth
-                                            />
-                                            <Button type="submit">{t('submit')}</Button>
-                                        </form>
-                                    </WithTranslateFormErrors>
-                                )}
-                            </Formik>
-                            :
-                            <img className="rounx-qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
-                        }
-                    </Box>
+                    }
                 </Box>
                 <Box className="rounx-home-third-right">
                     <img
