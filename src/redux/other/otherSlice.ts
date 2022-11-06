@@ -16,7 +16,11 @@ const initialState: OtherState = {
 export const otherSlice = createSlice({
     name: 'other',
     initialState,
-    reducers: {},
+    reducers: {
+        clearAvatar: (state) => {
+            state.userAvatar = null;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(imageDownload.pending, (state: OtherState) => {
             state.userAvatar = null;
@@ -31,4 +35,6 @@ export const otherSlice = createSlice({
     }
 });
 
+const { clearAvatar } = otherSlice.actions;
+export { clearAvatar }
 export default otherSlice.reducer;

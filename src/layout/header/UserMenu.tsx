@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
 import { refreshToken } from '../../redux/account/accountApi';
 import axios from 'axios';
+import { clearAvatar } from '../../redux/other/otherSlice';
 
 interface UserMenuPropsInterface {
     signOut: Function,
@@ -87,6 +88,7 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
                         if (source) {
                             source.cancel();
                         }
+                        dispatch(clearAvatar())
                         signOut()
                     }}>
                         {t('header-user-signout')}
