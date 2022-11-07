@@ -28,14 +28,18 @@ export default function Email(mainProps: any) {
     const dispatch = useAppDispatch();
 
     const [backdrop, setBackdrop] = React.useState(false);
-    const signupEmail = sessionStorage.getItem('signup-email');
-    const [formData] = useState(signupEmail ? JSON.parse(signupEmail) : {
-        primary_email: "",
+    const signupEmail = sessionStorage.getItem('signup-email') ? JSON.parse(`${sessionStorage.getItem('signup-email')}`) : {};
+    const [formData] = useState({
+        primary_email: signupEmail.primary_email || "",
     });
 
     useEffect(() => {
         document.title = t('title.signup');
-        sessionStorage.removeItem('signup-code')
+        if (signupEmail) {
+            const temp = { ...signupEmail };
+            delete temp['email_code'];
+            sessionStorage.setItem('signup-info', JSON.stringify(temp))
+        }
     })
 
     return (
@@ -98,7 +102,7 @@ export default function Email(mainProps: any) {
                                                 enqueueSnackbar(message);
                                                 if (success) {
                                                     dispatch(resetDefault());
-                                                    sessionStorage.setItem('signup-email', JSON.stringify(formik.values))
+                                                    sessionStorage.setItem('signup-email', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
                                                     navigate('/sign-up/code')
                                                 }
                                                 setBackdrop(false);

@@ -36,12 +36,12 @@ export default function Info(mainProps: any) {
   const { language } = useAppSelector(state => state.resources);
   const [countryData, setCountryData] = useState([]);
 
-  const signupInfo = sessionStorage.getItem('signup-info');
-  const [formData] = useState(signupInfo ? JSON.parse(signupInfo) : {
-    first_name: "",
-    last_name: "",
-    birthday: null,
-    country_id: null
+  const signupInfo = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
+  const [formData] = useState({
+    first_name: signupInfo.first_name || "",
+    last_name: signupInfo.last_name || "",
+    birthday: signupInfo.birthday || null,
+    country_id: signupInfo.country_id || null
   });
 
   const [country, setCountry] = React.useState<any>(formData.country_id ? countryData.find((e: any) => e.id === formData.country_id) : null);
@@ -49,9 +49,15 @@ export default function Info(mainProps: any) {
 
   useEffect(() => {
     document.title = t('title.signup');
-    sessionStorage.removeItem('signup-password')
-    sessionStorage.removeItem('signup-email')
-    sessionStorage.removeItem('signup-code')
+    if (signupInfo) {
+      const temp = { ...signupInfo };
+      delete temp['set_password'];
+      delete temp['confirm_password'];
+      delete temp['confirm_password'];
+      delete temp['primary_email'];
+      delete temp['email_code'];
+      sessionStorage.setItem('signup-info', JSON.stringify(temp))
+    }
   })
 
   useEffect(() => {
@@ -204,11 +210,11 @@ export default function Info(mainProps: any) {
                       formik.setFieldError('country_id', country_id);
                     }
 
-                    if (!(first_name || last_name || birthday || country_id)) {
-                      sessionStorage.setItem('signup-type', `${type}`);
-                      sessionStorage.setItem('signup-info', JSON.stringify(formik.values))
-                      navigate('/sign-up/set-password')
-                    }
+                    // sessionStorage.setItem('signup-type', `${type}`);
+                    sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, type: type }))
+                    // if (!(first_name || last_name || birthday || country_id)) {
+                    navigate('/sign-up/set-password')
+                    // }
                   })
                 }}>
                   {t('next')}

@@ -45,7 +45,6 @@ export default function SignIn() {
   })
 
   useEffect(() => {
-    sessionStorage.removeItem('signup-type')
     sessionStorage.removeItem('signup-info')
     if (message) {
       dispatch(resetDefault())

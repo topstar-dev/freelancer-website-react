@@ -20,10 +20,10 @@ export default function Password(mainProps: any) {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const signupPassword = sessionStorage.getItem('signup-password');
-    const [formData] = useState(signupPassword ? JSON.parse(signupPassword) : {
-        set_password: "",
-        confirm_password: "",
+    const signupPassword = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
+    const [formData] = useState({
+        set_password: signupPassword.set_password || "",
+        confirm_password: signupPassword.confirm_password || "",
     });
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => {
@@ -32,8 +32,12 @@ export default function Password(mainProps: any) {
 
     useEffect(() => {
         document.title = t('title.signup');
-        sessionStorage.removeItem('signup-email')
-        sessionStorage.removeItem('signup-code')
+        if (signupPassword) {
+            const temp = { ...signupPassword };
+            delete temp['primary_email'];
+            delete temp['email_code'];
+            sessionStorage.setItem('signup-info', JSON.stringify(temp))
+        }
     })
 
     return (
@@ -118,10 +122,10 @@ export default function Password(mainProps: any) {
                                             formik.setFieldTouched('confirm_password', true, true);
                                             formik.setFieldError('confirm_password', confirm_password);
                                         }
-                                        if (!(set_password || confirm_password)) {
-                                            sessionStorage.setItem('signup-password', JSON.stringify(formik.values))
-                                            navigate('/sign-up/email')
-                                        }
+                                        // if (!(set_password || confirm_password)) {
+                                        sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
+                                        navigate('/sign-up/email')
+                                        // }
                                     })
                                 }} >
                                     {t('next')}

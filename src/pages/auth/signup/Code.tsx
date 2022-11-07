@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useAppDispatch } from "../../../redux/hooks";
-import { signUpUser } from "../../../redux/auth/authActions";
+import { signInUser, signUpUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
 import Button from "../../../components/button/Button";
 import { Formik } from "formik";
@@ -90,19 +90,16 @@ export default function Code(mainProps: any) {
                                         if (!email_code) {
                                             const { values } = formik;
                                             const { email_code } = values;
-                                            const signupType = `${sessionStorage.getItem('signup-type')}`;
                                             const signupInfo = JSON.parse(`${sessionStorage.getItem('signup-info')}`);
-                                            const signupPassword = JSON.parse(`${sessionStorage.getItem('signup-password')}`);
-                                            const signupEmail = JSON.parse(`${sessionStorage.getItem('signup-email')}`);
 
                                             const signUpData = {
-                                                account_type: signupType as 'CLIENT' | 'FREELANCER',
+                                                account_type: signupInfo.type as 'CLIENT' | 'FREELANCER',
                                                 first_name: signupInfo.first_name,
                                                 last_name: signupInfo.last_name,
                                                 birthday: signupInfo.birthday,
                                                 country_id: signupInfo.countr_id,
-                                                password: signupPassword.confirm_password,
-                                                primary_email: signupEmail.primary_email,
+                                                password: signupInfo.confirm_password,
+                                                primary_email: signupInfo.primary_email,
                                                 email_code
                                             }
 
@@ -117,7 +114,11 @@ export default function Code(mainProps: any) {
                                                     sessionStorage.removeItem('signup-password')
                                                     sessionStorage.removeItem('signup-email')
                                                     sessionStorage.removeItem('ssignup-type')
-                                                    navigate('/sign-in')
+                                                    dispatch(signInUser({ email: signUpData.primary_email, password: signUpData.password })).then((res) => {
+                                                        navigate('/');
+                                                    }).catch((_err) => {
+
+                                                    })
                                                 }
                                                 setBackdrop(false);
                                             }).catch((err) => {
