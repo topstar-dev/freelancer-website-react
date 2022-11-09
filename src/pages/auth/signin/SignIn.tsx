@@ -42,10 +42,11 @@ export default function SignIn() {
 
   useEffect(() => {
     document.title = t('title.signin')
+    sessionStorage.removeItem('signup-info');
+    sessionStorage.removeItem('reset-password-data');
   })
 
   useEffect(() => {
-    sessionStorage.removeItem('signup-info')
     if (message) {
       dispatch(resetDefault())
       setBackdrop(false);
