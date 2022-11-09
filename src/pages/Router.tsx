@@ -30,6 +30,7 @@ import { signOutUser } from "../redux/auth/authActions";
 import EnterEmail from "./auth/resetPassword/enterEmail";
 import VerifyCode from "./auth/resetPassword/verifyCode";
 import SetNewPassword from "./auth/resetPassword/setNewPassword";
+import { clearAvatar } from "../redux/other/otherSlice";
 
 interface RoutesInterface {
   isHeader: boolean,
@@ -51,6 +52,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
       refreshToken(false, null).then((res: any) => {
         dispatch(updateUserInfo(res.data))
       }).catch((err: any) => {
+        dispatch(clearAvatar());
         dispatch(signOutUser());
       })
     }
