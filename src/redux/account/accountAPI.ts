@@ -35,7 +35,7 @@ export const refreshToken = (previous: boolean, error?: any, cancelToken?: any) 
 
     return axios(`${baseURL}/refresh-token`, {
         method: 'post',
-        cancelToken: cancelToken.token,
+        cancelToken,
         headers: {
             'Content-Type': 'application/json',
             'device-type': 'WEB',

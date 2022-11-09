@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { appointmentSchedule } from "./homeApi";
+import { appointmentSchedule } from "./homeAPI";
 
 export const scheduleAppointment = createAsyncThunk(
     'home/scheduleAppointment',

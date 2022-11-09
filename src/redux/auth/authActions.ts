@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
+import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authAPI";
 
 export interface SignUpInterface {
     account_type: 'CLIENT' | 'FREELANCER';
