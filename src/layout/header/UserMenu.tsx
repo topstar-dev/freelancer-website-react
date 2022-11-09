@@ -8,14 +8,14 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
 import axios from 'axios';
 import { clearAvatar } from '../../redux/other/otherSlice';
+import { signOutUser } from '../../redux/auth/authActions';
 
 interface UserMenuPropsInterface {
-    signOut: Function,
     userInfo: UserInterface | null
 }
 
 let source = axios.CancelToken.source();
-export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) {
+export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     // const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
@@ -41,8 +41,8 @@ export default function UserMenu({ signOut, userInfo }: UserMenuPropsInterface) 
         if (source) {
             source.cancel();
         }
+        dispatch(signOutUser());
         dispatch(clearAvatar())
-        signOut()
     }
 
     // const settingsClick = () => {

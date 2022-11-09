@@ -7,9 +7,6 @@ import { useSnackbar } from "notistack";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import {
-    signOutUser
-} from '../../redux/auth/authActions';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
@@ -39,10 +36,6 @@ export default function Header() {
         }
     }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
-    const signOut = () => {
-        dispatch(signOutUser());
-    }
-
     const pages: { name: string; url: string; }[] = [
         { name: t('header-help'), url: '/help' },
         { name: t('header-blog'), url: '/blog' },
@@ -50,7 +43,7 @@ export default function Header() {
         { name: t('header-about-us'), url: '/about' }
     ];
 
-    const userMenu = userInfo ? <UserMenu signOut={signOut} userInfo={userInfo} /> : ''
+    const userMenu = userInfo ? <UserMenu userInfo={userInfo} /> : ''
 
     const propsToPass = {
         pages: pages,
