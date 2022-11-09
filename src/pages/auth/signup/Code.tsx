@@ -18,6 +18,7 @@ import { Formik } from "formik";
 import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { CustomForm } from "../../commonStyle";
+import '../auth.css';
 
 export default function Code(mainProps: any) {
     const { t } = useTranslation();
@@ -111,9 +112,6 @@ export default function Code(mainProps: any) {
                                                 if (success) {
                                                     dispatch(resetDefault());
                                                     sessionStorage.removeItem('signup-info')
-                                                    sessionStorage.removeItem('signup-password')
-                                                    sessionStorage.removeItem('signup-email')
-                                                    sessionStorage.removeItem('ssignup-type')
                                                     dispatch(signInUser({ email: signUpData.primary_email, password: signUpData.password })).then((res) => {
                                                         navigate('/');
                                                     }).catch((_err) => {

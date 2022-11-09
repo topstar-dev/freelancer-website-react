@@ -25,6 +25,7 @@ import WithTranslateFormErrors from "../../../services/validationScemaOnLangChan
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
 import { getCountries } from "../../../redux/resources/resourcesApi";
+import '../auth.css';
 
 export default function Info(mainProps: any) {
   const { t } = useTranslation();
@@ -210,11 +211,10 @@ export default function Info(mainProps: any) {
                       formik.setFieldError('country_id', country_id);
                     }
 
-                    // sessionStorage.setItem('signup-type', `${type}`);
                     sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, type: type }))
-                    // if (!(first_name || last_name || birthday || country_id)) {
-                    navigate('/sign-up/set-password')
-                    // }
+                    if (!(first_name || last_name || birthday || country_id)) {
+                      navigate('/sign-up/set-password')
+                    }
                   })
                 }}>
                   {t('next')}

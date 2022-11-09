@@ -18,7 +18,7 @@ import { Formik } from "formik";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { CustomForm } from "../../commonStyle";
 import { useNavigate } from "react-router-dom";
-
+import '../auth.css';
 
 export default function Email(mainProps: any) {
     const { t } = useTranslation();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
@@ -8,15 +8,22 @@ import {
   InputAdornment,
   IconButton,
   Box,
+  CircularProgress,
+  Backdrop,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAppDispatch } from "../../../redux/hooks";
 import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
 import Button from "../../../components/button/Button";
+import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
+import { CustomForm } from "../../commonStyle";
+import Card from "../../../components/card/Card";
+import { Formik } from "formik";
+import * as yup from "yup";
+import '../auth.css';
 
 export default function SetNewPassword(mainProps: any) {
-  const { formik } = mainProps;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -27,86 +34,138 @@ export default function SetNewPassword(mainProps: any) {
     setShowPassword(!showPassword);
   };
 
+  const [backdrop, setBackdrop] = React.useState(false);
+  const resetPasswordData = sessionStorage.getItem('reset-password-data') ? JSON.parse(`${sessionStorage.getItem('reset-password-data')}`) : {};
+  const [formData] = React.useState({
+    password: resetPasswordData.password || '',
+    confirm_password: resetPasswordData.confirm_password || ''
+  });
+
+  React.useEffect(() => {
+    document.title = t('title.reset-password');
+  })
+
   return (
-    <>
-      <Typography className="rounx-account-title-info">
-        {t('password-title')}
-      </Typography>
-      <TextField
-        fullWidth
-        id="password"
-        name="password"
-        label={t('set-password')}
-        type={showPassword ? "text" : "password"}
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        helperText={formik.touched.password && formik.errors.password ? formik.errors.password : t('at_least_8_characters')}
-        error={formik.touched.password && Boolean(formik.errors.password)}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <TextField
-        fullWidth
-        id="confirm_password"
-        name="confirm_password"
-        type={showPassword ? "text" : "password"}
-        label={t('confirm-password')}
-        value={formik.values.confirm_password}
-        onChange={formik.handleChange}
-        error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
-        helperText={formik.touched.confirm_password && formik.errors.confirm_password}
-      />
-      <Box style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <Button onClick={() => {
-          formik.validateForm().then((res: any) => {
-            const { password, confirm_password } = res;
-            if (password) {
-              formik.setFieldTouched('password', true, true);
-              formik.setFieldError('password', password);
-            }
+    <Card className={`rounx-auth-card`}>
+      <Formik
+        enableReinitialize
+        initialValues={formData}
+        validationSchema={yup.object({
+          password: yup
+            .string()
+            .required(t('validation.set-password-required')),
+          confirm_password: yup
+            .string()
+            .required(t('validation.confirm-password-required'))
+            .min(8, t('validation.password-length'))
+            .when("password", {
+              is: (value: string) => (value && value.length > 0 ? true : false),
+              then: yup.string().oneOf([yup.ref("password")], t('validation.two-passwords-do-not-match')),
+            })
+        })}
+        onSubmit={() => { }}
+      >
+        {formik => (
+          <WithTranslateFormErrors {...formik}>
+            <CustomForm>
+              <img
+                src="/images/rounx-symbol.png"
+                alt="Rounx admin"
+                width="60px"
+                height="60px"
+                className='primary-color'
+                style={{ alignSelf: "center", cursor: "pointer" }}
+                onClick={() => navigate('/')}
+              />
+              <Typography className="rounx-account-title-info">
+                {t('password-title')}
+              </Typography>
+              <TextField
+                fullWidth
+                id="password"
+                name="password"
+                label={t('set-password')}
+                type={showPassword ? "text" : "password"}
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                helperText={formik.touched.password && (formik.errors.password ? formik.errors.password : t('at_least_8_characters')) as ReactNode}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                id="confirm_password"
+                name="confirm_password"
+                type={showPassword ? "text" : "password"}
+                label={t('confirm-password')}
+                value={formik.values.confirm_password}
+                onChange={formik.handleChange}
+                error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
+                helperText={formik.touched.confirm_password && formik.errors.confirm_password as ReactNode}
+              />
+              <Box style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <Button onClick={() => {
+                  formik.validateForm().then((res: any) => {
+                    const { password, confirm_password } = res;
+                    if (password) {
+                      formik.setFieldTouched('password', true, true);
+                      formik.setFieldError('password', password);
+                    }
 
-            if (confirm_password) {
-              formik.setFieldTouched('confirm_password', true, true);
-              formik.setFieldError('confirm_password', confirm_password);
-            }
+                    if (confirm_password) {
+                      formik.setFieldTouched('confirm_password', true, true);
+                      formik.setFieldError('confirm_password', confirm_password);
+                    }
 
-            if (!(confirm_password || password)) {
-              const resetPasswordObj = {
-                email: formik.values.email,
-                code: formik.values.code,
-                password: formik.values.password
-              }
-              mainProps.setBackdrop(false);
-              dispatch(resetPasswordUser(resetPasswordObj)).then((res: any) => {
-                const { payload } = res;
-                const { message, success } = payload;
-                enqueueSnackbar(message);
-                if (success) {
-                  dispatch(resetDefault());
-                  navigate('/sign-in');
-                }
-                mainProps.setBackdrop(false);
-              }).catch((err) => {
-                mainProps.setBackdrop(false);
-                enqueueSnackbar("Error occured");
-              })
-            }
-          })
-        }}>
-          {t('submit')}
-        </Button>
-      </Box>
-    </>
+                    if (!(confirm_password || password)) {
+                      const resetPasswordObj = {
+                        email: resetPasswordData.email,
+                        code: resetPasswordData.code,
+                        password: formik.values.password
+                      }
+                      setBackdrop(false);
+                      dispatch(resetPasswordUser(resetPasswordObj)).then((res: any) => {
+                        const { payload } = res;
+                        const { message, success } = payload;
+                        enqueueSnackbar(message);
+                        if (success) {
+                          dispatch(resetDefault());
+                          sessionStorage.removeItem('reset-password-data')
+                          navigate('/sign-in');
+                        }
+                        setBackdrop(false);
+                      }).catch((err) => {
+                        setBackdrop(false);
+                        enqueueSnackbar("Error occured");
+                      })
+                    }
+                  })
+                }}>
+                  {t('submit')}
+                </Button>
+              </Box>
+            </CustomForm>
+          </WithTranslateFormErrors>
+        )}
+      </Formik>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: 999 }}
+        open={backdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </Card>
   );
 }

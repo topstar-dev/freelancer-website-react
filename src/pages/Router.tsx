@@ -9,7 +9,6 @@ import Info from "./auth/signup/Info";
 import Password from "./auth/signup/Password";
 import Email from "./auth/signup/Email";
 import Code from "./auth/signup/Code";
-import ResetPassword from "./auth/resetPassword/ResetPassword";
 
 import Settings from "./settings/Settings";
 import Personal from "./settings/personalInfo/Personal";
@@ -28,6 +27,9 @@ import { refreshToken } from "../redux/account/accountApi";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOutUser } from "../redux/auth/authActions";
+import EnterEmail from "./auth/resetPassword/enterEmail";
+import VerifyCode from "./auth/resetPassword/verifyCode";
+import SetNewPassword from "./auth/resetPassword/setNewPassword";
 
 interface RoutesInterface {
   isHeader: boolean,
@@ -107,7 +109,20 @@ export default function Router() {
         },
         {
           path: "/reset-password",
-          element: <ResetPassword />
+          children: [
+            {
+              path: "/reset-password",
+              element: <EnterEmail />,
+            },
+            {
+              path: "/reset-password/code",
+              element: <VerifyCode />,
+            },
+            {
+              path: "/reset-password/set-password",
+              element: <SetNewPassword />,
+            }
+          ]
         }
       ],
     },
@@ -116,8 +131,16 @@ export default function Router() {
       element: <CustomRouter isHeader={true} protectedRoute={false} />,
       children: [
         {
-          path: "/",
-          element: <HomePage />
+          path: "",
+          element: <HomePage />,
+        },
+        {
+          path: "privacy",
+          element: <Privacy />,
+        },
+        {
+          path: "terms",
+          element: <Terms />,
         },
         {
           path: "contact",

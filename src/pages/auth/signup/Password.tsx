@@ -15,6 +15,7 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { CustomForm } from "../../commonStyle";
 import { useNavigate } from "react-router-dom";
+import '../auth.css';
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
@@ -122,10 +123,10 @@ export default function Password(mainProps: any) {
                                             formik.setFieldTouched('confirm_password', true, true);
                                             formik.setFieldError('confirm_password', confirm_password);
                                         }
-                                        // if (!(set_password || confirm_password)) {
-                                        sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
-                                        navigate('/sign-up/email')
-                                        // }
+                                        if (!(set_password || confirm_password)) {
+                                            sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
+                                            navigate('/sign-up/email')
+                                        }
                                     })
                                 }} >
                                     {t('next')}
