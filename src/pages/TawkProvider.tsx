@@ -4,9 +4,10 @@ const TawkContext = React.createContext<any>(null);
 
 const TawkProvider = (props: any) => {
     const tawkMessengerRef = React.useRef<any | null>(null);
+    const [obj, setObj] = React.useState<any | null>(tawkMessengerRef)
 
     return (
-        <TawkContext.Provider value={tawkMessengerRef}>
+        <TawkContext.Provider value={obj}>
             {props.children}
             <TawkMessengerReact
                 propertyId="60d7fbc17f4b000ac039bd84"
@@ -33,6 +34,7 @@ const TawkProvider = (props: any) => {
                                 }
                             }
                         }, 200);
+                        setObj(tawkMessengerRef)
                     }
                 }}
             />
