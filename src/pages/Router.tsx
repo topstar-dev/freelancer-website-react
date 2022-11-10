@@ -23,7 +23,7 @@ import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
 import TawkProvider from "./TawkProvider";
-import { refreshToken } from "../redux/account/accountApi";
+import { refreshToken } from "../redux/account/accountAPI";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOutUser } from "../redux/auth/authActions";
