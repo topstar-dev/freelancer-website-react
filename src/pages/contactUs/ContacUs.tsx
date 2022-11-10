@@ -29,7 +29,7 @@ export default function ContactUs() {
         tawkObj.hideWidget();
       }
     }
-  }, [tawkObj.showWidget, tawkObj.hideWidget])
+  }, [tawkObj])
 
   return (
     <>

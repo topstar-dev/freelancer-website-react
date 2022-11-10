@@ -45,7 +45,7 @@ export default function HomePage() {
                 tawkObj.hideWidget();
             }
         }
-    }, [tawkObj.showWidget, tawkObj.hideWidget])
+    }, [tawkObj])
 
     return (
         <>

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { downloadImage } from "./otherApi";
+import { downloadImage } from "./otherAPI";
 
 export interface ImageDownloadInterface {
     functionType: string,
