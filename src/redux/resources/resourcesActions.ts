@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getCountries } from "./resourcesAPI";
+import { getCountries } from "./resourcesApi";
 
 export interface GetCountriesInterface {
     page_index: string,
