@@ -3,20 +3,11 @@ const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 const TawkContext = React.createContext<any>(null);
 
 const TawkProvider = (props: any) => {
-    const tawkMessengerRef = React.useRef<any>();
-    const [loaded, setLoaded] = React.useState(false);
-
-    React.useEffect(() => {
-        setTimeout(() => {
-            if (!loaded) {
-                setLoaded(true)
-            }
-        }, 3000);
-    })
+    const tawkMessengerRef = React.useRef<any | null>(null);
 
     return (
         <TawkContext.Provider value={tawkMessengerRef}>
-            {loaded && props.children}
+            {props.children}
             <TawkMessengerReact
                 propertyId="60d7fbc17f4b000ac039bd84"
                 widgetId="1ggn2lnfe"
@@ -41,8 +32,7 @@ const TawkProvider = (props: any) => {
                                     divTag.style.width = '56px';
                                 }
                             }
-                        }, 100);
-                        setLoaded(true);
+                        }, 200);
                     }
                 }}
             />

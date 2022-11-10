@@ -30,16 +30,22 @@ export default function HomePage() {
     })
 
     React.useEffect(() => {
-        if (tawkObj) {
-            tawkObj.showWidget();
+        try {
+            if (tawkObj && tawkObj.showWidget && typeof tawkObj.showWidget === "function") {
+                setTimeout(() => {
+                    tawkObj.showWidget();
+                }, 1000)
+            }
+        } catch(err) {
+            console.log("chat widget not loaded")
         }
 
         return () => {
-            if (tawkObj) {
+            if (tawkObj && tawkObj.hideWidget) {
                 tawkObj.hideWidget();
             }
         }
-    }, [tawkObj])
+    }, [tawkObj.showWidget, tawkObj.hideWidget])
 
     return (
         <>
