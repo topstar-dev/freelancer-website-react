@@ -10,11 +10,6 @@ import Password from "./auth/signup/Password";
 import Email from "./auth/signup/Email";
 import Code from "./auth/signup/Code";
 
-import Settings from "./settings/Settings";
-import Personal from "./settings/personalInfo/Personal";
-import Security from "./settings/security/Security";
-import Currency from "./settings/currency/Currency";
-
 import HomePage from "./home/Home";
 import ContactUs from "./contactUs/ContacUs";
 import AboutUs from "./aboutUs/AboutUs";
@@ -164,30 +159,6 @@ export default function Router() {
           element: <Terms />,
         }
       ],
-    },
-    {
-      path: "/settings",
-      element: <CustomRouter isHeader={true} protectedRoute={true} />,
-      children: [
-        {
-          path: "/settings",
-          element: <Settings />,
-          children: [
-            {
-              path: "personal",
-              element: <Personal />,
-            },
-            {
-              path: "security",
-              element: <Security />,
-            },
-            {
-              path: "currency",
-              element: <Currency />,
-            }
-          ]
-        }
-      ]
     },
     {
       path: "*",
