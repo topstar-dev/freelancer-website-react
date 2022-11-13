@@ -24,7 +24,7 @@ service.interceptors.response.use(
     }
 );
 
-export const apiCall = async (url: string, options: RequestInit, authRequired = false, type = 'json') => {
+export const apiCall = async (url: string, options: RequestInit, authRequired = false) => {
     let headers: any = {
         ...defaultHeaders()
     }
@@ -43,28 +43,14 @@ export const apiCall = async (url: string, options: RequestInit, authRequired = 
     }
 
     try {
-        let response: any;
-        if (type === 'blob') {
-            response = await fetch(`${baseURL}${url}`, {
-                ...options,
-                headers: {
-                    ...headers
-                }
-            });
-        } else {
-            response = await service({
-                method: options.method,
-                data: options.body,
-                url: `${url} `,
-                headers: {
-                    ...headers
-                }
-            });
-        }
-        if (type === 'blob') {
-            const file = await response.blob();
-            return { success: true, file };
-        }
+        const response = await service({
+            method: options.method,
+            data: options.body,
+            url: `${url} `,
+            headers: {
+                ...headers
+            }
+        });
         return { success: true, ...response.data };
     } catch (err: any) {
         return { success: false, ...err.response.data }

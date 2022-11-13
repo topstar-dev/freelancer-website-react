@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { TextField, Typography } from "@mui/material";
 import axios from 'axios';
 import { useSnackbar } from "notistack";
+import { baseURL } from "../../../redux/apiCall";
 
 export default function Currency() {
     const { t } = useTranslation();
@@ -15,7 +16,7 @@ export default function Currency() {
             "Accept-Language": 'en',
             "device-type": 'WEB'
         }
-        axios.get(`${process.env.REACT_APP_BASE_URL}/user/v1/settings/currency`, {
+        axios.get(`${baseURL}/user/v1/settings/currency`, {
             headers: headers
         }).then((res) => {
             setCurrency(res.data);

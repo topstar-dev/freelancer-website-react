@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useSnackbar } from "notistack";
-
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import { baseURL } from '../../../redux/apiCall';
 
 export default function useSecurity() {
     const { enqueueSnackbar } = useSnackbar();
@@ -14,7 +13,7 @@ export default function useSecurity() {
     axios.defaults.withCredentials = true;
 
     const getCurrency = () => {
-        axios.get(`${BASE_URL}/user/v1/settings/security`, {
+        axios.get(`${baseURL}/user/v1/settings/security`, {
             headers: headers
         }).then((res) => {
             // setCurrency(res.data);
