@@ -45,7 +45,7 @@ export const apiCall = async (url: string, options: RequestInit, authRequired = 
     try {
         let response: any;
         if (type === 'blob') {
-            response = await fetch(`${process.env.REACT_APP_BASE_URL}${url}`, {
+            response = await fetch(`${baseURL}${url}`, {
                 ...options,
                 headers: {
                     ...headers
