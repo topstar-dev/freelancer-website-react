@@ -67,6 +67,7 @@ export default function Info(mainProps: any) {
 
   useEffect(() => {
     if (!load && countryData.length <= 0) {
+      setLoad(true);
       getCountries().then((res) => {
         const countryArr = res.data.records.map((c: any) => ({
           label: c.country_name,
@@ -75,7 +76,6 @@ export default function Info(mainProps: any) {
         setCountryData(countryArr)
         const countryFind = countryArr.find((e: any) => e.id === country.id)
         setCountry(countryFind)
-        setLoad(true);
       }).catch((err) => {
         setLoad(true)
       })
