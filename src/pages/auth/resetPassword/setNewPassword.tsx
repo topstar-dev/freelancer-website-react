@@ -135,7 +135,7 @@ export default function SetNewPassword(mainProps: any) {
                         code: resetPasswordData.code,
                         password: formik.values.password
                       }
-                      setBackdrop(false);
+                      setBackdrop(true);
                       dispatch(resetPasswordUser(resetPasswordObj)).then((res: any) => {
                         const { payload } = res;
                         const { message, success } = payload;

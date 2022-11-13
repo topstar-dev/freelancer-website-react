@@ -27,14 +27,14 @@ export default function EnterEmail(mainProps: any) {
   const { enqueueSnackbar } = useSnackbar();
 
   const [backdrop, setBackdrop] = React.useState(false);
-  
+
   const resetPasswordData = sessionStorage.getItem('reset-password-data') ? JSON.parse(`${sessionStorage.getItem('reset-password-data')}`) : {};
   const [formData] = React.useState({
     email: resetPasswordData.email || ""
   });
 
   React.useEffect(() => {
-		document.title = t('title.reset-password')
+    document.title = t('title.reset-password')
     if (resetPasswordData) {
       const temp = { ...resetPasswordData };
       delete temp['code'];
@@ -42,8 +42,8 @@ export default function EnterEmail(mainProps: any) {
       delete temp['confirm_password'];
       sessionStorage.setItem('reset-password-data', JSON.stringify(temp))
     }
-	})
-  
+  })
+
 
   return (
     <Card className={`rounx-auth-card`}>
@@ -100,7 +100,7 @@ export default function EnterEmail(mainProps: any) {
                           email: formik.values.email,
                           function_type: "RESET_PASSWORD"
                         }
-                        setBackdrop(false);
+                        setBackdrop(true);
                         dispatch(sendCodeToEmail(sendEmailCodeObj)).then((res: any) => {
                           const { payload } = res;
                           const { message, success } = payload;

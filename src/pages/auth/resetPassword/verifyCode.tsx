@@ -33,14 +33,14 @@ export default function VerifyCode(mainProps: any) {
   });
 
   React.useEffect(() => {
-		document.title = t('title.reset-password');
+    document.title = t('title.reset-password');
     if (resetPasswordData) {
       const temp = { ...resetPasswordData };
       delete temp['password'];
       delete temp['confirm_password'];
       sessionStorage.setItem('reset-password-data', JSON.stringify(temp))
     }
-	})
+  })
 
   return (
     <Card className={`rounx-auth-card`}>
@@ -99,7 +99,7 @@ export default function VerifyCode(mainProps: any) {
                         code: formik.values.code,
                         function_type: "RESET_PASSWORD"
                       }
-                      setBackdrop(false);
+                      setBackdrop(true);
                       dispatch(checkCodeOfEmail(sendEmailCodeObj)).then((res: any) => {
                         const { payload } = res;
                         const { message, success } = payload;
