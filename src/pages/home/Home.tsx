@@ -1,7 +1,7 @@
 import React from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
-import { Box, Divider, TextField, Typography } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Divider, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
@@ -22,6 +22,7 @@ export default function HomePage() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const { language } = useAppSelector(state => state.resources);
+    const [backdrop, setBackdrop] = React.useState(false);
 
     React.useEffect(() => {
         document.title = t('title.home');
@@ -36,7 +37,7 @@ export default function HomePage() {
                     tawkObj.showWidget();
                 }, 1000)
             }
-        } catch(err) {
+        } catch (err) {
             console.log("chat widget not loaded")
         }
 
@@ -153,13 +154,16 @@ export default function HomePage() {
                                     })}
                                     initialValues={{ email: '' }}
                                     onSubmit={(values, actions) => {
+                                        setBackdrop(true);
                                         dispatch(scheduleAppointment(values.email))
                                             .then((res) => {
                                                 enqueueSnackbar(res.payload.message)
                                                 actions.resetForm();
+                                                setBackdrop(false);
                                             }).catch((error) => {
                                                 enqueueSnackbar(error.message);
                                                 actions.resetForm();
+                                                setBackdrop(false);
                                             })
                                     }}
                                 >
@@ -189,6 +193,12 @@ export default function HomePage() {
                                 :
                                 <img className="rounx-qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
                             }
+                            <Backdrop
+                                sx={{ color: '#fff', zIndex: 999 }}
+                                open={backdrop}
+                            >
+                                <CircularProgress color="inherit" />
+                            </Backdrop>
                         </Box>
                     }
                 </Box>
