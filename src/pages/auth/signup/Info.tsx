@@ -54,7 +54,6 @@ export default function Info(mainProps: any) {
       const temp = { ...signupInfo };
       delete temp['set_password'];
       delete temp['confirm_password'];
-      delete temp['confirm_password'];
       delete temp['primary_email'];
       delete temp['email_code'];
       sessionStorage.setItem('signup-info', JSON.stringify(temp))
