@@ -12,12 +12,10 @@ import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
 import './home.css'
-import { useTawkRef } from "../TawkProvider";
 import { pageView } from "../../services/eventTracker";
 
 export default function HomePage() {
     const { t } = useTranslation();
-    const tawkObj = useTawkRef();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -29,24 +27,6 @@ export default function HomePage() {
         sessionStorage.removeItem('signup-info')
         pageView(window.location.pathname)
     })
-
-    React.useEffect(() => {
-        try {
-            if (tawkObj && tawkObj.showWidget && typeof tawkObj.showWidget === "function") {
-                setTimeout(() => {
-                    tawkObj.showWidget();
-                }, 1000)
-            }
-        } catch (err) {
-            console.log("chat widget not loaded")
-        }
-
-        return () => {
-            if (tawkObj && tawkObj.hideWidget) {
-                tawkObj.hideWidget();
-            }
-        }
-    }, [tawkObj])
 
     return (
         <>

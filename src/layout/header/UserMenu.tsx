@@ -6,6 +6,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { signOutUser } from '../../redux/auth/authActions';
+import { imageDownload } from '../../redux/other/otherActions';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -16,10 +17,13 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const { userAvatar } = useAppSelector(state => state.other);
+    const { userAvatar, loading } = useAppSelector(state => state.other);
 
     useEffect(() => {
-    }, [userAvatar])
+        if (userInfo && userInfo.avatar_url && !userAvatar && !loading) {
+            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo.avatar_url }))
+        }
+    }, [dispatch, userInfo, userAvatar, loading])
 
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
