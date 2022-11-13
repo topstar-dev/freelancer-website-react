@@ -74,14 +74,14 @@ export default function Info(mainProps: any) {
           id: c.country_id
         }))
         setCountryData(countryArr)
-        const country = countryArr.find((e: any) => e.id === formData.country_id)
-        setCountry(country)
+        const countryFind = countryArr.find((e: any) => e.id === country.id)
+        setCountry(countryFind)
         setLoad(true);
       }).catch((err) => {
         setLoad(true)
       })
     }
-  }, [countryData, load, formData])
+  }, [countryData, load, formData, country?.id])
 
   return (
     <Card className={`rounx-auth-card`}>

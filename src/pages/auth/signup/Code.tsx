@@ -27,8 +27,8 @@ export default function Code(mainProps: any) {
     const navigate = useNavigate();
 
     const [backdrop, setBackdrop] = React.useState(false);
-    const signupCode = sessionStorage.getItem('signup-code');
-    const [formData] = useState(signupCode ? JSON.parse(signupCode) : {
+    const signupCode = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
+    const [formData] = useState({
         email_code: "",
     });
 
@@ -66,7 +66,7 @@ export default function Code(mainProps: any) {
                                     alignSelf: 'center',
                                     fontWeight: 'bold',
                                     fontSize: '16px'
-                                }}>{formik.values.primary_email}</span>
+                                }}>{signupCode.primary_email}</span>
                             </Typography>
                             <TextField
                                 fullWidth

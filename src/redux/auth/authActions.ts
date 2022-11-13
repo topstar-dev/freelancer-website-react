@@ -1,4 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { imageDownload } from "../other/otherActions";
+import { clearAvatar } from "../other/otherSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
 
 export interface SignUpInterface {
@@ -46,9 +48,16 @@ export const signUpUser = createAsyncThunk(
 
 export const signInUser = createAsyncThunk(
     'user/signin',
-    async (signInData: SignInInterface, { rejectWithValue }) => {
+    async (signInData: SignInInterface, { rejectWithValue, dispatch }) => {
         try {
             const response = await signIn(signInData);
+            if (response.success && response.data?.avatar_url) {
+                if (response.data?.avatar_url) {
+                    dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
+                } else {
+                    dispatch(clearAvatar());
+                }
+            }
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })
@@ -58,9 +67,9 @@ export const signInUser = createAsyncThunk(
 
 export const signOutUser = createAsyncThunk(
     'user/signout',
-    async (arg: void, { rejectWithValue }) => {
+    async (arg: void, { rejectWithValue, dispatch }) => {
         try {
-            // const response = await signOut();
+            dispatch(clearAvatar());
             const response = {
                 success: true,
                 message: "header-user-signout-message"

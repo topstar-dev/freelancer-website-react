@@ -5,31 +5,23 @@ import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { imageDownload } from '../../redux/other/otherActions';
-import axios from 'axios';
-import { clearAvatar } from '../../redux/other/otherSlice';
 import { signOutUser } from '../../redux/auth/authActions';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
 }
 
-let source = axios.CancelToken.source();
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     // const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const { userAvatar, loading } = useAppSelector(state => state.other);
+    const { userAvatar } = useAppSelector(state => state.other);
 
     useEffect(() => {
-        if (userInfo?.avatar_url && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo?.avatar_url }))
-        }
-    }, [dispatch, userInfo?.avatar_url, userAvatar, loading])
+    }, [userAvatar])
 
     const handleMenu = (event: any) => {
-        source = axios.CancelToken.source();
         setAnchorEl(event.currentTarget);
     };
 
@@ -38,11 +30,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     };
 
     const signOutMethod = () => {
-        if (source) {
-            source.cancel();
-        }
         dispatch(signOutUser());
-        dispatch(clearAvatar())
     }
 
     // const settingsClick = () => {
