@@ -15,7 +15,7 @@ export default function Currency() {
             "Accept-Language": 'en',
             "device-type": 'WEB'
         }
-        axios.get(`${process.env.REACT_APP_BASE_URL}/settings/currency`, {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/user/v1/settings/currency`, {
             headers: headers
         }).then((res) => {
             setCurrency(res.data);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getuserDataFromStorage, refreshToken } from './account/accountAPI';
 
-export const baseURL = `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_API_PREFIX}${process.env.REACT_APP_API_VERSION}`;
+export const baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
 export const defaultHeaders = () => ({
     'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ export const signUp = (signUpData: SignUpInterface) => {
         method: 'POST',
         body: JSON.stringify(signUpData)
     };
-    return apiCall(`/sign-up`, requestOptions);
+    return apiCall(`/user/v1/sign-up`, requestOptions);
 };
 
 export const signIn = (signInData: SignInInterface) => {
@@ -14,7 +14,7 @@ export const signIn = (signInData: SignInInterface) => {
         method: 'POST',
         body: JSON.stringify(signInData)
     };
-    return apiCall(`/sign-in`, requestOptions);
+    return apiCall(`/user/v1/sign-in`, requestOptions);
 };
 
 export const resetPassword = (resetPasswordData: ResetPasswordInterface) => {
@@ -22,7 +22,7 @@ export const resetPassword = (resetPasswordData: ResetPasswordInterface) => {
         method: 'POST',
         body: JSON.stringify(resetPasswordData)
     };
-    return apiCall(`/reset-password`, requestOptions);
+    return apiCall(`/user/v1/reset-password`, requestOptions);
 };
 
 export const sendEmailCode = (sendEmailObj: SendEmailCodeInterface) => {
@@ -30,7 +30,7 @@ export const sendEmailCode = (sendEmailObj: SendEmailCodeInterface) => {
         method: 'POST',
         body: JSON.stringify(sendEmailObj)
     };
-    return apiCall(`/send-email-code`, requestOptions);
+    return apiCall(`/user/v1/send-email-code`, requestOptions);
 };
 
 export const checkEmailCode = (checkEmailObj: CheckEmailCodeInterface) => {
@@ -38,5 +38,5 @@ export const checkEmailCode = (checkEmailObj: CheckEmailCodeInterface) => {
         method: 'POST',
         body: JSON.stringify(checkEmailObj)
     };
-    return apiCall(`/check-email-code`, requestOptions);
+    return apiCall(`/user/v1/check-email-code`, requestOptions);
 }; 

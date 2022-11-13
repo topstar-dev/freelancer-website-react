@@ -33,7 +33,7 @@ export const refreshToken = (previous: boolean, error?: any, cancelToken?: any) 
         tempHeader['access-token'] = userData['access_token'];
     }
 
-    return axios(`${baseURL}/refresh-token`, {
+    return axios(`${baseURL}/user/v1/refresh-token`, {
         method: 'post',
         cancelToken,
         headers: {

@@ -14,7 +14,7 @@ export default function useSecurity() {
     axios.defaults.withCredentials = true;
 
     const getCurrency = () => {
-        axios.get(`${BASE_URL}/settings/security`, {
+        axios.get(`${BASE_URL}/user/v1/settings/security`, {
             headers: headers
         }).then((res) => {
             // setCurrency(res.data);

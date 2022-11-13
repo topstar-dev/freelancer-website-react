@@ -6,5 +6,5 @@ export const getCountries = (getCountriesParam: GetCountriesInterface | void) =>
         method: 'GET'
     };
     const queryString = getCountriesParam ? `?${new URLSearchParams(getCountriesParam as unknown as Record<string, string>).toString()}` : '';
-    return apiCall(`/countries${queryString}`, requestOptions);
+    return apiCall(`/user/v1/countries${queryString}`, requestOptions);
 };

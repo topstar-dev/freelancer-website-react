@@ -5,5 +5,5 @@ export const appointmentSchedule = (email: string) => {
         method: 'POST',
         body: JSON.stringify({ email })
     };
-    return apiCall(`/appointment-email`, requestOptions);
+    return apiCall(`/user/v1/appointment-email`, requestOptions);
 };

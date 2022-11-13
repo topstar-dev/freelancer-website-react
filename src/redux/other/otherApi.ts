@@ -8,5 +8,5 @@ export const downloadImage = (imageData: ImageDownloadInterface) => {
             "function-type": imageData.functionType
         }
     };
-    return apiCall(`/image/${imageData.fileName}`, requestOptions, false, 'blob');
+    return apiCall(`/user/v1/image/${imageData.fileName}`, requestOptions, false, 'blob');
 };
