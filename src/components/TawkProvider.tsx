@@ -1,20 +1,22 @@
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 
-const ChatWidget = ({ isHeader }: any) => {
+const TawkProvider = ({ isHeader }: any) => {
     const tawkMessengerRef = React.useRef<any | null>(null);
+    const location = useLocation();
 
     React.useEffect(() => {
         try {
             if (tawkMessengerRef.current) {
-                if (!isHeader) {
+                if (location.pathname !== '/contact') {
                     tawkMessengerRef.current?.hideWidget();
                 } else {
                     tawkMessengerRef.current?.showWidget();
                 }
             }
         } catch (err) { }
-    }, [isHeader, tawkMessengerRef])
+    }, [location.pathname, tawkMessengerRef])
 
     return (
         <TawkMessengerReact
@@ -52,4 +54,4 @@ const ChatWidget = ({ isHeader }: any) => {
     )
 }
 
-export default ChatWidget;
+export default TawkProvider;

@@ -30,8 +30,7 @@ import EnterEmail from "./auth/resetPassword/enterEmail";
 import VerifyCode from "./auth/resetPassword/verifyCode";
 import SetNewPassword from "./auth/resetPassword/setNewPassword";
 import { clearAvatar } from "../redux/other/otherSlice";
-import ChatWidget from "./ChatWidget";
-
+import TawkProvider from "../components/TawkProvider";
 
 interface RoutesInterface {
   isHeader: boolean,
@@ -76,7 +75,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
         <Outlet />
       </Box>
       <Footer />
-      <ChatWidget isHeader={isHeader} />
+      <TawkProvider />
     </Box>
   </>
 
