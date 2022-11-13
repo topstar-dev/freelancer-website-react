@@ -63,12 +63,18 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   }, [isHeader, userInfo, called, dispatch])
 
   useEffect(() => {
-    if (!isHeader && tawkMessengerRef.current) {
-      tawkMessengerRef.current.hideWidget();
-    } else {
-      tawkMessengerRef.current.showWidget();
-    }
+    try {
+      if (tawkMessengerRef.current) {
+        if (!isHeader) {
+          tawkMessengerRef.current?.hideWidget();
+        } else {
+          tawkMessengerRef.current?.showWidget();
+        }
+      }
+    } catch (err) { }
   }, [isHeader, tawkMessengerRef])
+
+
 
   const content = <>
     {isHeader && <Header />}
@@ -99,7 +105,11 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
         }}
         onLoad={() => {
           if (tawkMessengerRef.current) {
-            tawkMessengerRef.current.showWidget();
+            if (isHeader) {
+              tawkMessengerRef.current.showWidget();
+            } else {
+              tawkMessengerRef.current.hideWidget();
+            }
             setTimeout(() => {
               const ifr = document.querySelector('iframe');
               if (ifr) {
