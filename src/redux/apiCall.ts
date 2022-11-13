@@ -6,7 +6,6 @@ export const baseURL = `${process.env.REACT_APP_BASE_URL}`;
 export const defaultHeaders = () => ({
     'Content-Type': 'application/json',
     'device-type': 'WEB',
-    'accept': 'application/json',
     'Accept-Language': `${localStorage.getItem('i18nextLng')}`
 })
 
