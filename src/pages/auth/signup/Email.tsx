@@ -28,7 +28,7 @@ export default function Email(mainProps: any) {
     const dispatch = useAppDispatch();
 
     const [backdrop, setBackdrop] = React.useState(false);
-    const signupEmail = sessionStorage.getItem('signup-email') ? JSON.parse(`${sessionStorage.getItem('signup-email')}`) : {};
+    const signupEmail = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
     const [formData] = useState({
         primary_email: signupEmail.primary_email || "",
     });
@@ -102,7 +102,7 @@ export default function Email(mainProps: any) {
                                                 enqueueSnackbar(message);
                                                 if (success) {
                                                     dispatch(resetDefault());
-                                                    sessionStorage.setItem('signup-email', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
+                                                    sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
                                                     navigate('/sign-up/code')
                                                 }
                                                 setBackdrop(false);
