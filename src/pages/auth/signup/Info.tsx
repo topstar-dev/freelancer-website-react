@@ -28,7 +28,7 @@ import { getCountries } from "../../../redux/resources/resourcesApi";
 import '../auth.css';
 
 export default function Info(mainProps: any) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type');
@@ -45,7 +45,7 @@ export default function Info(mainProps: any) {
     country_id: signupInfo.country_id || null
   });
 
-  const [country, setCountry] = React.useState<any>(formData.country_id ? countryData.find((e: any) => e.id === formData.country_id) : null);
+  const [country, setCountry] = React.useState<any>(null);
   const [birthday, setBirthday] = React.useState<Dayjs | null>(formData.birthday);
 
   useEffect(() => {
@@ -61,9 +61,11 @@ export default function Info(mainProps: any) {
   })
 
   useEffect(() => {
-    setLoad(false)
-    setCountryData([]);
-  }, [language])
+    if (i18n.language !== language) {
+      setLoad(false)
+      setCountryData([]);
+    }
+  }, [language, i18n.language])
 
   useEffect(() => {
     if (!load && countryData.length <= 0) {
@@ -74,13 +76,13 @@ export default function Info(mainProps: any) {
           id: c.country_id
         }))
         setCountryData(countryArr)
-        const countryFind = countryArr.find((e: any) => e.id === country.id)
+        const countryFind = countryArr.find((e: any) => e.id === signupInfo.country_id)
         setCountry(countryFind)
       }).catch((err) => {
         setLoad(true)
       })
     }
-  }, [countryData, load, formData, country?.id])
+  }, [countryData, load, formData, country, signupInfo.country_id])
 
   return (
     <Card className={`rounx-auth-card`}>
@@ -95,9 +97,11 @@ export default function Info(mainProps: any) {
             .required(t('validation.lastname-required')),
           birthday: yup
             .string()
+            .nullable()
             .required(t('validation.birthday-required')),
           country_id: yup
             .string()
+            .nullable()
             .required(t('validation.country-required'))
         })}
         onSubmit={(values) => { }}
@@ -144,7 +148,7 @@ export default function Info(mainProps: any) {
                   value={birthday}
                   onChange={(e) => {
                     setBirthday(e);
-                    formik.setFieldValue('birthday', dayjs(e).format('YYYY-MM-DD'))
+                    formik.setFieldValue('birthday', e ? dayjs(e).format('YYYY-MM-DD') : null)
                   }}
                   maxDate={dayjs()}
                   renderInput={(params: any) => {
@@ -170,7 +174,7 @@ export default function Info(mainProps: any) {
                   blurOnSelect
                   id="combo-box-demo"
                   isOptionEqualToValue={(option, value) => option.id === value.id}
-                  value={country ? country : ''}
+                  value={country ? country : null}
                   onInputChange={(e, value) => {
                     if (!value) {
                       formik.setFieldValue('country_id', value)
