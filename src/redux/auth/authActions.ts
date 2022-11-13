@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { clearAvatar } from "../other/otherSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
 
 export interface SignUpInterface {
@@ -58,9 +59,9 @@ export const signInUser = createAsyncThunk(
 
 export const signOutUser = createAsyncThunk(
     'user/signout',
-    async (arg: void, { rejectWithValue }) => {
+    async (arg: void, { rejectWithValue, dispatch }) => {
         try {
-            // const response = await signOut();
+            dispatch(clearAvatar());
             const response = {
                 success: true,
                 message: "header-user-signout-message"
