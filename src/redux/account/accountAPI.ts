@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiCall, baseURL } from "../apiCall";
+import { apiCall, baseURL, defaultHeaders } from "../apiCall";
 
 export const setTokens = (data: any) => {
     localStorage.setItem('user-info', JSON.stringify(data));
@@ -37,10 +37,7 @@ export const refreshToken = (previous: boolean, error?: any, cancelToken?: any) 
         method: 'post',
         cancelToken,
         headers: {
-            'Content-Type': 'application/json',
-            'device-type': 'WEB',
-            'accept': 'application/json',
-            'Accept-Language': `${localStorage.getItem('i18nextLng')}`,
+            ...defaultHeaders(),
             ...tempHeader
         }
     } as any).then(response => {

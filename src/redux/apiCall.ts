@@ -3,7 +3,17 @@ import { getuserDataFromStorage, refreshToken } from './account/accountAPI';
 
 export const baseURL = process.env.REACT_APP_BASE_URL;
 
-const service = axios.create({ baseURL })
+export const defaultHeaders = () => ({
+    'Content-Type': 'application/json',
+    'device-type': 'WEB',
+    'accept': 'application/json',
+    'Accept-Language': `${localStorage.getItem('i18nextLng')}`
+})
+
+const service = axios.create({
+    baseURL,
+    timeout: 30000
+})
 service.interceptors.response.use(
     response => response,
     error => {
@@ -16,10 +26,7 @@ service.interceptors.response.use(
 
 export const apiCall = async (url: string, options: RequestInit, authRequired = false, type = 'json') => {
     let headers: any = {
-        'Content-Type': 'application/json',
-        'device-type': 'WEB',
-        'accept': 'application/json',
-        'Accept-Language': `${localStorage.getItem('i18nextLng')}`
+        ...defaultHeaders()
     }
 
     if (options.headers) {
