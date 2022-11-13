@@ -1,35 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useTawkRef } from "../TawkProvider";
 import { pageView } from "../../services/eventTracker";
 import './contactUs.css';
 
+const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
+
 export default function ContactUs() {
+  const tawkMessengerRef = React.useRef<any | null>(null);
+
   const { t } = useTranslation();
-  const tawkObj = useTawkRef();
   React.useEffect(() => {
     document.title = t('title.contact-us');
     pageView(window.location.pathname)
   })
-
-  React.useEffect(() => {
-    try {
-      if (tawkObj && tawkObj.showWidget && typeof tawkObj.showWidget === "function") {
-        setTimeout(() => {
-          tawkObj.showWidget();
-        }, 1000)
-      }
-    } catch (err) {
-      console.log("chat widget not loaded")
-    }
-
-    return () => {
-      if (tawkObj && tawkObj.hideWidget) {
-        tawkObj.hideWidget();
-      }
-    }
-  }, [tawkObj])
 
   return (
     <>
@@ -73,7 +57,9 @@ export default function ContactUs() {
                 className="primary-color"
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  tawkObj.maximize();
+                  if (tawkMessengerRef.current) {
+                    tawkMessengerRef.current.maximize();
+                  }
                 }}
               >
                 {t('send-message')}
@@ -82,6 +68,34 @@ export default function ContactUs() {
           </Box>
         </Box>
       </Box>
+      <TawkMessengerReact
+        propertyId="60d7fbc17f4b000ac039bd84"
+        widgetId="1ggn2lnfe"
+        ref={tawkMessengerRef}
+        customStyle={{
+          visibility: {
+            desktop: {
+              xOffset: '34',
+              position: 'br'
+            }
+          }
+        }}
+        onLoad={() => {
+          if (tawkMessengerRef.current) {
+            tawkMessengerRef.current.showWidget();
+            setTimeout(() => {
+              const ifr = document.querySelector('iframe');
+              if (ifr) {
+                const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
+                if (divTag) {
+                  divTag.style.height = '56px';
+                  divTag.style.width = '56px';
+                }
+              }
+            }, 200);
+          }
+        }}
+      />
     </>
   )
 }

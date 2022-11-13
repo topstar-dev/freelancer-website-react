@@ -22,7 +22,6 @@ import Privacy from "./policies/Privacy";
 import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
-import TawkProvider from "./TawkProvider";
 import { refreshToken } from "../redux/account/accountAPI";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -58,7 +57,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     }
   }, [isHeader, userInfo, called, dispatch])
 
-  const content = <TawkProvider>
+  const content = <>
     {isHeader && <Header />}
     <Box style={{
       overflowY: 'auto',
@@ -74,7 +73,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
       </Box>
       <Footer />
     </Box>
-  </TawkProvider>
+  </>
 
   return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;
 }
