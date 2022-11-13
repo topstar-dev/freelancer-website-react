@@ -31,13 +31,18 @@ import VerifyCode from "./auth/resetPassword/verifyCode";
 import SetNewPassword from "./auth/resetPassword/setNewPassword";
 import { clearAvatar } from "../redux/other/otherSlice";
 
+const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
+
 interface RoutesInterface {
   isHeader: boolean,
   protectedRoute: boolean
 }
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
+
   const [called, setCalled] = useState(false);
+  const tawkMessengerRef = React.useRef<any | null>(null);
+
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.auth);
 
@@ -57,6 +62,14 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     }
   }, [isHeader, userInfo, called, dispatch])
 
+  useEffect(() => {
+    if (!isHeader && tawkMessengerRef.current) {
+      tawkMessengerRef.current.hideWidget();
+    } else {
+      tawkMessengerRef.current.showWidget();
+    }
+  }, [isHeader, tawkMessengerRef])
+
   const content = <>
     {isHeader && <Header />}
     <Box style={{
@@ -72,6 +85,34 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
         <Outlet />
       </Box>
       <Footer />
+      <TawkMessengerReact
+        propertyId="60d7fbc17f4b000ac039bd84"
+        widgetId="1ggn2lnfe"
+        ref={tawkMessengerRef}
+        customStyle={{
+          visibility: {
+            desktop: {
+              xOffset: '34',
+              position: 'br'
+            }
+          }
+        }}
+        onLoad={() => {
+          if (tawkMessengerRef.current) {
+            tawkMessengerRef.current.showWidget();
+            setTimeout(() => {
+              const ifr = document.querySelector('iframe');
+              if (ifr) {
+                const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
+                if (divTag) {
+                  divTag.style.height = '56px';
+                  divTag.style.width = '56px';
+                }
+              }
+            }, 200);
+          }
+        }}
+      />
     </Box>
   </>
 

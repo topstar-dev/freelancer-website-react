@@ -4,16 +4,22 @@ import { useTranslation } from "react-i18next";
 import { pageView } from "../../services/eventTracker";
 import './contactUs.css';
 
-const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
-
 export default function ContactUs() {
-  const tawkMessengerRef = React.useRef<any | null>(null);
-
   const { t } = useTranslation();
   React.useEffect(() => {
     document.title = t('title.contact-us');
     pageView(window.location.pathname)
   })
+
+  const openWidget = () => {
+    const ifr = document.querySelector('iframe');
+    if (ifr) {
+      const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
+      if (divTag) {
+        divTag.click();
+      }
+    }
+  }
 
   return (
     <>
@@ -57,9 +63,7 @@ export default function ContactUs() {
                 className="primary-color"
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  if (tawkMessengerRef.current) {
-                    tawkMessengerRef.current.maximize();
-                  }
+                  openWidget()
                 }}
               >
                 {t('send-message')}
@@ -68,34 +72,6 @@ export default function ContactUs() {
           </Box>
         </Box>
       </Box>
-      <TawkMessengerReact
-        propertyId="60d7fbc17f4b000ac039bd84"
-        widgetId="1ggn2lnfe"
-        ref={tawkMessengerRef}
-        customStyle={{
-          visibility: {
-            desktop: {
-              xOffset: '34',
-              position: 'br'
-            }
-          }
-        }}
-        onLoad={() => {
-          if (tawkMessengerRef.current) {
-            tawkMessengerRef.current.showWidget();
-            setTimeout(() => {
-              const ifr = document.querySelector('iframe');
-              if (ifr) {
-                const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
-                if (divTag) {
-                  divTag.style.height = '56px';
-                  divTag.style.width = '56px';
-                }
-              }
-            }, 200);
-          }
-        }}
-      />
     </>
   )
 }
