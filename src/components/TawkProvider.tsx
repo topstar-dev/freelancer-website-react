@@ -9,10 +9,10 @@ const TawkProvider = ({ isHeader }: any) => {
     React.useEffect(() => {
         try {
             if (tawkMessengerRef.current) {
-                if (location.pathname !== '/contact') {
-                    tawkMessengerRef.current?.hideWidget();
+                if (isHeader && location.pathname == '/contact') {
+                    tawkMessengerRef.current.showWidget();
                 } else {
-                    tawkMessengerRef.current?.showWidget();
+                    tawkMessengerRef.current.hideWidget();
                 }
             }
         } catch (err) { }
@@ -26,14 +26,14 @@ const TawkProvider = ({ isHeader }: any) => {
             customStyle={{
                 visibility: {
                     desktop: {
-                        xOffset: '34',
+                        xOffset: '24',
                         position: 'br'
                     }
                 }
             }}
             onLoad={() => {
                 if (tawkMessengerRef.current) {
-                    if (isHeader) {
+                    if (isHeader && location.pathname == '/contact') {
                         tawkMessengerRef.current.showWidget();
                     } else {
                         tawkMessengerRef.current.hideWidget();
@@ -47,7 +47,7 @@ const TawkProvider = ({ isHeader }: any) => {
                                 divTag.style.width = '56px';
                             }
                         }
-                    }, 200);
+                    }, 100);
                 }
             }}
         />
