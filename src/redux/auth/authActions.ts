@@ -69,7 +69,6 @@ export const signOutUser = createAsyncThunk(
     'user/signout',
     async (arg: void, { rejectWithValue, dispatch }) => {
         try {
-            dispatch(clearAvatar());
             const response = {
                 success: true,
                 message: "header-user-signout-message"
