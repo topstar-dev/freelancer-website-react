@@ -56,7 +56,7 @@ export default function Password(mainProps: any) {
                         .min(8, t('validation.password-length'))
                         .when("set_password", {
                             is: (value: string) => (value && value.length > 0 ? true : false),
-                            then: yup.string().oneOf([yup.ref("set_password")], t('validation.two-passwords-do-not-match')),
+                            then: yup.string().oneOf([yup.ref("set_password")], t('validation.passwords-not-match')),
                         })
                 })}
                 onSubmit={(values) => { }}

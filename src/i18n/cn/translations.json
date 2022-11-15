@@ -21,7 +21,7 @@
         "password-length": "密码至少8个字符",
         "set-password-required": "请输入设置密码",
         "confirm-password-required": "请输入确认密码",
-        "two-passwords-do-not-match": "两次密码不一致",
+        "passwords-not-match": "两次密码不一致",
         "firstname-required": "请输入姓氏",
         "lastname-required": "请输入名字",
         "birthday-required": "请选择出生日期",

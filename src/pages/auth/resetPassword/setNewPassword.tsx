@@ -60,7 +60,7 @@ export default function SetNewPassword(mainProps: any) {
             .min(8, t('validation.password-length'))
             .when("password", {
               is: (value: string) => (value && value.length > 0 ? true : false),
-              then: yup.string().oneOf([yup.ref("password")], t('validation.two-passwords-do-not-match')),
+              then: yup.string().oneOf([yup.ref("password")], t('validation.passwords-not-match')),
             })
         })}
         onSubmit={() => { }}
