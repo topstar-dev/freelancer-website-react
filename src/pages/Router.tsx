@@ -70,7 +70,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
         <Outlet />
       </Box>
       <Footer />
-      <TawkProvider />
+      <TawkProvider isHeader={isHeader}/>
     </Box>
   </>
 
