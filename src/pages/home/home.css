@@ -80,6 +80,10 @@
 }
 
 @media (max-width:1170px) {
+    .rounx-home-first-image {
+        margin-right: auto;
+    }
+
     .rounx-home-first-section {
         display: unset;
     }
