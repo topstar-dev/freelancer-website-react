@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { removeTokens, setTokens } from "../account/accountAPI";
+import { removeTokens, setTokens } from "../account/accountApi";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar } from "../other/otherSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";

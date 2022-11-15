@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getuserDataFromStorage } from '../account/accountAPI';
+import { getuserDataFromStorage } from '../account/accountApi';
 import { signInUser, signOutUser } from './authActions';
 
 // initialize userToken from local storage

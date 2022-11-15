@@ -17,7 +17,7 @@ import Privacy from "./policies/Privacy";
 import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
-import { refreshToken, setTokens } from "../redux/account/accountAPI";
+import { refreshToken, setTokens } from "../redux/account/accountApi";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOutUser } from "../redux/auth/authActions";

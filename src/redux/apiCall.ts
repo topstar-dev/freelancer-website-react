@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getuserDataFromStorage, refreshToken } from './account/accountAPI';
+import { getuserDataFromStorage, refreshToken } from './account/accountApi';
 
 export const baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
