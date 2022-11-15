@@ -71,9 +71,9 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 </div>
                 <Divider />
                 <MenuList sx={{ width: "270px", maxWidth: "100%", padding: 0 }}>
-                    <MenuItem className='rounx-user-menu-items'>
+                    {userInfo && userInfo.user_type === 'FREELANCER' && <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-submit-freelancer')}
-                    </MenuItem>
+                    </MenuItem>}
                     <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-profile')}
                     </MenuItem>
