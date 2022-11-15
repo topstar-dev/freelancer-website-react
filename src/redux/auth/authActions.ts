@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { removeTokens, setTokens } from "../account/accountAPI";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar } from "../other/otherSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
@@ -51,6 +52,7 @@ export const signInUser = createAsyncThunk(
     async (signInData: SignInInterface, { rejectWithValue, dispatch }) => {
         try {
             const response = await signIn(signInData);
+            await setTokens(response.data);
             if (response.success && response.data?.avatar_url) {
                 if (response.data?.avatar_url) {
                     dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
@@ -69,6 +71,7 @@ export const signOutUser = createAsyncThunk(
     'user/signout',
     async (arg: void, { rejectWithValue, dispatch }) => {
         try {
+            await removeTokens();
             const response = {
                 success: true,
                 message: "header-user-signout-message"

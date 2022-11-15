@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getuserDataFromStorage, removeTokens, setTokens } from '../account/accountAPI';
+import { getuserDataFromStorage } from '../account/accountAPI';
 import { signInUser, signOutUser } from './authActions';
 
 // initialize userToken from local storage
@@ -50,7 +50,6 @@ export const authSlice = createSlice({
             state.success = true;
             state.message = action.payload.message;
             state.userInfo = action.payload.data;
-            setTokens(action.payload.data);
         })
         builder.addCase(signInUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;
@@ -69,7 +68,6 @@ export const authSlice = createSlice({
             state.success = true;
             state.userInfo = null;
             state.message = action.payload.message;
-            removeTokens();
         })
         builder.addCase(signOutUser.rejected, (state: AuthState, action) => {
             const payload = action.payload as AuthState;

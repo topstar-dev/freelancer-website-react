@@ -17,14 +17,13 @@ import Privacy from "./policies/Privacy";
 import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
-import { refreshToken } from "../redux/account/accountAPI";
+import { refreshToken, setTokens } from "../redux/account/accountAPI";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOutUser } from "../redux/auth/authActions";
 import EnterEmail from "./auth/resetPassword/enterEmail";
 import VerifyCode from "./auth/resetPassword/verifyCode";
 import SetNewPassword from "./auth/resetPassword/setNewPassword";
-import { clearAvatar } from "../redux/other/otherSlice";
 import TawkProvider from "../components/TawkProvider";
 
 interface RoutesInterface {
@@ -37,23 +36,23 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const [called, setCalled] = useState(false);
 
   const dispatch = useAppDispatch();
-  const { userInfo } = useAppSelector((state) => state.auth);
+  const { userInfo, message } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
   })
 
   useEffect(() => {
-    if (isHeader && userInfo && !called) {
+    if (isHeader && userInfo && !called && !message) {
       setCalled(true);
-      refreshToken(false, null).then((res: any) => {
-        dispatch(updateUserInfo(res.data))
+      refreshToken().then((res: any) => {
+        setTokens(res);
+        dispatch(updateUserInfo(res))
       }).catch((err: any) => {
-        dispatch(clearAvatar());
         dispatch(signOutUser());
       })
     }
-  }, [isHeader, userInfo, called, dispatch])
+  }, [isHeader, userInfo, called, message, dispatch])
 
   const content = <>
     {isHeader && <Header />}
@@ -70,7 +69,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
         <Outlet />
       </Box>
       <Footer />
-      <TawkProvider isHeader={isHeader}/>
+      <TawkProvider isHeader={isHeader} />
     </Box>
   </>
 

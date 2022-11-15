@@ -3,29 +3,28 @@ import { getuserDataFromStorage, refreshToken } from './account/accountAPI';
 
 export const baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
-export const defaultHeaders = () => ({
-    'Content-Type': 'application/json',
-    'device-type': 'WEB',
-    'Accept-Language': `${localStorage.getItem('i18nextLng')}`
+export const service = axios.create({
+    baseURL,
+    timeout: 30000,
+    headers: {
+        'Content-Type': 'application/json',
+        'device-type': 'WEB'
+    }
 })
 
-const service = axios.create({
-    baseURL,
-    timeout: 30000
-})
 service.interceptors.response.use(
     response => response,
     error => {
-        if (error.response.status !== 401) {
+        if (error.response.status !== 401 || error.config.url.includes('/refresh-token')) {
             return Promise.reject(error);
         }
         return refreshToken(true, error)
     }
 );
 
-export const apiCall = async (url: string, options: RequestInit, authRequired = false) => {
+const commonHeaders = (options: any, authRequired: boolean = false) => {
     let headers: any = {
-        ...defaultHeaders()
+        'Accept-Language': `${localStorage.getItem('i18nextLng')}`
     }
 
     if (options.headers) {
@@ -41,16 +40,33 @@ export const apiCall = async (url: string, options: RequestInit, authRequired = 
         }
     }
 
+    return headers;
+}
+
+export const apiCall = async (url: string, options: RequestInit, authRequired = false) => {
     try {
-        const response = await service({
+        const requestOptions = {
             method: options.method,
             data: options.body,
             url: `${url} `,
             headers: {
-                ...headers
+                ...commonHeaders(options, authRequired)
             }
-        });
-        return { success: true, ...response.data };
+        }
+        const response = await service(requestOptions);
+
+        const result = typeof response.data === 'string' ? { data: response.data } : response.data;
+        return { success: true, ...result };
+    } catch (err: any) {
+        return { success: false, ...err.response.data }
+    }
+}
+
+export const fetchFileApi = async (url: string, options: RequestInit, authRequired = false) => {
+    try {
+        const response = await fetch(`${baseURL}${url}`, { ...options, headers: { ...commonHeaders(options) } });
+        const file = await response.blob();
+        return { success: true, file };
     } catch (err: any) {
         return { success: false, ...err.response.data }
     }

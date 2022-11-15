@@ -1,5 +1,4 @@
-import axios from "axios";
-import { apiCall, baseURL, defaultHeaders } from "../apiCall";
+import { apiCall } from "../apiCall";
 
 export const setTokens = (data: any) => {
     localStorage.setItem('user-info', JSON.stringify(data));
@@ -24,36 +23,35 @@ export const getuserDataFromStorage = () => {
     }
 }
 
-export const refreshToken = (previous: boolean, error?: any, cancelToken?: any) => {
+export const refreshToken = (error?: any, previous: boolean = false) => {
     const userData = getuserDataFromStorage();
-    const tempHeader: any = {};
-    if (userData) {
-        tempHeader['refresh-token'] = userData['refresh_token'];
-        tempHeader['device-token'] = userData['device_token'];
-        tempHeader['access-token'] = userData['access_token'];
-    }
 
-    return axios(`${baseURL}/user/v1/refresh-token`, {
+    const requestConfigs: any = {
         method: 'post',
-        cancelToken,
         headers: {
-            ...defaultHeaders(),
-            ...tempHeader
+            'refresh-token': userData['refresh_token']
         }
-    } as any).then(response => {
-        setTokens(response.data.data);
-        if (previous && error) {
-            const { config } = error.response;
-            return apiCall(config.url, {
-                method: config.method,
-                body: config.data,
-                headers: config.headers
-            } as any);
+    };
+
+    return apiCall(`/user/v1/refresh-token`, requestConfigs, true).then(response => {
+        if (response.success) {
+            // setTokens(response.data);
+            if (previous && error) {
+                const { config } = error.response;
+                return apiCall(config.url, {
+                    method: config.method,
+                    body: config.data,
+                    headers: config.headers
+                } as any);
+            } else {
+                return Promise.resolve(response.data);
+            }
         } else {
-            return Promise.resolve(response.data);
+            // removeTokens(previous);
+            return Promise.reject(error);
         }
     }).catch(error => {
-        removeTokens(previous);
+        // removeTokens(previous);
         return Promise.reject(error);
     })
 }; 
