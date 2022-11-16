@@ -9,6 +9,9 @@ import Info from "./auth/signup/Info";
 import Password from "./auth/signup/Password";
 import Email from "./auth/signup/Email";
 import Code from "./auth/signup/Code";
+import EnterEmail from "./auth/resetPassword/Email";
+import VerifyCode from "./auth/resetPassword/Code";
+import SetNewPassword from "./auth/resetPassword/Password";
 
 import HomePage from "./home/Home";
 import ContactUs from "./contactUs/ContacUs";
@@ -17,14 +20,12 @@ import Privacy from "./policies/Privacy";
 import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
+import TawkProvider from "../components/TawkProvider";
+
 import { refreshToken, setTokens } from "../redux/account/accountApi";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOutUser } from "../redux/auth/authActions";
-import EnterEmail from "./auth/resetPassword/enterEmail";
-import VerifyCode from "./auth/resetPassword/verifyCode";
-import SetNewPassword from "./auth/resetPassword/setNewPassword";
-import TawkProvider from "../components/TawkProvider";
 
 interface RoutesInterface {
   isHeader: boolean,
