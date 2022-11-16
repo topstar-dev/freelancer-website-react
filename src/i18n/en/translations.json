@@ -22,6 +22,7 @@
         "set-password-required": "Set password is required",
         "confirm-password-required": "Confirm password is required",
         "passwords-not-match": "The two passwords do not match",
+        "please_enter_valid_password": "Please enter valid password",
         "firstname-required": "First name is required",
         "lastname-required": "Last name is required",
         "birthday-required": "Birthday is required",

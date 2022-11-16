@@ -70,7 +70,10 @@ export default function Info(mainProps: any) {
   useEffect(() => {
     if (!load && countryData.length <= 0) {
       setLoad(true);
-      getCountries().then((res) => {
+      getCountries({
+        page_index: 0,
+        page_size: 0
+      }).then((res) => {
         const countryArr = res.data.records.map((c: any) => ({
           label: c.country_name,
           id: c.country_id

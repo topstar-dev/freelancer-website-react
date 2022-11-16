@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getCountries } from "./resourcesApi";
 
 export interface GetCountriesInterface {
-    page_index: string,
-    page_size: string
+    page_index: number,
+    page_size: number
 }
 
 export const getCountriesList = createAsyncThunk(
