@@ -113,7 +113,7 @@ export default function SetNewPassword(mainProps: any) {
                 value={formik.values.confirm_password}
                 onChange={formik.handleChange}
                 error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
-                helperText={formik.touched.confirm_password && formik.errors.confirm_password as ReactNode}
+                helperText={(formik.touched.confirm_password && Boolean(formik.errors.confirm_password) ? formik.errors.confirm_password : t('at_least_8_characters')) as ReactNode}
               />
               <Box style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                 <Button onClick={() => {
