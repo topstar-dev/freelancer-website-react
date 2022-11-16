@@ -79,7 +79,7 @@ export default function Info(mainProps: any) {
           id: c.country_id
         }))
         setCountryData(countryArr)
-        const countryFind = countryArr.find((e: any) => e.id === signupInfo.country_id)
+        const countryFind = countryArr.find((e: any) => e.id === (signupInfo.country_id || country?.id))
         setCountry(countryFind)
       }).catch((err) => {
         setLoad(true)
