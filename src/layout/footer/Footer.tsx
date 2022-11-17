@@ -40,6 +40,9 @@ export default function Footer() {
                         labelId="language"
                         value={language}
                         label={t('language')}
+                        MenuProps={{
+                            className: "rounx-language-menu"
+                        }}
                         renderValue={(value) => {
                             return <Box
                                 className="rounx-language-value"

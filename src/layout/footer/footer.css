@@ -16,6 +16,21 @@
     margin-right: auto;
 }
 
+.rounx-language-menu .MuiPaper-root {
+    top: unset !important;
+    bottom: 78px !important;
+    min-width: 120px !important;
+}
+
+.rounx-language-menu .MuiPaper-root ul li {
+    height: 40px !important;
+    line-height: 1.5 !important;
+}
+
+.rounx-language-menu .MuiPaper-root ul li span {
+    display: none !important;
+}
+
 .rounx-language-box fieldset {
     border: none;
 }
