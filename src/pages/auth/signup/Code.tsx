@@ -113,6 +113,8 @@ export default function Code(mainProps: any) {
                                                     dispatch(resetDefault());
                                                     sessionStorage.removeItem('signup-info')
                                                     dispatch(signInUser({ email: signUpData.primary_email, password: signUpData.password })).then((res) => {
+                                                        enqueueSnackbar(res.payload.message);
+                                                        dispatch(resetDefault())
                                                         navigate('/');
                                                     }).catch((_err) => {
 
