@@ -39,6 +39,14 @@
     bottom: 78px !important;
 }
 
+html[lang="en"] .rounx-language-menu ul {
+    width: 112px;
+}
+
+html[lang="zh-CN"] .rounx-language-menu ul {
+    width: unset;
+}
+
 .rounx-nav-items-box {
     display: flex;
 }
