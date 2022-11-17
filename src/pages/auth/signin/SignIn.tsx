@@ -160,6 +160,7 @@ export default function SignIn() {
               </Button>
               <Popover
                 open={Boolean(type)}
+                className="sign-in-account-menu"
                 anchorEl={type}
                 onClose={() => setType(null)}
                 anchorOrigin={{
