@@ -146,7 +146,7 @@ export default function Info(mainProps: any) {
               </FlexBox>
               <LocalizationProvider adapterLocale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
-                  label={birthday ? '' : t('birthday')}
+                  label={t('birthday')}
                   inputFormat="YYYY-MM-DD"
                   value={birthday}
                   onChange={(e) => {
