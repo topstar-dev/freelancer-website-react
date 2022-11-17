@@ -178,17 +178,9 @@ export default function Info(mainProps: any) {
                   id="combo-box-demo"
                   isOptionEqualToValue={(option, value) => option.id === value.id}
                   value={country ? country : null}
-                  onInputChange={(e, value) => {
-                    if (!value) {
-                      formik.setFieldValue('country_id', value)
-                      setCountry(value)
-                    }
-                  }}
                   onChange={(e, value) => {
-                    if (value) {
-                      formik.setFieldValue('country_id', value.id)
-                      setCountry(value)
-                    }
+                    formik.setFieldValue('country_id', value ? value.id : value)
+                    setCountry(value)
                   }}
                   options={countryData}
                   renderInput={(params) => <TextField {...params} error={formik.touched.country_id && Boolean(formik.errors.country_id)} label={t('country')} />}
