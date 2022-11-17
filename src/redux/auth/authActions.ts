@@ -54,11 +54,9 @@ export const signInUser = createAsyncThunk(
             const response = await signIn(signInData);
             await setTokens(response.data);
             if (response.success && response.data?.avatar_url) {
-                if (response.data?.avatar_url) {
-                    dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
-                } else {
-                    dispatch(clearAvatar());
-                }
+                dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
+            } else {
+                dispatch(clearAvatar());
             }
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
