@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { MenuItem, Box, Typography, Popover, MenuList } from "@mui/material";
+import { MenuItem, Box, Typography, FormControl, Select } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import Modal from '@mui/material/Modal';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { eventTracker } from "../../services/eventTracker";
 import './footer.css';
 
@@ -18,68 +16,48 @@ export default function Footer() {
     const dispatch = useAppDispatch();
     const { i18n, t } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
-    const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         i18n.changeLanguage(language);
     }, [language, i18n])
 
-    const handleMenu = (event: any) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const changeLang = (lang: string) => {
+    const changeLang: any = (event: any) => {
+        const lang = event.target.value;
         eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
         document.documentElement.lang = lang;
-        setAnchorEl(null);
         dispatch(changeLanguage(lang))
     }
 
     return (
         <Box className="rounx-footer-container">
             <Box className="rounx-footer-left-content">
-                <Box
-                    className="rounx-language-box"
-                    id="language-button"
-                    aria-controls={open ? 'menu-language' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={(e) => handleMenu(e)}
-                >
-                    <LanguageIcon className="rounx-language-icon" />
-                    <Typography className="rounx-language-select">
-                        {language === 'en' ? 'English' : '中文'}
-                    </Typography>
-                    {anchorEl ?
-                        <ArrowDropUpIcon />
-                        :
-                        <ArrowDropDownIcon />
-                    }
-                </Box>
-                <Popover
-                    className='rounx-language-menu'
-                    open={Boolean(anchorEl)}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                    }}
-                    transformOrigin={{
-                        vertical: "bottom",
-                        horizontal: "left",
-                    }}
-                >
-                    <MenuList>
-                        <MenuItem selected={language === 'en'} onClick={() => changeLang("en")}>English</MenuItem>
-                        <MenuItem selected={language === 'zh-CN'} onClick={() => changeLang("zh-CN")}>中文</MenuItem>
-                    </MenuList>
-                </Popover>
+                <FormControl className="rounx-language-box">
+                    <Select
+                        id='rounx-language-switcher'
+                        sx={{ height: 20 }}
+                        className="rounx-language-select"
+                        labelId="language"
+                        value={language}
+                        label={t('language')}
+                        renderValue={(value) => {
+                            return <Box
+                                className="rounx-language-value"
+                                id="language-button"
+                            >
+                                <LanguageIcon className="rounx-language-icon" />
+                                {value === 'en' ? 'English' : '中文'}
+                            </Box>
+                        }}
+                        onChange={changeLang}>
+                        <MenuItem value="en">
+                            English
+                        </MenuItem>
+                        <MenuItem value="zh-CN">
+                            中文
+                        </MenuItem>
+                    </Select>
+                </FormControl>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {
                         navigate('/privacy')

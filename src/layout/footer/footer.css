@@ -16,8 +16,13 @@
     margin-right: auto;
 }
 
-.rounx-language-box {
+.rounx-language-box fieldset {
+    border: none;
+}
+
+.rounx-language-value {
     display: flex;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -34,17 +39,8 @@
     padding-right: 6px !important;
 }
 
-.rounx-language-menu .MuiPaper-root {
-    top: unset !important;
-    bottom: 78px !important;
-}
-
-html[lang="en"] .rounx-language-menu ul {
-    width: 112px;
-}
-
-html[lang="zh-CN"] .rounx-language-menu ul {
-    width: unset;
+#rounx-language-switcher {
+    height: unset !important;
 }
 
 .rounx-nav-items-box {
