@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { MenuItem, Box, Typography, FormControl, Select } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import Modal from '@mui/material/Modal';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { eventTracker } from "../../services/eventTracker";
@@ -72,7 +70,10 @@ export default function Footer() {
                 </Box>
             </Box>
             <Box className="rounx-footer-right-content">
-                <img className="rounx-footer-brand-icon" src='/images/wechat.svg' onClick={() => setOpen(true)} alt="wechat-icon" />
+                <div className="rounx-footer-brand-icon">
+                    <img className="brand-normal" src='/images/wechat.png' onClick={() => setOpen(true)} alt="wechat-icon" />
+                    <img className="brand-hover" src='/images/wechat_hover.png' onClick={() => setOpen(true)} alt="wechat-icon" />
+                </div>
                 <Modal
                     open={open}
                     onClose={() => setOpen(false)}
@@ -91,14 +92,17 @@ export default function Footer() {
                         src="/images/rounx-qrcode.jpg"
                     />
                 </Modal>
-                <a target="_blank" rel="noreferrer" href="https://weibo.com/rounx">
-                    <img className="rounx-footer-brand-icon" src='/images/weibo.svg' alt="weibo-icon" />
+                <a className="rounx-footer-brand-icon" target="_blank" rel="noreferrer" href="https://weibo.com/rounx">
+                    <img className="brand-normal" src='/images/weibo.png' alt="weibo-icon" />
+                    <img className="brand-hover" src='/images/weibo_hover.png' alt="weibo-icon" />
                 </a>
-                <a target="_blank" rel="noreferrer" href="https://twitter.com/rounxofficial">
-                    <TwitterIcon className="rounx-footer-brand-icon" />
+                <a className="rounx-footer-brand-icon" target="_blank" rel="noreferrer" href="https://twitter.com/rounxofficial">
+                    <img className="brand-normal" src='/images/twitter.png' alt="twitter-icon" />
+                    <img className="brand-hover" src='/images/twitter_hover.png' alt="twitter-icon" />
                 </a>
-                <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/rounx">
-                    <LinkedInIcon className="rounx-footer-brand-icon" />
+                <a className="rounx-footer-brand-icon" target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/rounx">
+                    <img className="brand-normal" src='/images/linkedin.png' alt="linkedin-icon" />
+                    <img className="brand-hover" src='/images/linkedin_hover.png' alt="linkedin-icon" />
                 </a>
             </Box>
         </Box >

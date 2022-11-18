@@ -81,16 +81,28 @@
     text-decoration: none;
 }
 
-.rounx-footer-right-content a {
+.rounx-footer-brand-icon {
+    margin-left: 16px !important;
     text-decoration: none;
     color: #757575;
 }
 
-.rounx-footer-brand-icon {
+.rounx-footer-brand-icon img {
     height: 28px;
     width: 28px;
     font-size: 32px;
-    margin-left: 16px !important;
+}
+
+.brand-hover {
+    display: none;
+}
+
+.rounx-footer-brand-icon:hover .brand-normal {
+    display: none;
+}
+
+.rounx-footer-brand-icon:hover .brand-hover {
+    display: unset;
 }
 
 .rounx-footer-brand-icon:hover {
