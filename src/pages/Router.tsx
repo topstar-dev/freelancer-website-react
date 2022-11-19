@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useRoutes, RouteObject, Outlet } from "react-router-dom";
+import { useRoutes, RouteObject, Outlet, Navigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
+
+//layout
 import Header from "../layout/header/Header";
 import Footer from "../layout/footer/Footer";
+
+//auth
 import SignIn from "./auth/signin/SignIn";
 import Info from "./auth/signup/Info";
 import Password from "./auth/signup/Password";
@@ -22,12 +26,19 @@ import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
 import TawkProvider from "../components/TawkProvider";
 
+// apply-freelancer
 import Skills from "./applyFreelancer/Skills";
 import NamePhoto from "./applyFreelancer/NamePhoto";
 import Experience from "./applyFreelancer/Experience";
 import Education from "./applyFreelancer/Education";
 import Languages from "./applyFreelancer/Languages";
 import AboutMe from "./applyFreelancer/AboutMe";
+
+//settings
+import Settings from "./settings/Settings";
+import Personal from "./settings/Personal";
+import Security from "./settings/security/Security";
+import Currency from "./settings/Currency";
 
 import { refreshToken, setTokens } from "../redux/account/accountApi";
 import { updateUserInfo } from "../redux/auth/authSlice";
@@ -194,6 +205,34 @@ export default function Router() {
         {
           path: "/apply-freelancer/about-me",
           element: <AboutMe />
+        }
+      ]
+    },
+    {
+      path: "/settings",
+      element: <CustomRouter isHeader={true} protectedRoute={true} />,
+      children: [
+        {
+          path: "/settings",
+          element: <Settings />,
+          children: [
+            {
+              path: "",
+              element: <Navigate to="/settings/personal" />,
+            },
+            {
+              path: "personal",
+              element: <Personal />,
+            },
+            {
+              path: "security",
+              element: <Security />,
+            },
+            {
+              path: "currency",
+              element: <Currency />,
+            }
+          ]
         }
       ]
     },

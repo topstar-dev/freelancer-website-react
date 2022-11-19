@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
@@ -13,7 +13,7 @@ interface UserMenuPropsInterface {
 }
 
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,10 +37,10 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
         dispatch(signOutUser());
     }
 
-    // const settingsClick = () => {
-    //     setAnchorEl(null);
-    //     navigate('/settings/personal')
-    // }
+    const settingsClick = () => {
+        setAnchorEl(null);
+        navigate('/settings/personal')
+    }
 
     return (
         <>
@@ -77,7 +77,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                     <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-profile')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items'>
+                    <MenuItem className='rounx-user-menu-items' onClick={settingsClick}>
                         {t('header-user-settings')}
                     </MenuItem>
                     <MenuItem className='rounx-user-menu-items' onClick={() => signOutMethod()}>
