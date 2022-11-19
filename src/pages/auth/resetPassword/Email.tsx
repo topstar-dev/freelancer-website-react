@@ -16,7 +16,7 @@ import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { CustomForm } from "../../commonStyle";
+import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import '../auth.css';
 
@@ -60,7 +60,7 @@ export default function EnterEmail(mainProps: any) {
       >
         {formik => (
           <WithTranslateFormErrors {...formik}>
-            <CustomForm>
+            <Form>
               <img
                 src="images/rounx-symbol.png"
                 alt="Rounx admin"
@@ -121,7 +121,7 @@ export default function EnterEmail(mainProps: any) {
                   {t('next')}
                 </Button>
               </Box>
-            </CustomForm>
+            </Form>
           </WithTranslateFormErrors>
         )}
       </Formik>

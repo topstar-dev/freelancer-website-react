@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
-import { CustomForm } from "../../commonStyle";
+import Form from "../../../components/form/Form";
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import {
   signInUser
@@ -82,7 +82,7 @@ export default function SignIn() {
       >
         {props => (
           <WithTranslateFormErrors {...props}>
-            <CustomForm onSubmit={props.handleSubmit}>
+            <Form onSubmit={props.handleSubmit}>
               <img
                 src="images/rounx-symbol.png"
                 alt="Rounx admin"
@@ -181,7 +181,7 @@ export default function SignIn() {
                   }}>{t('freelancer-account')}</MenuItem>
                 </MenuList>
               </Popover>
-            </CustomForm>
+            </Form>
           </WithTranslateFormErrors>
         )}
       </Formik>

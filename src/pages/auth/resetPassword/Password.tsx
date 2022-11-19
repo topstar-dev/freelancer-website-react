@@ -17,7 +17,7 @@ import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
 import Button from "../../../components/button/Button";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { CustomForm } from "../../commonStyle";
+import Form from "../../../components/form/Form";
 import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -67,7 +67,7 @@ export default function SetNewPassword(mainProps: any) {
       >
         {formik => (
           <WithTranslateFormErrors {...formik}>
-            <CustomForm>
+            <Form>
               <img
                 src="/images/rounx-symbol.png"
                 alt="Rounx admin"
@@ -156,7 +156,7 @@ export default function SetNewPassword(mainProps: any) {
                   {t('submit')}
                 </Button>
               </Box>
-            </CustomForm>
+            </Form>
           </WithTranslateFormErrors>
         )}
       </Formik>

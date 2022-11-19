@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Typography,
@@ -9,16 +10,16 @@ import {
   Backdrop,
   CircularProgress,
 } from "@mui/material";
+import { Formik } from "formik";
 import { useAppDispatch } from "../../../redux/hooks";
 import { checkCodeOfEmail } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
-import { Formik } from "formik";
+import Form from "../../../components/form/Form";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { CustomForm } from "../../commonStyle";
-import { useNavigate } from "react-router-dom";
 import '../auth.css';
+
 
 export default function VerifyCode(mainProps: any) {
   const { t } = useTranslation();
@@ -55,7 +56,7 @@ export default function VerifyCode(mainProps: any) {
       >
         {formik => (
           <WithTranslateFormErrors {...formik}>
-            <CustomForm>
+            <Form>
               <img
                 src="/images/rounx-symbol.png"
                 alt="Rounx admin"
@@ -120,7 +121,7 @@ export default function VerifyCode(mainProps: any) {
                   {t('next')}
                 </Button>
               </Box>
-            </CustomForm>
+            </Form>
           </WithTranslateFormErrors>
         )}
       </Formik>

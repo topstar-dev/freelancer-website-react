@@ -15,10 +15,7 @@ import {
   FormHelperText,
   Autocomplete,
 } from "@mui/material";
-import {
-  CustomForm,
-  FlexBox,
-} from "../../commonStyle";
+import Form from "../../../components/form/Form";
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
@@ -111,7 +108,7 @@ export default function Info(mainProps: any) {
       >
         {formik =>
           <WithTranslateFormErrors {...formik}>
-            <CustomForm>
+            <Form>
               <img
                 src="/images/rounx-symbol.png"
                 alt="Rounx admin"
@@ -123,7 +120,7 @@ export default function Info(mainProps: any) {
               <Typography className="rounx-account-title-info">
                 {t('signup-title')}
               </Typography>
-              <FlexBox sx={{ gap: '24px', flexDirection: language === 'en' ? 'row' : 'row-reverse' }} >
+              <Box sx={{ display: 'flex', gap: '24px', flexDirection: language === 'en' ? 'row' : 'row-reverse' }} >
                 <TextField
                   fullWidth
                   label={t('first-name')}
@@ -143,7 +140,7 @@ export default function Info(mainProps: any) {
                   onChange={formik.handleChange}
                   error={formik.touched.last_name && Boolean(formik.errors.last_name)}
                   helperText={formik.touched.last_name && formik.errors.last_name as ReactNode} />
-              </FlexBox>
+              </Box>
               <LocalizationProvider adapterLocale={`${localStorage.getItem('i18nextLng')}`.toLowerCase()} dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
                   label={t('birthday')}
@@ -218,7 +215,7 @@ export default function Info(mainProps: any) {
                   {t('next')}
                 </Button>
               </Box>
-            </CustomForm >
+            </Form >
           </WithTranslateFormErrors>
         }
       </Formik>
