@@ -22,6 +22,13 @@ import AuthGuard from "./auth/AuthGuard";
 import ErrorPage from "./404/ErrorPage";
 import TawkProvider from "../components/TawkProvider";
 
+import Skills from "./applyFreelancer/Skills";
+import NamePhoto from "./applyFreelancer/NamePhoto";
+import Experience from "./applyFreelancer/Experience";
+import Education from "./applyFreelancer/Education";
+import Languages from "./applyFreelancer/Languages";
+import AboutMe from "./applyFreelancer/AboutMe";
+
 import { refreshToken, setTokens } from "../redux/account/accountApi";
 import { updateUserInfo } from "../redux/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -159,6 +166,36 @@ export default function Router() {
           element: <Terms />,
         }
       ],
+    },
+    {
+      path: "/apply-freelancer",
+      element: <CustomRouter isHeader={true} protectedRoute={true} />,
+      children: [
+        {
+          path: "/apply-freelancer",
+          element: <Skills />
+        },
+        {
+          path: "/apply-freelancer/info",
+          element: <NamePhoto />
+        },
+        {
+          path: "/apply-freelancer/experience",
+          element: <Experience />
+        },
+        {
+          path: "/apply-freelancer/education",
+          element: <Education />
+        },
+        {
+          path: "/apply-freelancer/languages",
+          element: <Languages />
+        },
+        {
+          path: "/apply-freelancer/about-me",
+          element: <AboutMe />
+        }
+      ]
     },
     {
       path: "*",
