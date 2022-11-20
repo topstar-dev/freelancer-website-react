@@ -10,7 +10,7 @@ export default function ErrorPage() {
     return (
         <div className='error-container'>
             <img alt="error-symbol" className='error-symbol' src="/images/rounx-symbol-black.png" height="100" />
-            <h1>404 - Page not found</h1>
+            <h1>404</h1>
         </div>
     )
 }
