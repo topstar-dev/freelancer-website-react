@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCountriesList } from './resourcesActions';
+import { getCountriesList, getCurrencyList } from './resourcesActions';
 
 // initialize userToken from local storage
 var selectedLanguage = localStorage.getItem('i18nextLng') || 'en';
@@ -14,6 +14,7 @@ export interface ResourcesState {
     message?: string | null,
     language: string,
     countryData: CountryData;
+    currencyData: any;
     loading: boolean;
 }
 
@@ -21,6 +22,7 @@ const initialState: ResourcesState = {
     language: selectedLanguage,
     message: null,
     countryData: {},
+    currencyData: [],
     loading: false
 }
 
@@ -55,6 +57,18 @@ export const resourceslice = createSlice({
             const payload = action.payload as ResourcesState;
             state.message = payload.message;
             state.loading = false
+        })
+
+        //getCurrency
+        builder.addCase(getCurrencyList.pending, (state: ResourcesState, _action) => {
+        })
+        builder.addCase(getCurrencyList.fulfilled, (state: ResourcesState, action) => {
+            state.currencyData = action.payload.data;
+            state.message = action.payload.message;
+        })
+        builder.addCase(getCurrencyList.rejected, (state: ResourcesState, action) => {
+            const payload = action.payload as ResourcesState;
+            state.message = payload.message;
         })
     }
 });

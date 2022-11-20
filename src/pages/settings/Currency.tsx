@@ -1,38 +1,36 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { TextField, Typography } from "@mui/material";
-import axios from 'axios';
+import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { baseURL } from "../../redux/apiCall";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { getCurrencyList } from "../../redux/resources/resourcesActions";
+import { currencySettings, currencySettingsUpdate } from "../../redux/settings/settingsActions";
 
 export default function Currency() {
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
-    const [currency, setCurrency] = React.useState([]);
+    const dispatch = useAppDispatch();
+    const { currencyData } = useAppSelector(state => state.resources)
+    const { selectedCurrency } = useAppSelector(state => state.settings)
 
-    const getCurrency = () => {
-        const headers = {
-            "Content-Type": "application/json",
-            "Accept-Language": 'en',
-            "device-type": 'WEB'
-        }
-        axios.get(`${baseURL}/user/v1/settings/currency`, {
-            headers: headers
-        }).then((res) => {
-            setCurrency(res.data);
-            enqueueSnackbar(res.data.message, { variant: 'success' });
-        }).catch((error) => {
-            enqueueSnackbar(error.response.data.message, { variant: 'error' });
-        });
-    }
+    const [currency, setCurrency] = React.useState(currencyData);
+    const [called, setCalled] = React.useState(false);
 
     React.useEffect(() => {
-        document.title = t('title.currency')
+        document.title = t('title.currency');
     })
 
     React.useEffect(() => {
-        getCurrency();
-    });
+        if (!called) {
+            setCalled(true)
+            dispatch(currencySettings());
+            dispatch(getCurrencyList()).then((res) => {
+                setCurrency(res.payload.data);
+            }).then((err: any) => {
+                enqueueSnackbar(err.payload.message)
+            })
+        }
+    }, [called, dispatch, enqueueSnackbar]);
 
     return (
         <>
@@ -40,7 +38,27 @@ export default function Currency() {
                 {t('user-currency-title')}
             </Typography>
             <br />
-            <TextField fullWidth label={currency[0]}></TextField>
+            <FormControl fullWidth>
+                <InputLabel id="personal-currency">{selectedCurrency.currency_code}</InputLabel>
+                <Select
+                    fullWidth
+                    labelId="personal-currency"
+                    label={selectedCurrency.currency_code}
+                    value={selectedCurrency.currency_code ? selectedCurrency.currency_code : ''}
+                    onChange={(e) => {
+                        dispatch(currencySettingsUpdate({ currency_code: e.target.value })).then((res) => {
+                            dispatch(currencySettings());
+                            enqueueSnackbar(res.payload.message);
+                        }).catch((err) => {
+                            enqueueSnackbar(err.payload.message);
+                        })
+                    }}
+                >
+                    {currency?.map((e: any, i: any) => (
+                        <MenuItem key={i} value={e.currency_code}>{`${e.currency_symbol} ${e.currency_name} ${e.currency_code}`}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
         </>
     )
 }

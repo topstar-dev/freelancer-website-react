@@ -8,3 +8,10 @@ export const getCountries = (getCountriesParam: GetCountriesInterface | void) =>
     const queryString = getCountriesParam ? `?${new URLSearchParams(getCountriesParam as unknown as Record<string, any>).toString()}` : '';
     return apiCall(`/user/v1/countries${queryString}`, requestOptions);
 };
+
+export const getCurrencies = () => {
+    const requestOptions: RequestInit = {
+        method: 'GET'
+    };
+    return apiCall(`/user/v1/currencies`, requestOptions);
+};

@@ -35,6 +35,7 @@ const commonHeaders = (options: any, authRequired: boolean = false) => {
     if (userData && authRequired) {
         headers = {
             ...headers,
+            "refresh-token": `${userData['refresh_token']} `,
             "device-token": `${userData['device_token']} `,
             "access-token": `${userData['access_token']} `
         }
