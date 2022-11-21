@@ -21,7 +21,7 @@ export default function Settings() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
-    const isWeb = useMediaQuery({ query: '(min-width: 1080px)' });
+    const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
     const [url, setUrl] = React.useState(location.pathname === '/settings' ? '/settings/personal' : location.pathname);
 
     const handleChange = (path: string) => {
