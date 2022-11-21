@@ -7,7 +7,7 @@
 }
 
 .error-symbol {
-    animation: rotation 5s infinite linear;
+    animation: rotation 10s infinite linear;
 }
 
 @keyframes rotation {
@@ -16,6 +16,6 @@
     }
 
     to {
-        transform: rotate(359deg);
+        transform: rotate(360deg);
     }
 }

@@ -5,7 +5,7 @@ import { clearAvatar } from "../other/otherSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
 
 export interface SignUpInterface {
-    account_type: 'CLIENT' | 'FREELANCER';
+    user_type: 'CLIENT' | 'FREELANCER';
     first_name: string;
     last_name: string;
     birthday: string;
