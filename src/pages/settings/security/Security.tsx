@@ -1,12 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TextField, Typography, Box } from "@mui/material";
-import useSecurity from "./useSecurity";
 import Button from "../../../components/button/Button";
 
 export default function Security() {
     const { t } = useTranslation();
-    useSecurity();
 
     React.useEffect(() => {
         document.title = t('title.security')
