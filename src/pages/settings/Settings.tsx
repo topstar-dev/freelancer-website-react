@@ -16,6 +16,7 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import SecurityIcon from '@mui/icons-material/Security';
 import PaidIcon from '@mui/icons-material/Paid';
+import "./settings.css";
 
 export default function Settings() {
     const { t } = useTranslation();
@@ -59,7 +60,7 @@ export default function Settings() {
                 </MediaQuery>
                 <MediaQuery minWidth='1081px'>
                     <Box sx={{ width: '284px' }}>
-                        <List sx={{ width: '100%', paddingRight: '20px' }}>
+                        <List className="rounx-settings-list" sx={{ width: '100%', paddingRight: '20px' }}>
                             <ListItemButton
                                 selected={url === '/settings/personal'}
                                 onClick={() => handleChange('/settings/personal')} >
