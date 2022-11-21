@@ -46,10 +46,14 @@ export default function Settings() {
             }}>
                 <MediaQuery maxWidth='1080px'>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">{t('user-settings')}</InputLabel>
+                        <InputLabel id="settings-select-label">{t('user-settings')}</InputLabel>
                         <Select
                             value={url}
                             label="Settings"
+                            MenuProps={
+                                { className: "rounx-setting-menu" }
+                            }
+                            labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
                         >
                             <MenuItem value={'/settings/personal'}>{t('user-settings-personal')}</MenuItem>
