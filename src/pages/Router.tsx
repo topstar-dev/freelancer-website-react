@@ -23,7 +23,7 @@ import AboutUs from "./aboutUs/AboutUs";
 import Privacy from "./policies/Privacy";
 import Terms from "./policies/Terms";
 import AuthGuard from "./auth/AuthGuard";
-import ErrorPage from "./404/ErrorPage";
+import NotFound from "./error/NotFound";
 import TawkProvider from "../components/TawkProvider";
 
 // apply-freelancer
@@ -242,7 +242,7 @@ export default function Router() {
       children: [
         {
           path: "*",
-          element: <ErrorPage />
+          element: <NotFound />
         }
       ]
     }
