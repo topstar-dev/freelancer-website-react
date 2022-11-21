@@ -5,14 +5,16 @@ import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCurrencyList } from "../../redux/resources/resourcesActions";
 import { currencySettings, currencySettingsUpdate } from "../../redux/settings/settingsActions";
+import Button from "../../components/button/Button";
 
 export default function Currency() {
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
-    const { currencyData } = useAppSelector(state => state.resources)
+    const { currencyData } = useAppSelector(state => state.resources);
     const { selectedCurrency } = useAppSelector(state => state.settings)
 
+    const [selectedValue, setSelectedValue] = React.useState(selectedCurrency)
     const [currency, setCurrency] = React.useState(currencyData);
     const [called, setCalled] = React.useState(false);
 
@@ -39,19 +41,14 @@ export default function Currency() {
             </Typography>
             <br />
             <FormControl fullWidth>
-                <InputLabel id="personal-currency">{selectedCurrency.currency_code}</InputLabel>
+                <InputLabel id="personal-currency">{selectedValue.currency_code}</InputLabel>
                 <Select
                     fullWidth
                     labelId="personal-currency"
-                    label={selectedCurrency.currency_code}
-                    value={selectedCurrency.currency_code ? selectedCurrency.currency_code : ''}
+                    label={selectedValue.currency_code}
+                    value={selectedValue.currency_code ? selectedValue.currency_code : ''}
                     onChange={(e) => {
-                        dispatch(currencySettingsUpdate({ currency_code: e.target.value })).then((res) => {
-                            dispatch(currencySettings());
-                            enqueueSnackbar(res.payload.message);
-                        }).catch((err) => {
-                            enqueueSnackbar(err.payload.message);
-                        })
+                        setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
                     }}
                 >
                     {currency?.map((e: any, i: any) => (
@@ -59,6 +56,21 @@ export default function Currency() {
                     ))}
                 </Select>
             </FormControl>
+            <br />
+            <br />
+            <Button
+                disabled={!selectedValue?.currency_code || selectedCurrency?.currency_code === selectedValue?.currency_code}
+                onClick={() => {
+                    dispatch(currencySettingsUpdate({ currency_code: selectedValue?.currency_code })).then((res) => {
+                        dispatch(currencySettings());
+                        enqueueSnackbar(res.payload.message);
+                    }).catch((err) => {
+                        enqueueSnackbar(err.payload.message);
+                    })
+                }}
+            >
+                {t('user-personal-account-save')}
+            </Button>
         </>
     )
 }
