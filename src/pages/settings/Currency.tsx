@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { FormControl, MenuItem, Select, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCurrencyList } from "../../redux/resources/resourcesActions";

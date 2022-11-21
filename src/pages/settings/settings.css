@@ -12,7 +12,7 @@
     background-color: rgb(189 189 189 / 20%) !important;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 900px) {
     .rounx-setting-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
         left: 24px !important;
     }
