@@ -68,7 +68,7 @@ export default function Personal() {
                 <TextField
                     fullWidth
                     type="text"
-                    value={personalData.primary_email ? personalData.primary_email : ''}
+                    value={personalData?.primary_email ? personalData.primary_email : ''}
                     onChange={(e: any) => changeData(e, "primary_email")}
                     helperText={t('user-personal-account-email-note')}
                     label={t('user-personal-account-email')}
@@ -77,7 +77,7 @@ export default function Personal() {
                 <br />
                 <br />
                 <Button
-                    disabled={personal.primary_email === personalData.primary_email}
+                    disabled={personal?.primary_email === personalData?.primary_email}
                     onClick={submitEmail}
                 >
                     {t('user-personal-account-email-change-button')}
