@@ -41,18 +41,18 @@ export default function Currency() {
             </Typography>
             <br />
             <FormControl fullWidth>
-                <InputLabel id="personal-currency">{selectedValue.currency_code}</InputLabel>
+                {/* <InputLabel id="personal-currency">{selectedValue.currency_code}</InputLabel> */}
                 <Select
                     fullWidth
                     labelId="personal-currency"
-                    label={selectedValue.currency_code}
+                    // label={selectedValue.currency_code}
                     value={selectedValue.currency_code ? selectedValue.currency_code : ''}
                     onChange={(e) => {
                         setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
                     }}
                 >
                     {currency?.map((e: any, i: any) => (
-                        <MenuItem key={i} value={e.currency_code}>{`${e.currency_symbol} ${e.currency_name} ${e.currency_code}`}</MenuItem>
+                        <MenuItem key={i} value={e.currency_code}>{e.currency_code}</MenuItem>
                     ))}
                 </Select>
             </FormControl>
