@@ -21,6 +21,11 @@ export interface UpdateCurrencyDataInterface {
     currency_code: string;
 }
 
+export interface SecurityInterface {
+    password_change_time: string;
+    recovery_email: string;
+}
+
 export const personalSettings = createAsyncThunk(
     'settings/personal',
     async (args: void, { rejectWithValue }) => {

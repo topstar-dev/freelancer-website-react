@@ -37,7 +37,7 @@ import AboutMe from "./applyFreelancer/AboutMe";
 //settings
 import Settings from "./settings/Settings";
 import Personal from "./settings/Personal";
-import Security from "./settings/security/Security";
+import Security from "./settings/Security";
 import Currency from "./settings/Currency";
 
 import { refreshToken, setTokens } from "../redux/account/accountApi";

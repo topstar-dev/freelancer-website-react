@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { currencySettings, personalSettings, SelectedCurrencyInterface } from './settingsActions';
+import { currencySettings, personalSettings, SecurityInterface, securitySettings, SelectedCurrencyInterface } from './settingsActions';
 import { PersonalDataInterface } from './settingsActions';
 
 export interface SettingsState {
@@ -7,7 +7,8 @@ export interface SettingsState {
     success: boolean,
     message: string | null,
     personal: PersonalDataInterface;
-    selectedCurrency: SelectedCurrencyInterface
+    selectedCurrency: SelectedCurrencyInterface,
+    security: SecurityInterface
 }
 
 const initialState: SettingsState = {
@@ -19,6 +20,10 @@ const initialState: SettingsState = {
         currency_code: '',
         currency_name: '',
         currency_symbol: ''
+    },
+    security: {
+        password_change_time: '',
+        recovery_email: ''
     }
 }
 
@@ -57,6 +62,24 @@ export const settingsSlice = createSlice({
             state.selectedCurrency = action.payload.data;
         })
         builder.addCase(currencySettings.rejected, (state: SettingsState, action) => {
+            const payload = action.payload as SettingsState;
+            state.success = false;
+            state.loading = false;
+            state.message = payload.message;
+        })
+
+        //security info
+        builder.addCase(securitySettings.pending, (state: SettingsState, _action) => {
+            state.loading = true;
+            state.message = null;
+        })
+        builder.addCase(securitySettings.fulfilled, (state: SettingsState, action) => {
+            state.loading = false;
+            state.success = true;
+            state.message = action.payload.message;
+            state.security = action.payload.data;
+        })
+        builder.addCase(securitySettings.rejected, (state: SettingsState, action) => {
             const payload = action.payload as SettingsState;
             state.success = false;
             state.loading = false;

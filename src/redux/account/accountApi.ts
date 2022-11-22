@@ -1,4 +1,13 @@
 import { apiCall } from "../apiCall";
+import { ChangePasswordInterface } from "./accountActions";
+
+export const changePassword = (data: ChangePasswordInterface) => {
+    const requestOptions: RequestInit = {
+        method: 'PUT',
+        body: JSON.stringify(data)
+    };
+    return apiCall(`/user/v1/change-password`, requestOptions, true);
+}
 
 export const setTokens = (data: any) => {
     localStorage.setItem('user-info', JSON.stringify(data));
