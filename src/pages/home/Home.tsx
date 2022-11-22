@@ -21,11 +21,27 @@ export default function HomePage() {
     const navigate = useNavigate();
     const { language } = useAppSelector(state => state.resources);
     const [backdrop, setBackdrop] = React.useState(false);
+    const [currentIndex, setCurrentIndex] = React.useState(0)
+
+    const carouselInfiniteScroll = () => {
+        if (currentIndex >= 2) {
+            return setCurrentIndex(0);
+        }
+        return setCurrentIndex(currentIndex + 1);
+    }
 
     React.useEffect(() => {
         document.title = t('title.home');
         sessionStorage.removeItem('signup-info')
         pageView(window.location.pathname)
+
+        const interval = setInterval(() => {
+            carouselInfiniteScroll()
+        }, 3000)
+
+        return () => {
+            clearInterval(interval)
+        }
     })
 
     return (
@@ -183,11 +199,14 @@ export default function HomePage() {
                     }
                 </Box>
                 <Box className="rounx-home-third-right">
-                    <img
-                        className="screenshots"
-                        alt="Screenshots"
-                        height='692px'
-                        src="images/screenshots.png" />
+                    {[0, 1, 2].map((item: any) => (
+                        <img
+                            key={item}
+                            className={`screenshots ${item !== currentIndex ? 'hidden' : 'visible'}`}
+                            alt="Screenshots"
+                            height='692'
+                            src={`images/screenshot-${item + 1}.png`} />
+                    ))}
                 </Box>
             </Box>
         </>
