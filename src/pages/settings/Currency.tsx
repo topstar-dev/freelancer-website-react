@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Backdrop, CircularProgress, FormControl, MenuItem, Select, Typography } from "@mui/material";
+import { Backdrop, CircularProgress, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCurrencyList } from "../../redux/resources/resourcesActions";
@@ -44,9 +44,11 @@ export default function Currency() {
             </Typography>
             <br />
             <FormControl fullWidth>
+                <InputLabel id="personal-currency">{t('user-settings-currency')}</InputLabel>
                 <Select
                     fullWidth
                     labelId="personal-currency"
+                    label={t('user-settings-currency')}
                     value={selectedValue.currency_code ? selectedValue.currency_code : ''}
                     onChange={(e) => {
                         setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
