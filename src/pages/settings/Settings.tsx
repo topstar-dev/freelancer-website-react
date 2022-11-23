@@ -68,19 +68,19 @@ export default function Settings() {
                             <ListItemButton
                                 selected={url === '/settings/personal'}
                                 onClick={() => handleChange('/settings/personal')} >
-                                <PersonIcon />
+                                <PersonIcon className="rounx-settings-icon" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-personal')} />
                             </ListItemButton>
                             <ListItemButton
                                 selected={url === '/settings/security'}
                                 onClick={() => handleChange('/settings/security')}>
-                                <SecurityIcon />
+                                <SecurityIcon className="rounx-settings-icon" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
                             <ListItemButton
                                 selected={url === '/settings/currency'}
                                 onClick={() => handleChange('/settings/currency')}>
-                                <PaidIcon />
+                                <PaidIcon className="rounx-settings-icon" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-currency')} />
                             </ListItemButton>
                         </List>

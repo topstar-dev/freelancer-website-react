@@ -3,13 +3,17 @@
 }
 
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
-    background-color: #bdbdbd !important;
+    background-color: rgb(189 189 189 / 50%) !important;
     color: #757575 !important;
 }
 
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
     border-radius: 4px !important;
     background-color: rgb(189 189 189 / 20%) !important;
+}
+
+.rounx-settings-icon {
+    margin-right: 16px;
 }
 
 @media (max-width: 900px) {
