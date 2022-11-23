@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { FormControl, MenuItem, Select, Typography } from "@mui/material";
+import { Backdrop, CircularProgress, FormControl, MenuItem, Select, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCurrencyList } from "../../redux/resources/resourcesActions";
@@ -13,6 +13,7 @@ export default function Currency() {
     const dispatch = useAppDispatch();
     const { currencyData } = useAppSelector(state => state.resources);
     const { selectedCurrency } = useAppSelector(state => state.settings)
+    const [backdrop, setBackdrop] = React.useState(false);
 
     const [selectedValue, setSelectedValue] = React.useState(selectedCurrency)
     const [currency, setCurrency] = React.useState(currencyData);
@@ -41,11 +42,9 @@ export default function Currency() {
             </Typography>
             <br />
             <FormControl fullWidth>
-                {/* <InputLabel id="personal-currency">{selectedValue.currency_code}</InputLabel> */}
                 <Select
                     fullWidth
                     labelId="personal-currency"
-                    // label={selectedValue.currency_code}
                     value={selectedValue.currency_code ? selectedValue.currency_code : ''}
                     onChange={(e) => {
                         setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
@@ -61,16 +60,25 @@ export default function Currency() {
             <Button
                 disabled={!selectedValue?.currency_code || selectedCurrency?.currency_code === selectedValue?.currency_code}
                 onClick={() => {
+                    setBackdrop(true);
                     dispatch(currencySettingsUpdate({ currency_code: selectedValue?.currency_code })).then((res) => {
                         dispatch(currencySettings());
                         enqueueSnackbar(res.payload.message);
                     }).catch((err) => {
                         enqueueSnackbar(err.payload.message);
+                    }).finally(() => {
+                        setBackdrop(false);
                     })
                 }}
             >
                 {t('user-personal-account-save')}
             </Button>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={backdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </>
     )
 }
