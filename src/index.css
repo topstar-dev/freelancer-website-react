@@ -12,6 +12,7 @@
 
 :root {
   --color-primary: #336def;
+  --color-primary-light: rgb(51 109 239 / 20%);
 }
 
 * {
