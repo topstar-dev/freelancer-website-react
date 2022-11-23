@@ -28,7 +28,9 @@ export default function Currency() {
             setCalled(true)
             dispatch(currencySettings());
             dispatch(getCurrencyList()).then((res) => {
-                setCurrency(res.payload.data);
+                if (res.payload && res.payload.success) {
+                    setCurrency(res.payload.data);
+                }
             }).then((err: any) => {
                 enqueueSnackbar(err.payload.message)
             })
