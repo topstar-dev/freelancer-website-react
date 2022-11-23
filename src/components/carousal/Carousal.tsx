@@ -3,13 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import "./carousal.css";
 
-const mediaByIndex = [
-  "/images/screenshot-1.png",
-  "/images/screenshot-2.png",
-  "/images/screenshot-3.png"
-];
-
-const EmblaCarousel = () => {
+const EmblaCarousel = ({ mediaByIndex }: any) => {
   const autoplay = useRef(
     Autoplay(
       { delay: 3000, stopOnInteraction: false },
@@ -24,7 +18,7 @@ const EmblaCarousel = () => {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {mediaByIndex.map((image, index) => (
+          {mediaByIndex.map((image: string, index: number) => (
             <div className="embla__slide" key={index}>
               <img
                 className="embla__slide__img"

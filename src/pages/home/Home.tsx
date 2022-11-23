@@ -184,7 +184,11 @@ export default function HomePage() {
                     }
                 </Box>
                 <Box className="rounx-home-third-right">
-                    <EmblaCarousel />
+                    <EmblaCarousel mediaByIndex={[
+                        "/images/screenshot-1.png",
+                        "/images/screenshot-2.png",
+                        "/images/screenshot-3.png"
+                    ]} />
                 </Box>
             </Box>
         </>
