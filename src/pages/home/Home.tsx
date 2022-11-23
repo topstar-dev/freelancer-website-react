@@ -12,7 +12,7 @@ import {
     scheduleAppointment
 } from '../../redux/home/homeActions';
 import { pageView } from "../../services/eventTracker";
-import EmblaCarousel from "../../components/carousal/RounxCarousal";
+import EmblaCarousel from "../../components/carousal/Carousal";
 import './home.css'
 
 export default function HomePage() {

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import "./rounxCarousal.css";
+import "./carousal.css";
 
 const mediaByIndex = [
   "/images/screenshot-1.png",
