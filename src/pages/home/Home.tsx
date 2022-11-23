@@ -13,6 +13,7 @@ import {
 } from '../../redux/home/homeActions';
 import './home.css'
 import { pageView } from "../../services/eventTracker";
+import EmblaCarousel from "./RounxCarousal";
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -199,14 +200,7 @@ export default function HomePage() {
                     }
                 </Box>
                 <Box className="rounx-home-third-right">
-                    {[0, 1, 2].map((item: any) => (
-                        <img
-                            key={item}
-                            className={`screenshots ${item !== currentIndex ? 'hidden' : 'visible'}`}
-                            alt="Screenshots"
-                            height='692'
-                            src={`images/screenshot-${item + 1}.png`} />
-                    ))}
+                    <EmblaCarousel />
                 </Box>
             </Box>
         </>

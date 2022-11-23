@@ -66,29 +66,6 @@
     width: 258px;
 }
 
-.screenshots {
-    height: 692px;
-    float: right;
-    right: 0;
-    transition: transform 1s cubic-bezier(0.39, 0.575, 0.565, 1), display 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
-}
-
-.screenshots.hidden {
-    display: none
-}
-
-.screenshots.visible {
-    display: block;
-}
-
-@media (max-width:490px) {
-    .screenshots {
-        height: auto;
-        width: 100%;
-        float: unset;
-    }
-}
-
 @media (max-width:1170px) {
     .rounx-home-first-image {
         margin-right: auto;
