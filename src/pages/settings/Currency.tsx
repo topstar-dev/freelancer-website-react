@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCurrencyList } from "../../redux/resources/resourcesActions";
 import { currencySettings, currencySettingsUpdate } from "../../redux/settings/settingsActions";
 import Button from "../../components/button/Button";
+import Form from "../../components/form/Form";
 
 export default function Currency() {
     const { t } = useTranslation();
@@ -43,40 +44,44 @@ export default function Currency() {
                 {t('user-currency-title')}
             </Typography>
             <br />
-            <FormControl fullWidth>
-                <InputLabel id="personal-currency">{t('user-settings-currency')}</InputLabel>
-                <Select
-                    fullWidth
-                    labelId="personal-currency"
-                    label={t('user-settings-currency')}
-                    value={selectedValue.currency_code ? selectedValue.currency_code : ''}
-                    onChange={(e) => {
-                        setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
+            <Form>
+                <FormControl fullWidth>
+                    <InputLabel id="personal-currency">{t('user-settings-currency')}</InputLabel>
+                    <Select
+                        fullWidth
+                        labelId="personal-currency"
+                        label={t('user-settings-currency')}
+                        value={selectedValue.currency_code ? selectedValue.currency_code : ''}
+                        onChange={(e) => {
+                            setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
+                        }}
+                    >
+                        {currency?.map((e: any, i: any) => (
+                            <MenuItem key={i} value={e.currency_code}>{e.currency_code}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <Button
+                    style={{
+                        width: 'fit-content',
+                        marginTop: "10px"
+                    }}
+                    disabled={!selectedValue?.currency_code || selectedCurrency?.currency_code === selectedValue?.currency_code}
+                    onClick={() => {
+                        setBackdrop(true);
+                        dispatch(currencySettingsUpdate({ currency_code: selectedValue?.currency_code })).then((res) => {
+                            dispatch(currencySettings());
+                            enqueueSnackbar(res.payload.message);
+                        }).catch((err) => {
+                            enqueueSnackbar(err.payload.message);
+                        }).finally(() => {
+                            setBackdrop(false);
+                        })
                     }}
                 >
-                    {currency?.map((e: any, i: any) => (
-                        <MenuItem key={i} value={e.currency_code}>{e.currency_code}</MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-            <br />
-            <br />
-            <Button
-                disabled={!selectedValue?.currency_code || selectedCurrency?.currency_code === selectedValue?.currency_code}
-                onClick={() => {
-                    setBackdrop(true);
-                    dispatch(currencySettingsUpdate({ currency_code: selectedValue?.currency_code })).then((res) => {
-                        dispatch(currencySettings());
-                        enqueueSnackbar(res.payload.message);
-                    }).catch((err) => {
-                        enqueueSnackbar(err.payload.message);
-                    }).finally(() => {
-                        setBackdrop(false);
-                    })
-                }}
-            >
-                {t('user-personal-account-save')}
-            </Button>
+                    {t('user-personal-account-save')}
+                </Button>
+            </Form >
             <Backdrop
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={backdrop}
