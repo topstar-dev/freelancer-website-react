@@ -8,6 +8,7 @@ import { TextField, Typography, Box, FormControl, Select, MenuItem, InputLabel, 
 import Button from "../../components/button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { PersonalDataInterface, personalSettings, personalSettingsUpdate } from "../../redux/settings/settingsActions";
+import Form from "../../components/form/Form";
 
 export default function Personal() {
     const { t } = useTranslation();
@@ -152,24 +153,33 @@ export default function Personal() {
                     {t('user-personal-account-language')}
                 </Typography>
                 <br />
-                <FormControl fullWidth>
-                    <InputLabel id="personal-language">{t('user-personal-account-language')}</InputLabel>
-                    <Select
-                        fullWidth
-                        labelId="personal-language"
-                        label={t('user-personal-account-language')}
-                        value={personalData.language_code ? personalData.language_code : ''}
-                        onChange={(e) => {
-                            changeData(e, "language_code")
+                <Form>
+
+                    <FormControl fullWidth>
+                        <InputLabel id="personal-language">{t('user-personal-account-language')}</InputLabel>
+                        <Select
+                            fullWidth
+                            labelId="personal-language"
+                            label={t('user-personal-account-language')}
+                            value={personalData.language_code ? personalData.language_code : ''}
+                            onChange={(e) => {
+                                changeData(e, "language_code")
+                            }}
+                        >
+                            <MenuItem value="en">English</MenuItem>
+                            <MenuItem value="zh-CN">中文</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <Button
+                        style={{
+                            width: 'fit-content',
+                            marginTop: '10px'
                         }}
+                        onClick={updatePersonalData}
                     >
-                        <MenuItem value="en">English</MenuItem>
-                        <MenuItem value="zh-CN">中文</MenuItem>
-                    </Select>
-                </FormControl>
-                <br />
-                <br />
-                <Button onClick={updatePersonalData}>{t('user-personal-account-save')}</Button>
+                        {t('user-personal-account-save')}
+                    </Button>
+                </Form>
             </Box>
         </>
     )
