@@ -4,7 +4,7 @@
 
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
     background-color: var(--color-primary-light) !important;
-    color: #757575 !important;
+    color: var(--color-primary) !important;
 }
 
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
