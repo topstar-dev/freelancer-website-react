@@ -16,8 +16,18 @@
     margin-right: 16px;
 }
 
+.deleteEmailModal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+    min-width: 400px !important;
+}
+
 @media (max-width: 900px) {
     .rounx-setting-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
         left: 24px !important;
+    }
+}
+
+@media (max-width: 432px) {
+    .deleteEmailModal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+        min-width: calc(100% - 32px) !important;
     }
 }

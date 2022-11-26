@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
-import { TextField, Typography, Box, InputAdornment, IconButton, Backdrop, CircularProgress } from "@mui/material";
+import { TextField, Typography, Box, InputAdornment, IconButton, Backdrop, CircularProgress, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import Button from "../../components/button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useSnackbar } from "notistack";
@@ -9,7 +9,7 @@ import { SecurityInterface, securitySettings } from "../../redux/settings/settin
 import WithTranslateFormErrors from "../../services/validationScemaOnLangChange";
 import { Formik } from "formik";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { changePasswordAction, changeRecoveryEmailAction, ChangeRecoveryEmailInterface } from "../../redux/account/accountActions";
+import { changePasswordAction, changeRecoveryEmailAction, ChangeRecoveryEmailInterface, deleteRecoveryEmailAction, DeleteRecoveryEmailInterface } from "../../redux/account/accountActions";
 import Form from "../../components/form/Form";
 import { sendCodeToEmail } from "../../redux/auth/authActions";
 
@@ -24,7 +24,9 @@ export default function Security() {
     const [backdrop, setBackdrop] = React.useState(false);
     const [showCurrentPassword, setCurrentShowPassword] = React.useState(false);
     const [showNewPassword, setNewShowPassword] = React.useState(false);
+    const [showEmailChangePassword, setShowEmailChangePassword] = React.useState(false);
     const [changeEmail, setChangeEmail] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
         document.title = t('title.security')
@@ -262,6 +264,7 @@ export default function Security() {
                                         name="password"
                                         value={formik.values.password}
                                         label={t('signin-password')}
+                                        type={showEmailChangePassword ? 'text' : 'password'}
                                         onChange={formik.handleChange}
                                         error={formik.touched.password && Boolean(formik.errors.password)}
                                         helperText={(formik.touched.password && formik.errors.password) as ReactNode}
@@ -270,10 +273,10 @@ export default function Security() {
                                                 <InputAdornment position="end">
                                                     <IconButton
                                                         aria-label="toggle password visibility"
-                                                        onClick={handleClickShowCurrentPassword}
+                                                        onClick={() => setShowEmailChangePassword(!showEmailChangePassword)}
                                                         edge="end"
                                                     >
-                                                        {showCurrentPassword ? <VisibilityOff /> : <Visibility />}
+                                                        {showEmailChangePassword ? <VisibilityOff /> : <Visibility />}
                                                     </IconButton>
                                                 </InputAdornment>
                                             ),
@@ -281,7 +284,16 @@ export default function Security() {
                                     ></TextField>
                                 </>}
                                 <Box style={{ display: 'flex', marginTop: '10px' }}>
-                                    <Button sx={{ mr: 2 }}>{t('user-security-recovery-email-delete')}</Button>
+                                    <Button
+                                        sx={{ mr: 2 }}
+                                        onClick={() => {
+                                            if (formik.values.new_email && formik.values.new_email !== securityData?.recovery_email) {
+                                                setOpen(true)
+                                            }
+                                        }}
+                                    >
+                                        {t('user-security-recovery-email-delete')}
+                                    </Button>
                                     <Button
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
@@ -357,6 +369,72 @@ export default function Security() {
                                             t('user-security-recovery-email-change')
                                         }
                                     </Button>
+                                    <Dialog
+                                        open={open}
+                                        onClose={() => setOpen(false)}
+                                        maxWidth="lg"
+                                        className="deleteEmailModal"
+                                    >
+                                        <DialogTitle>Delete email</DialogTitle>
+                                        <DialogContent>
+                                            <Formik
+                                                initialValues={{
+                                                    password: ""
+                                                }}
+                                                validationSchema={yup.object({
+                                                    password: yup
+                                                        .string()
+                                                        .required(t('validation.set-password-required'))
+                                                })}
+                                                onSubmit={() => { }}
+                                            >
+                                                {formik => (
+                                                    <WithTranslateFormErrors {...formik}>
+                                                        <Form style={{ padding: '5px 0' }}>
+                                                            <TextField
+                                                                fullWidth
+                                                                id="password"
+                                                                name="password"
+                                                                value={formik.values.password}
+                                                                label={t('user-security-change-password-current')}
+                                                                type='password'
+                                                                onChange={formik.handleChange}
+                                                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                                                helperText={(formik.touched.password && formik.errors.password) as ReactNode}
+                                                            ></TextField>
+                                                            <DialogActions>
+                                                                <Button variant="text" onClick={() => setOpen(false)}>Cancel</Button>
+                                                                <Button variant="text" onClick={() => {
+                                                                    formik.validateForm().then((res: any) => {
+                                                                        const { password } = res;
+                                                                        if (password) {
+                                                                            formik.setFieldTouched('password', true, true);
+                                                                            formik.setFieldError('password', password);
+                                                                        } else {
+                                                                            const deleteEmailCodeObj: DeleteRecoveryEmailInterface = {
+                                                                                password: formik.values.password
+                                                                            }
+                                                                            setBackdrop(true);
+                                                                            dispatch(deleteRecoveryEmailAction(deleteEmailCodeObj)).then((res: any) => {
+                                                                                const { payload } = res;
+                                                                                const { message } = payload;
+                                                                                enqueueSnackbar(message);
+                                                                            }).catch((err) => {
+                                                                                enqueueSnackbar(err.payload.message)
+                                                                            }).finally(() => {
+                                                                                setOpen(false)
+                                                                                setBackdrop(false);
+                                                                            })
+                                                                        }
+                                                                    })
+                                                                }}>Confirm</Button>
+                                                            </DialogActions>
+                                                        </Form>
+                                                    </WithTranslateFormErrors>
+                                                )}
+                                            </Formik>
+                                        </DialogContent>
+                                    </Dialog>
                                 </Box>
                             </Form>
                         </WithTranslateFormErrors>
