@@ -388,41 +388,46 @@ export default function Security() {
                                                 })}
                                                 onSubmit={() => { }}
                                             >
-                                                {formik => (
-                                                    <WithTranslateFormErrors {...formik}>
+                                                {formik2 => (
+                                                    <WithTranslateFormErrors {...formik2}>
                                                         <Form style={{ padding: '5px 0' }}>
                                                             <TextField
                                                                 fullWidth
                                                                 id="password"
                                                                 name="password"
-                                                                value={formik.values.password}
+                                                                value={formik2.values.password}
                                                                 label={t('user-security-change-password-current')}
                                                                 type='password'
-                                                                onChange={formik.handleChange}
-                                                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                                                helperText={(formik.touched.password && formik.errors.password) as ReactNode}
+                                                                onChange={formik2.handleChange}
+                                                                error={formik2.touched.password && Boolean(formik2.errors.password)}
+                                                                helperText={(formik2.touched.password && formik2.errors.password) as ReactNode}
                                                             ></TextField>
                                                             <DialogActions>
                                                                 <Button variant="text" onClick={() => setOpen(false)}>Cancel</Button>
                                                                 <Button variant="text" onClick={() => {
-                                                                    formik.validateForm().then((res: any) => {
+                                                                    formik2.validateForm().then((res: any) => {
                                                                         const { password } = res;
                                                                         if (password) {
-                                                                            formik.setFieldTouched('password', true, true);
-                                                                            formik.setFieldError('password', password);
+                                                                            formik2.setFieldTouched('password', true, true);
+                                                                            formik2.setFieldError('password', password);
                                                                         } else {
                                                                             const deleteEmailCodeObj: DeleteRecoveryEmailInterface = {
-                                                                                password: formik.values.password
+                                                                                password: formik2.values.password
                                                                             }
                                                                             setBackdrop(true);
                                                                             dispatch(deleteRecoveryEmailAction(deleteEmailCodeObj)).then((res: any) => {
                                                                                 const { payload } = res;
-                                                                                const { message } = payload;
+                                                                                const { message, success } = payload;
                                                                                 enqueueSnackbar(message);
+                                                                                if (success) {
+                                                                                    dispatch(securitySettings());
+                                                                                }
                                                                             }).catch((err) => {
                                                                                 enqueueSnackbar(err.payload.message)
                                                                             }).finally(() => {
                                                                                 setOpen(false)
+                                                                                formik2.resetForm();
+                                                                                formik.resetForm();
                                                                                 setBackdrop(false);
                                                                             })
                                                                         }
