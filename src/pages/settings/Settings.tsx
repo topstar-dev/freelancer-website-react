@@ -28,7 +28,7 @@ export default function Settings() {
     React.useEffect(() => {
         window.onpopstate = e => {
             e.preventDefault();
-            if (['/settings/security', '/settings/currency'].includes(location.pathname)) {
+            if (['/settings/security', '/settings/currency', '/settings/personal'].includes(location.pathname)) {
                 setUrl('/settings/personal')
             }
         };
