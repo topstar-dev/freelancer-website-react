@@ -33,7 +33,9 @@ export default function Currency() {
                     setCurrency(res.payload.data);
                 }
             }).then((err: any) => {
-                enqueueSnackbar(err.payload.message)
+                if (err) {
+                    enqueueSnackbar(err && err.payload.message)
+                }
             })
         }
     }, [called, dispatch, enqueueSnackbar]);
