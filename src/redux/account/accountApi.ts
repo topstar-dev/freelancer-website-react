@@ -68,7 +68,7 @@ export const refreshToken = (error?: any, previous: boolean = false) => {
 
     return apiCall(`/user/v1/refresh-token`, requestConfigs, true).then(response => {
         if (response.success) {
-            // setTokens(response.data);
+            setTokens(response.data);
             if (previous && error) {
                 const { config } = error.response;
                 return apiCall(config.url, {
@@ -80,11 +80,11 @@ export const refreshToken = (error?: any, previous: boolean = false) => {
                 return Promise.resolve(response);
             }
         } else {
-            // removeTokens(previous);
+            removeTokens(previous);
             return Promise.reject(error);
         }
     }).catch(error => {
-        // removeTokens(previous);
+        removeTokens(previous);
         return Promise.reject(error);
     })
 }; 
