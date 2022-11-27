@@ -41,6 +41,9 @@ export default function SignIn() {
   const [backdrop, setBackdrop] = React.useState(false);
 
   useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
     document.title = t('title.signin')
     sessionStorage.removeItem('signup-info');
     sessionStorage.removeItem('reset-password-data');

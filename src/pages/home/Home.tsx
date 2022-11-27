@@ -21,6 +21,7 @@ export default function HomePage() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const { language } = useAppSelector(state => state.resources);
+    const { userInfo } = useAppSelector((state) => state.auth);
     const [backdrop, setBackdrop] = React.useState(false);
 
     React.useEffect(() => {
@@ -45,7 +46,7 @@ export default function HomePage() {
                                 {t('home-page-heading1-details2')}
                             </Typography>
                         </div>
-                        <Button onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</Button>
+                        {!userInfo && <Button onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</Button>}
                     </Box>
                 </Box>
                 <Box className="rounx-home-first-right">
