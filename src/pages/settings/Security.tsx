@@ -9,7 +9,7 @@ import { SecurityInterface, securitySettings } from "../../redux/settings/settin
 import WithTranslateFormErrors from "../../services/validationScemaOnLangChange";
 import { Formik } from "formik";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { changePasswordAction, changeRecoveryEmailAction, ChangeRecoveryEmailInterface, deleteRecoveryEmailAction, DeleteRecoveryEmailInterface } from "../../redux/account/accountActions";
+import { changePasswordAction, changeRecoveryEmailAction, ChangeEmailInterface, deleteRecoveryEmailAction, DeleteRecoveryEmailInterface } from "../../redux/account/accountActions";
 import Form from "../../components/form/Form";
 import { sendCodeToEmail } from "../../redux/auth/authActions";
 
@@ -310,7 +310,7 @@ export default function Security() {
                                                     }
 
                                                     if (!(email_code && password)) {
-                                                        const dataObj: ChangeRecoveryEmailInterface = {
+                                                        const dataObj: ChangeEmailInterface = {
                                                             email_code: formik.values.email_code,
                                                             new_email: formik.values.new_email,
                                                             password: formik.values.password
@@ -327,7 +327,9 @@ export default function Security() {
                                                                 enqueueSnackbar(payload.message)
                                                             }
                                                         }).catch((err) => {
-
+                                                            if (err && err.payload) {
+                                                                enqueueSnackbar(err.payload.message);
+                                                            }
                                                         }).finally(() => {
                                                             setBackdrop(false);
                                                         })

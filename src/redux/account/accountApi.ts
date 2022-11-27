@@ -1,5 +1,5 @@
 import { apiCall } from "../apiCall";
-import { ChangePasswordInterface, ChangePrimaryEmailInterface, ChangeRecoveryEmailInterface, DeleteRecoveryEmailInterface } from "./accountActions";
+import { ChangePasswordInterface, ChangeEmailInterface, DeleteRecoveryEmailInterface } from "./accountActions";
 
 export const changePassword = (data: ChangePasswordInterface) => {
     const requestOptions: RequestInit = {
@@ -9,7 +9,7 @@ export const changePassword = (data: ChangePasswordInterface) => {
     return apiCall(`/user/v1/change-password`, requestOptions, true);
 }
 
-export const changePrimaryEmail = (data: ChangePrimaryEmailInterface) => {
+export const changePrimaryEmail = (data: ChangeEmailInterface) => {
     const requestOptions: RequestInit = {
         method: 'PUT',
         body: JSON.stringify(data)
@@ -17,7 +17,7 @@ export const changePrimaryEmail = (data: ChangePrimaryEmailInterface) => {
     return apiCall(`/user/v1/primary-email`, requestOptions, true);
 }
 
-export const changeRecoveryEmail = (data: ChangeRecoveryEmailInterface) => {
+export const changeRecoveryEmail = (data: ChangeEmailInterface) => {
     const requestOptions: RequestInit = {
         method: 'PUT',
         body: JSON.stringify(data)

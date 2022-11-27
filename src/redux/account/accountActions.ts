@@ -5,22 +5,18 @@ export interface ChangePasswordInterface {
     new_password: string;
     old_password: string;
 }
-export interface ChangePrimaryEmailInterface {
+export interface ChangeEmailInterface {
     email_code: string;
     new_email: string;
     password: string;
 }
-export interface ChangeRecoveryEmailInterface {
-    email_code: string;
-    new_email: string;
-    password: string;
-}
+
 export interface DeleteRecoveryEmailInterface {
     password: string;
 }
 
 export const refreshTokenAction = createAsyncThunk(
-    'account/changePassword',
+    'account/refreshToken',
     async (args: void, { rejectWithValue }) => {
         try {
             const response = await refreshToken();
@@ -45,7 +41,7 @@ export const changePasswordAction = createAsyncThunk(
 
 export const changePrimaryEmailAction = createAsyncThunk(
     'account/changePrimaryEmail',
-    async (args: ChangePrimaryEmailInterface, { rejectWithValue }) => {
+    async (args: ChangeEmailInterface, { rejectWithValue }) => {
         try {
             const response = await changePrimaryEmail(args);
             return response.success ? response : rejectWithValue(response);
@@ -57,7 +53,7 @@ export const changePrimaryEmailAction = createAsyncThunk(
 
 export const changeRecoveryEmailAction = createAsyncThunk(
     'account/changeRecoveryEmail',
-    async (args: ChangeRecoveryEmailInterface, { rejectWithValue }) => {
+    async (args: ChangeEmailInterface, { rejectWithValue }) => {
         try {
             const response = await changeRecoveryEmail(args);
             return response.success ? response : rejectWithValue(response);
