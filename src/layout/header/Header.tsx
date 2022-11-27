@@ -51,7 +51,13 @@ export default function Header() {
         selectedPage: selectedPage,
         setSelectedPage: (url: string) => {
             setSelectedPage(url)
-            navigate(url)
+            const replace = [
+                '/contact',
+                '/about',
+                '/help',
+                '/blog'
+            ].includes(location.pathname)
+            navigate(url, { replace })
         }
     }
     return (

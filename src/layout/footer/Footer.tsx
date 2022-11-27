@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { MenuItem, Box, Typography, FormControl, Select } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -12,6 +12,7 @@ import './footer.css';
 export default function Footer() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const location = useLocation();
     const { i18n, t } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
     const [open, setOpen] = React.useState(false);
@@ -25,6 +26,18 @@ export default function Footer() {
         eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
         document.documentElement.lang = lang;
         dispatch(changeLanguage(lang))
+    }
+
+    const isReplace = () => {
+        const replace = [
+            '/contact',
+            '/about',
+            '/help',
+            '/blog',
+            '/settings/personal'
+        ].includes(location.pathname)
+
+        return !replace;
     }
 
     return (
@@ -61,10 +74,10 @@ export default function Footer() {
                 </FormControl>
                 <Box className="rounx-nav-items-box">
                     <Typography className="rounx-footer-items" onClick={() => {
-                        navigate('/privacy')
+                        navigate('/privacy', { replace: isReplace() })
                     }}>{t('footer-privacy-policy')}</Typography>
                     <Typography className="rounx-footer-items" onClick={() => {
-                        navigate('/terms')
+                        navigate('/terms', { replace: isReplace() })
                     }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>
                 </Box>
