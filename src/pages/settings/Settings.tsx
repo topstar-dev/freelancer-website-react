@@ -26,8 +26,9 @@ export default function Settings() {
     const [url, setUrl] = React.useState(location.pathname === '/settings' ? '/settings/personal' : location.pathname);
 
     const handleChange = (path: string) => {
+        const { pathname } = location;
         setUrl(path);
-        navigate(path, { replace: true });
+        navigate(path, { replace: pathname.startsWith('/settings/') && !(pathname === '/settings/personal') ? true : false });
     };
 
     return (
