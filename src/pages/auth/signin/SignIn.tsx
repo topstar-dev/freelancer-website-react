@@ -42,11 +42,13 @@ export default function SignIn() {
 
   useEffect(() => {
     if (userInfo) {
+      document.title = t('title.home');
       navigate('/');
+    } else {
+      document.title = t('title.signin')
+      sessionStorage.removeItem('signup-info');
+      sessionStorage.removeItem('reset-password-data');
     }
-    document.title = t('title.signin')
-    sessionStorage.removeItem('signup-info');
-    sessionStorage.removeItem('reset-password-data');
   })
 
   useEffect(() => {
@@ -56,10 +58,11 @@ export default function SignIn() {
       enqueueSnackbar(message);
     }
     if (success && userInfo) {
+      document.title = t('title.home');
       setBackdrop(false);
       navigate('/');
     }
-  }, [enqueueSnackbar, navigate, dispatch, userInfo, success, message])
+  }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
   return (
     <Card className={`rounx-auth-card`}>
