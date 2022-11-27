@@ -61,8 +61,13 @@
 }
 
 .rounx-signin-handle {
-    cursor: pointer;
     margin-left: 16px !important;
+    height: 40px !important;
+    width: 40px !important;
+}
+
+.rounx-signin-handle-child {
+    cursor: pointer;
     height: 40px !important;
     width: 40px !important;
     color: #757575;

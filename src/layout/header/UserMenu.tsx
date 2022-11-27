@@ -44,11 +44,13 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
 
     return (
         <>
-            {userAvatar ?
-                <img className='rounx-signin-handle' onClick={handleMenu} src={userAvatar} alt="Rounx user" />
-                :
-                <AccountCircle className='rounx-signin-handle' onClick={handleMenu} />
-            }
+            <div className='rounx-signin-handle' onClick={handleMenu}>
+                {userAvatar ?
+                    <img className='rounx-signin-handle-child' src={userAvatar} alt="Rounx user" />
+                    :
+                    <AccountCircle className='rounx-signin-handle-child' />
+                }
+            </div>
             <Menu
                 id="menu-appbar"
                 className='rounx-user-menu-list'

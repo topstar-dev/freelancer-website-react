@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRoutes, RouteObject, Outlet, Navigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
@@ -40,11 +40,6 @@ import Personal from "./settings/Personal";
 import Security from "./settings/Security";
 import Currency from "./settings/Currency";
 
-import { refreshToken, setTokens } from "../redux/account/accountApi";
-import { updateUserInfo } from "../redux/auth/authSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { signOutUser } from "../redux/auth/authActions";
-
 interface RoutesInterface {
   isHeader: boolean,
   protectedRoute: boolean
@@ -52,26 +47,9 @@ interface RoutesInterface {
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
   const isWeb = useMediaQuery({ query: '(min-width: 901px)' });
 
-  const [called, setCalled] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const { userInfo, message } = useAppSelector((state) => state.auth);
-
   useEffect(() => {
     document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
   })
-
-  useEffect(() => {
-    if (isHeader && userInfo && !called && !message) {
-      setCalled(true);
-      refreshToken().then((res: any) => {
-        setTokens(res);
-        dispatch(updateUserInfo(res))
-      }).catch((err: any) => {
-        dispatch(signOutUser());
-      })
-    }
-  }, [isHeader, userInfo, called, message, dispatch])
 
   const content = <>
     {isHeader && <Header />}

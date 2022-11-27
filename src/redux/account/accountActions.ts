@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { changePassword, changePrimaryEmail, changeRecoveryEmail, deleteRecoveryEmail } from "./accountApi";
+import { changePassword, changePrimaryEmail, changeRecoveryEmail, deleteRecoveryEmail, refreshToken } from "./accountApi";
 
 export interface ChangePasswordInterface {
     new_password: string;
@@ -18,6 +18,18 @@ export interface ChangeRecoveryEmailInterface {
 export interface DeleteRecoveryEmailInterface {
     password: string;
 }
+
+export const refreshTokenAction = createAsyncThunk(
+    'account/changePassword',
+    async (args: void, { rejectWithValue }) => {
+        try {
+            const response = await refreshToken();
+            return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
 
 export const changePasswordAction = createAsyncThunk(
     'account/changePassword',

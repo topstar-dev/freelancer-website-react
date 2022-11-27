@@ -77,7 +77,7 @@ export const refreshToken = (error?: any, previous: boolean = false) => {
                     headers: config.headers
                 } as any);
             } else {
-                return Promise.resolve(response.data);
+                return Promise.resolve(response);
             }
         } else {
             // removeTokens(previous);

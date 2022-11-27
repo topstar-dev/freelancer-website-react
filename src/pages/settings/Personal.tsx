@@ -98,7 +98,7 @@ export default function Personal() {
                     <DesktopDatePicker
                         label={t('birthday')}
                         inputFormat="YYYY-MM-DD"
-                        value={personalData.birthday || null}
+                        value={personalData?.birthday || null}
                         onChange={(e) => {
                         }}
                         maxDate={dayjs()}
@@ -135,7 +135,7 @@ export default function Personal() {
                         fullWidth
                         labelId="personal-gender"
                         label={t('user-personal-account-gender')}
-                        value={personalData.gender && personalData.gender !== "UNSPECIFIED" ? personalData.gender : ''}
+                        value={personalData?.gender && personalData?.gender !== "UNSPECIFIED" ? personalData?.gender : ''}
                         onChange={(e) => {
                             changeData(e, "gender")
                         }}
@@ -161,7 +161,7 @@ export default function Personal() {
                             fullWidth
                             labelId="personal-language"
                             label={t('user-personal-account-language')}
-                            value={personalData.language_code ? personalData.language_code : ''}
+                            value={personalData?.language_code ? personalData?.language_code : ''}
                             onChange={(e) => {
                                 changeData(e, "language_code")
                             }}
