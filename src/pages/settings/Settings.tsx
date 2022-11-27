@@ -25,6 +25,15 @@ export default function Settings() {
     const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
     const [url, setUrl] = React.useState(location.pathname === '/settings' ? '/settings/personal' : location.pathname);
 
+    React.useEffect(() => {
+        window.onpopstate = e => {
+            e.preventDefault();
+            if (['/settings/security', '/settings/currency'].includes(location.pathname)) {
+                setUrl('/settings/personal')
+            }
+        };
+    })
+
     const handleChange = (path: string) => {
         const { pathname } = location;
         setUrl(path);
