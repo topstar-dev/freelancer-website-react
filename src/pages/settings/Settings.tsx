@@ -27,7 +27,7 @@ export default function Settings() {
 
     const handleChange = (path: string) => {
         setUrl(path);
-        navigate(path);
+        navigate(path, { replace: true });
     };
 
     return (
