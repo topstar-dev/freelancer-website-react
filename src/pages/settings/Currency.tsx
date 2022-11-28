@@ -13,7 +13,7 @@ export default function Currency() {
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
     const { currencyData } = useAppSelector(state => state.resources);
-    const { selectedCurrency } = useAppSelector(state => state.settings)
+    const { selectedCurrency, loading } = useAppSelector(state => state.settings)
     const [backdrop, setBackdrop] = React.useState(false);
 
     const [selectedValue, setSelectedValue] = React.useState(selectedCurrency)
@@ -87,7 +87,7 @@ export default function Currency() {
             </Form >
             <Backdrop
                 sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
+                open={backdrop || loading}
             >
                 <CircularProgress color="inherit" />
             </Backdrop>

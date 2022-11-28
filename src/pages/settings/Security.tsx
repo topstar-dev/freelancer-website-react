@@ -17,7 +17,7 @@ export default function Security() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
-    const { security } = useAppSelector(state => state.settings)
+    const { security, loading } = useAppSelector(state => state.settings)
 
     const [securityData, setSecurityData] = React.useState<SecurityInterface>(security);
     const [called, setCalled] = React.useState(false)
@@ -187,7 +187,7 @@ export default function Security() {
             <br />
             <Backdrop
                 sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
+                open={backdrop || loading}
             >
                 <CircularProgress color="inherit" />
             </Backdrop>

@@ -20,7 +20,7 @@ export default function Personal() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
-    const { personal } = useAppSelector(state => state.settings)
+    const { personal, loading } = useAppSelector(state => state.settings)
 
     const [personalData, setPersonalData] = React.useState<PersonalDataInterface>(personal);
     const [backdrop, setBackdrop] = React.useState(false);
@@ -329,7 +329,7 @@ export default function Personal() {
             </Box>
             <Backdrop
                 sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
+                open={backdrop || loading}
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
