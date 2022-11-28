@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 
 const TawkProvider = ({ isHeader }: any) => {
+    const isTabOrMobile = useMediaQuery({ query: '(max-width: 900px)' });
     const tawkMessengerRef = React.useRef<any | null>(null);
     const location = useLocation();
 
@@ -18,6 +20,20 @@ const TawkProvider = ({ isHeader }: any) => {
         } catch (err) { }
     }, [location.pathname, isHeader, tawkMessengerRef])
 
+    React.useEffect(() => {
+        try {
+            if (tawkMessengerRef.current) {
+                const chatWidgetVisible = document.querySelector('.widget-visible')
+                if (chatWidgetVisible) {
+                    const ifr = chatWidgetVisible.querySelector('iframe');
+                    if (ifr) {
+                        ifr.style.bottom = isTabOrMobile ? '143px' : '86px';
+                    }
+                }
+            }
+        } catch (err) { }
+    }, [isTabOrMobile, tawkMessengerRef])
+
     return (
         <TawkMessengerReact
             propertyId="60d7fbc17f4b000ac039bd84"
@@ -27,6 +43,7 @@ const TawkProvider = ({ isHeader }: any) => {
                 visibility: {
                     desktop: {
                         xOffset: '24',
+                        yOffset: isTabOrMobile ? '143' : '86',
                         position: 'br'
                     }
                 }
