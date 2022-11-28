@@ -50,14 +50,16 @@ export default function Header() {
         userMenu: userMenu,
         selectedPage: selectedPage,
         setSelectedPage: (url: string) => {
-            setSelectedPage(url)
-            const replace = [
-                '/contact',
-                '/about',
-                '/help',
-                '/blog'
-            ].includes(location.pathname)
-            navigate(url, { replace })
+            if (selectedPage !== url) {
+                setSelectedPage(url)
+                const replace = [
+                    '/contact',
+                    '/about',
+                    '/help',
+                    '/blog'
+                ].includes(location.pathname)
+                navigate(url, { replace })
+            }
         }
     }
     return (
