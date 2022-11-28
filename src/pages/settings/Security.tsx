@@ -22,7 +22,6 @@ export default function Security() {
     const [securityData, setSecurityData] = React.useState<SecurityInterface>(security);
     const [called, setCalled] = React.useState(false)
     const [backdrop, setBackdrop] = React.useState(false);
-    const [showCurrentPassword, setCurrentShowPassword] = React.useState(false);
     const [showNewPassword, setNewShowPassword] = React.useState(false);
     const [showEmailChangePassword, setShowEmailChangePassword] = React.useState(false);
     const [changeEmail, setChangeEmail] = React.useState(false);
@@ -42,10 +41,6 @@ export default function Security() {
             })
         }
     }, [dispatch, called, enqueueSnackbar])
-
-    const handleClickShowCurrentPassword = () => {
-        setCurrentShowPassword(!showCurrentPassword);
-    };
 
     const handleClickShowNewPassword = () => {
         setNewShowPassword(!showNewPassword);
@@ -95,25 +90,12 @@ export default function Security() {
                                     fullWidth
                                     id="old_password"
                                     name="old_password"
-                                    type={showCurrentPassword ? "text" : "password"}
+                                    type="password"
                                     value={formik.values.old_password}
                                     onChange={formik.handleChange}
                                     label={t('user-security-change-password-current')}
                                     error={formik.touched.old_password && Boolean(formik.errors.old_password)}
                                     helperText={(formik.touched.old_password && formik.errors.old_password) as ReactNode}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    aria-label="toggle password visibility"
-                                                    onClick={handleClickShowCurrentPassword}
-                                                    edge="end"
-                                                >
-                                                    {showCurrentPassword ? <VisibilityOff /> : <Visibility />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        ),
-                                    }}
                                 />
                                 <TextField
                                     fullWidth
@@ -124,7 +106,18 @@ export default function Security() {
                                     onChange={formik.handleChange}
                                     label={t('user-security-change-password-new')}
                                     error={formik.touched.new_password && Boolean(formik.errors.new_password)}
-                                    helperText={(formik.touched.new_password && Boolean(formik.errors.new_password) ? formik.errors.new_password : t('at_least_8_characters')) as ReactNode}
+                                    helperText={(formik.touched.new_password && formik.errors.new_password) as ReactNode}
+                                />
+                                <TextField
+                                    fullWidth
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    type={showNewPassword ? "text" : "password"}
+                                    value={formik.values.confirm_password || ''}
+                                    onChange={formik.handleChange}
+                                    label={t('user-security-change-password-confirm')}
+                                    error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
+                                    helperText={(formik.touched.confirm_password && Boolean(formik.errors.new_password) ? formik.errors.confirm_password : t('at_least_8_characters')) as ReactNode}
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position="end">
@@ -138,17 +131,6 @@ export default function Security() {
                                             </InputAdornment>
                                         ),
                                     }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    id="confirm_password"
-                                    name="confirm_password"
-                                    type={showNewPassword ? "text" : "password"}
-                                    value={formik.values.confirm_password || ''}
-                                    onChange={formik.handleChange}
-                                    label={t('user-security-change-password-confirm')}
-                                    error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
-                                    helperText={(formik.touched.confirm_password && formik.errors.confirm_password) as ReactNode}
                                 />
                                 <Button
                                     variant="outlined"
