@@ -107,6 +107,7 @@ export default function Personal() {
                                 >
                                 </TextField>
                                 <Button
+                                    variant="outlined"
                                     style={{ width: 'fit-content', marginTop: '10px' }}
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
@@ -315,6 +316,7 @@ export default function Personal() {
                         </Select>
                     </FormControl>
                     <Button
+                        variant="outlined"
                         style={{
                             width: 'fit-content',
                             marginTop: '10px'

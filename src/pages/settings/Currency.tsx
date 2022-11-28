@@ -64,6 +64,7 @@ export default function Currency() {
                     </Select>
                 </FormControl>
                 <Button
+                    variant="outlined"
                     style={{
                         width: 'fit-content',
                         marginTop: "10px"

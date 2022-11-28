@@ -151,6 +151,7 @@ export default function Security() {
                                     helperText={(formik.touched.confirm_password && formik.errors.confirm_password) as ReactNode}
                                 />
                                 <Button
+                                    variant="outlined"
                                     style={{
                                         width: 'fit-content',
                                         marginTop: '10px'
@@ -285,6 +286,7 @@ export default function Security() {
                                 </>}
                                 <Box style={{ display: 'flex', marginTop: '10px' }}>
                                     <Button
+                                        variant="outlined"
                                         sx={{ mr: 2 }}
                                         onClick={() => {
                                             if (formik.values.new_email && formik.values.new_email !== securityData?.recovery_email) {
@@ -295,6 +297,7 @@ export default function Security() {
                                         {t('user-security-recovery-email-delete')}
                                     </Button>
                                     <Button
+                                        variant="outlined"
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
                                                 if (changeEmail) {
