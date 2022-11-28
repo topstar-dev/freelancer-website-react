@@ -36,8 +36,10 @@ export default function Settings() {
 
     const handleChange = (path: string) => {
         const { pathname } = location;
-        setUrl(path);
-        navigate(path, { replace: pathname.startsWith('/settings/') && !(pathname === '/settings/personal') ? true : false });
+        if (url !== path) {
+            setUrl(path);
+            navigate(path, { replace: pathname.startsWith('/settings/') && !(pathname === '/settings/personal') ? true : false });
+        }
     };
 
     return (
