@@ -53,7 +53,7 @@ export default function Currency() {
                         fullWidth
                         labelId="personal-currency"
                         label={t('user-settings-currency')}
-                        value={selectedValue.currency_code ? selectedValue.currency_code : ''}
+                        value={selectedValue?.currency_code || selectedCurrency?.currency_code || ''}
                         onChange={(e) => {
                             setSelectedValue(currency.find((c: any) => c.currency_code === e.target.value))
                         }}
