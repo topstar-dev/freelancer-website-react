@@ -138,6 +138,7 @@ export default function Security() {
                                         width: 'fit-content',
                                         marginTop: '10px'
                                     }}
+                                    disabled={!(formik.values.old_password && formik.values.new_password && formik.values.confirm_password)}
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
                                             const { old_password, new_password, confirm_password } = res;

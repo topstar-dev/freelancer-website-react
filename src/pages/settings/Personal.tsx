@@ -107,6 +107,7 @@ export default function Personal() {
                                 >
                                 </TextField>
                                 <Button
+                                    disabled={!formik.values.new_email || formik.values.new_email === personalData.primary_email}
                                     variant="outlined"
                                     style={{ width: 'fit-content', marginTop: '10px' }}
                                     onClick={() => {
@@ -321,6 +322,10 @@ export default function Personal() {
                             width: 'fit-content',
                             marginTop: '10px'
                         }}
+                        disabled={(personalData?.birthday === personal?.birthday &&
+                            personalData?.language_code === personal?.language_code &&
+                            personalData?.gender === personal?.gender)
+                        }
                         onClick={updatePersonalData}
                     >
                         {t('user-personal-account-save')}
