@@ -73,7 +73,7 @@ export default function Footer() {
                     </Select>
                 </FormControl>
                 <Box className="rounx-nav-items-box">
-                    {language === 'zh-CN' && <Typography className="rounx-footer-items">辽ICP备2021011574号</Typography>}
+                    {language === 'zh-CN' && <Typography className="rounx-footer-items">辽ICP备2021011574号-1</Typography>}
                     <Typography className="rounx-footer-items" onClick={() => {
                         navigate('/privacy', { replace: isReplace() })
                     }}>{t('footer-privacy-policy')}</Typography>
