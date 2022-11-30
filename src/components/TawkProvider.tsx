@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 
 const TawkProvider = ({ isHeader }: any) => {
-    const isTabOrMobile = useMediaQuery({ query: '(max-width: 980px)' });
+    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000px)' });
     const tawkMessengerRef = React.useRef<any | null>(null);
     const location = useLocation();
 
