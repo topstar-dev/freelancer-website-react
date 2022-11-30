@@ -13,9 +13,6 @@ import {
     ListItemButton,
     ListItemText
 } from "@mui/material";
-import PersonIcon from '@mui/icons-material/Person';
-import SecurityIcon from '@mui/icons-material/Security';
-import PaidIcon from '@mui/icons-material/Paid';
 import "./settings.css";
 
 export default function Settings() {
@@ -80,19 +77,25 @@ export default function Settings() {
                             <ListItemButton
                                 selected={url === '/settings/personal'}
                                 onClick={() => handleChange('/settings/personal')} >
-                                <PersonIcon className="rounx-settings-icon" />
+                                <img className="rounx-settings-icon" alt="personal" src="/images/account.png" />
+                                <img className="rounx-settings-icon-hover" alt="personal" src="/images/account-hover.png" />
+                                {/* <PersonIcon className="rounx-settings-icon" /> */}
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-personal')} />
                             </ListItemButton>
                             <ListItemButton
                                 selected={url === '/settings/security'}
                                 onClick={() => handleChange('/settings/security')}>
-                                <SecurityIcon className="rounx-settings-icon" />
+                                <img className="rounx-settings-icon" alt="personal" src="/images/security.png" />
+                                <img className="rounx-settings-icon-hover" alt="personal" src="/images/security-hover.png" />
+                                {/* <SecurityIcon className="rounx-settings-icon" /> */}
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
                             <ListItemButton
                                 selected={url === '/settings/currency'}
                                 onClick={() => handleChange('/settings/currency')}>
-                                <PaidIcon className="rounx-settings-icon" />
+                                <img className="rounx-settings-icon" alt="personal" src="/images/currency.png" />
+                                <img className="rounx-settings-icon-hover" alt="personal" src="/images/currency-hover.png" />
+                                {/* <PaidIcon className="rounx-settings-icon" /> */}
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-currency')} />
                             </ListItemButton>
                         </List>
