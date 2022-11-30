@@ -4,9 +4,11 @@
     border-top: 1px solid #cccccc;
     padding: 0 16%;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    line-height: 72px;
     font-size: 14px !important;
     color: #757575 !important;
+    overflow: hidden;
 }
 
 .rounx-footer-left-content {
@@ -14,6 +16,8 @@
     justify-content: flex-start;
     align-items: center;
     margin-right: auto;
+    height: 35px;
+    line-height: 35px;
 }
 
 .rounx-language-menu .MuiPaper-root {
@@ -52,6 +56,9 @@
     color: #757575 !important;
     padding-top: 1px !important;
     padding-right: 6px !important;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
 }
 
 #rounx-language-switcher {
@@ -79,12 +86,16 @@
     align-items: center;
     margin-left: auto;
     text-decoration: none;
+    height: 35px;
+    line-height: 35px;
 }
 
 .rounx-footer-brand-icon {
     margin-left: 16px !important;
     text-decoration: none;
     color: #757575;
+    display: flex;
+    align-items: center;
 }
 
 .rounx-footer-brand-icon img {
@@ -114,11 +125,12 @@
     .rounx-footer-container {
         height: 119px;
         padding: 24px;
-        display: block;
+        /* display: block; */
+        flex-direction: column;
+        gap: 20px;
     }
 
     .rounx-footer-right-content {
-        margin-top: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
