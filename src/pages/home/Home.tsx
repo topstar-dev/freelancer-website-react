@@ -187,8 +187,7 @@ export default function HomePage() {
                 <Box className="rounx-home-third-right">
                     <EmblaCarousel mediaByIndex={[
                         "/images/screenshot-1.png",
-                        "/images/screenshot-2.png",
-                        "/images/screenshot-3.png"
+                        "/images/screenshot-2.png"
                     ]} />
                 </Box>
             </Box>
