@@ -3,12 +3,17 @@ import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { pageView } from "../../services/eventTracker";
 import './contactUs.css';
+import { useMediaQuery } from "react-responsive";
+import { positionChatWidget } from "../../components/TawkProvider";
 
 export default function ContactUs() {
   const { t } = useTranslation();
+  const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000px)' });
+
   React.useEffect(() => {
     document.title = t('title.contact-us');
-    pageView(window.location.pathname)
+    pageView(window.location.pathname);
+    positionChatWidget(isTabOrMobile)
   })
 
   const openWidget = () => {
@@ -20,6 +25,10 @@ export default function ContactUs() {
       }
     }
   }
+
+  React.useEffect(() => {
+    positionChatWidget(isTabOrMobile)
+  }, [isTabOrMobile])
 
   return (
     <>
