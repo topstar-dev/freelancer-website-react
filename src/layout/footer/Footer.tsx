@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { eventTracker } from "../../services/eventTracker";
 import './footer.css';
+import { useMediaQuery } from "react-responsive";
 
 export default function Footer() {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function Footer() {
     const { i18n, t } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
     const [open, setOpen] = React.useState(false);
+    const isWeb = useMediaQuery({ query: '(min-width: 1001px)' })
 
     useEffect(() => {
         i18n.changeLanguage(language);
@@ -73,7 +75,7 @@ export default function Footer() {
                     </Select>
                 </FormControl>
                 <Box className="rounx-nav-items-box">
-                    {language === 'zh-CN' && <Typography style={{ wordWrap: 'break-word' }} className="rounx-footer-items">辽ICP备2021011574号-1</Typography>}
+                    {language === 'zh-CN' && isWeb && <Typography style={{ wordWrap: 'break-word' }} className="rounx-footer-items">辽ICP备2021011574号-1</Typography>}
                     <Typography className="rounx-footer-items" onClick={() => {
                         navigate('/privacy', { replace: isReplace() })
                     }}>{t('footer-privacy-policy')}</Typography>
