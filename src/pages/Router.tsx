@@ -45,7 +45,7 @@ interface RoutesInterface {
   protectedRoute: boolean
 }
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
-  const isWeb = useMediaQuery({ query: '(min-width: 981px)' });
+  const isWeb = useMediaQuery({ query: '(min-width: 1001px)' });
 
   useEffect(() => {
     document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
@@ -61,7 +61,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     }}>
       <Box style={{
         padding: isWeb ? '24px 16%' : '24px',
-        minHeight: `calc(100% - ${useMediaQuery({ query: '(min-width: 981px)' }) ? 72 : 119}px`
+        minHeight: `calc(100% - ${useMediaQuery({ query: '(min-width: 1001px)' }) ? 72 : 119}px`
       }}>
         <Outlet />
       </Box>
