@@ -75,7 +75,17 @@ export default function Footer() {
                     </Select>
                 </FormControl>
                 <Box className="rounx-nav-items-box">
-                    {language === 'zh-CN' && isWeb && <Typography style={{ wordWrap: 'break-word' }} className="rounx-footer-items">辽ICP备2021011574号-1</Typography>}
+                    {language === 'zh-CN' && isWeb &&
+                        <a
+                            href="https://beian.miit.gov.cn/"
+                            target="_blank"
+                            style={{ wordWrap: 'break-word' }}
+                            className="rounx-footer-items"
+                            rel="noreferrer"
+                        >
+                            辽ICP备2021011574号-1
+                        </a>
+                    }
                     <Typography className="rounx-footer-items" onClick={() => {
                         navigate('/privacy', { replace: isReplace() })
                     }}>{t('footer-privacy-policy')}</Typography>
