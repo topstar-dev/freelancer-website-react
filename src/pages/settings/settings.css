@@ -20,14 +20,6 @@
     display: block;
 }
 
-.rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover .rounx-settings-icon {
-    display: none;
-}
-
-.rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover .rounx-settings-icon-hover {
-    display: block;
-}
-
 .rounx-settings-icon {
     margin-right: 16px;
     height: 22px;
