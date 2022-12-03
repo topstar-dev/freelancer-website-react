@@ -8,7 +8,7 @@ import { positionChatWidget } from "../../components/TawkProvider";
 
 export default function ContactUs() {
   const { t } = useTranslation();
-  const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000px)' });
+  const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000.99px)' });
 
   React.useEffect(() => {
     document.title = t('title.contact-us');

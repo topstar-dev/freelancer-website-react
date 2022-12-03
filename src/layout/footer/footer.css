@@ -124,7 +124,7 @@
     opacity: 0.8;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000.99px) {
     .rounx-footer-container {
         height: 119px;
         padding: 24px;

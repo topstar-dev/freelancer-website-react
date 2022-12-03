@@ -16,7 +16,7 @@ export const positionChatWidget = (isTabOrMobile: boolean) => {
 }
 
 const TawkProvider = ({ isHeader }: any) => {
-    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000px)' });
+    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000.99px)' });
     const tawkMessengerRef = React.useRef<any | null>(null);
     const location = useLocation();
 

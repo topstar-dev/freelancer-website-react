@@ -18,7 +18,7 @@ export default function Header() {
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
     const { t } = useTranslation();
-    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000px)' });
+    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000.99px)' });
 
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
