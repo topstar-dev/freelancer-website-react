@@ -9,13 +9,17 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { eventTracker } from "../../services/eventTracker";
 import './footer.css';
 import { useMediaQuery } from "react-responsive";
+import { personalSettingsUpdate } from "../../redux/settings/settingsActions";
+import { useSnackbar } from "notistack";
 
 export default function Footer() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const { enqueueSnackbar } = useSnackbar();
     const location = useLocation();
     const { i18n, t } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
+    const { userInfo } = useAppSelector(state => state.auth);
     const [open, setOpen] = React.useState(false);
     const isWeb = useMediaQuery({ query: '(min-width: 1001px)' })
 
@@ -25,9 +29,20 @@ export default function Footer() {
 
     const changeLang: any = (event: any) => {
         const lang = event.target.value;
-        eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
-        document.documentElement.lang = lang;
-        dispatch(changeLanguage(lang))
+        if (userInfo) {
+            dispatch(personalSettingsUpdate({ language_code: lang })).then((res) => {
+                enqueueSnackbar(res.payload.message);
+                dispatch(changeLanguage(lang))
+                document.documentElement.lang = lang;
+                eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
+            }).catch((err: any) => {
+                enqueueSnackbar(err.message);
+            })
+        } else {
+            dispatch(changeLanguage(lang));
+            document.documentElement.lang = lang;
+            eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
+        }
     }
 
     const isReplace = () => {
