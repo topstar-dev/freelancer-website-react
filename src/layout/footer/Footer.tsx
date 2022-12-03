@@ -98,7 +98,7 @@ export default function Footer() {
                             className="rounx-footer-items"
                             rel="noreferrer"
                         >
-                            辽ICP备2021011574号-1
+                            辽ICP备2021011574号
                         </a>
                     }
                     <Typography className="rounx-footer-items" onClick={() => {
