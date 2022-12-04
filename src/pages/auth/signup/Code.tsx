@@ -19,6 +19,7 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import '../auth.css';
+import { getBaseUrl } from "../../Router";
 
 export default function Code(mainProps: any) {
     const { t } = useTranslation();
@@ -57,7 +58,7 @@ export default function Code(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate('/')}
+                                onClick={() => navigate(`${getBaseUrl()}/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 {t('signup-code-title')}
@@ -115,7 +116,7 @@ export default function Code(mainProps: any) {
                                                     dispatch(signInUser({ email: signUpData.primary_email, password: signUpData.password })).then((res) => {
                                                         enqueueSnackbar(res.payload.message);
                                                         dispatch(resetDefault())
-                                                        navigate('/');
+                                                        navigate(`${getBaseUrl()}/`);
                                                     }).catch((_err) => {
 
                                                     })

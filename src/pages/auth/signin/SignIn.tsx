@@ -28,6 +28,7 @@ import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import '../auth.css';
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
+import { getBaseUrl } from "../../Router";
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ export default function SignIn() {
   useEffect(() => {
     if (userInfo) {
       document.title = t('title.home');
-      navigate('/');
+      navigate(`${getBaseUrl()}/`);
     } else {
       document.title = t('title.signin')
       sessionStorage.removeItem('signup-info');
@@ -60,7 +61,7 @@ export default function SignIn() {
     if (success && userInfo) {
       document.title = t('title.home');
       setBackdrop(false);
-      navigate('/');
+      navigate(`${getBaseUrl()}/`);
     }
   }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
@@ -90,12 +91,12 @@ export default function SignIn() {
           <WithTranslateFormErrors {...props}>
             <Form onSubmit={props.handleSubmit}>
               <img
-                src="images/rounx-symbol.png"
+                src="/images/rounx-symbol.png"
                 alt="Rounx admin"
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate(`${getBaseUrl()}/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signin-title')}
@@ -144,7 +145,7 @@ export default function SignIn() {
                   variant="outlined"
                   style={{ borderRadius: 20 }}
                   onClick={() => {
-                    navigate("/reset-password")
+                    navigate(`${getBaseUrl()}/reset-password`)
                   }}
                 >
                   {t('signin-forgot-password')}
@@ -180,10 +181,10 @@ export default function SignIn() {
               >
                 <MenuList>
                   <MenuItem onClick={() => {
-                    navigate('/sign-up?type=CLIENT')
+                    navigate(`${getBaseUrl()}/sign-up?type=CLIENT`)
                   }}>{t('client-account')}</MenuItem>
                   <MenuItem onClick={() => {
-                    navigate('/sign-up?type=FREELANCER')
+                    navigate(`${getBaseUrl()}/sign-up?type=FREELANCER`)
                   }}>{t('freelancer-account')}</MenuItem>
                 </MenuList>
               </Popover>

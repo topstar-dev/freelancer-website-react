@@ -14,6 +14,7 @@ import {
 import { pageView } from "../../services/eventTracker";
 import EmblaCarousel from "../../components/carousal/Carousal";
 import './home.css'
+import { getBaseUrl } from "../Router";
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -46,14 +47,14 @@ export default function HomePage() {
                                 {t('home-page-heading1-details2')}
                             </Typography>
                         </div>
-                        {!userInfo && <Button onClick={() => navigate('./sign-in')}>{t('home-page-join-ronux-button')}</Button>}
+                        {!userInfo && <Button onClick={() => navigate(`${getBaseUrl()}/sign-in`)}>{t('home-page-join-ronux-button')}</Button>}
                     </Box>
                 </Box>
                 <Box className="rounx-home-first-right">
                     <img
                         alt="Skills"
                         className="rounx-home-first-image"
-                        src="images/skills.png" />
+                        src="/images/skills.png" />
                 </Box>
             </Box>
             <Divider style={{ margin: '96px 0' }} />
@@ -64,7 +65,7 @@ export default function HomePage() {
                 <Box className="rounx-home-second-section">
                     <Box className="rounx-home-second-box">
                         <Box>
-                            <img alt="Verified User" width='70px' src="images/verified-user-icon.png" />
+                            <img alt="Verified User" width='70px' src="/images/verified-user-icon.png" />
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point1')}</Typography>
@@ -74,7 +75,7 @@ export default function HomePage() {
                     </Box>
                     <Box className="rounx-home-second-box" style={{ margin: '0 3%' }}>
                         <Box>
-                            <img alt="Public Icon" width='70px' src="images/public-icon.png" />
+                            <img alt="Public Icon" width='70px' src="/images/public-icon.png" />
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point2')}</Typography>
@@ -85,7 +86,7 @@ export default function HomePage() {
                     </Box>
                     <Box className="rounx-home-second-box">
                         <Box>
-                            <img alt="Code Icon" width='70px' src="images/code-icon.png" />
+                            <img alt="Code Icon" width='70px' src="/images/code-icon.png" />
                             <br />
                             <br />
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point3')}</Typography>

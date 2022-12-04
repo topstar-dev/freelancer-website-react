@@ -19,6 +19,7 @@ import WithTranslateFormErrors from "../../../services/validationScemaOnLangChan
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import '../auth.css';
+import { getBaseUrl } from "../../Router";
 
 export default function Email(mainProps: any) {
     const { t } = useTranslation();
@@ -64,7 +65,7 @@ export default function Email(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate('/')}
+                                onClick={() => navigate(`${getBaseUrl()}/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 <span>{t("signup-email-header")}</span>
@@ -103,7 +104,7 @@ export default function Email(mainProps: any) {
                                                 if (success) {
                                                     dispatch(resetDefault());
                                                     sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
-                                                    navigate('/sign-up/code')
+                                                    navigate(`${getBaseUrl()}/sign-up/code`)
                                                 }
                                                 setBackdrop(false);
                                             }).catch((err) => {

@@ -22,6 +22,7 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import * as yup from "yup";
 import '../auth.css';
+import { getBaseUrl } from "../../Router";
 
 export default function SetNewPassword(mainProps: any) {
   const { t } = useTranslation();
@@ -75,7 +76,7 @@ export default function SetNewPassword(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate(`${getBaseUrl()}/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('password-title')}
@@ -143,7 +144,7 @@ export default function SetNewPassword(mainProps: any) {
                         if (success) {
                           dispatch(resetDefault());
                           sessionStorage.removeItem('reset-password-data')
-                          navigate('/sign-in');
+                          navigate(`${getBaseUrl()}/sign-in`);
                         }
                         setBackdrop(false);
                       }).catch((err) => {

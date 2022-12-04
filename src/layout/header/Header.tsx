@@ -10,6 +10,7 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
+import { getBaseUrl } from "../../pages/Router";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -53,12 +54,12 @@ export default function Header() {
             if (selectedPage !== url) {
                 setSelectedPage(url)
                 const replace = [
-                    '/contact',
-                    '/about',
-                    '/help',
-                    '/blog'
+                    `${getBaseUrl()}/contact`,
+                    `${getBaseUrl()}/about`,
+                    `${getBaseUrl()}/help`,
+                    `${getBaseUrl()}/blog`
                 ].includes(location.pathname)
-                navigate(url, { replace })
+                navigate(`${getBaseUrl()}${url}`, { replace })
             }
         }
     }

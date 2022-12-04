@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from '@mui/icons-material/Close';
 import { PropsInterface } from './DesktopHeader';
 import Button from '../../components/button/Button';
+import { getBaseUrl } from '../../pages/Router';
 
 export default function MobileHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
@@ -52,7 +53,7 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         </div>
                         :
                         <div>
-                            <Button variant="text" color="primary" className="rounx-no-signin-handle" onClick={() => navigate('/sign-in')}>{t('signin')}</Button>
+                            <Button variant="text" color="primary" className="rounx-no-signin-handle" onClick={() => navigate(`${getBaseUrl()}/sign-in`)}>{t('signin')}</Button>
                         </div>
                 }
             </Box>

@@ -19,6 +19,7 @@ import WithTranslateFormErrors from "../../../services/validationScemaOnLangChan
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import '../auth.css';
+import { getBaseUrl } from "../../Router";
 
 export default function EnterEmail(mainProps: any) {
   const { t } = useTranslation();
@@ -62,13 +63,13 @@ export default function EnterEmail(mainProps: any) {
           <WithTranslateFormErrors {...formik}>
             <Form>
               <img
-                src="images/rounx-symbol.png"
+                src="/images/rounx-symbol.png"
                 alt="Rounx admin"
                 width="60px"
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate(`${getBaseUrl()}/`)}
               />
               <Typography className="rounx-account-title-info">
                 <span>{t('reset-password')}</span>
@@ -108,7 +109,7 @@ export default function EnterEmail(mainProps: any) {
                           if (success) {
                             dispatch(resetDefault());
                             sessionStorage.setItem('reset-password-data', JSON.stringify({ ...formik.values }))
-                            navigate('/reset-password/code')
+                            navigate(`${getBaseUrl()}/reset-password/code`)
                           }
                           setBackdrop(false);
                         }).catch((err) => {

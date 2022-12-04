@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { MenuItem, Box, Typography, FormControl, Select } from "@mui/material";
@@ -9,8 +9,9 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { eventTracker } from "../../services/eventTracker";
 import './footer.css';
 import { useMediaQuery } from "react-responsive";
-import { personalSettingsUpdate } from "../../redux/settings/settingsActions";
+import { personalSettings, personalSettingsUpdate } from "../../redux/settings/settingsActions";
 import { useSnackbar } from "notistack";
+import { getBaseUrl } from "../../pages/Router";
 
 export default function Footer() {
     const navigate = useNavigate();
@@ -21,39 +22,76 @@ export default function Footer() {
     const { language } = useAppSelector(state => state.resources);
     const { userInfo } = useAppSelector(state => state.auth);
     const [open, setOpen] = React.useState(false);
+    const [called, setCalled] = React.useState(false)
     const isWeb = useMediaQuery({ query: '(min-width: 1001px)' })
 
-    useEffect(() => {
-        i18n.changeLanguage(language);
-    }, [language, i18n])
+    const languageSet = useCallback(
+        (lang: string) => {
+            dispatch(changeLanguage(lang))
+            document.documentElement.lang = lang;
+            eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
+            if (lang === 'zh-CN' && !location.pathname.includes(lang)) {
+                navigate(`${lang}${location.pathname}`)
+            }
+            if (lang === 'en' && location.pathname.includes('zh-CN')) {
+                navigate(`${location.pathname.replace('/zh-CN', '')}`)
+            }
+        }, [dispatch, language, location.pathname, navigate])
 
-    const changeLang: any = (event: any) => {
+    const changeLang: any = useCallback((event: any) => {
         const lang = event.target.value;
         if (userInfo) {
             dispatch(personalSettingsUpdate({ language_code: lang })).then((res) => {
                 enqueueSnackbar(res.payload.message);
-                dispatch(changeLanguage(lang))
-                document.documentElement.lang = lang;
-                eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
+                languageSet(lang)
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
             })
         } else {
-            dispatch(changeLanguage(lang));
-            document.documentElement.lang = lang;
-            eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
+            languageSet(lang)
         }
-    }
+    }, [dispatch, enqueueSnackbar, languageSet, userInfo])
+
+    useEffect(() => {
+        if (!called && userInfo) {
+            setCalled(true)
+            dispatch(personalSettings()).then((res) => {
+                const { payload } = res;
+                if (payload.success) {
+                    if (payload.data.language_code !== localStorage.getItem('i18nextLng')) {
+                        languageSet(payload.data.language_code)
+                    }
+                }
+            }).catch((err) => { })
+        }
+    }, [called, dispatch, languageSet, userInfo])
+
+    useEffect(() => {
+        i18n.changeLanguage(language);
+    }, [i18n, language])
+
+    useEffect(() => {
+        const baseUrl = getBaseUrl();
+        const isCNUrl = location.pathname.includes('zh-CN')
+        if (isCNUrl) {
+            if (baseUrl !== 'zh-CN') {
+                changeLang({ target: { value: 'zh-CN' } })
+            }
+        } else {
+            if (baseUrl === 'zh-CN') {
+                changeLang({ target: { value: 'en' } })
+            }
+        }
+    }, [language, location.pathname, languageSet, changeLang]);
 
     const isReplace = () => {
         const replace = [
-            '/contact',
-            '/about',
-            '/help',
-            '/blog',
-            '/settings/personal'
+            `${getBaseUrl()}/contact`,
+            `${getBaseUrl()}/about`,
+            `${getBaseUrl()}/help`,
+            `${getBaseUrl()}/blog`,
+            `${getBaseUrl()}/settings/personal`
         ].includes(location.pathname)
-
         return !replace;
     }
 
@@ -102,10 +140,10 @@ export default function Footer() {
                         </a>
                     }
                     <Typography className="rounx-footer-items" onClick={() => {
-                        navigate('/privacy', { replace: isReplace() })
+                        navigate(`${getBaseUrl()}/privacy`, { replace: isReplace() })
                     }}>{t('footer-privacy-policy')}</Typography>
                     <Typography className="rounx-footer-items" onClick={() => {
-                        navigate('/terms', { replace: isReplace() })
+                        navigate(`${getBaseUrl()}/terms`, { replace: isReplace() })
                     }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>
                 </Box>

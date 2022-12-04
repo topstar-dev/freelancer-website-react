@@ -16,6 +16,7 @@ import WithTranslateFormErrors from "../../../services/validationScemaOnLangChan
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import '../auth.css';
+import { getBaseUrl } from "../../Router";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
@@ -70,7 +71,7 @@ export default function Password(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate('/')}
+                                onClick={() => navigate(`${getBaseUrl()}/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 {t('signup-password-title')}
@@ -125,7 +126,7 @@ export default function Password(mainProps: any) {
                                         }
                                         if (!(set_password || confirm_password)) {
                                             sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
-                                            navigate('/sign-up/email')
+                                            navigate(`${getBaseUrl()}/sign-up/email`)
                                         }
                                     })
                                 }} >

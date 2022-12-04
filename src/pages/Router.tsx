@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useRoutes, RouteObject, Outlet, Navigate } from "react-router-dom";
+import { useRoutes, Outlet, Navigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
 
@@ -74,146 +74,132 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
 }
 
 export default function Router() {
-  const router: RouteObject[] = [
-    {
-      element: <CustomRouter isHeader={false} protectedRoute={false} />,
-      children: [
-        {
-          path: "/sign-in",
-          element: <SignIn />
-        },
-        {
-          path: "/sign-up",
-          children: [
-            {
-              path: "/sign-up",
-              element: <Info />,
-            },
-            {
-              path: "/sign-up/set-password",
-              element: <Password />,
-            },
-            {
-              path: "/sign-up/email",
-              element: <Email />,
-            },
-            {
-              path: "/sign-up/code",
-              element: <Code />,
-            },
-          ]
-        },
-        {
-          path: "/reset-password",
-          children: [
-            {
-              path: "/reset-password",
-              element: <EnterEmail />,
-            },
-            {
-              path: "/reset-password/code",
-              element: <VerifyCode />,
-            },
-            {
-              path: "/reset-password/set-password",
-              element: <SetNewPassword />,
-            }
-          ]
-        }
-      ],
-    },
-    {
-      path: "/",
-      element: <CustomRouter isHeader={true} protectedRoute={false} />,
-      children: [
-        {
-          path: "",
-          element: <HomePage />,
-        },
-        {
-          path: "privacy",
-          element: <Privacy />,
-        },
-        {
-          path: "terms",
-          element: <Terms />,
-        },
-        {
-          path: "contact",
-          element: <ContactUs />,
-        },
-        {
-          path: "/about",
-          element: <AboutUs />
-        },
-        {
-          path: "/privacy",
-          element: <Privacy />
-        },
-        {
-          path: "terms",
-          element: <Terms />,
-        }
-      ],
-    },
-    {
-      path: "/apply-freelancer",
-      element: <CustomRouter isHeader={true} protectedRoute={true} />,
-      children: [
-        {
-          path: "/apply-freelancer",
-          element: <Skills />
-        },
-        {
-          path: "/apply-freelancer/info",
-          element: <NamePhoto />
-        },
-        {
-          path: "/apply-freelancer/experience",
-          element: <Experience />
-        },
-        {
-          path: "/apply-freelancer/education",
-          element: <Education />
-        },
-        {
-          path: "/apply-freelancer/languages",
-          element: <Languages />
-        },
-        {
-          path: "/apply-freelancer/about-me",
-          element: <AboutMe />
-        }
-      ]
-    },
-    {
-      path: "/settings",
-      element: <CustomRouter isHeader={true} protectedRoute={true} />,
-      children: [
-        {
-          path: "/settings",
-          element: <Settings />,
-          children: [
-            {
-              path: "",
-              element: <Navigate to="/settings/personal" />,
-            },
-            {
-              path: "personal",
-              element: <Personal />,
-            },
-            {
-              path: "security",
-              element: <Security />,
-            },
-            {
-              path: "currency",
-              element: <Currency />,
-            }
-          ]
-        }
-      ]
-    },
+  const routesWithBaseUrl = (baseUrl: string) => {
+    return [
+      {
+        element: <CustomRouter isHeader={false} protectedRoute={false} />,
+        children: [
+          {
+            path: `${baseUrl}/sign-in`,
+            element: <SignIn />
+          },
+          {
+            path: `${baseUrl}/sign-up`,
+            element: <Info />,
+          },
+          {
+            path: `${baseUrl}/sign-up/set-password`,
+            element: <Password />,
+          },
+          {
+            path: `${baseUrl}/sign-up/email`,
+            element: <Email />,
+          },
+          {
+            path: `${baseUrl}/sign-up/code`,
+            element: <Code />,
+          },
+          {
+            path: `${baseUrl}/reset-password`,
+            element: <EnterEmail />,
+          },
+          {
+            path: `${baseUrl}/reset-password/code`,
+            element: <VerifyCode />,
+          },
+          {
+            path: `${baseUrl}/reset-password/set-password`,
+            element: <SetNewPassword />,
+          },
+        ],
+      },
+      {
+        element: <CustomRouter isHeader={true} protectedRoute={false} />,
+        children: [
+          {
+            path: `${baseUrl}`,
+            element: <HomePage />,
+          },
+          {
+            path: `${baseUrl}/privacy`,
+            element: <Privacy />,
+          },
+          {
+            path: `${baseUrl}/terms`,
+            element: <Terms />,
+          },
+          {
+            path: `${baseUrl}/contact`,
+            element: <ContactUs />,
+          },
+          {
+            path: `${baseUrl}/about`,
+            element: <AboutUs />
+          }
+        ],
+      },
+      {
+        element: <CustomRouter isHeader={true} protectedRoute={true} />,
+        children: [
+          {
+            path: `${baseUrl}/apply-freelancer`,
+            element: <Skills />
+          },
+          {
+            path: `${baseUrl}/apply-freelancer/info`,
+            element: <NamePhoto />
+          },
+          {
+            path: `${baseUrl}/apply-freelancer/experience`,
+            element: <Experience />
+          },
+          {
+            path: `${baseUrl}/apply-freelancer/education`,
+            element: <Education />
+          },
+          {
+            path: `${baseUrl}/apply-freelancer/languages`,
+            element: <Languages />
+          },
+          {
+            path: `${baseUrl}/apply-freelancer/about-me`,
+            element: <AboutMe />
+          }
+        ]
+      },
+      {
+        element: <CustomRouter isHeader={true} protectedRoute={true} />,
+        children: [
+          {
+            path: `${baseUrl}/settings`,
+            element: <Settings />,
+            children: [
+              {
+                path: ``,
+                element: <Navigate to={`${baseUrl}/settings/personal`} />,
+              },
+              {
+                path: `${baseUrl}/settings/personal`,
+                element: <Personal />,
+              },
+              {
+                path: `${baseUrl}/settings/security`,
+                element: <Security />,
+              },
+              {
+                path: `${baseUrl}/settings/currency`,
+                element: <Currency />,
+              }
+            ]
+          }
+        ]
+      }
+    ];
+  }
+
+  return useRoutes([
+    ...routesWithBaseUrl('zh-CN'),
+    ...routesWithBaseUrl(''),
     {
       path: "*",
       element: <CustomRouter isHeader={true} protectedRoute={false} />,
@@ -224,7 +210,11 @@ export default function Router() {
         }
       ]
     }
-  ];
+  ])
 
-  return useRoutes(router);
+}
+
+export const getBaseUrl = () => {
+  const lang = `${localStorage.getItem('i18nextLng')}`;
+  return lang === 'en' ? '' : lang;
 }

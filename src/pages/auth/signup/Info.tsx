@@ -23,6 +23,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
 import { getCountries } from "../../../redux/resources/resourcesApi";
 import '../auth.css';
+import { getBaseUrl } from "../../Router";
 
 export default function Info(mainProps: any) {
   const { t, i18n } = useTranslation();
@@ -115,7 +116,7 @@ export default function Info(mainProps: any) {
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate('/')}
+                onClick={() => navigate(`${getBaseUrl()}/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signup-title')}
@@ -208,7 +209,7 @@ export default function Info(mainProps: any) {
 
                     sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, type: type }))
                     if (!(first_name || last_name || birthday || country_id)) {
-                      navigate('/sign-up/set-password')
+                      navigate(`${getBaseUrl()}/sign-up/set-password`)
                     }
                   })
                 }}>

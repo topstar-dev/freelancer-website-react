@@ -7,6 +7,7 @@ import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { signOutUser } from '../../redux/auth/authActions';
 import { imageDownload } from '../../redux/other/otherActions';
+import { getBaseUrl } from '../../pages/Router';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -39,7 +40,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
 
     const settingsClick = () => {
         setAnchorEl(null);
-        navigate('/settings/personal')
+        navigate(`${getBaseUrl()}/settings/personal`)
     }
 
     return (

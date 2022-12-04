@@ -14,6 +14,7 @@ import {
     ListItemText
 } from "@mui/material";
 import "./settings.css";
+import { getBaseUrl } from "../Router";
 
 export default function Settings() {
     const { t } = useTranslation();
@@ -35,7 +36,7 @@ export default function Settings() {
         const { pathname } = location;
         if (url !== path) {
             setUrl(path);
-            navigate(path, { replace: pathname.startsWith('/settings/') && !(pathname === '/settings/personal') ? true : false });
+            navigate(path, { replace: pathname.startsWith(`${getBaseUrl()}/settings/`) && !(pathname === `${getBaseUrl()}/settings/personal`) ? true : false });
         }
     };
 
@@ -65,9 +66,9 @@ export default function Settings() {
                             labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
                         >
-                            <MenuItem value={'/settings/personal'}>{t('user-settings-personal')}</MenuItem>
-                            <MenuItem value={'/settings/security'}>{t('user-settings-security')}</MenuItem>
-                            <MenuItem value={'/settings/currency'}>{t('user-settings-currency')}</MenuItem>
+                            <MenuItem value={`${getBaseUrl()}/settings/personal`}>{t('user-settings-personal')}</MenuItem>
+                            <MenuItem value={`${getBaseUrl()}/settings/security`}>{t('user-settings-security')}</MenuItem>
+                            <MenuItem value={`${getBaseUrl()}/settings/currency`}>{t('user-settings-currency')}</MenuItem>
                         </Select>
                     </FormControl>
                 </MediaQuery>
