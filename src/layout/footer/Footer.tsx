@@ -60,8 +60,10 @@ export default function Footer() {
     }, [dispatch, enqueueSnackbar, languageSet, userInfo])
 
     useEffect(() => {
-        i18n.changeLanguage(language);
-        languageSet(language)
+        if (language !== i18n.language) {
+            i18n.changeLanguage(language);
+            languageSet(language)
+        }
     }, [i18n, language, languageSet])
 
     // get language from personal setting and change if current language is not same as personal setting language
@@ -72,13 +74,10 @@ export default function Footer() {
                 const { payload } = res;
                 if (payload.success) {
                     if (payload.data.language_code !== localStorage.getItem('i18nextLng')) {
-                        languageSet(payload.data.language_code)
+                        // languageSet(payload.data.language_code)
                     }
                 }
             }).catch((err) => { })
-        }
-        if (called && !userInfo) {
-            setCalled(false)
         }
     }, [called, dispatch, languageSet, userInfo])
 
