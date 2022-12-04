@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useRoutes, Outlet, Navigate } from "react-router-dom";
+import { useRoutes, Outlet } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
 
@@ -171,26 +171,16 @@ export default function Router() {
         element: <CustomRouter isHeader={true} protectedRoute={true} />,
         children: [
           {
-            path: `${baseUrl}/settings`,
-            element: <Settings />,
-            children: [
-              {
-                path: ``,
-                element: <Navigate to={`${baseUrl}/settings/personal`} />,
-              },
-              {
-                path: `${baseUrl}/settings/personal`,
-                element: <Personal />,
-              },
-              {
-                path: `${baseUrl}/settings/security`,
-                element: <Security />,
-              },
-              {
-                path: `${baseUrl}/settings/currency`,
-                element: <Currency />,
-              }
-            ]
+            path: `${baseUrl}/settings/personal`,
+            element: <Settings><Personal /></Settings>,
+          },
+          {
+            path: `${baseUrl}/settings/security`,
+            element: <Settings><Security /></Settings>,
+          },
+          {
+            path: `${baseUrl}/settings/currency`,
+            element: <Settings><Currency /></Settings>,
           }
         ]
       }

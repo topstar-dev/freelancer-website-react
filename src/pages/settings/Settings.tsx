@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import {
     Box,
@@ -16,7 +16,7 @@ import {
 import "./settings.css";
 import { getBaseUrl } from "../Router";
 
-export default function Settings() {
+export default function Settings(props: any) {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
@@ -108,7 +108,7 @@ export default function Settings() {
                     borderRadius: '4px',
                     padding: '20px'
                 }}>
-                    <Outlet />
+                    {props.children}
                 </Box>
             </Box>
         </Box>
