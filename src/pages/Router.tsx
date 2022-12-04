@@ -216,5 +216,5 @@ export default function Router() {
 
 export const getBaseUrl = () => {
   const lang = `${localStorage.getItem('i18nextLng')}`;
-  return lang === 'en' ? '' : lang;
+  return lang === 'en' ? '' : `/${lang}`;
 }

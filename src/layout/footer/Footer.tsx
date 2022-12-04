@@ -74,11 +74,11 @@ export default function Footer() {
         const baseUrl = getBaseUrl();
         const isCNUrl = location.pathname.includes('zh-CN')
         if (isCNUrl) {
-            if (baseUrl !== 'zh-CN') {
+            if (baseUrl !== '/zh-CN') {
                 changeLang({ target: { value: 'zh-CN' } })
             }
         } else {
-            if (baseUrl === 'zh-CN') {
+            if (baseUrl === '/zh-CN') {
                 changeLang({ target: { value: 'en' } })
             }
         }
