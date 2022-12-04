@@ -27,31 +27,44 @@ export default function Footer() {
 
     const languageSet = useCallback(
         (lang: string) => {
-            dispatch(changeLanguage(lang))
             document.documentElement.lang = lang;
             eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
             if (lang === 'zh-CN' && !location.pathname.includes(lang)) {
                 navigate(`${lang}${location.pathname}`)
+                if (location.pathname.includes('/settings/personal')) {
+                    window.location.reload();
+                }
             }
             if (lang === 'en' && location.pathname.includes('zh-CN')) {
                 navigate(`${location.pathname.replace('/zh-CN', '')}`)
+                if (location.pathname.includes('/settings/personal')) {
+                    window.location.reload();
+                }
             }
-        }, [dispatch, language, location.pathname, navigate])
+        }, [language, location.pathname, navigate])
 
     const changeLang: any = useCallback((event: any) => {
         const lang = event.target.value;
         if (userInfo) {
             dispatch(personalSettingsUpdate({ language_code: lang })).then((res) => {
                 enqueueSnackbar(res.payload.message);
+                dispatch(changeLanguage(lang))
                 languageSet(lang)
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
             })
         } else {
+            dispatch(changeLanguage(lang))
             languageSet(lang)
         }
     }, [dispatch, enqueueSnackbar, languageSet, userInfo])
 
+    useEffect(() => {
+        i18n.changeLanguage(language);
+        languageSet(language)
+    }, [i18n, language, languageSet])
+
+    // get language from personal setting and change if current language is not same as personal setting language
     useEffect(() => {
         if (!called && userInfo) {
             setCalled(true)
@@ -64,11 +77,10 @@ export default function Footer() {
                 }
             }).catch((err) => { })
         }
+        if (called && !userInfo) {
+            setCalled(false)
+        }
     }, [called, dispatch, languageSet, userInfo])
-
-    useEffect(() => {
-        i18n.changeLanguage(language);
-    }, [i18n, language])
 
     useEffect(() => {
         const baseUrl = getBaseUrl();

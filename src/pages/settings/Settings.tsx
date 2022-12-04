@@ -21,12 +21,12 @@ export default function Settings(props: any) {
     const navigate = useNavigate();
     const location = useLocation();
     const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
-    const [url, setUrl] = React.useState(location.pathname === '/settings' ? '/settings/personal' : location.pathname);
+    const [url, setUrl] = React.useState(location.pathname === `${getBaseUrl()}/settings` ? `${getBaseUrl()}/settings/personal` : location.pathname);
 
     React.useEffect(() => {
         window.onpopstate = e => {
             e.preventDefault();
-            if (['/settings/security', '/settings/currency', '/settings/personal'].includes(location.pathname)) {
+            if ([`${getBaseUrl()}/settings/security`, `${getBaseUrl()}/settings/currency`, `${getBaseUrl()}/settings/personal`].includes(location.pathname)) {
                 setUrl('/settings/personal')
             }
         };

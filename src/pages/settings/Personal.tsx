@@ -15,6 +15,7 @@ import { Formik } from "formik";
 import { sendCodeToEmail } from "../../redux/auth/authActions";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ChangeEmailInterface, changePrimaryEmailAction } from "../../redux/account/accountActions";
+import { changeLanguage } from "../../redux/resources/resourcesSlice";
 
 export default function Personal() {
     const { t } = useTranslation();
@@ -54,7 +55,16 @@ export default function Personal() {
         if (birthday !== personal.birthday ||
             language_code !== personal.language_code ||
             gender !== personal.gender) {
+            let langUpdate = false;
+
+            if (language_code !== personal.language_code) {
+                langUpdate = true;
+            }
             dispatch(personalSettingsUpdate({ birthday, language_code, gender })).then((res) => {
+                if (langUpdate) {
+                    dispatch(changeLanguage(language_code))
+                }
+                setCalled(false)
                 enqueueSnackbar(res.payload.message);
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
