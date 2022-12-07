@@ -1,99 +1,22 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { MenuItem, Box, Typography, FormControl, Select } from "@mui/material";
-import LanguageIcon from '@mui/icons-material/Language';
+import { Box, Typography } from "@mui/material";
 import Modal from '@mui/material/Modal';
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { changeLanguage } from "../../redux/resources/resourcesSlice";
-import { eventTracker } from "../../services/eventTracker";
-import './footer.css';
+import { useAppSelector } from "../../redux/hooks";
 import { useMediaQuery } from "react-responsive";
-import { personalSettings, personalSettingsUpdate } from "../../redux/settings/settingsActions";
-import { useSnackbar } from "notistack";
 import { getBaseUrl } from "../../routes/Router";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import './footer.css';
 
 export default function Footer() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const { enqueueSnackbar } = useSnackbar();
     const location = useLocation();
-    const { i18n, t } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
-    const { userInfo } = useAppSelector(state => state.auth);
+
     const [open, setOpen] = React.useState(false);
-    const [called, setCalled] = React.useState(false)
     const isWeb = useMediaQuery({ query: '(min-width: 1001px)' })
-
-    const languageSet = useCallback(
-        (lang: string) => {
-            document.documentElement.lang = lang;
-            eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
-            if (lang === 'zh-CN' && !location.pathname.includes(lang)) {
-                navigate(`${lang}${location.pathname}`)
-                if (location.pathname.includes('/settings/personal')) {
-                    window.location.reload();
-                }
-            }
-            if (lang === 'en' && location.pathname.includes('zh-CN')) {
-                navigate(`${location.pathname.replace('/zh-CN', '')}`)
-                if (location.pathname.includes('/settings/personal')) {
-                    window.location.reload();
-                }
-            }
-        }, [language, location.pathname, navigate])
-
-    const changeLang: any = useCallback((event: any) => {
-        const lang = event.target.value;
-        if (userInfo) {
-            dispatch(personalSettingsUpdate({ language_code: lang })).then((res) => {
-                enqueueSnackbar(res.payload.message);
-                dispatch(changeLanguage(lang))
-                languageSet(lang)
-            }).catch((err: any) => {
-                enqueueSnackbar(err.message);
-            })
-        } else {
-            dispatch(changeLanguage(lang))
-            languageSet(lang)
-        }
-    }, [dispatch, enqueueSnackbar, languageSet, userInfo])
-
-    useEffect(() => {
-        if (language !== i18n.language) {
-            i18n.changeLanguage(language);
-            languageSet(language)
-        }
-    }, [i18n, language, languageSet])
-
-    // get language from personal setting and change if current language is not same as personal setting language
-    useEffect(() => {
-        if (!called && userInfo) {
-            setCalled(true)
-            dispatch(personalSettings()).then((res) => {
-                const { payload } = res;
-                if (payload.success) {
-                    if (payload.data.language_code !== localStorage.getItem('i18nextLng')) {
-                        // languageSet(payload.data.language_code)
-                    }
-                }
-            }).catch((err) => { })
-        }
-    }, [called, dispatch, languageSet, userInfo])
-
-    useEffect(() => {
-        const baseUrl = getBaseUrl();
-        const isCNUrl = location.pathname.includes('zh-CN')
-        if (isCNUrl) {
-            if (baseUrl !== '/zh-CN') {
-                changeLang({ target: { value: 'zh-CN' } })
-            }
-        } else {
-            if (baseUrl === '/zh-CN') {
-                changeLang({ target: { value: 'en' } })
-            }
-        }
-    }, [language, location.pathname, languageSet, changeLang]);
 
     const isReplace = () => {
         const replace = [
@@ -109,35 +32,7 @@ export default function Footer() {
     return (
         <Box className="rounx-footer-container">
             <Box className="rounx-footer-left-content">
-                <FormControl className="rounx-language-box">
-                    <Select
-                        id='rounx-language-switcher'
-                        sx={{ height: 20 }}
-                        className="rounx-language-select"
-                        labelId="language"
-                        value={language}
-                        label={t('language')}
-                        MenuProps={{
-                            className: "rounx-language-menu"
-                        }}
-                        renderValue={(value) => {
-                            return <Box
-                                className="rounx-language-value"
-                                id="language-button"
-                            >
-                                <LanguageIcon className="rounx-language-icon" />
-                                {value === 'en' ? 'English' : '中文'}
-                            </Box>
-                        }}
-                        onChange={changeLang}>
-                        <MenuItem value="en">
-                            English
-                        </MenuItem>
-                        <MenuItem value="zh-CN">
-                            中文
-                        </MenuItem>
-                    </Select>
-                </FormControl>
+                <LanguageSwitcher />
                 <Box className="rounx-nav-items-box">
                     {language === 'zh-CN' && isWeb &&
                         <a
