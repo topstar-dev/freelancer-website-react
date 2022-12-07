@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   TextField,
@@ -28,12 +27,12 @@ import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import '../auth.css';
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 import { changeLanguage } from "../../../redux/resources/resourcesSlice";
 
 export default function SignIn() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const navigate = useRounxNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -45,7 +44,7 @@ export default function SignIn() {
   useEffect(() => {
     if (userInfo) {
       document.title = t('title.home');
-      navigate(`${getBaseUrl()}/`);
+      navigate(`/`);
     } else {
       document.title = t('title.signin')
       sessionStorage.removeItem('signup-info');
@@ -66,7 +65,7 @@ export default function SignIn() {
       if (currentLang !== userInfo.language) {
         dispatch(changeLanguage(userInfo.language))
       }
-      navigate(`${getBaseUrl()}/`);
+      navigate(`/`);
     }
   }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
@@ -101,7 +100,7 @@ export default function SignIn() {
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`${getBaseUrl()}/`)}
+                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signin-title')}
@@ -150,7 +149,7 @@ export default function SignIn() {
                   variant="outlined"
                   style={{ borderRadius: 20 }}
                   onClick={() => {
-                    navigate(`${getBaseUrl()}/reset-password`)
+                    navigate(`/reset-password`)
                   }}
                 >
                   {t('signin-forgot-password')}
@@ -186,10 +185,10 @@ export default function SignIn() {
               >
                 <MenuList>
                   <MenuItem onClick={() => {
-                    navigate(`${getBaseUrl()}/sign-up?type=CLIENT`)
+                    navigate(`/sign-up?type=CLIENT`)
                   }}>{t('client-account')}</MenuItem>
                   <MenuItem onClick={() => {
-                    navigate(`${getBaseUrl()}/sign-up?type=FREELANCER`)
+                    navigate(`/sign-up?type=FREELANCER`)
                   }}>{t('freelancer-account')}</MenuItem>
                 </MenuList>
               </Popover>

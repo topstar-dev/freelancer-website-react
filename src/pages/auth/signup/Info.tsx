@@ -19,15 +19,15 @@ import Form from "../../../components/form/Form";
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
 import { getCountries } from "../../../redux/resources/resourcesApi";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 export default function Info(mainProps: any) {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const navigate = useRounxNavigate();
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type');
 
@@ -116,7 +116,7 @@ export default function Info(mainProps: any) {
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`${getBaseUrl()}/`)}
+                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signup-title')}
@@ -209,7 +209,7 @@ export default function Info(mainProps: any) {
 
                     sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, type: type }))
                     if (!(first_name || last_name || birthday || country_id)) {
-                      navigate(`${getBaseUrl()}/sign-up/set-password`)
+                      navigate(`/sign-up/set-password`)
                     }
                   })
                 }}>

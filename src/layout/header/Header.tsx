@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next';
 import { Box } from "@mui/material";
@@ -10,10 +10,10 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
-import { getBaseUrl } from "../../routes/Router";
+import { useRounxNavigate } from "../../routes/Router";
 
 export default function Header() {
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const location = useLocation();
     const [selectedPage, setSelectedPage] = useState(location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
@@ -54,12 +54,12 @@ export default function Header() {
             if (selectedPage !== url) {
                 setSelectedPage(url)
                 const replace = [
-                    `${getBaseUrl()}/contact`,
-                    `${getBaseUrl()}/about`,
-                    `${getBaseUrl()}/help`,
-                    `${getBaseUrl()}/blog`
+                    `/contact`,
+                    `/about`,
+                    `/help`,
+                    `/blog`
                 ].includes(location.pathname)
-                navigate(`${getBaseUrl()}${url}`, { replace })
+                navigate(`${url}`, { replace })
             }
         }
     }

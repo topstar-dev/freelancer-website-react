@@ -17,14 +17,13 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
-import { useNavigate } from "react-router-dom";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 export default function EnterEmail(mainProps: any) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const navigate = useRounxNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const [backdrop, setBackdrop] = React.useState(false);
@@ -69,7 +68,7 @@ export default function EnterEmail(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`${getBaseUrl()}/`)}
+                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 <span>{t('reset-password')}</span>
@@ -109,7 +108,7 @@ export default function EnterEmail(mainProps: any) {
                           if (success) {
                             dispatch(resetDefault());
                             sessionStorage.setItem('reset-password-data', JSON.stringify({ ...formik.values }))
-                            navigate(`${getBaseUrl()}/reset-password/code`)
+                            navigate(`/reset-password/code`)
                           }
                           setBackdrop(false);
                         }).catch((err) => {

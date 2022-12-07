@@ -1,17 +1,17 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Box, Typography } from "@mui/material";
 import Modal from '@mui/material/Modal';
 import { useAppSelector } from "../../redux/hooks";
 import { useMediaQuery } from "react-responsive";
-import { getBaseUrl } from "../../routes/Router";
+import { useRounxNavigate } from "../../routes/Router";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import './footer.css';
 
 export default function Footer() {
     const { t } = useTranslation();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const location = useLocation();
     const { language } = useAppSelector(state => state.resources);
 
@@ -20,11 +20,11 @@ export default function Footer() {
 
     const isReplace = () => {
         const replace = [
-            `${getBaseUrl()}/contact`,
-            `${getBaseUrl()}/about`,
-            `${getBaseUrl()}/help`,
-            `${getBaseUrl()}/blog`,
-            `${getBaseUrl()}/settings/personal`
+            `/contact`,
+            `/about`,
+            `/help`,
+            `/blog`,
+            `/settings/personal`
         ].includes(location.pathname)
         return !replace;
     }
@@ -46,10 +46,10 @@ export default function Footer() {
                         </a>
                     }
                     <Typography className="rounx-footer-items" onClick={() => {
-                        navigate(`${getBaseUrl()}/privacy`, { replace: isReplace() })
+                        navigate(`/privacy`, { replace: isReplace() })
                     }}>{t('footer-privacy-policy')}</Typography>
                     <Typography className="rounx-footer-items" onClick={() => {
-                        navigate(`${getBaseUrl()}/terms`, { replace: isReplace() })
+                        navigate(`/terms`, { replace: isReplace() })
                     }}>{t('footer-terms-of-service')}</Typography>
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>
                 </Box>

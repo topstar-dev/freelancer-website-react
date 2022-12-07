@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks';
-import { getBaseUrl } from '../../routes/Router';
+import { useRounxNavigate } from '../../routes/Router';
 
 export default function AuthGuard(props: any) {
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const { userInfo } = useAppSelector((state) => state.auth);
 
     React.useEffect(() => {
         if (!userInfo) {
-            navigate(`${getBaseUrl()}/`);
+            navigate(`/`);
         }
     }, [userInfo, navigate])
 

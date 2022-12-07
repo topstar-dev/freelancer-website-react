@@ -14,13 +14,12 @@ import { Formik } from "formik";
 import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
-import { useNavigate } from "react-router-dom";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
 
     const signupPassword = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
     const [formData] = useState({
@@ -71,7 +70,7 @@ export default function Password(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate(`${getBaseUrl()}/`)}
+                                onClick={() => navigate(`/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 {t('signup-password-title')}
@@ -126,7 +125,7 @@ export default function Password(mainProps: any) {
                                         }
                                         if (!(set_password || confirm_password)) {
                                             sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
-                                            navigate(`${getBaseUrl()}/sign-up/email`)
+                                            navigate(`/sign-up/email`)
                                         }
                                     })
                                 }} >

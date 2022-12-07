@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import {
@@ -22,12 +21,12 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import * as yup from "yup";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 export default function SetNewPassword(mainProps: any) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const navigate = useRounxNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -76,7 +75,7 @@ export default function SetNewPassword(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`${getBaseUrl()}/`)}
+                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('password-title')}
@@ -144,7 +143,7 @@ export default function SetNewPassword(mainProps: any) {
                         if (success) {
                           dispatch(resetDefault());
                           sessionStorage.removeItem('reset-password-data')
-                          navigate(`${getBaseUrl()}/sign-in`);
+                          navigate(`/sign-in`);
                         }
                         setBackdrop(false);
                       }).catch((err) => {

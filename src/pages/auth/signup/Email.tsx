@@ -17,13 +17,12 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
-import { useNavigate } from "react-router-dom";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 export default function Email(mainProps: any) {
     const { t } = useTranslation();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
 
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
@@ -65,7 +64,7 @@ export default function Email(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate(`${getBaseUrl()}/`)}
+                                onClick={() => navigate(`/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 <span>{t("signup-email-header")}</span>
@@ -104,7 +103,7 @@ export default function Email(mainProps: any) {
                                                 if (success) {
                                                     dispatch(resetDefault());
                                                     sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
-                                                    navigate(`${getBaseUrl()}/sign-up/code`)
+                                                    navigate(`/sign-up/code`)
                                                 }
                                                 setBackdrop(false);
                                             }).catch((err) => {

@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import Button from '../../components/button/Button';
-import { getBaseUrl } from '../../routes/Router';
+import { useRounxNavigate } from '../../routes/Router';
 
 export interface PropsInterface {
     pages: { name: string; url: string; }[];
@@ -15,7 +14,7 @@ export interface PropsInterface {
 
 export default function DesktopHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
 
     return (
         <Box className='rounx-web-header'>
@@ -59,7 +58,7 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                 {userMenu ?
                     userMenu
                     :
-                    <Button variant="outlined" className="rounx-no-signin-handle" onClick={() => navigate(`${getBaseUrl()}/sign-in`)}>{t('signin')}</Button>
+                    <Button variant="outlined" className="rounx-no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
                 }
             </Box>
         </Box >

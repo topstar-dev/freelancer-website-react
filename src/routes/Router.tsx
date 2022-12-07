@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useRoutes, Outlet } from "react-router-dom";
+import { useRoutes, Outlet, useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import { Box } from "@mui/material";
 
@@ -201,10 +201,24 @@ export default function Router() {
       ]
     }
   ])
-
 }
 
-export const getBaseUrl = () => {
-  const lang = `${localStorage.getItem('i18nextLng')}`;
-  return lang === 'en' ? '' : `/${lang}`;
+
+export const useRounxNavigate = () => {
+  const navigate = useNavigate();
+
+  return (url: string, options: any = {}) => {
+    const lang = `${localStorage.getItem('i18nextLng')}`;
+    const baseUrl = lang === 'en' ? '/' : `/${lang}`;
+
+    if (!url || url === '/') {
+      navigate(`${baseUrl}`);
+    } else {
+      if (baseUrl === '/') {
+        navigate(`${baseUrl}${url.startsWith('/') ? url.slice(1) : url}`, options);
+      } else {
+        navigate(`${baseUrl}${url}`, options);
+      }
+    }
+  }
 }

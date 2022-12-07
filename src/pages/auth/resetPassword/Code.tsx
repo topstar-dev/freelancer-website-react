@@ -2,7 +2,6 @@ import React, { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Typography,
@@ -19,13 +18,13 @@ import Card from "../../../components/card/Card";
 import Form from "../../../components/form/Form";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 
 export default function VerifyCode(mainProps: any) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const navigate = useRounxNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const [backdrop, setBackdrop] = React.useState(false);
@@ -65,7 +64,7 @@ export default function VerifyCode(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`${getBaseUrl()}/`)}
+                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signup-code-title')}
@@ -109,7 +108,7 @@ export default function VerifyCode(mainProps: any) {
                         if (success) {
                           dispatch(resetDefault());
                           sessionStorage.setItem('reset-password-data', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('reset-password-data')}`) }))
-                          navigate(`${getBaseUrl()}/reset-password/set-password`)
+                          navigate(`/reset-password/set-password`)
                         }
                         setBackdrop(false);
                       }).catch((err) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import {
     Box,
@@ -14,19 +14,19 @@ import {
     ListItemText
 } from "@mui/material";
 import "./settings.css";
-import { getBaseUrl } from "../../routes/Router";
+import { useRounxNavigate } from "../../routes/Router";
 
 export default function Settings(props: any) {
     const { t } = useTranslation();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const location = useLocation();
     const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
-    const [url, setUrl] = React.useState(location.pathname === `${getBaseUrl()}/settings` ? `${getBaseUrl()}/settings/personal` : location.pathname);
+    const [url, setUrl] = React.useState(location.pathname === `/settings` ? `/settings/personal` : location.pathname);
 
     React.useEffect(() => {
         window.onpopstate = e => {
             e.preventDefault();
-            if ([`${getBaseUrl()}/settings/security`, `${getBaseUrl()}/settings/currency`, `${getBaseUrl()}/settings/personal`].includes(location.pathname)) {
+            if ([`/settings/security`, `/settings/currency`, `/settings/personal`].includes(location.pathname)) {
                 setUrl('/settings/personal')
             }
         };
@@ -36,7 +36,7 @@ export default function Settings(props: any) {
         const { pathname } = location;
         if (url !== path) {
             setUrl(path);
-            navigate(path, { replace: pathname.startsWith(`${getBaseUrl()}/settings/`) && !(pathname === `${getBaseUrl()}/settings/personal`) ? true : false });
+            navigate(path, { replace: pathname.startsWith(`/settings/`) && !(pathname === `/settings/personal`) ? true : false });
         }
     };
 
@@ -66,9 +66,9 @@ export default function Settings(props: any) {
                             labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
                         >
-                            <MenuItem value={`${getBaseUrl()}/settings/personal`}>{t('user-settings-personal')}</MenuItem>
-                            <MenuItem value={`${getBaseUrl()}/settings/security`}>{t('user-settings-security')}</MenuItem>
-                            <MenuItem value={`${getBaseUrl()}/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                            <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
+                            <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
+                            <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
                         </Select>
                     </FormControl>
                 </MediaQuery>

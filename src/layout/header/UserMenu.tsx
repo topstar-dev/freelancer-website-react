@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { signOutUser } from '../../redux/auth/authActions';
 import { imageDownload } from '../../redux/other/otherActions';
-import { getBaseUrl } from '../../routes/Router';
+import { useRounxNavigate } from '../../routes/Router';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
 }
 
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,7 +39,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
 
     const settingsClick = () => {
         setAnchorEl(null);
-        navigate(`${getBaseUrl()}/settings/personal`)
+        navigate(`/settings/personal`)
     }
 
     return (

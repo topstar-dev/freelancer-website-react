@@ -3,16 +3,16 @@ import { Box } from '@mui/system';
 import { useSnackbar } from 'notistack';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import LanguageIcon from '@mui/icons-material/Language';
 import { eventTracker } from "../services/eventTracker";
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { personalSettingsUpdate } from '../redux/settings/settingsActions';
 import { changeLanguage } from '../redux/resources/resourcesSlice';
-import { getBaseUrl } from '../routes/Router';
+import { useRounxNavigate } from '../routes/Router';
 
 const LanguageSwitcher = () => {
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
@@ -22,24 +22,6 @@ const LanguageSwitcher = () => {
     const { userInfo } = useAppSelector(state => state.auth);
     const { language } = useAppSelector(state => state.resources);
 
-    const languageSet = React.useCallback(
-        (lang: string) => {
-            document.documentElement.lang = lang;
-            eventTracker("Footer", "Language change", `Language changed from ${language} to ${lang}`)
-            if (lang === 'zh-CN' && !location.pathname.includes(lang)) {
-                navigate(`${lang}${location.pathname}`)
-                if (location.pathname.includes('/settings/personal')) {
-                    window.location.reload();
-                }
-            }
-            if (lang === 'en' && location.pathname.includes('zh-CN')) {
-                navigate(`${location.pathname.replace('/zh-CN', '')}`)
-                if (location.pathname.includes('/settings/personal')) {
-                    window.location.reload();
-                }
-            }
-        }, [language, location.pathname, navigate])
-
     const changeLang: any = React.useCallback((event: any) => {
         const lang = event.target.value;
         if (userInfo) {
@@ -47,7 +29,6 @@ const LanguageSwitcher = () => {
             dispatch(personalSettingsUpdate({ language_code: lang })).then((res) => {
                 enqueueSnackbar(res.payload.message);
                 dispatch(changeLanguage(lang))
-                languageSet(lang)
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
             }).finally(() => {
@@ -55,30 +36,44 @@ const LanguageSwitcher = () => {
             })
         } else {
             dispatch(changeLanguage(lang))
-            languageSet(lang)
         }
-    }, [dispatch, enqueueSnackbar, languageSet, userInfo])
+    }, [dispatch, enqueueSnackbar, userInfo])
 
-    React.useEffect(() => {
-        if (language !== i18n.language) {
-            i18n.changeLanguage(language);
-            languageSet(language)
-        }
-    }, [i18n, language, languageSet])
-
-    React.useEffect(() => {
-        const baseUrl = getBaseUrl();
-        const isCNUrl = location.pathname.includes('zh-CN')
-        if (isCNUrl) {
-            if (baseUrl !== '/zh-CN') {
-                // changeLang({ target: { value: 'zh-CN' } })
+    const updateUrl = React.useCallback((lang: string) => {
+        const currentUrl = location.pathname;
+        if (lang !== 'en') {
+            if (!currentUrl.startsWith(`/${lang}`)) {
+                navigate(location.pathname, { replace: true });
             }
         } else {
-            if (baseUrl === '/zh-CN') {
-                // changeLang({ target: { value: 'en' } })
+            if (currentUrl.startsWith('/zh-CN')) {
+                const newLocation = currentUrl.replace('/zh-CN', '');
+                navigate(newLocation, { replace: true })
             }
         }
-    }, [language, location.pathname, languageSet, changeLang]);
+    }, [location.pathname, navigate])
+
+    React.useEffect(() => {
+        if (language && i18n.language && i18n.language !== language) {
+            console.log('anythign')
+            document.documentElement.lang = language;
+            eventTracker("Footer", "Language change", `Language changed from ${i18n.language} to ${language}`)
+            i18n.changeLanguage(language).then(() => {
+                updateUrl(language);
+            })
+        }
+    }, [i18n, language, updateUrl])
+
+    React.useEffect(() => {
+        if (language) {
+            const currentUrl = location.pathname;
+            if (currentUrl.startsWith('/zh-CN') && language !== 'zh-CN') {
+                changeLang({ target: { value: 'zh-CN' } })
+            } else if (!currentUrl.startsWith('/zh-CN') && language === 'zh-CN') {
+                changeLang({ target: { value: 'en' } })
+            }
+        }
+    }, [language, location.pathname, changeLang]);
 
     return (
         <FormControl className="rounx-language-box">

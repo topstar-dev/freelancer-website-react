@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
     TextField,
@@ -19,13 +18,13 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import '../auth.css';
-import { getBaseUrl } from "../../../routes/Router";
+import { useRounxNavigate } from "../../../routes/Router";
 
 export default function Code(mainProps: any) {
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
 
     const [backdrop, setBackdrop] = React.useState(false);
     const signupCode = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
@@ -58,7 +57,7 @@ export default function Code(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate(`${getBaseUrl()}/`)}
+                                onClick={() => navigate(`/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 {t('signup-code-title')}
@@ -116,7 +115,7 @@ export default function Code(mainProps: any) {
                                                     dispatch(signInUser({ email: signUpData.primary_email, password: signUpData.password })).then((res) => {
                                                         enqueueSnackbar(res.payload.message);
                                                         dispatch(resetDefault())
-                                                        navigate(`${getBaseUrl()}/`);
+                                                        navigate(`/`);
                                                     }).catch((_err) => {
 
                                                     })

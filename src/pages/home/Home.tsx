@@ -2,7 +2,6 @@ import React from "react";
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
 import { Backdrop, Box, CircularProgress, Divider, TextField, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -13,14 +12,14 @@ import {
 } from '../../redux/home/homeActions';
 import { pageView } from "../../services/eventTracker";
 import EmblaCarousel from "../../components/carousal/Carousal";
+import { useRounxNavigate } from "../../routes/Router";
 import './home.css'
-import { getBaseUrl } from "../../routes/Router";
 
 export default function HomePage() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
-    const navigate = useNavigate();
+    const navigate = useRounxNavigate();
     const { language } = useAppSelector(state => state.resources);
     const { userInfo } = useAppSelector((state) => state.auth);
     const [backdrop, setBackdrop] = React.useState(false);
@@ -47,7 +46,7 @@ export default function HomePage() {
                                 {t('home-page-heading1-details2')}
                             </Typography>
                         </div>
-                        {!userInfo && <Button onClick={() => navigate(`${getBaseUrl()}/sign-in`)}>{t('home-page-join-ronux-button')}</Button>}
+                        {!userInfo && <Button onClick={() => navigate(`/sign-in`)}>{t('home-page-join-ronux-button')}</Button>}
                     </Box>
                 </Box>
                 <Box className="rounx-home-first-right">
