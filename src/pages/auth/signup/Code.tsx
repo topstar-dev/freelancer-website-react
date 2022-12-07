@@ -19,7 +19,7 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import '../auth.css';
-import { getBaseUrl } from "../../Router";
+import { getBaseUrl } from "../../../routes/Router";
 
 export default function Code(mainProps: any) {
     const { t } = useTranslation();

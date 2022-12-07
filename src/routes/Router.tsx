@@ -8,37 +8,37 @@ import Header from "../layout/header/Header";
 import Footer from "../layout/footer/Footer";
 
 //auth
-import SignIn from "./auth/signin/SignIn";
-import Info from "./auth/signup/Info";
-import Password from "./auth/signup/Password";
-import Email from "./auth/signup/Email";
-import Code from "./auth/signup/Code";
-import EnterEmail from "./auth/resetPassword/Email";
-import VerifyCode from "./auth/resetPassword/Code";
-import SetNewPassword from "./auth/resetPassword/Password";
+import SignIn from "../pages/auth/signin/SignIn";
+import Info from "../pages/auth/signup/Info";
+import Password from "../pages/auth/signup/Password";
+import Email from "../pages/auth/signup/Email";
+import Code from "../pages/auth/signup/Code";
+import EnterEmail from "../pages/auth/resetPassword/Email";
+import VerifyCode from "../pages/auth/resetPassword/Code";
+import SetNewPassword from "../pages/auth/resetPassword/Password";
 
-import HomePage from "./home/Home";
-import ContactUs from "./contactUs/ContacUs";
-import AboutUs from "./aboutUs/AboutUs";
-import Privacy from "./policies/Privacy";
-import Terms from "./policies/Terms";
-import AuthGuard from "./auth/AuthGuard";
-import NotFound from "./error/NotFound";
+import HomePage from "../pages/home/Home";
+import ContactUs from "../pages/contactUs/ContacUs";
+import AboutUs from "../pages/aboutUs/AboutUs";
+import Privacy from "../pages/policies/Privacy";
+import Terms from "../pages/policies/Terms";
+import AuthGuard from "../pages/auth/AuthGuard";
+import NotFound from "../pages/error/NotFound";
 import TawkProvider from "../components/TawkProvider";
 
 // apply-freelancer
-import Skills from "./applyFreelancer/Skills";
-import NamePhoto from "./applyFreelancer/NamePhoto";
-import Experience from "./applyFreelancer/Experience";
-import Education from "./applyFreelancer/Education";
-import Languages from "./applyFreelancer/Languages";
-import AboutMe from "./applyFreelancer/AboutMe";
+import Skills from "../pages/applyFreelancer/Skills";
+import NamePhoto from "../pages/applyFreelancer/NamePhoto";
+import Experience from "../pages/applyFreelancer/Experience";
+import Education from "../pages/applyFreelancer/Education";
+import Languages from "../pages/applyFreelancer/Languages";
+import AboutMe from "../pages/applyFreelancer/AboutMe";
 
 //settings
-import Settings from "./settings/Settings";
-import Personal from "./settings/Personal";
-import Security from "./settings/Security";
-import Currency from "./settings/Currency";
+import Settings from "../pages/settings/Settings";
+import Personal from "../pages/settings/Personal";
+import Security from "../pages/settings/Security";
+import Currency from "../pages/settings/Currency";
 
 interface RoutesInterface {
   isHeader: boolean,

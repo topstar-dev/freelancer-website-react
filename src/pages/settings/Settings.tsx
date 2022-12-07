@@ -14,7 +14,7 @@ import {
     ListItemText
 } from "@mui/material";
 import "./settings.css";
-import { getBaseUrl } from "../Router";
+import { getBaseUrl } from "../../routes/Router";
 
 export default function Settings(props: any) {
     const { t } = useTranslation();

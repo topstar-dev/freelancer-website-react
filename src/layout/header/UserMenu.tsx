@@ -7,7 +7,7 @@ import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { signOutUser } from '../../redux/auth/authActions';
 import { imageDownload } from '../../redux/other/otherActions';
-import { getBaseUrl } from '../../pages/Router';
+import { getBaseUrl } from '../../routes/Router';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null

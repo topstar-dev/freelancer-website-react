@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from '@mui/icons-material/Close';
 import { PropsInterface } from './DesktopHeader';
 import Button from '../../components/button/Button';
-import { getBaseUrl } from '../../pages/Router';
+import { getBaseUrl } from '../../routes/Router';
 
 export default function MobileHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();

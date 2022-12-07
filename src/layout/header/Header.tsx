@@ -10,7 +10,7 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
-import { getBaseUrl } from "../../pages/Router";
+import { getBaseUrl } from "../../routes/Router";
 
 export default function Header() {
     const navigate = useNavigate();

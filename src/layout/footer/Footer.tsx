@@ -11,7 +11,7 @@ import './footer.css';
 import { useMediaQuery } from "react-responsive";
 import { personalSettings, personalSettingsUpdate } from "../../redux/settings/settingsActions";
 import { useSnackbar } from "notistack";
-import { getBaseUrl } from "../../pages/Router";
+import { getBaseUrl } from "../../routes/Router";
 
 export default function Footer() {
     const navigate = useNavigate();

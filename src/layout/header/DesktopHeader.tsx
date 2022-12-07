@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import Button from '../../components/button/Button';
-import { getBaseUrl } from '../../pages/Router';
+import { getBaseUrl } from '../../routes/Router';
 
 export interface PropsInterface {
     pages: { name: string; url: string; }[];

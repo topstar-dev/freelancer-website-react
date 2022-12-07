@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material';
-import Router from './pages/Router';
+import Router from './routes/Router';
 import './App.css';
 import { useAppSelector } from './redux/hooks';
 

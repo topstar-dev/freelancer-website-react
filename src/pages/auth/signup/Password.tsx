@@ -16,7 +16,7 @@ import WithTranslateFormErrors from "../../../services/validationScemaOnLangChan
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import '../auth.css';
-import { getBaseUrl } from "../../Router";
+import { getBaseUrl } from "../../../routes/Router";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();

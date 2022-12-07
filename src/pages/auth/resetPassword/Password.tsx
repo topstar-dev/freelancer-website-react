@@ -22,7 +22,7 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import * as yup from "yup";
 import '../auth.css';
-import { getBaseUrl } from "../../Router";
+import { getBaseUrl } from "../../../routes/Router";
 
 export default function SetNewPassword(mainProps: any) {
   const { t } = useTranslation();

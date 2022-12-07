@@ -14,7 +14,7 @@ import {
 import { pageView } from "../../services/eventTracker";
 import EmblaCarousel from "../../components/carousal/Carousal";
 import './home.css'
-import { getBaseUrl } from "../Router";
+import { getBaseUrl } from "../../routes/Router";
 
 export default function HomePage() {
     const { t } = useTranslation();

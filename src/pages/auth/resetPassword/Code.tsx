@@ -19,7 +19,7 @@ import Card from "../../../components/card/Card";
 import Form from "../../../components/form/Form";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import '../auth.css';
-import { getBaseUrl } from "../../Router";
+import { getBaseUrl } from "../../../routes/Router";
 
 
 export default function VerifyCode(mainProps: any) {

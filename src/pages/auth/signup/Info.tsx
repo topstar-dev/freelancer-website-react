@@ -23,7 +23,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
 import { getCountries } from "../../../redux/resources/resourcesApi";
 import '../auth.css';
-import { getBaseUrl } from "../../Router";
+import { getBaseUrl } from "../../../routes/Router";
 
 export default function Info(mainProps: any) {
   const { t, i18n } = useTranslation();
