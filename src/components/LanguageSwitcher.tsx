@@ -19,6 +19,7 @@ const LanguageSwitcher = () => {
     const { i18n, t } = useTranslation();
 
     const [backdrop, setBackdrop] = React.useState(false);
+    const [currentPath, setCurrentPath] = React.useState('');
     const { userInfo } = useAppSelector(state => state.auth);
     const { language } = useAppSelector(state => state.resources);
 
@@ -55,7 +56,6 @@ const LanguageSwitcher = () => {
 
     React.useEffect(() => {
         if (language && i18n.language && i18n.language !== language) {
-            console.log('anythign')
             document.documentElement.lang = language;
             eventTracker("Footer", "Language change", `Language changed from ${i18n.language} to ${language}`)
             i18n.changeLanguage(language).then(() => {
@@ -65,15 +65,16 @@ const LanguageSwitcher = () => {
     }, [i18n, language, updateUrl])
 
     React.useEffect(() => {
-        if (language) {
-            const currentUrl = location.pathname;
+        const currentUrl = location.pathname;
+        if (currentPath !== currentUrl) {
+            setCurrentPath(currentUrl);
             if (currentUrl.startsWith('/zh-CN') && language !== 'zh-CN') {
                 changeLang({ target: { value: 'zh-CN' } })
             } else if (!currentUrl.startsWith('/zh-CN') && language === 'zh-CN') {
                 changeLang({ target: { value: 'en' } })
             }
         }
-    }, [language, location.pathname, changeLang]);
+    }, [i18n, currentPath, language, location.pathname, changeLang]);
 
     return (
         <FormControl className="rounx-language-box">
