@@ -9,7 +9,7 @@ export const positionChatWidget = (isTabOrMobile: boolean) => {
         if (chatWidgetVisible) {
             const ifr = chatWidgetVisible.querySelector('iframe');
             if (ifr) {
-                ifr.style.bottom = isTabOrMobile ? '143px' : '86px';
+                ifr.style.bottom = isTabOrMobile ? '146px' : '96px';
             }
         }
     } catch (err) { }
@@ -49,7 +49,7 @@ const TawkProvider = ({ isHeader }: any) => {
                 visibility: {
                     desktop: {
                         xOffset: '24',
-                        yOffset: isTabOrMobile ? '143' : '86',
+                        yOffset: isTabOrMobile ? '146px' : '96px',
                         position: 'br'
                     }
                 }
