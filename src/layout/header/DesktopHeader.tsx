@@ -15,7 +15,7 @@ export interface PropsInterface {
 export default function DesktopHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    console.log(selectedPage)
+
     return (
         <Box className='rounx-web-header'>
             <Box className='rounx-appbar-section'>
