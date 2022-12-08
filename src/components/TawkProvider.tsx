@@ -23,7 +23,7 @@ const TawkProvider = ({ isHeader }: any) => {
     React.useEffect(() => {
         try {
             if (tawkMessengerRef.current) {
-                if (isHeader && location.pathname.endsWith('/contact')) {
+                if (isHeader && ['/contact', '/zh-CN/contact'].includes(location.pathname)) {
                     tawkMessengerRef.current.showWidget();
                 } else {
                     tawkMessengerRef.current.hideWidget();
@@ -56,7 +56,7 @@ const TawkProvider = ({ isHeader }: any) => {
             }}
             onLoad={() => {
                 if (tawkMessengerRef.current) {
-                    if (isHeader && location.pathname === '/contact') {
+                    if (isHeader && ['/contact', '/zh-CN/contact'].includes(location.pathname)) {
                         tawkMessengerRef.current.showWidget();
                     } else {
                         tawkMessengerRef.current.hideWidget();
