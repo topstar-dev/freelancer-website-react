@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
-import { useRoutes, Outlet, useNavigate } from "react-router-dom";
-import { useMediaQuery } from 'react-responsive'
-import { Box } from "@mui/material";
+import { useRoutes, useNavigate } from "react-router-dom";
 
 //layout
-import Header from "../layout/header/Header";
-import Footer from "../layout/footer/Footer";
+import CustomRouter from "./RouteLayout";
 
 //auth
 import SignIn from "../pages/auth/signin/SignIn";
@@ -17,14 +13,13 @@ import EnterEmail from "../pages/auth/resetPassword/Email";
 import VerifyCode from "../pages/auth/resetPassword/Code";
 import SetNewPassword from "../pages/auth/resetPassword/Password";
 
+//normal pages
 import HomePage from "../pages/home/Home";
 import ContactUs from "../pages/contactUs/ContacUs";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import Privacy from "../pages/policies/Privacy";
 import Terms from "../pages/policies/Terms";
-import AuthGuard from "../pages/auth/AuthGuard";
 import NotFound from "../pages/error/NotFound";
-import TawkProvider from "../components/TawkProvider";
 
 // apply-freelancer
 import Skills from "../pages/applyFreelancer/Skills";
@@ -39,39 +34,6 @@ import Settings from "../pages/settings/Settings";
 import Personal from "../pages/settings/Personal";
 import Security from "../pages/settings/Security";
 import Currency from "../pages/settings/Currency";
-
-interface RoutesInterface {
-  isHeader: boolean,
-  protectedRoute: boolean
-}
-const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
-  const isWeb = useMediaQuery({ query: '(min-width: 1001px)' });
-
-  useEffect(() => {
-    document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
-  })
-
-  const content = <>
-    {isHeader && <Header />}
-    <Box style={{
-      overflowY: 'auto',
-      overflowX: 'hidden',
-      position: 'relative',
-      height: `calc(100% - ${!isHeader ? 0 : (isWeb ? 72 : 73)}px)`,
-    }}>
-      <Box style={{
-        padding: isWeb ? '24px 16%' : '24px',
-        minHeight: `calc(100% - ${useMediaQuery({ query: '(min-width: 1001px)' }) ? 72 : 119}px`
-      }}>
-        <Outlet />
-      </Box>
-      <Footer />
-      <TawkProvider isHeader={isHeader} />
-    </Box>
-  </>
-
-  return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;
-}
 
 export default function Router() {
   const routesWithBaseUrl = (baseUrl: string) => {
