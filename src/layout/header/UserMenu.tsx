@@ -6,14 +6,14 @@ import { UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { signOutUser } from '../../redux/auth/authActions';
 import { imageDownload } from '../../redux/other/otherActions';
-import { useRounxNavigate } from '../../routes/Router';
+import { useNavigate } from '../../routes/Router';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
 }
 
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);

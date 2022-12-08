@@ -9,10 +9,10 @@ import { eventTracker } from "../services/eventTracker";
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { personalSettingsUpdate } from '../redux/settings/settingsActions';
 import { changeLanguage } from '../redux/resources/resourcesSlice';
-import { useRounxNavigate } from '../routes/Router';
+import { useNavigate } from '../routes/Router';
 
 const LanguageSwitcher = () => {
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();

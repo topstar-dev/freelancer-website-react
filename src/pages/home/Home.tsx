@@ -12,14 +12,14 @@ import {
 } from '../../redux/home/homeActions';
 import { pageView } from "../../services/eventTracker";
 import EmblaCarousel from "../../components/carousal/Carousal";
-import { useRounxNavigate } from "../../routes/Router";
+import { useNavigate } from "../../routes/Router";
 import './home.css'
 
 export default function HomePage() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const { language } = useAppSelector(state => state.resources);
     const { userInfo } = useAppSelector((state) => state.auth);
     const [backdrop, setBackdrop] = React.useState(false);

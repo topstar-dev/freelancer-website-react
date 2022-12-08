@@ -14,11 +14,11 @@ import {
     ListItemText
 } from "@mui/material";
 import "./settings.css";
-import { useRounxNavigate } from "../../routes/Router";
+import { useNavigate } from "../../routes/Router";
 
 export default function Settings(props: any) {
     const { t } = useTranslation();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
     const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
     const [url, setUrl] = React.useState(location.pathname === `/settings` ? `/settings/personal` : location.pathname);

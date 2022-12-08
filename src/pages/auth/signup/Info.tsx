@@ -23,11 +23,11 @@ import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
 import { getCountries } from "../../../redux/resources/resourcesApi";
 import '../auth.css';
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 export default function Info(mainProps: any) {
   const { t, i18n } = useTranslation();
-  const navigate = useRounxNavigate();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type');
 

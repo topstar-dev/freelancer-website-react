@@ -18,11 +18,11 @@ import { Formik } from "formik";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import '../auth.css';
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 export default function Email(mainProps: any) {
     const { t } = useTranslation();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
 
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();

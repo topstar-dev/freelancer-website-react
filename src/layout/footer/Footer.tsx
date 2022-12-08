@@ -5,13 +5,13 @@ import { Box, Typography } from "@mui/material";
 import Modal from '@mui/material/Modal';
 import { useAppSelector } from "../../redux/hooks";
 import { useMediaQuery } from "react-responsive";
-import { useRounxNavigate } from "../../routes/Router";
+import { useNavigate } from "../../routes/Router";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import './footer.css';
 
 export default function Footer() {
     const { t } = useTranslation();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
     const { language } = useAppSelector(state => state.resources);
 

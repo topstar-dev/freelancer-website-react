@@ -7,11 +7,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from '@mui/icons-material/Close';
 import { PropsInterface } from './DesktopHeader';
 import Button from '../../components/button/Button';
-import { useRounxNavigate } from '../../routes/Router';
+import { useNavigate } from '../../routes/Router';
 
 export default function MobileHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
     return (

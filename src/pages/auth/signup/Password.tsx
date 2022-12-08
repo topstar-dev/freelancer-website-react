@@ -15,11 +15,11 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import '../auth.css';
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 export default function Password(mainProps: any) {
     const { t } = useTranslation();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
 
     const signupPassword = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
     const [formData] = useState({

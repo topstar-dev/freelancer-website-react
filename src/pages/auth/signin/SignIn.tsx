@@ -27,11 +27,11 @@ import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import '../auth.css';
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 export default function SignIn() {
   const { t } = useTranslation();
-  const navigate = useRounxNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 

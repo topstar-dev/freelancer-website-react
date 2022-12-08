@@ -18,13 +18,13 @@ import Card from "../../../components/card/Card";
 import Form from "../../../components/form/Form";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import '../auth.css';
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 
 export default function VerifyCode(mainProps: any) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useRounxNavigate();
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const [backdrop, setBackdrop] = React.useState(false);

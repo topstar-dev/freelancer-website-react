@@ -1,4 +1,4 @@
-import { useRoutes, useNavigate } from "react-router-dom";
+import { useRoutes, useNavigate as useReactNavigate } from "react-router-dom";
 
 //layout
 import CustomRouter from "./RouteLayout";
@@ -166,8 +166,8 @@ export default function Router() {
 }
 
 
-export const useRounxNavigate = () => {
-  const navigate = useNavigate();
+export const useNavigate = () => {
+  const navigate = useReactNavigate();
 
   return (url: string, options: any = {}) => {
     const lang = `${localStorage.getItem('i18nextLng')}`;

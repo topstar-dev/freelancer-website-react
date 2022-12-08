@@ -21,12 +21,12 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import * as yup from "yup";
 import '../auth.css';
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 export default function SetNewPassword(mainProps: any) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useRounxNavigate();
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [showPassword, setShowPassword] = React.useState(false);
 

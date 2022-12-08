@@ -10,10 +10,10 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import './header.css';
-import { useRounxNavigate } from "../../routes/Router";
+import { useNavigate } from "../../routes/Router";
 
 export default function Header() {
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
     const [selectedPage, setSelectedPage] = useState(location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);

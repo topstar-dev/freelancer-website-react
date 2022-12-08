@@ -18,13 +18,13 @@ import Card from "../../../components/card/Card";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import '../auth.css';
-import { useRounxNavigate } from "../../../routes/Router";
+import { useNavigate } from "../../../routes/Router";
 
 export default function Code(mainProps: any) {
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
-    const navigate = useRounxNavigate();
+    const navigate = useNavigate();
 
     const [backdrop, setBackdrop] = React.useState(false);
     const signupCode = sessionStorage.getItem('signup-info') ? JSON.parse(`${sessionStorage.getItem('signup-info')}`) : {};
