@@ -28,7 +28,6 @@ import Card from "../../../components/card/Card";
 import '../auth.css';
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { useRounxNavigate } from "../../../routes/Router";
-import { changeLanguage } from "../../../redux/resources/resourcesSlice";
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -61,10 +60,6 @@ export default function SignIn() {
     if (success && userInfo) {
       document.title = t('title.home');
       setBackdrop(false);
-      const currentLang = `${localStorage.getItem('i18nextLng')}`;
-      if (currentLang !== userInfo.language) {
-        dispatch(changeLanguage(userInfo.language))
-      }
       navigate(`/`);
     }
   }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])

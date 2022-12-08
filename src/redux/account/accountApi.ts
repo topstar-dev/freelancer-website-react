@@ -34,7 +34,9 @@ export const deleteRecoveryEmail = (data: DeleteRecoveryEmailInterface) => {
 }
 
 export const setTokens = (data: any) => {
-    localStorage.setItem('user-info', JSON.stringify(data));
+    const dataToSave = { ...data };
+    delete dataToSave.language;
+    localStorage.setItem('user-info', JSON.stringify(dataToSave));
 }
 
 export const removeTokens = (doRefresh: boolean = false) => {
