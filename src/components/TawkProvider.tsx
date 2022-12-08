@@ -23,7 +23,7 @@ const TawkProvider = ({ isHeader }: any) => {
     React.useEffect(() => {
         try {
             if (tawkMessengerRef.current) {
-                if (isHeader && location.pathname === '/contact') {
+                if (isHeader && location.pathname.endsWith('/contact')) {
                     tawkMessengerRef.current.showWidget();
                 } else {
                     tawkMessengerRef.current.hideWidget();

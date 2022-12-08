@@ -15,7 +15,7 @@ export interface PropsInterface {
 export default function DesktopHeader({ pages, userMenu, selectedPage, setSelectedPage }: PropsInterface) {
     const { t } = useTranslation();
     const navigate = useNavigate();
-
+    console.log(selectedPage)
     return (
         <Box className='rounx-web-header'>
             <Box className='rounx-appbar-section'>
@@ -32,7 +32,7 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                 <Box className='rounx-nav-item-group'>
                     {pages.map((page) => (
                         <div
-                            className={selectedPage === page.url ?
+                            className={[page.url, `/zh-CN${page.url}`].includes(selectedPage) ?
                                 'rounx-nav-item menu-item-selected'
                                 :
                                 'rounx-nav-item'
