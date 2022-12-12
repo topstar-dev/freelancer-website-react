@@ -40,9 +40,10 @@
     object-fit: cover;
 }
 
-@media (max-width:490px) {
+/* mobile */
+@media (min-width: 320px) and (max-width: 490px) {
     .embla {
-        width: auto !important;
+        width: 320px;
     }
 }
 

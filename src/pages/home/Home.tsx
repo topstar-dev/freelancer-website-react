@@ -70,6 +70,7 @@ export default function HomePage() {
                             <Typography style={{ fontSize: '24px', fontWeight: '450' }}>{t('home-page-why-point1')}</Typography>
                             <br />
                             <Typography style={{ fontSize: '18px', color: '#757575' }}>{t('home-page-why-point1-info')}</Typography>
+                            <br />
                         </Box>
                     </Box>
                     <Box className="rounx-home-second-box" style={{ margin: '0 3%' }}>
