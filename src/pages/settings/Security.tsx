@@ -270,6 +270,7 @@ export default function Security() {
                                 <Box style={{ display: 'flex', marginTop: '10px' }}>
                                     <Button
                                         variant="outlined"
+                                        disabled={!securityData?.recovery_email}
                                         sx={{ mr: 2 }}
                                         onClick={() => {
                                             if (formik.values.new_email && formik.values.new_email !== securityData?.recovery_email) {
@@ -281,6 +282,7 @@ export default function Security() {
                                     </Button>
                                     <Button
                                         variant="outlined"
+                                        disabled={!formik.values.new_email || formik.values.new_email === securityData?.recovery_email}
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
                                                 if (changeEmail) {
