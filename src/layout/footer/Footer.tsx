@@ -20,6 +20,8 @@ export default function Footer() {
 
     const isReplace = () => {
         const replace = [
+            '/',
+            '/zh-CN',
             `/contact`,
             `/about`,
             `/help`,
