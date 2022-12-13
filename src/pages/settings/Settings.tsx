@@ -57,21 +57,6 @@ export default function Settings(props: any) {
                 <MediaQuery maxWidth='1080px'>
                     <FormControl fullWidth>
                         <InputLabel id="settings-select-label">{t('user-settings')}</InputLabel>
-                        {/* {i18n.language === 'en' ?
-                            <Select
-                                value={url}
-                                label="Settings"
-                                MenuProps={
-                                    { className: "rounx-setting-menu" }
-                                }
-                                labelId="settings-select-label"
-                                onChange={(e) => handleChange(e.target.value as string)}
-                            >
-                                <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
-                                <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
-                                <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
-                            </Select>
-                            : */}
                         <Select
                             value={url}
                             label="Settings"
@@ -85,34 +70,30 @@ export default function Settings(props: any) {
                             <MenuItem value={`/zh-CN/settings/security`}>{t('user-settings-security')}</MenuItem>
                             <MenuItem value={`/zh-CN/settings/currency`}>{t('user-settings-currency')}</MenuItem>
                         </Select>
-                        {/* } */}
                     </FormControl>
                 </MediaQuery>
                 <MediaQuery minWidth='1081px'>
                     <Box sx={{ width: '284px' }}>
                         <List className="rounx-settings-list" sx={{ width: '100%', paddingRight: '20px' }}>
                             <ListItemButton
-                                selected={url === '/settings/personal'}
-                                onClick={() => handleChange('/settings/personal')} >
+                                selected={url.endsWith('/settings/personal')}
+                                onClick={() => handleChange('/zh-CN/settings/personal')} >
                                 <img className="rounx-settings-icon" alt="personal" src="/images/account.png" />
                                 <img className="rounx-settings-icon-hover" alt="personal" src="/images/account-hover.png" />
-                                {/* <PersonIcon className="rounx-settings-icon" /> */}
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-personal')} />
                             </ListItemButton>
                             <ListItemButton
-                                selected={url === '/settings/security'}
-                                onClick={() => handleChange('/settings/security')}>
+                                selected={url.endsWith('/settings/security')}
+                                onClick={() => handleChange('/zh-CN/settings/security')}>
                                 <img className="rounx-settings-icon" alt="personal" src="/images/security.png" />
                                 <img className="rounx-settings-icon-hover" alt="personal" src="/images/security-hover.png" />
-                                {/* <SecurityIcon className="rounx-settings-icon" /> */}
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
                             <ListItemButton
-                                selected={url === '/settings/currency'}
-                                onClick={() => handleChange('/settings/currency')}>
+                                selected={url.endsWith('/settings/currency')}
+                                onClick={() => handleChange('/zh-CN/settings/currency')}>
                                 <img className="rounx-settings-icon" alt="personal" src="/images/currency.png" />
                                 <img className="rounx-settings-icon-hover" alt="personal" src="/images/currency-hover.png" />
-                                {/* <PaidIcon className="rounx-settings-icon" /> */}
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-currency')} />
                             </ListItemButton>
                         </List>
