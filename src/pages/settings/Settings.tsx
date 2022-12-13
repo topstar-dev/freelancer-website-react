@@ -21,13 +21,13 @@ export default function Settings(props: any) {
     const navigate = useNavigate();
     const location = useLocation();
     const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
-    const [url, setUrl] = React.useState(location.pathname === `/settings` ? `/settings/personal` : location.pathname);
+    const [url, setUrl] = React.useState(location.pathname.endsWith(`/settings`) ? location.pathname.replace('/settings', `/zh-CN/settings/personal`) : `/zh-CN${location.pathname.replace('/zh-CN', '')}`);
 
     React.useEffect(() => {
         window.onpopstate = e => {
             e.preventDefault();
-            if ([`/settings/security`, `/settings/currency`, `/settings/personal`].includes(location.pathname)) {
-                setUrl('/settings/personal')
+            if (Boolean([`/settings/security`, `/settings/currency`, `/settings/personal`].find(e => location.pathname.endsWith(e)))) {
+                setUrl('/zh-CN/settings/personal')
             }
         };
     })
@@ -36,7 +36,7 @@ export default function Settings(props: any) {
         const { pathname } = location;
         if (url !== path) {
             setUrl(path);
-            navigate(path, { replace: pathname.startsWith(`/settings/`) && !(pathname === `/settings/personal`) ? true : false });
+            navigate(path.replace('/zh-CN', ''), { replace: pathname.startsWith(`/settings/`) && !(pathname.endsWith(`/settings/personal`)) ? true : false });
         }
     };
 
@@ -57,6 +57,21 @@ export default function Settings(props: any) {
                 <MediaQuery maxWidth='1080px'>
                     <FormControl fullWidth>
                         <InputLabel id="settings-select-label">{t('user-settings')}</InputLabel>
+                        {/* {i18n.language === 'en' ?
+                            <Select
+                                value={url}
+                                label="Settings"
+                                MenuProps={
+                                    { className: "rounx-setting-menu" }
+                                }
+                                labelId="settings-select-label"
+                                onChange={(e) => handleChange(e.target.value as string)}
+                            >
+                                <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
+                                <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
+                                <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                            </Select>
+                            : */}
                         <Select
                             value={url}
                             label="Settings"
@@ -66,10 +81,11 @@ export default function Settings(props: any) {
                             labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
                         >
-                            <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
-                            <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
-                            <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                            <MenuItem value={`/zh-CN/settings/personal`}>{t('user-settings-personal')}</MenuItem>
+                            <MenuItem value={`/zh-CN/settings/security`}>{t('user-settings-security')}</MenuItem>
+                            <MenuItem value={`/zh-CN/settings/currency`}>{t('user-settings-currency')}</MenuItem>
                         </Select>
+                        {/* } */}
                     </FormControl>
                 </MediaQuery>
                 <MediaQuery minWidth='1081px'>

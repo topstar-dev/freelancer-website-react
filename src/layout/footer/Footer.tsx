@@ -25,8 +25,8 @@ export default function Footer() {
             `/help`,
             `/blog`,
             `/settings/personal`
-        ].includes(location.pathname)
-        return !replace;
+        ].find(e => location.pathname.endsWith(e));
+        return !Boolean(replace);
     }
 
     return (

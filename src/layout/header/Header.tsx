@@ -58,8 +58,8 @@ export default function Header() {
                     `/about`,
                     `/help`,
                     `/blog`
-                ].includes(location.pathname)
-                navigate(`${url}`, { replace })
+                ].find(e => location.pathname.endsWith(e));
+                navigate(`${url}`, { replace: Boolean(replace) })
             }
         }
     }
