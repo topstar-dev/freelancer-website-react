@@ -70,7 +70,6 @@ export default function Password(mainProps: any) {
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center", cursor: "pointer" }}
-                                onClick={() => navigate(`/`)}
                             />
                             <Typography className="rounx-account-title-info">
                                 {t('signup-password-title')}

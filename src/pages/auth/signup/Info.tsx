@@ -116,7 +116,6 @@ export default function Info(mainProps: any) {
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signup-title')}

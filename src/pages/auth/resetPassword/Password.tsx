@@ -75,7 +75,6 @@ export default function SetNewPassword(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('password-title')}

@@ -95,7 +95,6 @@ export default function SignIn() {
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signin-title')}

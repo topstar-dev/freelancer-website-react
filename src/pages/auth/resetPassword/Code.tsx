@@ -64,7 +64,6 @@ export default function VerifyCode(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 {t('signup-code-title')}

@@ -68,7 +68,6 @@ export default function EnterEmail(mainProps: any) {
                 height="60px"
                 className='primary-color'
                 style={{ alignSelf: "center", cursor: "pointer" }}
-                onClick={() => navigate(`/`)}
               />
               <Typography className="rounx-account-title-info">
                 <span>{t('reset-password')}</span>
