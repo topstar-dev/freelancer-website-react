@@ -57,7 +57,9 @@ export default function Header() {
                     `/contact`,
                     `/about`,
                     `/help`,
-                    `/blog`
+                    `/blog`,
+                    '/terms',
+                    '/privacy'
                 ].find(e => location.pathname.endsWith(e));
                 navigate(`${url}`, { replace: Boolean(replace) })
             }
