@@ -36,7 +36,7 @@ export default function Settings(props: any) {
         const { pathname } = location;
         if (url !== path) {
             setUrl(path);
-            navigate(path.replace('/zh-CN', ''), { replace: pathname.startsWith(`/settings/`) && !(pathname.endsWith(`/settings/personal`)) ? true : false });
+            navigate(path.replace('/zh-CN', ''), { replace: !(pathname.endsWith(`/settings/personal`)) ? true : false });
         }
     };
 
