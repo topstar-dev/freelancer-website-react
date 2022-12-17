@@ -199,6 +199,7 @@ export default function Security() {
                 </Typography>
                 <br />
                 <Formik
+                    enableReinitialize
                     initialValues={
                         {
                             new_email: securityData.recovery_email,
@@ -274,7 +275,7 @@ export default function Security() {
                                         disabled={!securityData?.recovery_email}
                                         sx={{ mr: 2 }}
                                         onClick={() => {
-                                            if (formik.values.new_email && formik.values.new_email !== securityData?.recovery_email) {
+                                            if (securityData?.recovery_email) {
                                                 setOpen(true)
                                             }
                                         }}
