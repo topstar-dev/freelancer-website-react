@@ -58,6 +58,7 @@ export default function Security() {
                 </Typography>
                 <br />
                 <Formik
+                    enableReinitialize
                     initialValues={
                         {
                             old_password: "",
@@ -117,7 +118,7 @@ export default function Security() {
                                     onChange={formik.handleChange}
                                     label={t('user-security-change-password-confirm')}
                                     error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
-                                    helperText={(formik.touched.confirm_password && Boolean(formik.errors.new_password) ? formik.errors.confirm_password : t('at_least_8_characters')) as ReactNode}
+                                    helperText={(formik.touched.confirm_password && Boolean(formik.errors.confirm_password) ? formik.errors.confirm_password : t('at_least_8_characters')) as ReactNode}
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position="end">
