@@ -57,7 +57,7 @@ export const signInUser = createAsyncThunk(
             if (response.success) {
                 const currentLang = `${localStorage.getItem('i18nextLng')}`;
                 if (currentLang !== response.data.language) {
-                    dispatch(changeLanguage(['en', 'zh-CN'].includes(response.data.language) || 'en'))
+                    dispatch(changeLanguage(['en', 'zh-CN'].includes(response.data.language) ? response.data.language : 'en'))
                 }
                 if (response.data?.avatar_url) {
                     dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
