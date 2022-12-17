@@ -3,7 +3,6 @@ import { removeTokens, setTokens } from "../account/accountApi";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar } from "../other/otherSlice";
 import { changeLanguage } from "../resources/resourcesSlice";
-import { personalSettingsUpdate } from "../settings/settingsActions";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
 
 export interface SignUpInterface {
@@ -58,13 +57,7 @@ export const signInUser = createAsyncThunk(
             if (response.success) {
                 const currentLang = `${localStorage.getItem('i18nextLng')}`;
                 if (currentLang !== response.data.language) {
-                    if (['en', 'zh-CN'].includes(response.data.language)) {
-                        dispatch(changeLanguage(response.data.language))
-                    } else {
-                        dispatch(personalSettingsUpdate({ language_code: 'en' })).then((res) => {
-                            dispatch(changeLanguage('en'))
-                        })
-                    }
+                    dispatch(changeLanguage(['en', 'zh-CN'].includes(response.data.language) ? response.data.language : 'en'))
                 }
                 if (response.data?.avatar_url) {
                     dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
