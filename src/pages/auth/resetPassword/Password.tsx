@@ -74,7 +74,7 @@ export default function SetNewPassword(mainProps: any) {
                 width="60px"
                 height="60px"
                 className='primary-color'
-                style={{ alignSelf: "center", cursor: "pointer" }}
+                style={{ alignSelf: "center" }}
               />
               <Typography className="rounx-account-title-info">
                 {t('password-title')}

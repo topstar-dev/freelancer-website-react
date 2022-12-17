@@ -115,7 +115,7 @@ export default function Info(mainProps: any) {
                 alt="Rounx admin"
                 width="60px"
                 height="60px"
-                style={{ alignSelf: "center", cursor: "pointer" }}
+                style={{ alignSelf: "center" }}
               />
               <Typography className="rounx-account-title-info">
                 {t('signup-title')}

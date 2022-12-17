@@ -94,7 +94,7 @@ export default function SignIn() {
                 alt="Rounx admin"
                 width="60px"
                 height="60px"
-                style={{ alignSelf: "center", cursor: "pointer" }}
+                style={{ alignSelf: "center" }}
               />
               <Typography className="rounx-account-title-info">
                 {t('signin-title')}
