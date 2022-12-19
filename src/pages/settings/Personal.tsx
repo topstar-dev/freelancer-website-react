@@ -64,7 +64,7 @@ export default function Personal() {
 
     const updatePersonalData = () => {
         const { birthday, language_code, gender } = personalData;
-        if (birthday !== personal.birthday ||
+        if (dayjs(birthday).format('YYYY-MM-DD') !== personal.birthday ||
             language_code !== personal.language_code ||
             gender !== personal.gender) {
             let langUpdate = false;
@@ -72,7 +72,7 @@ export default function Personal() {
             if (language_code !== personal.language_code) {
                 langUpdate = true;
             }
-            dispatch(personalSettingsUpdate({ birthday, language_code, gender })).then((res) => {
+            dispatch(personalSettingsUpdate({ birthday: dayjs(birthday).format('YYYY-MM-DD'), language_code, gender })).then((res) => {
                 if (langUpdate) {
                     dispatch(changeLanguage(language_code))
                 }
@@ -268,6 +268,7 @@ export default function Personal() {
                         inputFormat="YYYY-MM-DD"
                         value={personalData?.birthday || null}
                         onChange={(e) => {
+                            changeData({ target: { value: e } }, 'birthday');
                         }}
                         maxDate={dayjs()}
                         renderInput={(params: any) => {
