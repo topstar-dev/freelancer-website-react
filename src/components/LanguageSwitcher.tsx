@@ -53,7 +53,7 @@ const LanguageSwitcher = () => {
                 navigate(newLocation, { replace: true })
             }
         }
-    }, [location.pathname, navigate])
+    }, [location.pathname, location.search, navigate])
 
     React.useEffect(() => {
         if (language && i18n.language && i18n.language !== language) {
