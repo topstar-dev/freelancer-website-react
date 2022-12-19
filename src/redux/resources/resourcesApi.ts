@@ -1,5 +1,5 @@
 import { apiCall } from "../apiCall";
-import { GetCountriesInterface } from "./resourcesActions";
+import { GetCountriesInterface, GetLanguagesInterface } from "./resourcesActions";
 
 export const getCountries = (getCountriesParam: GetCountriesInterface | void) => {
     const requestOptions: RequestInit = {
@@ -14,4 +14,12 @@ export const getCurrencies = () => {
         method: 'GET'
     };
     return apiCall(`/user/v1/currencies`, requestOptions);
+};
+
+export const getLanguages = (getLanguagesParam: GetLanguagesInterface | void) => {
+    const requestOptions: RequestInit = {
+        method: 'GET'
+    };
+    const queryString = getLanguagesParam ? `?${new URLSearchParams(getLanguagesParam as unknown as Record<string, any>).toString()}` : '';
+    return apiCall(`/user/v1/languages${queryString}`, requestOptions);
 };

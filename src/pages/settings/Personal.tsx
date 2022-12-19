@@ -16,6 +16,7 @@ import { sendCodeToEmail } from "../../redux/auth/authActions";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ChangeEmailInterface, changePrimaryEmailAction } from "../../redux/account/accountActions";
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
+import { getLanguageList } from "../../redux/resources/resourcesActions";
 
 export default function Personal() {
     const { t } = useTranslation();
@@ -28,6 +29,7 @@ export default function Personal() {
     const [called, setCalled] = React.useState(false);
     const [showEmailChangePassword, setShowEmailChangePassword] = React.useState(false);
     const [open, setOpen] = React.useState(false);
+    const [languageList, setLanguageList] = React.useState([]);
 
     React.useEffect(() => {
         document.title = t('title.personal')
@@ -40,6 +42,16 @@ export default function Personal() {
                 setPersonalData(res.payload.data);
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
+            })
+
+            dispatch(getLanguageList()).then((res) => {
+                if (res.payload && res.payload.success) {
+                    setLanguageList(res.payload.data.records);
+                }
+            }).catch((err: any) => {
+                if (err) {
+                    enqueueSnackbar(err && err.payload.message)
+                }
             })
         }
     }, [dispatch, called, enqueueSnackbar])
@@ -322,8 +334,10 @@ export default function Personal() {
                                 changeData(e, "language_code")
                             }}
                         >
-                            <MenuItem value="en">English</MenuItem>
-                            <MenuItem value="zh-CN">中文</MenuItem>
+                            {languageList.map((lang: any) => (
+                                <MenuItem key={lang.language_code} value={lang.language_code}>{lang.language_name}</MenuItem>
+                            ))}
+                            {/* <MenuItem value="zh-CN">中文</MenuItem> */}
                         </Select>
                     </FormControl>
                     <Button
