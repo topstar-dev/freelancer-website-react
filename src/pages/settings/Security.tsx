@@ -375,7 +375,7 @@ export default function Security() {
                                         maxWidth="lg"
                                         className="deleteEmailModal"
                                     >
-                                        <DialogTitle>Delete email</DialogTitle>
+                                        <DialogTitle>{t('user-security-recovery-email-delete')}</DialogTitle>
                                         <DialogContent>
                                             <Formik
                                                 initialValues={{
@@ -384,7 +384,7 @@ export default function Security() {
                                                 validationSchema={yup.object({
                                                     password: yup
                                                         .string()
-                                                        .required(t('validation.set-password-required'))
+                                                        .required(t('validation.password-required'))
                                                 })}
                                                 onSubmit={() => { }}
                                             >
@@ -402,9 +402,9 @@ export default function Security() {
                                                                 error={formik2.touched.password && Boolean(formik2.errors.password)}
                                                                 helperText={(formik2.touched.password && formik2.errors.password) as ReactNode}
                                                             ></TextField>
-                                                            <DialogActions>
-                                                                <Button variant="text" onClick={() => setOpen(false)}>Cancel</Button>
-                                                                <Button variant="text" onClick={() => {
+                                                            <DialogActions style={{ paddingRight: 0 }}>
+                                                                <Button variant="text" style={{ width: 70 }} onClick={() => setOpen(false)}>Cancel</Button>
+                                                                <Button variant="text" style={{ width: 70, marginLeft: 0 }} onClick={() => {
                                                                     formik2.validateForm().then((res: any) => {
                                                                         const { password } = res;
                                                                         if (password) {
