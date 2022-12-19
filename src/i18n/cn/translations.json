@@ -114,6 +114,7 @@
     "user-security-change-password-new": "新密码",
     "user-security-change-password-confirm": "确认密码",
     "user-security-change-password-change-button": "更改密码",
+    "password-change-success": "请重新登录",
     "user-security-recovery-email": "辅助邮箱",
     "user-security-recovery-email-note": "如果您的 Rounx 帐号无法访问，则可以通过此电子邮件地址重置密码。",
     "user-security-recovery-email-delete": "删除邮箱",

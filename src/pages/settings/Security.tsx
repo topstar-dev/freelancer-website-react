@@ -11,11 +11,13 @@ import { Formik } from "formik";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { changePasswordAction, changeRecoveryEmailAction, ChangeEmailInterface, deleteRecoveryEmailAction, DeleteRecoveryEmailInterface } from "../../redux/account/accountActions";
 import Form from "../../components/form/Form";
-import { sendCodeToEmail } from "../../redux/auth/authActions";
+import { sendCodeToEmail, signOutUser } from "../../redux/auth/authActions";
+import { useNavigate } from "../../routes/Router";
 
 export default function Security() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
     const { security, loading } = useAppSelector(state => state.settings)
 
@@ -164,7 +166,10 @@ export default function Security() {
                                                 })).then((response) => {
                                                     const { payload } = response;
                                                     if (payload.success) {
-                                                        enqueueSnackbar(payload.message)
+                                                        const message = `${payload.message} (${t('password-change-success')})`;
+                                                        enqueueSnackbar(message);
+                                                        navigate('/');
+                                                        dispatch(signOutUser());
                                                         formik.resetForm();
                                                     } else {
                                                         enqueueSnackbar(payload.message)

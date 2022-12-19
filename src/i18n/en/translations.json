@@ -114,6 +114,7 @@
     "user-security-change-password-new": "New password",
     "user-security-change-password-confirm": "Confirm password",
     "user-security-change-password-change-button": "Change password",
+    "password-change-success": "please re-sign in",
     "user-security-recovery-email": "Recovery email",
     "user-security-recovery-email-note": "If your Rounx account becomes inaccessible, you can reset your password from this email address.",
     "user-security-recovery-email-delete": "Delete email",
