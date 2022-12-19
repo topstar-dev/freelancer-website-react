@@ -99,6 +99,11 @@
     "user-personal-account-birthday-info": "Your birthday is used to personalize experiences across Rounx services.",
     "user-personal-account-birthday-note": "Your birthday is only visible to you.",
     "user-personal-account-gender": "Gender",
+    "user-personal-account-gender-items": {
+        "unspecified": "Unspecified",
+        "male": "Male",
+        "female": "Female"
+    },
     "user-personal-account-gender-info": "Please enter your gender so that Rounx can call you correctly.",
     "user-personal-account-gender-note": "Your gender is only visible to you.",
     "user-personal-account-language": "Language",

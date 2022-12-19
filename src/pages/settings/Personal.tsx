@@ -303,13 +303,14 @@ export default function Personal() {
                         fullWidth
                         labelId="personal-gender"
                         label={t('user-personal-account-gender')}
-                        value={personalData?.gender && personalData?.gender !== "UNSPECIFIED" ? personalData?.gender : ''}
+                        value={personalData?.gender ? personalData?.gender : ''}
                         onChange={(e) => {
                             changeData(e, "gender")
                         }}
                     >
-                        <MenuItem value="MALE">Male</MenuItem>
-                        <MenuItem value="FEMALE">Female</MenuItem>
+                        <MenuItem value="UNSPECIFIED">{t('user-personal-account-gender-items.unspecified')}</MenuItem>
+                        <MenuItem value="MALE">{t('user-personal-account-gender-items.male')}</MenuItem>
+                        <MenuItem value="FEMALE">{t('user-personal-account-gender-items.female')}</MenuItem>
                     </Select>
                     <FormHelperText>{t('user-personal-account-gender-note')}</FormHelperText>
                 </FormControl>

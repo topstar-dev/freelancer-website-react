@@ -99,6 +99,11 @@
     "user-personal-account-birthday-info": "您的出生日期用于在 Rounx 服务中提供个性化体验。",
     "user-personal-account-birthday-note": "您的出生日期仅自己可见。",
     "user-personal-account-gender": "性别",
+    "user-personal-account-gender-items": {
+        "unspecified": "未指定",
+        "male": "男性",
+        "female": "女性"
+    },
     "user-personal-account-gender-info": "请填写您的性别，以便 Rounx 正确地称呼您。",
     "user-personal-account-gender-note": "您的性别仅自己可见。",
     "user-personal-account-language": "语言",
