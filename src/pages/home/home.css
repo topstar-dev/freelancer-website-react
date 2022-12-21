@@ -35,22 +35,6 @@
     margin-left: auto;
 }
 
-/* mobile */
-/* @media (min-width: 320px) and (max-width: 480px) {
-    .rounx-home-first-image {
-        height: auto;
-        width: 320px;
-    }
-} */
-
-/* tablet */
-/* @media (min-width: 481px) and (max-width: 566px) {
-    .rounx-home-first-image {
-        height: auto;
-        width: 481px;
-    }
-} */
-
 @media (max-width:1170px) {
     .rounx-home-first-section {
         display: unset;
