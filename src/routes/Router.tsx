@@ -174,7 +174,7 @@ export const useNavigate = () => {
     const baseUrl = lang === 'en' ? '/' : `/${lang}`;
 
     if (!url || url === '/') {
-      navigate(`${baseUrl}`);
+      navigate(`${baseUrl}`, options);
     } else {
       if (baseUrl === '/') {
         navigate(`${baseUrl}${url.startsWith('/') ? url.slice(1) : url}`, options);
