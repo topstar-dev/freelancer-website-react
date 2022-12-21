@@ -61,7 +61,7 @@ export default function Header() {
                     '/terms',
                     '/privacy'
                 ].find(e => location.pathname.endsWith(e));
-                navigate(`${url}`, { replace: Boolean(replace) })
+                navigate(`${url}`, { replace: Boolean(replace) || (url === '/' && location.pathname === '/zh-CN') })
             }
         }
     }
