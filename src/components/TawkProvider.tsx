@@ -49,7 +49,12 @@ const TawkProvider = ({ isHeader }: any) => {
                 visibility: {
                     desktop: {
                         xOffset: '24',
-                        yOffset: isTabOrMobile ? '146px' : '96px',
+                        yOffset: '96',
+                        position: 'br'
+                    },
+                    mobile: {
+                        xOffset: '24',
+                        yOffset: '146',
                         position: 'br'
                     }
                 }
