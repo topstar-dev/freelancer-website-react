@@ -14,6 +14,7 @@ import { pageView } from "../../services/eventTracker";
 import EmblaCarousel from "../../components/carousal/Carousal";
 import { useNavigate } from "../../routes/Router";
 import './home.css'
+import MediaQuery from 'react-responsive'
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -37,6 +38,13 @@ export default function HomePage() {
                     <Box>
                         <Typography className="rounx-home-section-title">
                             {t('home-page-heading1')}
+                            <MediaQuery maxWidth={514}>
+                                <br />
+                            </MediaQuery>
+                            <MediaQuery minWidth={1171} maxWidth={1362.50}>
+                                <br />
+                            </MediaQuery>
+                            {t('home-page-heading2')}
                         </Typography>
                         <div className="rounx-home-section-details">
                             <Typography className="rounx-home-section-info2" style={{ marginBottom: '24px' }}>
