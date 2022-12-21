@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import MediaQuery, { useMediaQuery } from 'react-responsive';
 import {
     Box,
     Select,
@@ -15,18 +14,28 @@ import {
 } from "@mui/material";
 import "./settings.css";
 import { useNavigate } from "../../routes/Router";
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 
 export default function Settings(props: any) {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
-    const isWeb = useMediaQuery({ query: '(min-width: 1081px)' });
-    const [url, setUrl] = React.useState(location.pathname.endsWith(`/settings`) ? location.pathname.replace('/settings', `/zh-CN/settings/personal`) : `/zh-CN${location.pathname.replace('/zh-CN', '')}`);
+    const { isMobile } = useBreakpoint();
+    const [url, setUrl] = React.useState(
+        location.pathname.endsWith(`/settings`) ?
+            location.pathname.replace('/settings', `/zh-CN/settings/personal`)
+            :
+            `/zh-CN${location.pathname.replace('/zh-CN', '')}`
+    );
 
     React.useEffect(() => {
         window.onpopstate = e => {
             e.preventDefault();
-            if (Boolean([`/settings/security`, `/settings/currency`, `/settings/personal`].find(e => location.pathname.endsWith(e)))) {
+            if (Boolean([
+                `/settings/security`,
+                `/settings/currency`,
+                `/settings/personal`
+            ].find(e => location.pathname.endsWith(e)))) {
                 setUrl('/zh-CN/settings/personal')
             }
         };
@@ -50,10 +59,10 @@ export default function Settings(props: any) {
             <Box sx={{
                 display: 'flex',
                 width: '100%',
-                flexDirection: isWeb ? 'row' : 'column',
+                flexDirection: isMobile ? 'column' : 'row',
                 gap: '20px'
             }}>
-                <MediaQuery maxWidth='1080px'>
+                {isMobile ?
                     <FormControl fullWidth>
                         <InputLabel id="settings-select-label">{t('user-settings')}</InputLabel>
                         <Select
@@ -70,8 +79,7 @@ export default function Settings(props: any) {
                             <MenuItem value={`/zh-CN/settings/currency`}>{t('user-settings-currency')}</MenuItem>
                         </Select>
                     </FormControl>
-                </MediaQuery>
-                <MediaQuery minWidth='1081px'>
+                    :
                     <Box sx={{ width: '284px' }}>
                         <List className="rounx-settings-list" sx={{ width: '100%', paddingRight: '20px' }}>
                             <ListItemButton
@@ -97,9 +105,9 @@ export default function Settings(props: any) {
                             </ListItemButton>
                         </List>
                     </Box>
-                </MediaQuery>
+                }
                 <Box sx={{
-                    width: isWeb ? 'calc(100% - 284px)' : '100%',
+                    width: isMobile ? '100%' : 'calc(100% - 284px)',
                     border: '1px solid #0000003b',
                     borderRadius: '4px',
                     padding: '20px'
@@ -107,6 +115,6 @@ export default function Settings(props: any) {
                     {props.children}
                 </Box>
             </Box>
-        </Box>
+        </Box >
     );
 }

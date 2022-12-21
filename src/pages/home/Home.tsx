@@ -15,12 +15,14 @@ import EmblaCarousel from "../../components/carousal/Carousal";
 import { useNavigate } from "../../routes/Router";
 import './home.css'
 import MediaQuery from 'react-responsive'
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 
 export default function HomePage() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const { isMobile } = useBreakpoint();
     const { language } = useAppSelector(state => state.resources);
     const { userInfo } = useAppSelector((state) => state.auth);
     const [backdrop, setBackdrop] = React.useState(false);
@@ -33,7 +35,7 @@ export default function HomePage() {
 
     return (
         <>
-            <Box className="rounx-home-first-section">
+            <Box className={`rounx-home-first-section ${isMobile ? 'rounx-home-first-section-mobile' : ''}`}>
                 <Box className="rounx-home-first-left">
                     <Box>
                         <Typography className="rounx-home-section-title">
@@ -69,7 +71,7 @@ export default function HomePage() {
                 <Typography className="rounx-home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
                     {t('home-page-why-ronux')}
                 </Typography>
-                <Box className="rounx-home-second-section">
+                <Box className={`rounx-home-second-section ${isMobile ? 'rounx-home-second-section-mobile' : ''}`}>
                     <Box className="rounx-home-second-box">
                         <Box>
                             <img alt="Verified User" width='70px' src="/images/verified-user-icon.png" />

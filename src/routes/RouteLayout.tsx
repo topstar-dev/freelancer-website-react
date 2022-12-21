@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
-import { useMediaQuery } from "react-responsive";
 import { Box } from '@mui/system';
 
 import TawkProvider from '../components/TawkProvider';
@@ -8,20 +7,21 @@ import AuthGuard from "../pages/auth/AuthGuard";
 
 import Footer from '../layout/footer/Footer';
 import Header from '../layout/header/Header';
+import useBreakpoint from '../components/breakpoints/BreakpointProvider';
 
 interface RoutesInterface {
     isHeader: boolean,
     protectedRoute: boolean
 }
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
-    const isWeb = useMediaQuery({ query: '(min-width: 1001px)' });
+    const { isDesktop } = useBreakpoint();
 
     useEffect(() => {
         document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
     })
 
     const getContentHeight = () => {
-        const headerHeight = !isHeader ? 0 : (isWeb ? 72 : 73);
+        const headerHeight = !isHeader ? 0 : (isDesktop ? 72 : 73);
         const footerHeight = 0;
         return (headerHeight + footerHeight);
     }
@@ -35,8 +35,8 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
             height: `calc(100% - ${getContentHeight()}px)`,
         }}>
             <Box style={{
-                padding: isWeb ? '24px 16%' : '24px',
-                minHeight: `calc(100% - ${isWeb ? 72 : 119}px`
+                padding: isDesktop ? '24px 16%' : '24px',
+                minHeight: `calc(100% - ${isDesktop ? 72 : 119}px`
             }}>
                 <Outlet />
             </Box>

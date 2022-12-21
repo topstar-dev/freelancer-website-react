@@ -147,10 +147,8 @@
     max-height: 285px !important;
 }
 
-@media (max-width: 900px) {
-    .rounx-user-menu-list .MuiPaper-root {
-        top: 79px !important;
-    }
+.rounx-user-menu-list.rounx-user-menu-list-mobile .MuiPaper-root {
+    top: 79px !important;
 }
 
 .rounx-user-menu-list .MuiList-root {

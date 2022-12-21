@@ -1,5 +1,6 @@
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
     color: #757575 !important;
+    position: relative;
 }
 
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
@@ -34,12 +35,6 @@
 
 .deleteEmailModal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
     min-width: 400px !important;
-}
-
-@media (max-width: 900px) {
-    .rounx-setting-menu .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
-        left: 24px !important;
-    }
 }
 
 @media (max-width: 432px) {

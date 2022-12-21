@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
+import useBreakpoint from './breakpoints/BreakpointProvider';
 const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 
 export const positionChatWidget = (isTabOrMobile: boolean) => {
@@ -16,7 +16,7 @@ export const positionChatWidget = (isTabOrMobile: boolean) => {
 }
 
 const TawkProvider = ({ isHeader }: any) => {
-    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000.99px)' });
+    const { isMobile } = useBreakpoint();
     const tawkMessengerRef = React.useRef<any | null>(null);
     const location = useLocation();
 
@@ -35,10 +35,10 @@ const TawkProvider = ({ isHeader }: any) => {
     React.useEffect(() => {
         try {
             if (tawkMessengerRef.current) {
-                positionChatWidget(isTabOrMobile)
+                positionChatWidget(isMobile)
             }
         } catch (err) { }
-    }, [isTabOrMobile, tawkMessengerRef])
+    }, [isMobile, tawkMessengerRef])
 
     return (
         <TawkMessengerReact

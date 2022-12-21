@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Box, Typography } from "@mui/material";
 import Modal from '@mui/material/Modal';
 import { useAppSelector } from "../../redux/hooks";
-import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "../../routes/Router";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import './footer.css';
 
 export default function Footer() {
@@ -16,7 +16,7 @@ export default function Footer() {
     const { language } = useAppSelector(state => state.resources);
 
     const [open, setOpen] = React.useState(false);
-    const isWeb = useMediaQuery({ query: '(min-width: 1001px)' })
+    const { isDesktop, isMobile } = useBreakpoint();
 
     const isReplace = () => {
         const replace = [
@@ -32,11 +32,11 @@ export default function Footer() {
     }
 
     return (
-        <Box className="rounx-footer-container">
-            <Box className="rounx-footer-left-content">
+        <Box className={`rounx-footer-container ${isMobile ? 'rounx-footer-container-mobile' : ''}`}>
+            <Box className={`rounx-footer-left-content`}>
                 <LanguageSwitcher />
                 <Box className="rounx-nav-items-box">
-                    {language === 'zh-CN' && isWeb &&
+                    {language === 'zh-CN' && isDesktop &&
                         <a
                             href="https://beian.miit.gov.cn/"
                             target="_blank"
@@ -56,7 +56,7 @@ export default function Footer() {
                     <Typography className="rounx-footer-items">&copy; Rounx {new Date().getFullYear()}</Typography>
                 </Box>
             </Box>
-            <Box className="rounx-footer-right-content">
+            <Box className={`rounx-footer-right-content ${isMobile ? 'rounx-footer-right-content-mobile' : ''}`}>
                 <div className="rounx-footer-brand-icon">
                     <img className="brand-normal" src='/images/wechat.png' onClick={() => setOpen(true)} alt="wechat-icon" />
                     <img className="brand-hover" src='/images/wechat_hover.png' onClick={() => setOpen(true)} alt="wechat-icon" />

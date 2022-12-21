@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { personalSettingsUpdate } from '../redux/settings/settingsActions';
 import { changeLanguage } from '../redux/resources/resourcesSlice';
 import { useNavigate } from '../routes/Router';
+import useBreakpoint from './breakpoints/BreakpointProvider';
 
 const LanguageSwitcher = () => {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ const LanguageSwitcher = () => {
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
     const { i18n, t } = useTranslation();
+    const { isMobile } = useBreakpoint();
 
     const [backdrop, setBackdrop] = React.useState(false);
     const [currentPath, setCurrentPath] = React.useState('');
@@ -87,7 +89,7 @@ const LanguageSwitcher = () => {
                 value={language}
                 label={t('language')}
                 MenuProps={{
-                    className: "rounx-language-menu"
+                    className: `rounx-language-menu ${isMobile ? 'rounx-language-menu-mobile' : ''}`
                 }}
                 renderValue={(value) => {
                     return <Box

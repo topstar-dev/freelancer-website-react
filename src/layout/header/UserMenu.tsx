@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { signOutUser } from '../../redux/auth/authActions';
 import { imageDownload } from '../../redux/other/otherActions';
 import { useNavigate } from '../../routes/Router';
+import useBreakpoint from '../../components/breakpoints/BreakpointProvider';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -15,6 +16,7 @@ interface UserMenuPropsInterface {
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const { isMobile } = useBreakpoint();
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const { userAvatar, loading } = useAppSelector(state => state.other);
@@ -53,7 +55,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
             </div>
             <Menu
                 id="menu-appbar"
-                className='rounx-user-menu-list'
+                className={`rounx-user-menu-list ${isMobile ? 'rounx-user-menu-list-mobile' : ''}`}
                 anchorEl={anchorEl}
                 anchorOrigin={{
                     vertical: "bottom",

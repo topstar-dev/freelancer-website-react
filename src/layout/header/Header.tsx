@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next';
 import { Box } from "@mui/material";
 import { useSnackbar } from "notistack";
@@ -9,8 +8,9 @@ import MobileHeader from "./MobileHeader";
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
-import './header.css';
 import { useNavigate } from "../../routes/Router";
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import './header.css';
 
 export default function Header() {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function Header() {
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
     const { t } = useTranslation();
-    const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000.99px)' });
+    const { isMobile } = useBreakpoint();
 
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
@@ -67,7 +67,7 @@ export default function Header() {
     }
     return (
         <Box className="rounx-header-wrapper">
-            {isTabOrMobile ?
+            {isMobile ?
                 <MobileHeader {...propsToPass} />
                 :
                 <DesktopHeader {...propsToPass} />
