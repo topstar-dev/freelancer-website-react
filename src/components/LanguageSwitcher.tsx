@@ -46,7 +46,6 @@ const LanguageSwitcher = () => {
         const currentUrl = location.pathname;
         if (lang !== 'en') {
             if (!currentUrl.startsWith(`/${lang}`)) {
-
                 navigate(`${location.pathname}${location.search}`, { replace: true });
             }
         } else {

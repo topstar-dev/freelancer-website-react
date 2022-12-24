@@ -13,7 +13,7 @@ import {
     ListItemText
 } from "@mui/material";
 import "./settings.css";
-import { useNavigate } from "../../routes/Router";
+import { normalizeUrl, returnUrlByLang, useNavigate } from "../../routes/Router";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 
 export default function Settings(props: any) {
@@ -22,21 +22,21 @@ export default function Settings(props: any) {
     const location = useLocation();
     const { isMobile } = useBreakpoint();
     const [url, setUrl] = React.useState(
-        location.pathname.endsWith(`/settings`) ?
-            location.pathname.replace('/settings', `/zh-CN/settings/personal`)
+        [...returnUrlByLang('/settings')].includes(location.pathname) ?
+            '/settings/personal'
             :
-            `/zh-CN${location.pathname.replace('/zh-CN', '')}`
+            normalizeUrl(location.pathname)
     );
 
     React.useEffect(() => {
         window.onpopstate = e => {
             e.preventDefault();
-            if (Boolean([
-                `/settings/security`,
-                `/settings/currency`,
-                `/settings/personal`
-            ].find(e => location.pathname.endsWith(e)))) {
-                setUrl('/zh-CN/settings/personal')
+            if ([
+                ...returnUrlByLang(`/settings/security`),
+                ...returnUrlByLang(`/settings/currency`),
+                ...returnUrlByLang(`/settings/personal`)
+            ].includes(location.pathname)) {
+                setUrl('/settings/personal')
             }
         };
     })
@@ -44,7 +44,7 @@ export default function Settings(props: any) {
     const handleChange = (path: string) => {
         if (url !== path) {
             setUrl(path);
-            navigate(path.replace('/zh-CN', ''), { replace: true });
+            navigate(path, { replace: true });
         }
     };
 
@@ -66,7 +66,7 @@ export default function Settings(props: any) {
                     <FormControl fullWidth>
                         <InputLabel id="settings-select-label">{t('user-settings')}</InputLabel>
                         <Select
-                            value={url}
+                            value={normalizeUrl(url)}
                             label="Settings"
                             MenuProps={
                                 { className: "rounx-setting-menu" }
@@ -74,31 +74,31 @@ export default function Settings(props: any) {
                             labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
                         >
-                            <MenuItem value={`/zh-CN/settings/personal`}>{t('user-settings-personal')}</MenuItem>
-                            <MenuItem value={`/zh-CN/settings/security`}>{t('user-settings-security')}</MenuItem>
-                            <MenuItem value={`/zh-CN/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                            <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
+                            <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
+                            <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
                         </Select>
                     </FormControl>
                     :
                     <Box sx={{ width: '284px' }}>
                         <List className="rounx-settings-list" sx={{ width: '100%', paddingRight: '20px' }}>
                             <ListItemButton
-                                selected={url.endsWith('/settings/personal')}
-                                onClick={() => handleChange('/zh-CN/settings/personal')} >
+                                selected={returnUrlByLang(url).includes('/settings/personal')}
+                                onClick={() => handleChange('/settings/personal')} >
                                 <img className="rounx-settings-icon" alt="personal" src="/images/account.png" />
                                 <img className="rounx-settings-icon-hover" alt="personal" src="/images/account-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-personal')} />
                             </ListItemButton>
                             <ListItemButton
-                                selected={url.endsWith('/settings/security')}
-                                onClick={() => handleChange('/zh-CN/settings/security')}>
+                                selected={returnUrlByLang(url).includes('/settings/security')}
+                                onClick={() => handleChange('/settings/security')}>
                                 <img className="rounx-settings-icon" alt="personal" src="/images/security.png" />
                                 <img className="rounx-settings-icon-hover" alt="personal" src="/images/security-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
                             <ListItemButton
-                                selected={url.endsWith('/settings/currency')}
-                                onClick={() => handleChange('/zh-CN/settings/currency')}>
+                                selected={returnUrlByLang(url).includes('/settings/currency')}
+                                onClick={() => handleChange('/settings/currency')}>
                                 <img className="rounx-settings-icon" alt="personal" src="/images/currency.png" />
                                 <img className="rounx-settings-icon-hover" alt="personal" src="/images/currency-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-currency')} />

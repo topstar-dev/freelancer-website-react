@@ -22,7 +22,7 @@ i18n
                 translations: require('./en/translations.json')
             },
             'zh-CN': {
-                translations: require('./cn/translations.json')
+                translations: require('./zh-CN/translations.json')
             }
         },
         detection: DETECTION_OPTIONS,
@@ -30,6 +30,6 @@ i18n
         defaultNS: 'translations'
     });
 
-i18n.languages = ['en', 'cn'];
+i18n.languages = ['en', 'zh-CN'];
 
 export default i18n;

@@ -13,9 +13,9 @@ import {
 import { pageView } from "../../services/eventTracker";
 import EmblaCarousel from "../../components/carousal/Carousal";
 import { useNavigate } from "../../routes/Router";
-import './home.css'
 import MediaQuery from 'react-responsive'
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import './home.css'
 
 export default function HomePage() {
     const { t } = useTranslation();

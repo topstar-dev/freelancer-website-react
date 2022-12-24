@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Typography } from "@mui/material";
 import Modal from '@mui/material/Modal';
 import { useAppSelector } from "../../redux/hooks";
-import { useNavigate } from "../../routes/Router";
+import { returnUrlByLang, useNavigate } from "../../routes/Router";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import './footer.css';
@@ -19,16 +19,18 @@ export default function Footer() {
     const { isDesktop, isMobile } = useBreakpoint();
 
     const isReplace = () => {
-        const replace = [
-            '/',
-            '/zh-CN',
+        let urls: any = [];
+        [
+            '',
             `/contact`,
             `/about`,
             `/help`,
             `/blog`,
             `/settings/personal`
-        ].find(e => location.pathname.endsWith(e));
-        return !Boolean(replace);
+        ].forEach(pageUrl => {
+            urls = [...urls, ...returnUrlByLang(pageUrl)]
+        })
+        return !Boolean(urls.includes(location.pathname));
     }
 
     return (

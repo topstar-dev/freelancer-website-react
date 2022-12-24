@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import Button from '../../components/button/Button';
-import { useNavigate } from '../../routes/Router';
+import { returnUrlByLang, useNavigate } from '../../routes/Router';
 
 export interface PropsInterface {
     pages: { name: string; url: string; }[];
@@ -32,7 +32,7 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                 <Box className='rounx-nav-item-group'>
                     {pages.map((page) => (
                         <div
-                            className={[page.url, `/zh-CN${page.url}`].includes(selectedPage) ?
+                            className={returnUrlByLang(page.url).includes(selectedPage) ?
                                 'rounx-nav-item menu-item-selected'
                                 :
                                 'rounx-nav-item'

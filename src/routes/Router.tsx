@@ -34,8 +34,11 @@ import Settings from "../pages/settings/Settings";
 import Personal from "../pages/settings/Personal";
 import Security from "../pages/settings/Security";
 import Currency from "../pages/settings/Currency";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n/i18nextConf";
 
 export default function Router() {
+  const { i18n } = useTranslation();
   const routesWithBaseUrl = (baseUrl: string) => {
     return [
       {
@@ -149,9 +152,12 @@ export default function Router() {
     ];
   }
 
+  let routeList: any = []
+  i18n.languages.forEach(lang => {
+    routeList = [...routeList, ...routesWithBaseUrl(returnLangLabel(lang))]
+  })
   return useRoutes([
-    ...routesWithBaseUrl('zh-CN'),
-    ...routesWithBaseUrl(''),
+    ...routeList,
     {
       path: "*",
       element: <CustomRouter isHeader={true} protectedRoute={false} />,
@@ -165,13 +171,34 @@ export default function Router() {
   ])
 }
 
+export const returnUrlByLang = (pageUrl: string) => {
+  return i18n.languages.map(lang => {
+    const langLabel = returnLangLabel(lang) ? `/${returnLangLabel(lang)}` : '';
+    const url = `${langLabel}${pageUrl}`;
+    return url ? url : '/';
+  })
+}
+
+export const normalizeUrl = (pageUrl: string) => {
+  let newUrl = pageUrl;
+  i18n.languages.forEach(lang => {
+    if (pageUrl.startsWith(`/${lang}`)) {
+      newUrl = pageUrl.replace(`/${lang}`, '');
+    }
+  })
+  return newUrl;
+}
+
+export const returnLangLabel = (lang: string) => {
+  return lang === 'en' ? '' : lang;
+}
 
 export const useNavigate = () => {
   const navigate = useReactNavigate();
 
   return (url: string, options: any = {}) => {
     const lang = `${localStorage.getItem('i18nextLng')}`;
-    const baseUrl = lang === 'en' ? '/' : `/${lang}`;
+    const baseUrl = `/${returnLangLabel(lang)}`;
 
     if (!url || url === '/') {
       navigate(`${baseUrl}`, options);

@@ -8,7 +8,7 @@ import MobileHeader from "./MobileHeader";
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
-import { useNavigate } from "../../routes/Router";
+import { returnLangLabel, useNavigate } from "../../routes/Router";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import './header.css';
 
@@ -18,7 +18,7 @@ export default function Header() {
     const [selectedPage, setSelectedPage] = useState(location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { isMobile } = useBreakpoint();
 
     const dispatch = useAppDispatch();
@@ -61,7 +61,16 @@ export default function Header() {
                     '/terms',
                     '/privacy'
                 ].find(e => location.pathname.endsWith(e));
-                navigate(`${url}`, { replace: Boolean(replace) || (url === '/' && location.pathname === '/zh-CN') })
+                navigate(`${url}`, {
+                    replace:
+                        Boolean(replace)
+                        ||
+                        (
+                            url === '/'
+                            &&
+                            i18n.languages.map(lang => `/${returnLangLabel(lang)}`).includes(location.pathname)
+                        )
+                })
             }
         }
     }

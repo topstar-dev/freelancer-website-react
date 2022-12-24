@@ -339,7 +339,6 @@ export default function Personal() {
                             {languageList.map((lang: any) => (
                                 <MenuItem key={lang.language_code} value={lang.language_code}>{lang.language_name}</MenuItem>
                             ))}
-                            {/* <MenuItem value="zh-CN">中文</MenuItem> */}
                         </Select>
                     </FormControl>
                     <Button

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'dayjs/locale/zh-cn';
 import './i18n/i18nextConf';
 import './index.css';
 

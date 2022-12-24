@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
+import { returnUrlByLang } from '../routes/Router';
 import useBreakpoint from './breakpoints/BreakpointProvider';
 const TawkMessengerReact = require('@tawk.to/tawk-messenger-react');
 
@@ -23,7 +24,7 @@ const TawkProvider = ({ isHeader }: any) => {
     React.useEffect(() => {
         try {
             if (tawkMessengerRef.current) {
-                if (isHeader && ['/contact', '/zh-CN/contact'].includes(location.pathname)) {
+                if (isHeader && returnUrlByLang('/contact').includes(location.pathname)) {
                     tawkMessengerRef.current.showWidget();
                 } else {
                     tawkMessengerRef.current.hideWidget();
@@ -61,7 +62,7 @@ const TawkProvider = ({ isHeader }: any) => {
             }}
             onLoad={() => {
                 if (tawkMessengerRef.current) {
-                    if (isHeader && ['/contact', '/zh-CN/contact'].includes(location.pathname)) {
+                    if (isHeader && returnUrlByLang('/contact').includes(location.pathname)) {
                         tawkMessengerRef.current.showWidget();
                     } else {
                         tawkMessengerRef.current.hideWidget();
