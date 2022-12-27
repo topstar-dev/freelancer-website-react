@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import accountSlice from './account/accountSlice';
 import authReducer from './auth/authSlice';
+import freelancerSlice from './freelancer/freelancerSlice';
 import homeReducer from './home/homeSlice';
 import otherSlice from './other/otherSlice';
 import resourcesSlice from './resources/resourcesSlice';
@@ -13,7 +14,8 @@ export const store = configureStore({
     home: homeReducer,
     resources: resourcesSlice,
     other: otherSlice,
-    settings: settingsSlice
+    settings: settingsSlice,
+    freelancer: freelancerSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
 });

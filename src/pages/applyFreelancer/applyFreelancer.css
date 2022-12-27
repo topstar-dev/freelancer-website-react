@@ -1,6 +1,108 @@
+.freelancer-main-title {
+    font-size: 24px;
+    max-width: 550px !important;
+    margin: 24px auto !important;
+}
+
 .rounx-freelancer-card {
-    margin: 80px auto 0 auto !important;
+    margin: 0 auto !important;
     width: 100% !important;
     max-width: 550px !important;
+    padding: 0px;
     transition: width 0.5s;
+}
+
+
+/* card heading */
+.rounx-freelancer-heading {
+    padding: 24px;
+}
+
+.heading-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.heading-steps {
+    color: #757575;
+    font-size: 16px;
+}
+
+
+/* card body style */
+/* .rounx-freelancer-body {
+    padding: 24px;
+} */
+
+.freelancer-card-spacing-divider {
+    padding: 0 24px;
+}
+
+.freelancer-card-spacing {
+    padding: 24px;
+}
+
+/* card footer style */
+.rounx-freelancer-footer {
+    padding: 24px;
+    height: 88px;
+}
+
+
+/* about info */
+.info-banner {
+    max-width: 550px !important;
+    margin: 0 auto 10px auto;
+    height: 53px;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #dfe8fd;
+}
+
+.profile-photo-container {
+    position: relative;
+    margin-bottom: 84px;
+}
+
+.profile-bg {
+    height: 134px;
+    border-bottom: 1px solid #757575;
+}
+
+.round-profile-photo {
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    border: 1px solid #757575;
+    background-color: #fff;
+    position: absolute;
+    bottom: -60px;
+    left: calc(50% - 60px);
+    z-index: 1;
+}
+
+/* experience style */
+.freelancer-experience-flex {
+    display: flex;
+}
+
+.center-item {
+    display: flex;
+    align-items: center;
+}
+
+.close-icon {
+    color: #757575;
+    cursor: pointer;
+}
+
+.add-icon {
+    color: #757575;
+    cursor: pointer;
 }

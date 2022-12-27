@@ -68,6 +68,7 @@
     "create-account": "创建帐号",
     "client-account": "客户帐号",
     "freelancer-account": "自由职业者帐号",
+    "back": "背部",
     "next": "下一步",
     "submit": "提交",
     "signup-title": "创建 Rounx 帐号",
@@ -122,6 +123,56 @@
     "user-security-recovery-email-change": "更改邮箱",
     "user-currency-title": "选择货币",
     "at_least_8_characters": "至少8个字符",
+    "freelancer": {
+        "title": "提交自由职业者申请",
+        "skills": {
+            "title": "技能",
+            "subtitle": "第1步，共6步",
+            "occupation": "职业类别",
+            "skills": "技能",
+            "selected": "所选技能"
+        },
+        "info": {
+            "banner": "请使用您的真实姓名和头像",
+            "title": "姓名和照片",
+            "subtitle": "第2步，共6步",
+            "first-name": "姓氏",
+            "last-name": "名字"
+        },
+        "experience": {
+            "title": "工作经历",
+            "subtitle": "第3步，共6步",
+            "position": "职位名称",
+            "company": "公司名称",
+            "start-year": "开始年份",
+            "end-year": "结束年份",
+            "description": "描述"
+        },
+        "education": {
+            "title": "教育经历",
+            "subtitle": "第4步，共6步",
+            "major": "专业",
+            "school": "学校名称",
+            "start-year": "开始年份",
+            "end-year": "结束年份",
+            "description": "描述"
+        },
+        "languages": {
+            "title": "语言",
+            "subtitle": "第5步，共6步",
+            "language": "语言",
+            "language-skill": "语言能力"
+        },
+        "about": {
+            "title": "关于我",
+            "subtitle": "第6步，共6步",
+            "about": "个人简介",
+            "about-helpertext": "写下您的专业经验的简短摘要。",
+            "country": "国家/地区",
+            "province": "省/自治区/直辖市y",
+            "city": "城市/区"
+        }
+    },
     "contact-us": {
         "title": "联系我们",
         "name": "至圆科技（大连）有限公司",

@@ -68,6 +68,7 @@
     "create-account": "Create account",
     "client-account": "Client account",
     "freelancer-account": "Freelancer account",
+    "back": "Back",
     "next": "Next",
     "submit": "Submit",
     "signup-title": "Create Rounx account",
@@ -122,6 +123,56 @@
     "user-security-recovery-email-change": "Change email",
     "user-currency-title": "Select currency",
     "at_least_8_characters": "At least 8 characters",
+    "freelancer": {
+        "title": "Submit freelancer application",
+        "skills": {
+            "title": "Skills",
+            "subtitle": "Step 1 of 6",
+            "occupation": "Occupational categories",
+            "skills": "Skills",
+            "selected": "Selected skills"
+        },
+        "info": {
+            "banner": "Please use your real name and avatar",
+            "title": "Name and photos",
+            "subtitle": "Step 2 of 6",
+            "first-name": "First Name",
+            "last-name": "Last Name"
+        },
+        "experience": {
+            "title": "Experience",
+            "subtitle": "Step 3 of 6",
+            "position": "Position name",
+            "company": "Company name",
+            "start-year": "Start year",
+            "end-year": "End year",
+            "description": "Description"
+        },
+        "education": {
+            "title": "Education",
+            "subtitle": "Step 4 of 6",
+            "major": "Major",
+            "school": "School name",
+            "start-year": "Start year",
+            "end-year": "End year",
+            "description": "Description"
+        },
+        "languages": {
+            "title": "Languages",
+            "subtitle": "Step 5 of 6",
+            "language": "Language",
+            "language-skill": "Language skill"
+        },
+        "about": {
+            "title": "About me",
+            "subtitle": "Step 6 of 6",
+            "about": "About",
+            "about-helpertext": "Write a short summary of your professional experience.",
+            "country": "Country / Region",
+            "province": "Province / Autonomous region / Municipality",
+            "city": "City / Area"
+        }
+    },
     "contact-us": {
         "title": "Contact us",
         "name": "Rounx Technology (Dalian) Co., Ltd.",

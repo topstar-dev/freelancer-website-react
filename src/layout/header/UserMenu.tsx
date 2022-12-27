@@ -39,9 +39,9 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
         dispatch(signOutUser());
     }
 
-    const settingsClick = () => {
+    const menuItemClick = (pageUrl: string) => {
         setAnchorEl(null);
-        navigate(`/settings/personal`)
+        navigate(pageUrl)
     }
 
     return (
@@ -75,13 +75,17 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 </div>
                 <Divider />
                 <MenuList sx={{ width: "270px", maxWidth: "100%", padding: 0 }}>
-                    {userInfo && userInfo.user_type === 'FREELANCER' && <MenuItem className='rounx-user-menu-items'>
-                        {t('header-user-submit-freelancer')}
-                    </MenuItem>}
+                    {userInfo && userInfo.user_type === 'FREELANCER' ?
+                        <MenuItem className='rounx-user-menu-items' onClick={() => menuItemClick(`/apply-freelancer`)}>
+                            {t('header-user-submit-freelancer')}
+                        </MenuItem>
+                        :
+                        ('')
+                    }
                     <MenuItem className='rounx-user-menu-items'>
                         {t('header-user-profile')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items' onClick={settingsClick}>
+                    <MenuItem className='rounx-user-menu-items' onClick={() => menuItemClick(`/settings/personal`)}>
                         {t('header-user-settings')}
                     </MenuItem>
                     <MenuItem className='rounx-user-menu-items' onClick={() => signOutMethod()}>
