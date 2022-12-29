@@ -63,9 +63,9 @@ const Languages = (props: any) => {
                         {formik =>
                             <WithTranslateFormErrors {...formik}>
                                 <FieldArray name="languages">
-                                    {({ push, remove }) => (
+                                    {({ unshift, remove }) => (
                                         formik.values.languages.map((lang, index) => {
-                                            pushMethod = push;
+                                            pushMethod = unshift;
                                             const languageCode = `languages[${index}].language_code`;
                                             const touchedLanguageCode = getIn(formik.touched, languageCode);
                                             const errorLanguageCode = getIn(formik.errors, languageCode);
@@ -121,6 +121,7 @@ const Languages = (props: any) => {
                                                                 {touchedLanguageSkill && errorLanguageSkill && <FormHelperText>{errorLanguageSkill as ReactNode}</FormHelperText>}
                                                             </FormControl>
                                                         </Form>
+                                                        {index < formik.values.languages.length - 1 && <Divider className="freelancer-card-spacing" />}
                                                     </Box>
                                                 </Box>
                                             )

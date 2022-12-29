@@ -130,7 +130,9 @@
             "subtitle": "Step 1 of 6",
             "occupation": "Occupational categories",
             "skills": "Skills",
-            "selected": "Selected skills"
+            "selected": "Selected skills",
+            "development": "Development",
+            "design": "Design"
         },
         "info": {
             "banner": "Please use your real name and avatar",

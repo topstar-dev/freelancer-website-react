@@ -130,7 +130,9 @@
             "subtitle": "第1步，共6步",
             "occupation": "职业类别",
             "skills": "技能",
-            "selected": "所选技能"
+            "selected": "所选技能",
+            "development": "Development",
+            "design": "Design"
         },
         "info": {
             "banner": "请使用您的真实姓名和头像",

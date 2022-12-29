@@ -1,9 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getCountries, getCurrencies, getLanguages } from "./resourcesApi";
+import { getCities, getCountries, getCurrencies, getLanguages, getProvinces } from "./resourcesApi";
 
 export interface GetCountriesInterface {
     page_index: number,
     page_size: number
+}
+
+export interface GetProvincesInterface {
+    page_index: number,
+    page_size: number
+}
+
+export interface GetCitiesInterface {
+    province_id: number;
+    page_index?: number,
+    page_size?: number
 }
 
 export interface GetLanguagesInterface {
@@ -16,6 +27,30 @@ export const getCountriesList = createAsyncThunk(
     async (countriesData: GetCountriesInterface | void, { rejectWithValue }) => {
         try {
             const response = await getCountries(countriesData);
+            return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
+
+export const getProvincesList = createAsyncThunk(
+    'resources/getProvinces',
+    async (provinceParams: GetProvincesInterface | void, { rejectWithValue }) => {
+        try {
+            const response = await getProvinces(provinceParams);
+            return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
+
+export const getCitiesList = createAsyncThunk(
+    'resources/getCities',
+    async (cityParams: GetCitiesInterface, { rejectWithValue }) => {
+        try {
+            const response = await getCities(cityParams);
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })

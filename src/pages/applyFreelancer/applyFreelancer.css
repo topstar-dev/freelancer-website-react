@@ -15,7 +15,7 @@
 
 /* card heading */
 .rounx-freelancer-heading {
-    padding: 24px;
+    padding: 16px 24px;
 }
 
 .heading-flex {
@@ -25,7 +25,7 @@
 
 .heading-title {
     font-size: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .heading-steps {
@@ -100,9 +100,12 @@
 .close-icon {
     color: #757575;
     cursor: pointer;
+    margin-top: 14px;
 }
 
 .add-icon {
     color: #757575;
     cursor: pointer;
+    height: 1.5em !important;
+    width: 1.5em !important;
 }

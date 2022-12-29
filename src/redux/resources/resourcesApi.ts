@@ -1,5 +1,5 @@
 import { apiCall } from "../apiCall";
-import { GetCountriesInterface, GetLanguagesInterface } from "./resourcesActions";
+import { GetCitiesInterface, GetCountriesInterface, GetLanguagesInterface, GetProvincesInterface } from "./resourcesActions";
 
 export const getCountries = (getCountriesParam: GetCountriesInterface | void) => {
     const requestOptions: RequestInit = {
@@ -7,6 +7,22 @@ export const getCountries = (getCountriesParam: GetCountriesInterface | void) =>
     };
     const queryString = getCountriesParam ? `?${new URLSearchParams(getCountriesParam as unknown as Record<string, any>).toString()}` : '';
     return apiCall(`/user/v1/countries${queryString}`, requestOptions);
+};
+
+export const getProvinces = (getProvincesParam: GetProvincesInterface | void) => {
+    const requestOptions: RequestInit = {
+        method: 'GET'
+    };
+    const queryString = getProvincesParam ? `?${new URLSearchParams(getProvincesParam as unknown as Record<string, any>).toString()}` : '';
+    return apiCall(`/user/v1/provinces${queryString}`, requestOptions);
+};
+
+export const getCities = (getCitiesParam: GetCitiesInterface) => {
+    const requestOptions: RequestInit = {
+        method: 'GET'
+    };
+    const queryString = getCitiesParam ? `?${new URLSearchParams(getCitiesParam as unknown as Record<string, any>).toString()}` : '';
+    return apiCall(`/user/v1/cities${queryString}`, requestOptions);
 };
 
 export const getCurrencies = () => {
