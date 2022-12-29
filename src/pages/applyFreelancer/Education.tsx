@@ -69,9 +69,9 @@ const Education = (props: any) => {
                         {formik =>
                             <WithTranslateFormErrors {...formik}>
                                 <FieldArray name="educations">
-                                    {({ push, remove }) => (
+                                    {({ unshift, remove }) => (
                                         formik.values.educations.map((exp, index) => {
-                                            pushMethod = push;
+                                            pushMethod = unshift;
 
                                             const majorName = `educations[${index}].major_name`;
                                             const touchedMajorName = getIn(formik.touched, majorName);
@@ -168,6 +168,7 @@ const Education = (props: any) => {
                                                                 helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
                                                             />
                                                         </Form>
+                                                        {index < formik.values.educations.length - 1 && <Divider className="freelancer-card-spacing" />}
                                                     </Box>
                                                 </Box>
                                             )

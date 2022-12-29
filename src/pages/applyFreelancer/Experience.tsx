@@ -69,9 +69,9 @@ const Experience = (props: any) => {
                         {formik =>
                             <WithTranslateFormErrors {...formik}>
                                 <FieldArray name="experiences">
-                                    {({ push, remove }) => (
+                                    {({ unshift, remove }) => (
                                         formik.values.experiences.map((exp, index) => {
-                                            pushMethod = push;
+                                            pushMethod = unshift;
 
                                             const jobTitle = `experiences[${index}].job_title`;
                                             const touchedJobTitle = getIn(formik.touched, jobTitle);
@@ -168,6 +168,7 @@ const Experience = (props: any) => {
                                                                 helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
                                                             />
                                                         </Form>
+                                                        {index < formik.values.experiences.length - 1 && <Divider className="freelancer-card-spacing" />}
                                                     </Box>
                                                 </Box>
                                             )
