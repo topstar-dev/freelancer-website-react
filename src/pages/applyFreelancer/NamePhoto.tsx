@@ -9,10 +9,17 @@ import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import { Formik } from 'formik';
+import { ReactNode, useState } from 'react';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+
+    const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
+    const [freelancerSkills] = useState({
+        first_name: freelancerApplicationInfo.first_name || "",
+        last_name: freelancerApplicationInfo.last_name || ""
+    });
 
     return (
         <Box>
@@ -28,24 +35,22 @@ const NamePhoto = (props: any) => {
                     <Box className='heading-steps'>{t('freelancer.info.subtitle')}</Box>
                 </Box>
                 <Divider />
-                <Box className={`rounx-freelancer-body`}>
-                    <Formik
-                        initialValues={{
-                            first_name: '',
-                            last_name: ''
-                        }}
-                        validationSchema={yup.object({
-                            first_name: yup
-                                .string()
-                                .required(t('validation.firstname-required')),
-                            last_name: yup
-                                .string()
-                                .required(t('validation.lastname-required'))
-                        })}
-                        onSubmit={(values) => { }}
-                    >
-                        {formik =>
-                            <WithTranslateFormErrors {...formik}>
+                <Formik
+                    enableReinitialize
+                    initialValues={freelancerSkills}
+                    validationSchema={yup.object({
+                        first_name: yup
+                            .string()
+                            .required(t('validation.firstname-required')),
+                        last_name: yup
+                            .string()
+                            .required(t('validation.lastname-required'))
+                    })}
+                    onSubmit={(values) => { }}
+                >
+                    {formik =>
+                        <WithTranslateFormErrors {...formik}>
+                            <Box className={`rounx-freelancer-body`}>
                                 <Box className="profile-photo-container">
                                     <Box className="profile-bg"></Box>
                                     <Box className="round-profile-photo"></Box>
@@ -60,7 +65,7 @@ const NamePhoto = (props: any) => {
                                         value={formik.values.first_name}
                                         onChange={formik.handleChange}
                                         error={formik.touched.first_name && Boolean(formik.errors.first_name)}
-                                        helperText={formik.touched.first_name && formik.errors.first_name}
+                                        helperText={formik.touched.first_name && formik.errors.first_name && formik.errors.first_name as ReactNode}
                                     />
                                     <TextField
                                         fullWidth
@@ -71,36 +76,49 @@ const NamePhoto = (props: any) => {
                                         value={formik.values.last_name}
                                         onChange={formik.handleChange}
                                         error={formik.touched.last_name && Boolean(formik.errors.last_name)}
-                                        helperText={formik.touched.last_name && formik.errors.last_name}
+                                        helperText={formik.touched.last_name && formik.errors.last_name && formik.errors.last_name as ReactNode}
                                     />
                                 </Form>
-                            </WithTranslateFormErrors>
-                        }
-                    </Formik>
-                </Box>
-                <Box className={`rounx-freelancer-footer`}>
-                    <Button
-                        // disabled={loading}
-                        // type="submit"
-                        onClick={() => {
-                            navigate('/apply-freelancer/experience')
-                        }}
-                        style={{ float: "right" }}
-                    >
-                        {t('next')}
-                    </Button>
-                    <Button
-                        // disabled={loading}
-                        // type="submit"
-                        variant="text"
-                        onClick={() => {
-                            navigate('/apply-freelancer')
-                        }}
-                        style={{ float: "right" }}
-                    >
-                        {t('back')}
-                    </Button>
-                </Box>
+                            </Box>
+                            <Box className={`rounx-freelancer-footer`}>
+                                <Button
+                                    // disabled={loading}
+                                    // type="submit"
+                                    onClick={() => {
+                                        formik.validateForm().then((res: any) => {
+                                            const { first_name, last_name } = res;
+                                            if (first_name) {
+                                                formik.setFieldTouched('first_name', true, true);
+                                                formik.setFieldError('first_name', first_name);
+                                            }
+                                            if (last_name) {
+                                                formik.setFieldTouched('last_name', true, true);
+                                                formik.setFieldError('last_name', last_name);
+                                            }
+
+                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
+                                            if (!(first_name || last_name)) {
+                                                navigate('/apply-freelancer/experience')
+                                            }
+                                        })
+                                    }}
+                                    style={{ float: "right" }}
+                                >
+                                    {t('next')}
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    onClick={() => {
+                                        navigate('/apply-freelancer')
+                                    }}
+                                    style={{ float: "right" }}
+                                >
+                                    {t('back')}
+                                </Button>
+                            </Box>
+                        </WithTranslateFormErrors>
+                    }
+                </Formik>
             </Card>
         </Box>
     )
