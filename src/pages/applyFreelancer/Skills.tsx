@@ -183,15 +183,16 @@ const Skills = (props: any) => {
                                                 formik.setFieldTouched('occupation_category', true, true);
                                                 formik.setFieldError('occupation_category', occupation_category);
                                             }
-                                            const skillsValidate = skills || formik.values.skills.length < 1
+                                            const skillsValidate = formik.values.skills.length < 1
                                             if (skillsValidate) {
                                                 formik.setFieldTouched('skills', true, true);
                                                 formik.setFieldError('skills', skills);
                                             }
                                             const saveData = {
                                                 occupation_category: formik.values.occupation_category,
-                                                skills: JSON.stringify(formik.values.skills)
+                                                skills: JSON.stringify(formik.values.skills.map((e: any, index: number) => ({ ...e, order: index })))
                                             }
+
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
                                             if (!(occupation_category || skillsValidate)) {
                                                 navigate(`/apply-freelancer/info`)
