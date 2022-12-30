@@ -40,34 +40,34 @@ const Experience = (props: any) => {
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={`rounx-freelancer-body`}>
-                    <Formik
-                        enableReinitialize
-                        initialValues={{
-                            experiences: [
-                                {
-                                    company_name: '',
-                                    job_title: '',
-                                    start_year: '',
-                                    end_year: '',
-                                    description: '',
-                                }
-                            ]
-                        }}
-                        validationSchema={yup.object({
-                            experiences: yup.array().of(
-                                yup.object().shape({
-                                    language_code: yup.string().required("First name is required"),
-                                    language_skill: yup.string().required("Last name is required")
-                                })
-                            )
-                        })}
-                        onSubmit={values => {
-                            console.log("onSubmit", JSON.stringify(values, null, 2));
-                        }}
-                    >
-                        {formik =>
-                            <WithTranslateFormErrors {...formik}>
+                <Formik
+                    enableReinitialize
+                    initialValues={{
+                        experiences: [
+                            {
+                                company_name: '',
+                                job_title: '',
+                                start_year: '',
+                                end_year: '',
+                                description: '',
+                            }
+                        ]
+                    }}
+                    validationSchema={yup.object({
+                        experiences: yup.array().of(
+                            yup.object().shape({
+                                language_code: yup.string().required("First name is required"),
+                                language_skill: yup.string().required("Last name is required")
+                            })
+                        )
+                    })}
+                    onSubmit={values => {
+                        console.log("onSubmit", JSON.stringify(values, null, 2));
+                    }}
+                >
+                    {formik =>
+                        <WithTranslateFormErrors {...formik}>
+                            <Box className={`rounx-freelancer-body`}>
                                 <FieldArray name="experiences">
                                     {({ unshift, remove }) => (
                                         formik.values.experiences.map((exp, index) => {
@@ -94,7 +94,7 @@ const Experience = (props: any) => {
                                             const errorDescription = getIn(formik.errors, description);
 
                                             return (
-                                                <Box className="freelancer-experience-flex">
+                                                <Box key={index} className="freelancer-experience-flex">
                                                     <Box className="freelancer-card-spacing">
                                                         <CloseIcon
                                                             className='close-icon'
@@ -175,33 +175,31 @@ const Experience = (props: any) => {
                                         })
                                     )}
                                 </FieldArray>
-                            </WithTranslateFormErrors>
-                        }
-                    </Formik>
-                </Box>
-                <Box className={`rounx-freelancer-footer`}>
-                    <Button
-                        // disabled={loading}
-                        // type="submit"
-                        onClick={() => {
-                            navigate('/apply-freelancer/education')
-                        }}
-                        style={{ float: "right" }}
-                    >
-                        {t('next')}
-                    </Button>
-                    <Button
-                        // disabled={loading}
-                        // type="submit"
-                        variant="text"
-                        onClick={() => {
-                            navigate('/apply-freelancer/info')
-                        }}
-                        style={{ float: "right" }}
-                    >
-                        {t('back')}
-                    </Button>
-                </Box>
+                            </Box>
+                            <Box className={`rounx-freelancer-footer`}>
+                                <Button
+                                    // disabled={loading}
+                                    // type="submit"
+                                    onClick={() => {
+                                        navigate('/apply-freelancer/education')
+                                    }}
+                                    style={{ float: "right" }}
+                                >
+                                    {t('next')}
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    onClick={() => {
+                                        navigate('/apply-freelancer/info')
+                                    }}
+                                    style={{ float: "right" }}
+                                >
+                                    {t('back')}
+                                </Button>
+                            </Box>
+                        </WithTranslateFormErrors>
+                    }
+                </Formik>
             </Card>
         </Box>
     )
