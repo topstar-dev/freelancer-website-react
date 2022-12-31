@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
@@ -18,6 +18,17 @@ const Education = (props: any) => {
     const navigate = useNavigate();
     let pushMethod: any = () => { }
 
+    const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
+    const [freelancerData] = useState({
+        educations: freelancerApplicationInfo.educations || [{
+            major_name: '',
+            school_name: '',
+            start_year: '',
+            end_year: '',
+            description: '',
+        }]
+    });
+
     return (
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
@@ -30,8 +41,8 @@ const Education = (props: any) => {
                     <Box className="center-item">
                         <AddIcon className='add-icon' onClick={() => {
                             pushMethod({
-                                company_name: '',
-                                job_title: '',
+                                major_name: '',
+                                school_name: '',
                                 start_year: '',
                                 end_year: '',
                                 description: '',
@@ -42,22 +53,15 @@ const Education = (props: any) => {
                 <Divider />
                 <Formik
                     enableReinitialize
-                    initialValues={{
-                        educations: [
-                            {
-                                school_name: '',
-                                major_name: '',
-                                start_year: '',
-                                end_year: '',
-                                description: '',
-                            }
-                        ]
-                    }}
+                    initialValues={freelancerData}
                     validationSchema={yup.object({
                         educations: yup.array().of(
                             yup.object().shape({
-                                language_code: yup.string().required("First name is required"),
-                                language_skill: yup.string().required("Last name is required")
+                                major_name: yup.string().required("First name is required"),
+                                school_name: yup.string().required("Last name is required"),
+                                start_year: yup.string().required("Last name is required"),
+                                end_year: yup.string().required("Last name is required"),
+                                description: yup.string().required("Last name is required")
                             })
                         )
                     })}
@@ -70,7 +74,7 @@ const Education = (props: any) => {
                             <Box className={`rounx-freelancer-body`}>
                                 <FieldArray name="educations">
                                     {({ unshift, remove }) => (
-                                        formik.values.educations.map((exp, index) => {
+                                        formik.values.educations.map((exp: any, index: number) => {
                                             pushMethod = unshift;
 
                                             const majorName = `educations[${index}].major_name`;
@@ -94,7 +98,7 @@ const Education = (props: any) => {
                                             const errorDescription = getIn(formik.errors, description);
 
                                             return (
-                                                <Box className="freelancer-experience-flex">
+                                                <Box key={index} className="freelancer-experience-flex">
                                                     <Box className="freelancer-card-spacing">
                                                         <CloseIcon
                                                             className='close-icon'
@@ -143,8 +147,8 @@ const Education = (props: any) => {
                                                                 />
                                                                 <TextField
                                                                     fullWidth
-                                                                    id="endYear"
-                                                                    name="endYear"
+                                                                    id={endYear}
+                                                                    name={endYear}
                                                                     type="text"
                                                                     label={t('freelancer.education.end-year')}
                                                                     value={exp.end_year}
@@ -156,7 +160,6 @@ const Education = (props: any) => {
                                                             <TextField
                                                                 multiline={true}
                                                                 rows={5}
-                                                                maxRows={5}
                                                                 fullWidth
                                                                 id={description}
                                                                 name={description}
@@ -178,10 +181,23 @@ const Education = (props: any) => {
                             </Box>
                             <Box className={`rounx-freelancer-footer`}>
                                 <Button
-                                    // disabled={loading}
-                                    // type="submit"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/languages')
+                                        formik.validateForm().then((res: any) => {
+                                            const { educations } = res;
+                                            const isValid = educations ? educations.length < 1 : true;
+                                            if (!isValid) {
+                                                formik.submitForm();
+                                            }
+
+                                            const saveData = {
+                                                educations: formik.values.educations.map((e: any, index: number) => ({ ...e, order: index }))
+                                            }
+
+                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
+                                            if (isValid) {
+                                                navigate('/apply-freelancer/languages')
+                                            }
+                                        })
                                     }}
                                     style={{ float: "right" }}
                                 >

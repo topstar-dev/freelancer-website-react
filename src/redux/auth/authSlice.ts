@@ -10,7 +10,8 @@ export interface UserInterface {
     email: string;
     language: string
     name: string
-    user_type: string
+    user_type: string,
+    username: string
 }
 
 export interface AuthState {

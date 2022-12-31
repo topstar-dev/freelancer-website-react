@@ -7,8 +7,9 @@ export interface GetCountriesInterface {
 }
 
 export interface GetProvincesInterface {
-    page_index: number,
-    page_size: number
+    country_id: number;
+    page_index?: number,
+    page_size?: number
 }
 
 export interface GetCitiesInterface {
@@ -36,7 +37,7 @@ export const getCountriesList = createAsyncThunk(
 
 export const getProvincesList = createAsyncThunk(
     'resources/getProvinces',
-    async (provinceParams: GetProvincesInterface | void, { rejectWithValue }) => {
+    async (provinceParams: GetProvincesInterface, { rejectWithValue }) => {
         try {
             const response = await getProvinces(provinceParams);
             return response.success ? response : rejectWithValue(response);

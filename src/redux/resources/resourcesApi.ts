@@ -9,7 +9,7 @@ export const getCountries = (getCountriesParam: GetCountriesInterface | void) =>
     return apiCall(`/user/v1/countries${queryString}`, requestOptions);
 };
 
-export const getProvinces = (getProvincesParam: GetProvincesInterface | void) => {
+export const getProvinces = (getProvincesParam: GetProvincesInterface) => {
     const requestOptions: RequestInit = {
         method: 'GET'
     };

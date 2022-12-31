@@ -190,7 +190,7 @@ const Skills = (props: any) => {
                                             }
                                             const saveData = {
                                                 occupation_category: formik.values.occupation_category,
-                                                skills: JSON.stringify(formik.values.skills.map((e: any, index: number) => ({ ...e, order: index })))
+                                                skills: formik.values.skills.map((e: any, index: number) => ({ ...e, order: index }))
                                             }
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))

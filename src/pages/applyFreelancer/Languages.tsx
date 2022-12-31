@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import { Backdrop, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '../../components/button/Button';
@@ -12,11 +12,41 @@ import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
+import { useAppDispatch } from '../../redux/hooks';
+import { getLanguageList } from '../../redux/resources/resourcesActions';
 
 const Languages = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const [loading, setLoading] = useState(true);
+    const [called, setCalled] = useState(false)
+    const [languageList, setLanguageList] = useState([]);
     let pushMethod: any = () => { }
+
+    const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
+    const [freelancerData] = useState({
+        languages: freelancerApplicationInfo.languages || [{
+            language_code: '',
+            language_skill: ''
+        }]
+    });
+
+    useEffect(() => {
+        if (!called) {
+            setCalled(true)
+            setLoading(true);
+            dispatch(getLanguageList()).then((res) => {
+                if (res.payload && res.payload.success) {
+                    setLanguageList(res.payload.data.records);
+                }
+            }).catch((err: any) => {
+            }).finally(() => {
+                setLoading(false)
+            })
+        }
+    }, [dispatch, called])
 
     return (
         <Box>
@@ -37,34 +67,27 @@ const Languages = (props: any) => {
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={`rounx-freelancer-body`}>
-                    <Formik
-                        enableReinitialize
-                        initialValues={{
-                            languages: [
-                                {
-                                    language_code: '',
-                                    language_skill: ''
-                                }
-                            ]
-                        }}
-                        validationSchema={yup.object({
-                            languages: yup.array().of(
-                                yup.object().shape({
-                                    language_code: yup.string().required("First name is required"),
-                                    language_skill: yup.string().required("Last name is required")
-                                })
-                            )
-                        })}
-                        onSubmit={values => {
-                            console.log("onSubmit", JSON.stringify(values, null, 2));
-                        }}
-                    >
-                        {formik =>
-                            <WithTranslateFormErrors {...formik}>
+                <Formik
+                    enableReinitialize
+                    initialValues={freelancerData}
+                    validationSchema={yup.object({
+                        languages: yup.array().of(
+                            yup.object().shape({
+                                language_code: yup.string().required("First name is required"),
+                                language_skill: yup.string().required("Last name is required")
+                            })
+                        ).max(2)
+                    })}
+                    onSubmit={values => {
+                        console.log("onSubmit", JSON.stringify(values, null, 2));
+                    }}
+                >
+                    {formik =>
+                        <WithTranslateFormErrors {...formik}>
+                            <Box className={`rounx-freelancer-body`}>
                                 <FieldArray name="languages">
                                     {({ unshift, remove }) => (
-                                        formik.values.languages.map((lang, index) => {
+                                        !loading && formik.values.languages.map((lang: any, index: number) => {
                                             pushMethod = unshift;
                                             const languageCode = `languages[${index}].language_code`;
                                             const touchedLanguageCode = getIn(formik.touched, languageCode);
@@ -98,9 +121,9 @@ const Languages = (props: any) => {
                                                                     value={lang.language_code}
                                                                     onChange={formik.handleChange}
                                                                 >
-                                                                    <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
-                                                                    <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
-                                                                    <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                                                                    {languageList.map((lang: any) => (
+                                                                        <MenuItem key={lang.language_code} value={lang.language_code}>{lang.language_name}</MenuItem>
+                                                                    ))}
                                                                 </Select>
                                                                 {touchedLanguageCode && errorLanguageCode && <FormHelperText>{errorLanguageCode as ReactNode}</FormHelperText>}
                                                             </FormControl>
@@ -114,9 +137,11 @@ const Languages = (props: any) => {
                                                                     value={lang.language_skill}
                                                                     onChange={formik.handleChange}
                                                                 >
-                                                                    <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
-                                                                    <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
-                                                                    <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                                                                    <MenuItem value={`BEGINNER`}>Beginner</MenuItem>
+                                                                    <MenuItem value={`INTERMEDIATE`}>Intermediate</MenuItem>
+                                                                    <MenuItem value={`PROFICIENT`}>Proficient</MenuItem>
+                                                                    <MenuItem value={`FLUENT`}>Fluent</MenuItem>
+                                                                    <MenuItem value={`NATIVE`}>Native</MenuItem>
                                                                 </Select>
                                                                 {touchedLanguageSkill && errorLanguageSkill && <FormHelperText>{errorLanguageSkill as ReactNode}</FormHelperText>}
                                                             </FormControl>
@@ -128,34 +153,52 @@ const Languages = (props: any) => {
                                         })
                                     )}
                                 </FieldArray>
-                            </WithTranslateFormErrors>
-                        }
-                    </Formik>
-                </Box>
-                <Box className={`rounx-freelancer-footer`}>
-                    <Button
-                        // disabled={loading}
-                        // type="submit"
-                        onClick={() => {
-                            navigate('/apply-freelancer/about-me')
-                        }}
-                        style={{ float: "right" }}
-                    >
-                        {t('next')}
-                    </Button>
-                    <Button
-                        // disabled={loading}
-                        // type="submit"
-                        variant="text"
-                        onClick={() => {
-                            navigate('/apply-freelancer/education')
-                        }}
-                        style={{ float: "right" }}
-                    >
-                        {t('back')}
-                    </Button>
-                </Box>
+                            </Box>
+                            <Box className={`rounx-freelancer-footer`}>
+                                <Button
+                                    onClick={() => {
+                                        formik.validateForm().then((res: any) => {
+                                            const { languages } = res;
+                                            console.log(res)
+                                            const isValid = languages ? languages.length < 1 : true;
+                                            if (!isValid) {
+                                                formik.submitForm();
+                                            }
+
+                                            const saveData = {
+                                                languages: formik.values.languages.map((e: any, index: number) => ({ ...e, order: index }))
+                                            }
+
+                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
+                                            if (isValid) {
+                                                navigate('/apply-freelancer/about-me')
+                                            }
+                                        })
+                                    }}
+                                    style={{ float: "right" }}
+                                >
+                                    {t('next')}
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    onClick={() => {
+                                        navigate('/apply-freelancer/education')
+                                    }}
+                                    style={{ float: "right" }}
+                                >
+                                    {t('back')}
+                                </Button>
+                            </Box>
+                        </WithTranslateFormErrors>
+                    }
+                </Formik>
             </Card>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={loading}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Box>
     )
 }

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { Box } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
@@ -17,6 +17,17 @@ const Experience = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     let pushMethod: any = () => { }
+
+    const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
+    const [freelancerData] = useState({
+        experiences: freelancerApplicationInfo.experiences || [{
+            company_name: '',
+            job_title: '',
+            start_year: '',
+            end_year: '',
+            description: '',
+        }]
+    });
 
     return (
         <Box>
@@ -42,24 +53,18 @@ const Experience = (props: any) => {
                 <Divider />
                 <Formik
                     enableReinitialize
-                    initialValues={{
-                        experiences: [
-                            {
-                                company_name: '',
-                                job_title: '',
-                                start_year: '',
-                                end_year: '',
-                                description: '',
-                            }
-                        ]
-                    }}
+                    initialValues={freelancerData}
                     validationSchema={yup.object({
-                        experiences: yup.array().of(
-                            yup.object().shape({
-                                language_code: yup.string().required("First name is required"),
-                                language_skill: yup.string().required("Last name is required")
-                            })
-                        )
+                        experiences: yup.array()
+                            .of(yup.object().shape({
+                                job_title: yup.string().required("First name is required"),
+                                company_name: yup.string().required("Last name is required"),
+                                start_year: yup.string().required("Last name is required"),
+                                end_year: yup.string().required("Last name is required"),
+                                description: yup.string().required("Last name is required")
+                            }))
+                            .min(1)
+                            .max(2, 'max 2p')
                     })}
                     onSubmit={values => {
                         console.log("onSubmit", JSON.stringify(values, null, 2));
@@ -70,7 +75,7 @@ const Experience = (props: any) => {
                             <Box className={`rounx-freelancer-body`}>
                                 <FieldArray name="experiences">
                                     {({ unshift, remove }) => (
-                                        formik.values.experiences.map((exp, index) => {
+                                        formik.values.experiences.map((exp: any, index: number) => {
                                             pushMethod = unshift;
 
                                             const jobTitle = `experiences[${index}].job_title`;
@@ -156,7 +161,6 @@ const Experience = (props: any) => {
                                                             <TextField
                                                                 multiline={true}
                                                                 rows={5}
-                                                                maxRows={5}
                                                                 fullWidth
                                                                 id={description}
                                                                 name={description}
@@ -178,10 +182,23 @@ const Experience = (props: any) => {
                             </Box>
                             <Box className={`rounx-freelancer-footer`}>
                                 <Button
-                                    // disabled={loading}
-                                    // type="submit"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/education')
+                                        formik.validateForm().then((res: any) => {
+                                            const { experiences } = res;
+                                            const isValid = experiences ? experiences.length < 1 : true;
+                                            if (!isValid) {
+                                                formik.submitForm();
+                                            }
+
+                                            const saveData = {
+                                                experiences: formik.values.experiences.map((e: any, index: number) => ({ ...e, order: index }))
+                                            }
+
+                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
+                                            if (isValid) {
+                                                navigate('/apply-freelancer/education')
+                                            }
+                                        })
                                     }}
                                     style={{ float: "right" }}
                                 >
