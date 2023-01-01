@@ -74,7 +74,6 @@ export default function Personal() {
             }
 
             dispatch(personalSettingsUpdate({ birthday: dayjs(birthday).format('YYYY-MM-DD'), language_code, gender })).then((res) => {
-                console.log(res)
                 setCalled(false)
                 enqueueSnackbar(res.payload.message);
             }).catch((err: any) => {
