@@ -10,6 +10,7 @@ import { useNavigate } from '../../routes/Router';
 import useBreakpoint from '../../components/breakpoints/BreakpointProvider';
 import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useSnackbar } from 'notistack';
+import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -51,7 +52,14 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 const status = res.payload.data.status;
                 sessionStorage.setItem('freelancer-application-status', JSON.stringify(res.payload.data))
                 if (['NO_APPLICATION'].includes(status)) {
-                    navigate(pageUrl);
+                    dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
+                        if (res.payload && res.payload.success) {
+                            sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
+                            navigate(pageUrl);
+                        }
+                    }).catch((err) => {
+
+                    })
                 } else {
                     navigate(`${pageUrl}/status`)
                 }

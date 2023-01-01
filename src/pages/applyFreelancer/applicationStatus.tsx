@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
 import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
 
@@ -37,6 +39,10 @@ const ApplicationStatus = (props: any) => {
 
 const FailedApplication = () => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const { userInfo } = useAppSelector(state => state.auth);
+
     return (
         <Card className={`rounx-freelancer-card text-centered freelancer-card-spacing`}>
             <Box className={`rounx-freelancer-heading`}>
@@ -44,7 +50,14 @@ const FailedApplication = () => {
                 <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-message', { message: '' })}</Box>
             </Box>
             <Button onClick={() => {
+                dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
+                    if (res.payload && res.payload.success) {
+                        sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
+                        navigate(`/apply-freelancer`);
+                    }
+                }).catch((err) => {
 
+                })
             }}>{t('freelancer.status.failed-button')}</Button>
         </Card >
     )
