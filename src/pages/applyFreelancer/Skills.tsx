@@ -28,7 +28,7 @@ const Skills = (props: any) => {
     });
 
     useEffect(() => {
-        document.title = t('freelancer.skills.title');
+        document.title = t('freelancer.title');
     })
 
     const getSkills = useCallback((occupationCategory: string) => {

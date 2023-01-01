@@ -22,7 +22,7 @@ const ApplicationStatus = (props: any) => {
     }
 
     useEffect(() => {
-        document.title = t('freelancer.title');
+        document.title = t('title.freelancer');
     })
 
     return (

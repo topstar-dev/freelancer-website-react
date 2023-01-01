@@ -22,7 +22,7 @@ const NamePhoto = (props: any) => {
     });
 
     useEffect(() => {
-        document.title = t('freelancer.info.title');
+        document.title = t('title.freelancer');
     })
 
     return (

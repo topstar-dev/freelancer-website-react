@@ -11,7 +11,8 @@
         "termas-of-service": "服务条款 - Rounx",
         "currency": "设置（货币）- Rounx",
         "personal": "设置（个人信息）- Rounx",
-        "security": "设置（安全）- Rounx"
+        "security": "设置（安全）- Rounx",
+        "freelancer": "提交自由职业者申请 - Rounx"
     },
     "validation": {
         "email-valid": "请输入有效的电子邮件",

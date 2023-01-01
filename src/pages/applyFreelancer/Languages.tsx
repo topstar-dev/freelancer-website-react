@@ -34,7 +34,7 @@ const Languages = (props: any) => {
     });
 
     useEffect(() => {
-        document.title = t('freelancer.languages.title');
+        document.title = t('title.freelancer');
     })
 
     useEffect(() => {

@@ -35,7 +35,7 @@ const AboutMe = (props: any) => {
     });
 
     useEffect(() => {
-        document.title = t('freelancer.about.title');
+        document.title = t('title.freelancer');
     })
 
     useEffect(() => {

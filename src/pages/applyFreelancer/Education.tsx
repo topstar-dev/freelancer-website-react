@@ -30,7 +30,7 @@ const Education = (props: any) => {
     });
 
     useEffect(() => {
-        document.title = t('freelancer.education.title');
+        document.title = t('title.freelancer');
     })
 
     return (
