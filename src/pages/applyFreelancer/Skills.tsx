@@ -4,7 +4,7 @@ import { Box, Stack } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
-import { Backdrop, Chip, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import { Backdrop, Chip, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
@@ -112,11 +112,9 @@ const Skills = (props: any) => {
                                     </FormControl>
                                     <FormControl error={formik.touched.skills && Boolean(formik.errors.skills)} fullWidth>
                                         <InputLabel id="freelancer-skills-select-label">{t('freelancer.skills.skills')}</InputLabel>
-                                        <Select
-                                            label={t('freelancer.skills.skills')}
-                                            labelId="freelancer-skills-select-label"
-                                            name='skills'
-                                            value={skillsList.length > 0 ? formik.values.skills[0] : ''}
+                                        <TextField
+                                            select
+                                            value={''}
                                             onChange={(e) => {
                                                 let isExist = formik.values.skills.findIndex((s: any) => e.target.value === s.skill_id)
                                                 if (isExist === -1) {
@@ -127,8 +125,8 @@ const Skills = (props: any) => {
                                             {skillsList.map((skill: any) => (
                                                 <MenuItem key={skill.skill_id} value={skill.skill_id}>{skill.skill_name}</MenuItem>
                                             ))}
-                                        </Select>
-                                        {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>}
+                                        </TextField>
+                                        {/* {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>} */}
                                     </FormControl>
                                 </Form >
                                 {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing-divider">
