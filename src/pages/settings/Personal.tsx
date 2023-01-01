@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useCallback } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -17,9 +17,10 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ChangeEmailInterface, changePrimaryEmailAction } from "../../redux/account/accountActions";
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { getLanguageList } from "../../redux/resources/resourcesActions";
+import { languages } from '../../i18n/i18nextConf';
 
 export default function Personal() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const { personal, loading } = useAppSelector(state => state.settings)
@@ -56,27 +57,24 @@ export default function Personal() {
         }
     }, [dispatch, called, enqueueSnackbar])
 
-    const changeData = (e: any, key: "birthday" | "language_code" | "gender" | "primary_email") => {
+    const changeData = useCallback((e: any, key: "birthday" | "language_code" | "gender" | "primary_email") => {
         const data = { ...personalData };
         data[key] = e.target.value;
         setPersonalData(data);
-    }
+    }, [personalData])
 
-    const updatePersonalData = () => {
+    const updatePersonalData = useCallback(() => {
         const { birthday, language_code, gender } = personalData;
         if (dayjs(birthday).format('YYYY-MM-DD') !== personal.birthday ||
             language_code !== personal.language_code ||
             gender !== personal.gender) {
-            let langUpdate = false;
 
             if (language_code !== personal.language_code) {
-                langUpdate = true;
+                dispatch(changeLanguage(language_code && languages.includes(language_code) ? language_code : 'en'))
             }
 
             dispatch(personalSettingsUpdate({ birthday: dayjs(birthday).format('YYYY-MM-DD'), language_code, gender })).then((res) => {
-                if (langUpdate) {
-                    dispatch(changeLanguage(language_code && i18n.languages.includes(language_code) ? language_code : 'en'))
-                }
+                console.log(res)
                 setCalled(false)
                 enqueueSnackbar(res.payload.message);
             }).catch((err: any) => {
@@ -84,7 +82,13 @@ export default function Personal() {
                 setPersonalData(personal);
             })
         }
-    }
+    }, [dispatch, enqueueSnackbar, personal, personalData])
+
+    React.useEffect(() => {
+        if (Object.keys(personal).length === 0) {
+            setCalled(false)
+        }
+    }, [personal])
 
     return (
         <>

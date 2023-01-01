@@ -34,12 +34,10 @@ import Settings from "../pages/settings/Settings";
 import Personal from "../pages/settings/Personal";
 import Security from "../pages/settings/Security";
 import Currency from "../pages/settings/Currency";
-import { useTranslation } from "react-i18next";
 import { languages } from "../i18n/i18nextConf";
 import ApplicationStatus from "../pages/applyFreelancer/applicationStatus";
 
 export default function Router() {
-  const { i18n } = useTranslation();
   const routesWithBaseUrl = (baseUrl: string) => {
     return [
       {

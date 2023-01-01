@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { currencySettings, personalSettings, SecurityInterface, securitySettings, SelectedCurrencyInterface } from './settingsActions';
+import { currencySettings, personalSettings, personalSettingsUpdate, SecurityInterface, securitySettings, SelectedCurrencyInterface } from './settingsActions';
 import { PersonalDataInterface } from './settingsActions';
 
 export interface SettingsState {
@@ -48,6 +48,11 @@ export const settingsSlice = createSlice({
             state.success = false;
             state.loading = false;
             state.message = payload.message;
+        })
+
+        //personal info
+        builder.addCase(personalSettingsUpdate.fulfilled, (state: SettingsState, action) => {
+            state.personal = {};
         })
 
         //currency info
