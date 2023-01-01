@@ -81,7 +81,6 @@
     "last-name": "Last Name",
     "birthday": "Birthday",
     "country": "Country / Region",
-    "loading-country": "Loading data...",
     "set-password": "Set password",
     "confirm-password": "Confirm password",
     "send-message": "Send message",
