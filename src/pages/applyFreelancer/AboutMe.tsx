@@ -216,7 +216,7 @@ const AboutMe = (props: any) => {
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/languages', { replace: true })
+                                        window.history.back()
                                     }}
                                     style={{ float: "right" }}
                                 >

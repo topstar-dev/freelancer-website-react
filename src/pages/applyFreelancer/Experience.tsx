@@ -211,7 +211,7 @@ const Experience = (props: any) => {
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/info', { replace: true })
+                                        window.history.back()
                                     }}
                                     style={{ float: "right" }}
                                 >

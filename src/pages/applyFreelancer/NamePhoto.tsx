@@ -111,7 +111,7 @@ const NamePhoto = (props: any) => {
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer', { replace: true })
+                                        window.history.back()
                                     }}
                                     style={{ float: "right" }}
                                 >

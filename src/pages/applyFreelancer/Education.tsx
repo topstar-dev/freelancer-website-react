@@ -210,7 +210,7 @@ const Education = (props: any) => {
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/experience', { replace: true })
+                                        window.history.back()
                                     }}
                                     style={{ float: "right" }}
                                 >

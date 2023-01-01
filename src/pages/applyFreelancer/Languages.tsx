@@ -186,7 +186,7 @@ const Languages = (props: any) => {
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/education', { replace: true })
+                                        window.history.back()
                                     }}
                                     style={{ float: "right" }}
                                 >

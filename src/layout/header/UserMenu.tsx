@@ -53,7 +53,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 if (['NO_APPLICATION'].includes(status)) {
                     navigate(pageUrl);
                 } else {
-                    navigate(`${pageUrl}/status?status=${status}`)
+                    navigate(`${pageUrl}/status`)
                 }
             }
         }).catch((err) => {
