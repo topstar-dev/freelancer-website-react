@@ -10,6 +10,7 @@ import UserMenu from "./UserMenu";
 import { resetDefault } from "../../redux/auth/authSlice";
 import { returnLangLabel, useNavigate } from "../../routes/Router";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import { languages } from '../../i18n/i18nextConf';
 import './header.css';
 
 export default function Header() {
@@ -18,7 +19,7 @@ export default function Header() {
     const [selectedPage, setSelectedPage] = useState(location.pathname);
     const { userInfo, success, message } = useAppSelector((state) => state.auth);
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { isMobile } = useBreakpoint();
 
     const dispatch = useAppDispatch();
@@ -68,7 +69,7 @@ export default function Header() {
                         (
                             url === '/'
                             &&
-                            i18n.languages.map(lang => `/${returnLangLabel(lang)}`).includes(location.pathname)
+                            languages.map(lang => `/${returnLangLabel(lang)}`).includes(location.pathname)
                         )
                 })
             }

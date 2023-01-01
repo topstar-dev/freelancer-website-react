@@ -11,6 +11,8 @@ const DETECTION_OPTIONS = {
     caches: ['localStorage']
 };
 
+export const languages = ['en', 'zh-CN'];
+
 i18n
     .use(initReactI18next)
     .use(LanguageDetector)
@@ -30,6 +32,6 @@ i18n
         defaultNS: 'translations'
     });
 
-i18n.languages = ['en', 'zh-CN'];
+i18n.languages = languages;
 
 export default i18n;

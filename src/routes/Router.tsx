@@ -35,7 +35,7 @@ import Personal from "../pages/settings/Personal";
 import Security from "../pages/settings/Security";
 import Currency from "../pages/settings/Currency";
 import { useTranslation } from "react-i18next";
-import i18n from "../i18n/i18nextConf";
+import { languages } from "../i18n/i18nextConf";
 import ApplicationStatus from "../pages/applyFreelancer/applicationStatus";
 
 export default function Router() {
@@ -158,7 +158,7 @@ export default function Router() {
   }
 
   let routeList: any = []
-  i18n.languages.forEach(lang => {
+  languages.forEach(lang => {
     routeList = [...routeList, ...routesWithBaseUrl(returnLangLabel(lang))]
   })
   return useRoutes([
@@ -177,7 +177,7 @@ export default function Router() {
 }
 
 export const returnUrlByLang = (pageUrl: string) => {
-  return i18n.languages.map(lang => {
+  return languages.map(lang => {
     const langLabel = returnLangLabel(lang) ? `/${returnLangLabel(lang)}` : '';
     const url = `${langLabel}${pageUrl}`;
     return url ? url : '/';
@@ -186,7 +186,7 @@ export const returnUrlByLang = (pageUrl: string) => {
 
 export const normalizeUrl = (pageUrl: string) => {
   let newUrl = pageUrl;
-  i18n.languages.forEach(lang => {
+  languages.forEach(lang => {
     if (pageUrl.startsWith(`/${lang}`)) {
       newUrl = pageUrl.replace(`/${lang}`, '');
     }

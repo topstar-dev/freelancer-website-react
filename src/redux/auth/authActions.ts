@@ -1,11 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import i18n from "../../i18n/i18nextConf";
+import { languages } from "../../i18n/i18nextConf";
 import { removeTokens, setTokens } from "../account/accountApi";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar } from "../other/otherSlice";
 import { changeLanguage } from "../resources/resourcesSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
-
 export interface SignUpInterface {
     user_type: 'CLIENT' | 'FREELANCER';
     first_name: string;
@@ -58,7 +57,7 @@ export const signInUser = createAsyncThunk(
             if (response.success) {
                 const currentLang = `${localStorage.getItem('i18nextLng')}`;
                 if (currentLang !== response.data.language) {
-                    dispatch(changeLanguage(i18n.languages.includes(response.data.language) ? response.data.language : 'en'))
+                    dispatch(changeLanguage(languages.includes(response.data.language) ? response.data.language : 'en'))
                 }
                 if (response.data?.avatar_url) {
                     dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
