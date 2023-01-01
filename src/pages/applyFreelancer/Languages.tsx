@@ -179,14 +179,14 @@ const Languages = (props: any) => {
                                             }
                                         })
                                     }}
-                                    style={{ float: "right" }}
+                                    style={{ float: "right", marginLeft: 10 }}
                                 >
                                     {t('next')}
                                 </Button>
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/education')
+                                        navigate('/apply-freelancer/education', { replace: true })
                                     }}
                                     style={{ float: "right" }}
                                 >

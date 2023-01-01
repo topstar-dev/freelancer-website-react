@@ -203,14 +203,14 @@ const Education = (props: any) => {
                                             }
                                         })
                                     }}
-                                    style={{ float: "right" }}
+                                    style={{ float: "right", marginLeft: 10 }}
                                 >
                                     {t('next')}
                                 </Button>
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/experience')
+                                        navigate('/apply-freelancer/experience', { replace: true })
                                     }}
                                     style={{ float: "right" }}
                                 >

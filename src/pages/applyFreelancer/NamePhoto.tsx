@@ -86,8 +86,6 @@ const NamePhoto = (props: any) => {
                             </Box>
                             <Box className={`rounx-freelancer-footer`}>
                                 <Button
-                                    // disabled={loading}
-                                    // type="submit"
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
                                             const { first_name, last_name } = res;
@@ -106,14 +104,14 @@ const NamePhoto = (props: any) => {
                                             }
                                         })
                                     }}
-                                    style={{ float: "right" }}
+                                    style={{ float: "right", marginLeft: 10 }}
                                 >
                                     {t('next')}
                                 </Button>
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer')
+                                        navigate('/apply-freelancer', { replace: true })
                                     }}
                                     style={{ float: "right" }}
                                 >

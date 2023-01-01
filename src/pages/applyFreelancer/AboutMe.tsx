@@ -209,14 +209,14 @@ const AboutMe = (props: any) => {
                                             // }
                                         })
                                     }}
-                                    style={{ float: "right" }}
+                                    style={{ float: "right", marginLeft: 10 }}
                                 >
                                     {t('submit')}
                                 </Button>
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/languages')
+                                        navigate('/apply-freelancer/languages', { replace: true })
                                     }}
                                     style={{ float: "right" }}
                                 >

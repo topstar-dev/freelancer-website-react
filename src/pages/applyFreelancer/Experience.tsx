@@ -204,14 +204,14 @@ const Experience = (props: any) => {
                                             }
                                         })
                                     }}
-                                    style={{ float: "right" }}
+                                    style={{ float: "right", marginLeft: 10 }}
                                 >
                                     {t('next')}
                                 </Button>
                                 <Button
                                     variant="text"
                                     onClick={() => {
-                                        navigate('/apply-freelancer/info')
+                                        navigate('/apply-freelancer/info', { replace: true })
                                     }}
                                     style={{ float: "right" }}
                                 >
