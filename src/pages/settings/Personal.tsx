@@ -19,7 +19,7 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { getLanguageList } from "../../redux/resources/resourcesActions";
 
 export default function Personal() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const { personal, loading } = useAppSelector(state => state.settings)
@@ -72,9 +72,10 @@ export default function Personal() {
             if (language_code !== personal.language_code) {
                 langUpdate = true;
             }
+
             dispatch(personalSettingsUpdate({ birthday: dayjs(birthday).format('YYYY-MM-DD'), language_code, gender })).then((res) => {
                 if (langUpdate) {
-                    dispatch(changeLanguage(language_code))
+                    dispatch(changeLanguage(language_code && i18n.languages.includes(language_code) ? language_code : 'en'))
                 }
                 setCalled(false)
                 enqueueSnackbar(res.payload.message);
