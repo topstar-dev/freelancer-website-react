@@ -1,4 +1,5 @@
 import { Box } from '@mui/system';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
@@ -19,6 +20,10 @@ const ApplicationStatus = (props: any) => {
             return <PassedApplication />
         }
     }
+
+    useEffect(() => {
+        document.title = t('freelancer.title');
+    })
 
     return (
         <Box>

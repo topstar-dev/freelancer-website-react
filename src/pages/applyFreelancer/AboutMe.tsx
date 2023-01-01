@@ -35,6 +35,10 @@ const AboutMe = (props: any) => {
     });
 
     useEffect(() => {
+        document.title = t('freelancer.about.title');
+    })
+
+    useEffect(() => {
         if (!called) {
             setCalled(true)
             setLoading(true);

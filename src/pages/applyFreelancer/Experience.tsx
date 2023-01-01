@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
@@ -28,6 +28,10 @@ const Experience = (props: any) => {
             description: '',
         }]
     });
+
+    useEffect(() => {
+        document.title = t('freelancer.experience.title');
+    })
 
     return (
         <Box>

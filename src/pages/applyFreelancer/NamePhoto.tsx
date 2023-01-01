@@ -9,7 +9,7 @@ import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import { Formik } from 'formik';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
@@ -20,6 +20,10 @@ const NamePhoto = (props: any) => {
         first_name: freelancerApplicationInfo.first_name || "",
         last_name: freelancerApplicationInfo.last_name || ""
     });
+
+    useEffect(() => {
+        document.title = t('freelancer.info.title');
+    })
 
     return (
         <Box>

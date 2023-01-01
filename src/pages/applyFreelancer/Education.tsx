@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
@@ -28,6 +28,10 @@ const Education = (props: any) => {
             description: '',
         }]
     });
+
+    useEffect(() => {
+        document.title = t('freelancer.education.title');
+    })
 
     return (
         <Box>

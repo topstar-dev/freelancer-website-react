@@ -34,6 +34,10 @@ const Languages = (props: any) => {
     });
 
     useEffect(() => {
+        document.title = t('freelancer.languages.title');
+    })
+
+    useEffect(() => {
         if (!called) {
             setCalled(true)
             setLoading(true);
