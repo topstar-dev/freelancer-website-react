@@ -116,7 +116,7 @@ const Skills = (props: any) => {
                                             label={t('freelancer.skills.skills')}
                                             labelId="freelancer-skills-select-label"
                                             name='skills'
-                                            value={skillsList.length > 0 ? 'select-skill' : ''}
+                                            value={skillsList.length > 0 ? formik.values.skills[0] : ''}
                                             onChange={(e) => {
                                                 let isExist = formik.values.skills.findIndex((s: any) => e.target.value === s.skill_id)
                                                 if (isExist === -1) {
@@ -124,7 +124,6 @@ const Skills = (props: any) => {
                                                 }
                                             }}
                                         >
-                                            <MenuItem value={'select-skill'}>Select skills</MenuItem>
                                             {skillsList.map((skill: any) => (
                                                 <MenuItem key={skill.skill_id} value={skill.skill_id}>{skill.skill_name}</MenuItem>
                                             ))}
