@@ -18,6 +18,10 @@
     padding: 16px 24px;
 }
 
+.text-centered {
+    text-align: center;
+}
+
 .heading-flex {
     display: flex;
     justify-content: space-between;

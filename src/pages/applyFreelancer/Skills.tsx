@@ -9,8 +9,6 @@ import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
 import { useAppDispatch } from '../../redux/hooks';
-import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
-import { useSnackbar } from 'notistack';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import { FieldArray, Formik } from 'formik';
 import { getSkillsList } from '../../redux/occupationSkills/occupationSkillsActions';
@@ -19,7 +17,6 @@ const Skills = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { enqueueSnackbar } = useSnackbar();
     const [called, setCalled] = useState(false);
     const [loading, setLoading] = useState(true);
     const [skillsList, setSkillsList] = useState([]);
@@ -49,21 +46,11 @@ const Skills = (props: any) => {
     useEffect(() => {
         if (!called) {
             setCalled(true);
-            dispatch(getFreelancerApplicationAction()).then((res) => {
-                if (res.payload && res.payload.success) {
-                    if (freelancerSkills.occupation_category) {
-                        getSkills(freelancerSkills.occupation_category)
-                    }
-                }
-            }).catch((err) => {
-                if (err) {
-                    enqueueSnackbar(err && err.payload.message)
-                }
-            }).finally(() => {
-                setLoading(false);
-            })
+            if (freelancerSkills.occupation_category) {
+                getSkills(freelancerSkills.occupation_category)
+            }
         }
-    }, [dispatch, enqueueSnackbar, called, loading, freelancerSkills.occupation_category, getSkills])
+    }, [called, freelancerSkills.occupation_category, getSkills])
 
     let pushMethod: any = () => { };
     const getSkillLabel = (id: number) => {

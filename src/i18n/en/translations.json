@@ -172,6 +172,17 @@
             "country": "Country / Region",
             "province": "Province / Autonomous region / Municipality",
             "city": "City / Area"
+        },
+        "status": {
+            "applying-title": "Application submitted",
+            "applying-message": "Thank you for taking the time to fill out the application form, we will get back to you within 1–3 working days. If approved, you will",
+            "applying-button": "Completed",
+            "failed-title": "Application not approved",
+            "failed-message": "Your current profile has not been approved yet, reason: {{message}}, please modify your profile and resubmit, thank you for your understanding and support.",
+            "failed-button": "Resubmit",
+            "passed-title": "Application passed",
+            "passed-message": "Passed",
+            "passed-button": "Completed"
         }
     },
     "contact-us": {

@@ -36,6 +36,7 @@ import Security from "../pages/settings/Security";
 import Currency from "../pages/settings/Currency";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n/i18nextConf";
+import ApplicationStatus from "../pages/applyFreelancer/applicationStatus";
 
 export default function Router() {
   const { i18n } = useTranslation();
@@ -109,6 +110,10 @@ export default function Router() {
           {
             path: `${baseUrl}/apply-freelancer`,
             element: <Skills />
+          },
+          {
+            path: `${baseUrl}/apply-freelancer/status`,
+            element: <ApplicationStatus />
           },
           {
             path: `${baseUrl}/apply-freelancer/info`,

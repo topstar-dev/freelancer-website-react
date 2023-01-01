@@ -172,6 +172,17 @@
             "country": "国家/地区",
             "province": "省/自治区/直辖市",
             "city": "城市/区"
+        },
+        "status": {
+            "applying-title": "申请已提交",
+            "applying-message": "感谢您抽出宝贵时间填写申请表，我们会在1-3个工作日内回复您。如果获得批准，您将能够立刻开始工作。",
+            "applying-button": "完成",
+            "failed-title": "申请未获批准",
+            "failed-message": "您当前的个人资料尚未通过审核，原因：{{message}}，请修改您的个人资料并重新提交，感谢您的理解与支持。",
+            "failed-button": "重新提交",
+            "passed-title": "Application passed",
+            "passed-message": "Passed",
+            "passed-button": "Completed"
         }
     },
     "contact-us": {
