@@ -1,3 +1,11 @@
+.rounx-setting-menu .MuiPaper-root {
+    margin-left: 40px !important;
+}
+
+.rounx-personal-select-menu .MuiPaper-root {
+    margin-left: 19.5px !important;
+}
+
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
     color: #757575 !important;
     position: relative;

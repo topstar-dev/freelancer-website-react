@@ -307,6 +307,9 @@ export default function Personal() {
                     <Select
                         fullWidth
                         labelId="personal-gender"
+                        MenuProps={{
+                            className: 'rounx-personal-select-menu'
+                        }}
                         label={t('user-personal-account-gender')}
                         value={personalData?.gender ? personalData?.gender : ''}
                         onChange={(e) => {
@@ -335,6 +338,9 @@ export default function Personal() {
                             fullWidth
                             labelId="personal-language"
                             label={t('user-personal-account-language')}
+                            MenuProps={{
+                                className: 'rounx-personal-select-menu'
+                            }}
                             value={personalData?.language_code ? personalData?.language_code : ''}
                             onChange={(e) => {
                                 changeData(e, "language_code")
