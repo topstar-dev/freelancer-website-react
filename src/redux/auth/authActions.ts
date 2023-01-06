@@ -4,7 +4,7 @@ import { removeTokens, setTokens } from "../account/accountApi";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar } from "../other/otherSlice";
 import { changeLanguage } from "../resources/resourcesSlice";
-import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword } from "./authApi";
+import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword, accountInfo } from "./authApi";
 export interface SignUpInterface {
     user_type: 'CLIENT' | 'FREELANCER';
     first_name: string;
@@ -35,6 +35,18 @@ export interface ResetPasswordInterface {
     code: string,
     password: string
 }
+
+export const getAccountInfo = createAsyncThunk(
+    'user/signup',
+    async (params: any, { rejectWithValue }) => {
+        try {
+            const response = await accountInfo(params);
+            return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
 
 export const signUpUser = createAsyncThunk(
     'user/signup',

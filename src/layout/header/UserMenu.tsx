@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Backdrop, CircularProgress, Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { UserInterface } from '../../redux/auth/authSlice';
+import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { signOutUser } from '../../redux/auth/authActions';
+import { getAccountInfo, signOutUser } from '../../redux/auth/authActions';
 import { imageDownload } from '../../redux/other/otherActions';
 import { useNavigate } from '../../routes/Router';
 import useBreakpoint from '../../components/breakpoints/BreakpointProvider';
 import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useSnackbar } from 'notistack';
 import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
+import { clearAvatar } from '../../redux/other/otherSlice';
+import { setTokens } from '../../redux/account/accountApi';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
 }
 
+let source = axios.CancelToken.source();
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -26,13 +30,29 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     const [backdrop, setBackdrop] = React.useState(false);
     const { userAvatar, loading } = useAppSelector(state => state.other);
 
+
     useEffect(() => {
+        source = axios.CancelToken.source();
         if (userInfo && userInfo.avatar_url && !userAvatar && !loading) {
             dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo.avatar_url }))
         }
     }, [dispatch, userInfo, userAvatar, loading])
 
     const handleMenu = (event: any) => {
+        dispatch(getAccountInfo(source.token)).then((res: any) => {
+            if (res.payload && res.payload.success && userInfo) {
+                const newUserData = { ...userInfo, ...res.payload.data };
+                dispatch(updateUserInfo({ ...userInfo, ...res.payload.data }))
+                setTokens(newUserData);
+                if (userInfo.avatar_url !== newUserData.avatar_url) {
+                    dispatch(clearAvatar());
+                }
+            }
+        }).catch(err => {
+            if (err) {
+                enqueueSnackbar(err && err.payload.message)
+            }
+        })
         setAnchorEl(event.currentTarget);
     };
 
@@ -41,6 +61,9 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     };
 
     const signOutMethod = () => {
+        if (source) {
+            source.cancel();
+        }
         dispatch(signOutUser());
     }
 

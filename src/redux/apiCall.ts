@@ -44,15 +44,18 @@ const commonHeaders = (options: any, authRequired: boolean = false) => {
     return headers;
 }
 
-export const apiCall = async (url: string, options: RequestInit, authRequired = false) => {
+export const apiCall = async (url: string, options: RequestInit, authRequired = false, cancelToken = null) => {
     try {
-        const requestOptions = {
+        let requestOptions: any = {
             method: options.method,
             data: options.body,
             url: `${url} `,
             headers: {
                 ...commonHeaders(options, authRequired)
             }
+        }
+        if (cancelToken) {
+            requestOptions = { ...requestOptions, cancelToken }
         }
         const response = await service(requestOptions);
 

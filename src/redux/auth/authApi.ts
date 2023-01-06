@@ -1,6 +1,13 @@
 import { apiCall } from "../apiCall";
 import { CheckEmailCodeInterface, ResetPasswordInterface, SendEmailCodeInterface, SignInInterface, SignUpInterface } from "./authActions";
 
+export const accountInfo = (cancelToken: any) => {
+    const requestOptions: RequestInit = {
+        method: 'GET'
+    };
+    return apiCall(`/user/v1/account-info`, requestOptions, true, cancelToken);
+};
+
 export const signUp = (signUpData: SignUpInterface) => {
     const requestOptions: RequestInit = {
         method: 'POST',
