@@ -14,6 +14,8 @@ import { useSnackbar } from 'notistack';
 import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
 import { clearAvatar } from '../../redux/other/otherSlice';
 import { setTokens } from '../../redux/account/accountApi';
+import { changeLanguage } from '../../redux/resources/resourcesSlice';
+import { languages } from '../../i18n/i18nextConf';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -44,6 +46,10 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 const newUserData = { ...userInfo, ...res.payload.data };
                 dispatch(updateUserInfo({ ...userInfo, ...res.payload.data }))
                 setTokens(newUserData);
+                const currentLang = `${localStorage.getItem('i18nextLng')}`;
+                if (currentLang !== res.payload.data.language) {
+                    dispatch(changeLanguage(languages.includes(res.payload.data.language) ? res.payload.data.language : 'en'))
+                }
                 if (userInfo.avatar_url !== newUserData.avatar_url) {
                     dispatch(clearAvatar());
                 }
