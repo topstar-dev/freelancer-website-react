@@ -33,8 +33,8 @@ const NamePhoto = (props: any) => {
             <Box className="info-banner">
                 {t('freelancer.info.banner')}
             </Box>
-            <Card className={`rounx-freelancer-card`}>
-                <Box className={`rounx-freelancer-heading`}>
+            <Card className={`freelancer-card`}>
+                <Box className={`freelancer-heading`}>
                     <Box className='heading-title'>{t('freelancer.info.title')}</Box>
                     <Box className='heading-steps'>{t('freelancer.info.subtitle')}</Box>
                 </Box>
@@ -54,7 +54,7 @@ const NamePhoto = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
-                            <Box className={`rounx-freelancer-body`}>
+                            <Box className={`freelancer-body`}>
                                 <Box className="profile-photo-container">
                                     <Box className="profile-bg"></Box>
                                     <Box className="round-profile-photo"></Box>
@@ -84,7 +84,7 @@ const NamePhoto = (props: any) => {
                                     />
                                 </Form>
                             </Box>
-                            <Box className={`rounx-freelancer-footer`}>
+                            <Box className={`freelancer-footer`}>
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {

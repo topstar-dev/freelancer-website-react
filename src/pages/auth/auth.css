@@ -1,11 +1,11 @@
-.rounx-auth-card {
+.auth-card {
     margin: 80px auto 0 auto !important;
     width: 100% !important;
     max-width: 550px !important;
     transition: width 0.5s;
 }
 
-.rounx-account-title-info {
+.account-title-info {
     font-size: 20px !important;
     text-align: center !important;
     margin-top: -5px !important;

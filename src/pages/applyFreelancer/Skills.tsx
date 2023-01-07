@@ -64,8 +64,8 @@ const Skills = (props: any) => {
     return (
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
-            <Card className={`rounx-freelancer-card`}>
-                <Box className={`rounx-freelancer-heading`}>
+            <Card className={`freelancer-card`}>
+                <Box className={`freelancer-heading`}>
                     <Box className='heading-title'>{t('freelancer.skills.title')}</Box>
                     <Box className='heading-steps'>{t('freelancer.skills.subtitle')}</Box>
                 </Box>
@@ -87,7 +87,7 @@ const Skills = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
-                            <Box className={`rounx-freelancer-body`}>
+                            <Box className={`freelancer-body`}>
                                 <Form className="freelancer-card-spacing">
                                     <FormControl error={formik.touched.occupation_category && Boolean(formik.errors.occupation_category)} fullWidth>
                                         <InputLabel id="freelancer-occupation-select-label">{t('freelancer.skills.occupation')}</InputLabel>
@@ -157,7 +157,7 @@ const Skills = (props: any) => {
                                     </Box>
                                 </Box>}
                             </Box>
-                            <Box className={`rounx-freelancer-footer`}>
+                            <Box className={`freelancer-footer`}>
                                 <Button
                                     disabled={loading}
                                     onClick={() => {

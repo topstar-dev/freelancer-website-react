@@ -17,11 +17,11 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
     const navigate = useNavigate();
 
     return (
-        <Box className='rounx-web-header'>
-            <Box className='rounx-appbar-section'>
+        <Box className='web-header'>
+            <Box className='appbar-section'>
                 <Box>
                     <img
-                        className='rounx-logo'
+                        className='logo'
                         src="/images/rounx-logo.png"
                         alt="Rounx admin"
                         width="146px"
@@ -29,13 +29,13 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                         onClick={() => setSelectedPage("/")}
                     />
                 </Box>
-                <Box className='rounx-nav-item-group'>
+                <Box className='nav-item-group'>
                     {pages.map((page) => (
                         <div
                             className={returnUrlByLang(page.url).includes(selectedPage) ?
-                                'rounx-nav-item menu-item-selected'
+                                'nav-item menu-item-selected'
                                 :
-                                'rounx-nav-item'
+                                'nav-item'
                             }
                             key={page.name}
                             onClick={() => setSelectedPage(`${page.url}`)}
@@ -45,20 +45,20 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                     ))}
                 </Box>
             </Box>
-            <Box className='rounx-tools-section'>
+            <Box className='tools-section'>
                 <TextField
-                    className='rounx-search-bar'
+                    className='search-bar'
                     variant='outlined'
                     placeholder={t('header-search-freelancers')}
                     InputProps={{
-                        className: 'rounx-search-input',
+                        className: 'search-input',
                         startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>
                     }}
                 />
                 {userMenu ?
                     userMenu
                     :
-                    <Button variant="outlined" className="rounx-no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
+                    <Button variant="outlined" className="no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
                 }
             </Box>
         </Box >

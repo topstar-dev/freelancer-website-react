@@ -36,8 +36,8 @@ const Education = (props: any) => {
     return (
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
-            <Card className={`rounx-freelancer-card`}>
-                <Box className={`rounx-freelancer-heading  heading-flex`}>
+            <Card className={`freelancer-card`}>
+                <Box className={`freelancer-heading  heading-flex`}>
                     <Box>
                         <Box className='heading-title'>{t('freelancer.education.title')}</Box>
                         <Box className='heading-steps'>{t('freelancer.education.subtitle')}</Box>
@@ -75,7 +75,7 @@ const Education = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
-                            <Box className={`rounx-freelancer-body`}>
+                            <Box className={`freelancer-body`}>
                                 <FieldArray name="educations">
                                     {({ unshift, remove }) => (
                                         formik.values.educations.map((exp: any, index: number) => {
@@ -183,7 +183,7 @@ const Education = (props: any) => {
                                     )}
                                 </FieldArray>
                             </Box>
-                            <Box className={`rounx-freelancer-footer`}>
+                            <Box className={`freelancer-footer`}>
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {

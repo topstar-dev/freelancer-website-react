@@ -76,7 +76,7 @@ export default function Header() {
         }
     }
     return (
-        <Box className="rounx-header-wrapper">
+        <Box className="header-wrapper">
             {isMobile ?
                 <MobileHeader {...propsToPass} />
                 :

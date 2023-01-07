@@ -1,4 +1,4 @@
-.rounx-header-wrapper {
+.header-wrapper {
     position: sticky;
     top: 0;
     background-color: #fff;
@@ -6,7 +6,7 @@
     width: 100%;
 }
 
-.rounx-web-header {
+.web-header {
     height: 72px;
     display: flex;
     padding: 16px 24px;
@@ -14,20 +14,20 @@
     border-bottom: 1px solid #cccccc;
 }
 
-.rounx-appbar-section {
+.appbar-section {
     display: flex;
 }
 
-.rounx-logo {
+.logo {
     cursor: pointer;
     margin-right: 20px;
 }
 
-.rounx-nav-item-group {
+.nav-item-group {
     display: flex;
 }
 
-.rounx-nav-item {
+.nav-item {
     color: #757575;
     font-size: 16px;
     margin: auto 20px auto 20px;
@@ -37,37 +37,37 @@
     color: var(--color-primary) !important;
 }
 
-.rounx-nav-item:hover {
+.nav-item:hover {
     color: var(--color-primary);
     cursor: pointer;
 }
 
-.rounx-tools-section {
+.tools-section {
     display: flex;
 }
 
-.rounx-tools-section .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+.tools-section .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
     border-color: rgb(0 0 0 / 15%);
 }
 
-.rounx-search-bar {
+.search-bar {
     height: 40px;
 }
 
-.rounx-search-input {
+.search-input {
     height: 40px !important;
     font-size: 14px !important;
     border-radius: 20px !important;
 }
 
-.rounx-signin-handle {
+.signin-handle {
     margin-left: 16px !important;
     height: 40px !important;
     width: 40px !important;
     float: right;
 }
 
-.rounx-signin-handle-child {
+.signin-handle-child {
     cursor: pointer;
     height: 40px !important;
     width: 40px !important;
@@ -75,7 +75,7 @@
     border-radius: 100%;
 }
 
-.rounx-no-signin-handle {
+.no-signin-handle {
     cursor: pointer;
     margin-left: 16px !important;
     height: 40px !important;
@@ -83,7 +83,7 @@
 }
 
 /* mobile css */
-.rounx-mobile-header {
+.mobile-header {
     height: 73px;
     display: flex;
     padding: 16px 24px;
@@ -91,30 +91,30 @@
     border-bottom: 1px solid #cccccc;
 }
 
-.rounx-mobile-header>div {
+.mobile-header>div {
     width: 33.33%;
 }
 
-.rounx-mobile-header>div:nth-child(2) {
+.mobile-header>div:nth-child(2) {
     text-align: center;
 }
 
-.rounx-mobile-header>div:nth-child(3) {
+.mobile-header>div:nth-child(3) {
     text-align: right;
 }
 
-.rounx-mobile-burger {
+.mobile-burger {
     cursor: pointer;
     color: #757575;
     font-size: 32px !important;
     margin-top: 5px;
 }
 
-.rounx-mobile-header .rounx-logo {
+.mobile-header .logo {
     margin-right: unset;
 }
 
-.rounx-floating-menu {
+.floating-menu {
     height: 100%;
     position: fixed;
     z-index: 1;
@@ -122,22 +122,22 @@
     background: #fff;
 }
 
-.rounx-search-container {
+.search-container {
     padding: 24px;
     border-bottom: 1px solid #cccccc;
 }
 
-.rounx-mobile-menu-list {
+.mobile-menu-list {
     font-size: 16px;
     padding: 0 !important;
 }
 
-.rounx-mobile-menu-item {
+.mobile-menu-item {
     padding: 24px !important;
 }
 
 /* usermenu */
-.rounx-user-menu-list .MuiPaper-root {
+.user-menu-list .MuiPaper-root {
     padding: 0 !important;
     border-radius: 7px;
     top: 78px !important;
@@ -147,30 +147,30 @@
     max-height: 285px !important;
 }
 
-.rounx-user-menu-list.rounx-user-menu-list-mobile .MuiPaper-root {
+.user-menu-list.user-menu-list-mobile .MuiPaper-root {
     top: 79px !important;
 }
 
-.rounx-user-menu-list .MuiList-root {
+.user-menu-list .MuiList-root {
     padding: 0 !important;
     width: 100% !important;
 }
 
-.rounx-user-menu-items {
+.user-menu-items {
     padding: 15px 24px !important;
 }
 
-.rounx-user-menu-info {
+.user-menu-info {
     text-align: center;
     padding: 10px;
 }
 
-.rounx-user-menu-info .user-name {
+.user-menu-info .user-name {
     color: #000;
     margin-bottom: 3px;
 }
 
-.rounx-user-menu-info .user-email {
+.user-menu-info .user-email {
     color: #757575;
     font-size: 15px;
 }

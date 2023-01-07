@@ -65,7 +65,7 @@ export default function SignIn() {
   }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
   return (
-    <Card className={`rounx-auth-card`}>
+    <Card className={`auth-card`}>
       <Formik
         initialValues={
           {
@@ -96,7 +96,7 @@ export default function SignIn() {
                 height="60px"
                 style={{ alignSelf: "center" }}
               />
-              <Typography className="rounx-account-title-info">
+              <Typography className="account-title-info">
                 {t('signin-title')}
               </Typography>
               <TextField

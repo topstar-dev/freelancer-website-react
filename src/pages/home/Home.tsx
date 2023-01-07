@@ -35,10 +35,10 @@ export default function HomePage() {
 
     return (
         <>
-            <Box className={`rounx-home-first-section ${isMobile ? 'rounx-home-first-section-mobile' : ''}`}>
-                <Box className="rounx-home-first-left">
+            <Box className={`home-first-section ${isMobile ? 'home-first-section-mobile' : ''}`}>
+                <Box className="home-first-left">
                     <Box>
-                        <Typography className="rounx-home-section-title">
+                        <Typography className="home-section-title">
                             {t('home-page-heading1')}
                             <MediaQuery maxWidth={514}>
                                 <br />
@@ -48,31 +48,31 @@ export default function HomePage() {
                             </MediaQuery>
                             {t('home-page-heading2')}
                         </Typography>
-                        <div className="rounx-home-section-details">
-                            <Typography className="rounx-home-section-info2" style={{ marginBottom: '24px' }}>
+                        <div className="home-section-details">
+                            <Typography className="home-section-info2" style={{ marginBottom: '24px' }}>
                                 {t('home-page-heading1-details')}
                             </Typography>
-                            <Typography className="rounx-home-section-info2">
+                            <Typography className="home-section-info2">
                                 {t('home-page-heading1-details2')}
                             </Typography>
                         </div>
                         {!userInfo && <Button onClick={() => navigate(`/sign-in`)}>{t('home-page-join-ronux-button')}</Button>}
                     </Box>
                 </Box>
-                <Box className="rounx-home-first-right">
+                <Box className="home-first-right">
                     <img
                         alt="Skills"
-                        className="rounx-home-first-image"
+                        className="home-first-image"
                         src="/images/skills.png" />
                 </Box>
             </Box>
             <Divider style={{ margin: '96px 0' }} />
             <Box>
-                <Typography className="rounx-home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
+                <Typography className="home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
                     {t('home-page-why-ronux')}
                 </Typography>
-                <Box className={`rounx-home-second-section ${isMobile ? 'rounx-home-second-section-mobile' : ''}`}>
-                    <Box className="rounx-home-second-box">
+                <Box className={`home-second-section ${isMobile ? 'home-second-section-mobile' : ''}`}>
+                    <Box className="home-second-box">
                         <Box>
                             <img alt="Verified User" width='70px' src="/images/verified-user-icon.png" />
                             <br />
@@ -83,7 +83,7 @@ export default function HomePage() {
                             <br />
                         </Box>
                     </Box>
-                    <Box className="rounx-home-second-box" style={{ margin: '0 3%' }}>
+                    <Box className="home-second-box" style={{ margin: '0 3%' }}>
                         <Box>
                             <img alt="Public Icon" width='70px' src="/images/public-icon.png" />
                             <br />
@@ -94,7 +94,7 @@ export default function HomePage() {
                             <br />
                         </Box>
                     </Box>
-                    <Box className="rounx-home-second-box">
+                    <Box className="home-second-box">
                         <Box>
                             <img alt="Code Icon" width='70px' src="/images/code-icon.png" />
                             <br />
@@ -108,8 +108,8 @@ export default function HomePage() {
                 </Box>
             </Box>
             <Divider style={{ margin: '96px 0' }} />
-            <Box className="rounx-home-third-section" style={{ marginBottom: '95px' }}>
-                <Box className="rounx-home-third-left">
+            <Box className="home-third-section" style={{ marginBottom: '95px' }}>
+                <Box className="home-third-left">
                     {false ?
                         <Box>
                             <Box>
@@ -184,7 +184,7 @@ export default function HomePage() {
                                     )}
                                 </Formik>
                                 :
-                                <img className="rounx-qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
+                                <img className="qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
                             }
                             <Backdrop
                                 sx={{ color: '#fff', zIndex: 999 }}
@@ -195,7 +195,7 @@ export default function HomePage() {
                         </Box>
                     }
                 </Box>
-                <Box className="rounx-home-third-right">
+                <Box className="home-third-right">
                     <EmblaCarousel mediaByIndex={[
                         "/images/screenshot-1.png",
                         "/images/screenshot-2.png"

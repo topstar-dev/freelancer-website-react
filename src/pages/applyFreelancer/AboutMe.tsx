@@ -56,8 +56,8 @@ const AboutMe = (props: any) => {
     return (
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
-            <Card className={`rounx-freelancer-card`}>
-                <Box className={`rounx-freelancer-heading`}>
+            <Card className={`freelancer-card`}>
+                <Box className={`freelancer-heading`}>
                     <Box className='heading-title'>{t('freelancer.about.title')}</Box>
                     <Box className='heading-steps'>{t('freelancer.about.subtitle')}</Box>
                 </Box>
@@ -82,7 +82,7 @@ const AboutMe = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
-                            <Box className={`rounx-freelancer-body`}>
+                            <Box className={`freelancer-body`}>
                                 <Box className="freelancer-card-spacing">
                                     <TextField
                                         multiline={true}
@@ -173,7 +173,7 @@ const AboutMe = (props: any) => {
                                     </Form>
                                 </Box>
                             </Box>
-                            <Box className={`rounx-freelancer-footer`}>
+                            <Box className={`freelancer-footer`}>
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {

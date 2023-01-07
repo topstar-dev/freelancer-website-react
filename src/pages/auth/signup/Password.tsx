@@ -42,7 +42,7 @@ export default function Password(mainProps: any) {
     })
 
     return (
-        <Card className={`rounx-auth-card`}>
+        <Card className={`auth-card`}>
             <Formik
                 enableReinitialize
                 initialValues={formData}
@@ -71,7 +71,7 @@ export default function Password(mainProps: any) {
                                 height="60px"
                                 style={{ alignSelf: "center" }}
                             />
-                            <Typography className="rounx-account-title-info">
+                            <Typography className="account-title-info">
                                 {t('signup-password-title')}
                             </Typography>
                             <TextField

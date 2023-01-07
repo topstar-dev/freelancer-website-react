@@ -310,7 +310,7 @@ export default function Personal() {
                         fullWidth
                         labelId="personal-gender"
                         MenuProps={{
-                            className: isMobile ? 'rounx-personal-select-menu rounx-personal-select-menu-mobile' : 'rounx-personal-select-menu'
+                            className: isMobile ? 'personal-select-menu personal-select-menu-mobile' : 'personal-select-menu'
                         }}
                         label={t('user-personal-account-gender')}
                         value={personalData?.gender ? personalData?.gender : ''}
@@ -341,7 +341,7 @@ export default function Personal() {
                             labelId="personal-language"
                             label={t('user-personal-account-language')}
                             MenuProps={{
-                                className: isMobile ? 'rounx-personal-select-menu rounx-personal-select-menu-mobile' : 'rounx-personal-select-menu'
+                                className: isMobile ? 'personal-select-menu personal-select-menu-mobile' : 'personal-select-menu'
                             }}
                             value={personalData?.language_code ? personalData?.language_code : ''}
                             onChange={(e) => {

@@ -36,7 +36,7 @@ export default function ContactUs() {
       <br />
       <br />
 
-      <Box className="rounx-contact-us">
+      <Box className="contact-us">
         <Box>
           <Box>
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.name')}</Typography>

@@ -85,7 +85,7 @@ export default function Info(mainProps: any) {
   }, [countryData, load, formData, country, signupInfo.country_id])
 
   return (
-    <Card className={`rounx-auth-card`}>
+    <Card className={`auth-card`}>
       <Formik
         initialValues={formData}
         validationSchema={yup.object({
@@ -116,7 +116,7 @@ export default function Info(mainProps: any) {
                 height="60px"
                 style={{ alignSelf: "center" }}
               />
-              <Typography className="rounx-account-title-info">
+              <Typography className="account-title-info">
                 {t('signup-title')}
               </Typography>
               <Box sx={{ display: 'flex', gap: '24px', flexDirection: language === 'en' ? 'row' : 'row-reverse' }} >

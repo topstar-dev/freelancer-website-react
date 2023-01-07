@@ -44,8 +44,8 @@ const FailedApplication = () => {
     const { userInfo } = useAppSelector(state => state.auth);
 
     return (
-        <Card className={`rounx-freelancer-card text-centered freelancer-card-spacing`}>
-            <Box className={`rounx-freelancer-heading`}>
+        <Card className={`freelancer-card text-centered freelancer-card-spacing`}>
+            <Box className={`freelancer-heading`}>
                 <Box className='heading-title' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-title')}</Box>
                 <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-message', { message: '' })}</Box>
             </Box>
@@ -67,8 +67,8 @@ const ApplyingApplication = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     return (
-        <Card className={`rounx-freelancer-card text-centered freelancer-card-spacing`}>
-            <Box className={`rounx-freelancer-heading`}>
+        <Card className={`freelancer-card text-centered freelancer-card-spacing`}>
+            <Box className={`freelancer-heading`}>
                 <Box className='heading-title' style={{ marginBottom: 24 }}>{t('freelancer.status.applying-title')}</Box>
                 <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.applying-message')}</Box>
             </Box>
@@ -81,8 +81,8 @@ const PassedApplication = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     return (
-        <Card className={`rounx-freelancer-card text-centered freelancer-card-spacing`}>
-            <Box className={`rounx-freelancer-heading`}>
+        <Card className={`freelancer-card text-centered freelancer-card-spacing`}>
+            <Box className={`freelancer-heading`}>
                 <Box className='heading-title' style={{ marginBottom: 24 }}>{t('freelancer.status.passed-title')}</Box>
                 <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.passed-message')}</Box>
             </Box>

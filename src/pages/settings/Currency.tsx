@@ -56,7 +56,7 @@ export default function Currency() {
                         labelId="personal-currency"
                         label={t('user-settings-currency')}
                         MenuProps={{
-                            className: isMobile ? 'rounx-personal-select-menu rounx-personal-select-menu-mobile' : 'rounx-personal-select-menu'
+                            className: isMobile ? 'personal-select-menu personal-select-menu-mobile' : 'personal-select-menu'
                         }}
                         value={selectedValue?.currency_code || selectedCurrency?.currency_code || ''}
                         onChange={(e) => {

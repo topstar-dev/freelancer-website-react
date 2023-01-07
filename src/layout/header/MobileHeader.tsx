@@ -16,23 +16,23 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
 
     return (
         <>
-            <Box className='rounx-mobile-header'>
+            <Box className='mobile-header'>
                 <Box>
                     {menuOpen ?
                         <CloseIcon
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="rounx-mobile-burger"
+                            className="mobile-burger"
                         />
                         :
                         <MenuIcon
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="rounx-mobile-burger"
+                            className="mobile-burger"
                         />
                     }
                 </Box>
                 <Box>
                     <img
-                        className='rounx-logo'
+                        className='logo'
                         src="/images/rounx-symbol.png"
                         alt="Rounx user"
                         width="40px"
@@ -52,29 +52,29 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         </div>
                         :
                         <div>
-                            <Button variant="text" color="primary" className="rounx-no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
+                            <Button variant="text" color="primary" className="no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
                         </div>
                 }
             </Box>
             {menuOpen &&
-                <Box className='rounx-floating-menu'>
-                    <Box className='rounx-search-container'>
+                <Box className='floating-menu'>
+                    <Box className='search-container'>
                         <TextField
                             fullWidth
                             variant='outlined'
-                            className='rounx-search-bar'
+                            className='search-bar'
                             placeholder={t('header-search-freelancers')}
-                            InputProps={{ className: 'rounx-search-input', startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> }}
+                            InputProps={{ className: 'search-input', startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> }}
                         />
                     </Box>
-                    <List className='rounx-mobile-menu-list'>
+                    <List className='mobile-menu-list'>
                         {pages.map((page) => (
                             <React.Fragment key={page.name}>
                                 <ListItemButton
                                     className={selectedPage === page.url ?
-                                        'rounx-mobile-menu-item menu-item-selected'
+                                        'mobile-menu-item menu-item-selected'
                                         :
-                                        'rounx-mobile-menu-item'
+                                        'mobile-menu-item'
                                     }
                                     onClick={() => {
                                         setMenuOpen(!menuOpen)

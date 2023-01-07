@@ -104,16 +104,16 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
 
     return (
         <>
-            <div className='rounx-signin-handle' onClick={handleMenu}>
+            <div className='signin-handle' onClick={handleMenu}>
                 {userAvatar ?
-                    <img className='rounx-signin-handle-child' src={userAvatar} alt="Rounx user" />
+                    <img className='signin-handle-child' src={userAvatar} alt="Rounx user" />
                     :
-                    <AccountCircle className='rounx-signin-handle-child' />
+                    <AccountCircle className='signin-handle-child' />
                 }
             </div>
             <Menu
                 id="menu-appbar"
-                className={`rounx-user-menu-list ${isMobile ? 'rounx-user-menu-list-mobile' : ''}`}
+                className={`user-menu-list ${isMobile ? 'user-menu-list-mobile' : ''}`}
                 anchorEl={anchorEl}
                 anchorOrigin={{
                     vertical: "bottom",
@@ -127,29 +127,29 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <div className='rounx-user-menu-info'>
+                <div className='user-menu-info'>
                     <div className='user-name'>{userInfo?.name}</div>
                     <div className='user-email'>{userInfo?.email}</div>
                 </div>
                 <Divider />
                 <MenuList sx={{ width: "270px", maxWidth: "100%", padding: 0 }}>
                     {userInfo && userInfo.user_type === 'FREELANCER' ?
-                        <MenuItem className='rounx-user-menu-items' onClick={() => freelancerApplicationClick(`/apply-freelancer`)}>
+                        <MenuItem className='user-menu-items' onClick={() => freelancerApplicationClick(`/apply-freelancer`)}>
                             {t('header-user-submit-freelancer')}
                         </MenuItem>
                         :
                         ('')
                     }
-                    <MenuItem className='rounx-user-menu-items'>
+                    <MenuItem className='user-menu-items'>
                         {t('header-user-profile')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items' onClick={() => {
+                    <MenuItem className='user-menu-items' onClick={() => {
                         setAnchorEl(null);
                         navigate(`/settings/personal`)
                     }}>
                         {t('header-user-settings')}
                     </MenuItem>
-                    <MenuItem className='rounx-user-menu-items' onClick={() => signOutMethod()}>
+                    <MenuItem className='user-menu-items' onClick={() => signOutMethod()}>
                         {t('header-user-signout')}
                     </MenuItem>
                 </MenuList>

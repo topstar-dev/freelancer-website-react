@@ -1,4 +1,4 @@
-.rounx-button {
+.button {
     border-radius: 20px !important;
     text-transform: none !important;
     height: 40px !important;
@@ -10,26 +10,26 @@
     box-shadow: none !important;
 }
 
-.rounx-button.MuiButton-contained:not(.Mui-disabled) {
+.button.MuiButton-contained:not(.Mui-disabled) {
     background-color: var(--color-primary) !important;
     color: #fff !important;
 }
 
-.rounx-button.MuiButton-outlined:not(.Mui-disabled) {
+.button.MuiButton-outlined:not(.Mui-disabled) {
     color: var(--color-primary) !important;
     border-color: #cccccc !important;
 }
 
-.rounx-button.MuiButton-outlined:hover {
+.button.MuiButton-outlined:hover {
     background-color: rgba(51, 110, 239, 0.24) !important;
     color: var(--color-primary) !important;
 }
 
-.rounx-button.MuiButton-text:not(.Mui-disabled) {
+.button.MuiButton-text:not(.Mui-disabled) {
     color: var(--color-primary) !important;
 }
 
-.rounx-button.MuiButton-text:hover {
+.button.MuiButton-text:hover {
     background-color: rgba(51, 110, 239, 0.24) !important;
     color: var(--color-primary) !important;
 }

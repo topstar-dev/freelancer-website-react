@@ -6,7 +6,7 @@ export default function Button({ children, className, variant = 'contained', ...
         <MuiButton
             style={{ width: 'auto' }}
             variant={variant}
-            className={`rounx-button ${className}`}
+            className={`button ${className}`}
             {...rest}
         >
             {children}

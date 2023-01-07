@@ -79,23 +79,23 @@ const LanguageSwitcher = () => {
     }, [i18n, currentPath, language, location.pathname, changeLang]);
 
     return (
-        <FormControl className="rounx-language-box">
+        <FormControl className="language-box">
             <Select
-                id='rounx-language-switcher'
+                id='language-switcher'
                 sx={{ height: 20 }}
-                className="rounx-language-select"
+                className="language-select"
                 labelId="language"
                 value={language}
                 label={t('language')}
                 MenuProps={{
-                    className: `rounx-language-menu ${isMobile ? 'rounx-language-menu-mobile' : ''}`
+                    className: `language-menu ${isMobile ? 'language-menu-mobile' : ''}`
                 }}
                 renderValue={(value) => {
                     return <Box
-                        className="rounx-language-value"
+                        className="language-value"
                         id="language-button"
                     >
-                        <LanguageIcon className="rounx-language-icon" />
+                        <LanguageIcon className="language-icon" />
                         {value === 'en' ? 'English' : '中文'}
                     </Box>
                 }}

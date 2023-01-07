@@ -44,7 +44,7 @@ export default function VerifyCode(mainProps: any) {
   })
 
   return (
-    <Card className={`rounx-auth-card`}>
+    <Card className={`auth-card`}>
       <Formik
         enableReinitialize
         initialValues={formData}
@@ -65,7 +65,7 @@ export default function VerifyCode(mainProps: any) {
                 className='primary-color'
                 style={{ alignSelf: "center" }}
               />
-              <Typography className="rounx-account-title-info">
+              <Typography className="account-title-info">
                 {t('signup-code-title')}
                 <br />
                 <span style={{

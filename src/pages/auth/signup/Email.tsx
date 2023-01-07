@@ -43,7 +43,7 @@ export default function Email(mainProps: any) {
     })
 
     return (
-        <Card className={`rounx-auth-card`}>
+        <Card className={`auth-card`}>
             <Formik
                 enableReinitialize
                 initialValues={formData}
@@ -65,7 +65,7 @@ export default function Email(mainProps: any) {
                                 height="60px"
                                 style={{ alignSelf: "center" }}
                             />
-                            <Typography className="rounx-account-title-info">
+                            <Typography className="account-title-info">
                                 <span>{t("signup-email-header")}</span>
                                 <br />
                                 <span style={{ fontSize: '16px' }}>{t('enter_email')}</span>

@@ -4,7 +4,7 @@
     margin: 24px auto !important;
 }
 
-.rounx-freelancer-card {
+.freelancer-card {
     margin: 0 auto !important;
     width: 100% !important;
     max-width: 550px !important;
@@ -14,7 +14,7 @@
 
 
 /* card heading */
-.rounx-freelancer-heading {
+.freelancer-heading {
     padding: 16px 24px;
 }
 
@@ -39,7 +39,7 @@
 
 
 /* card body style */
-/* .rounx-freelancer-body {
+/* .freelancer-body {
     padding: 24px;
 } */
 
@@ -52,7 +52,7 @@
 }
 
 /* card footer style */
-.rounx-freelancer-footer {
+.freelancer-footer {
     padding: 24px;
     height: 88px;
 }

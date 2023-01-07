@@ -1,11 +1,11 @@
-.rounx-contact-us {
+.contact-us {
     display: flex;
     flex-direction: row;
     gap: 96px;
 }
 
 @media (max-width: 1115px) {
-    .rounx-contact-us {
+    .contact-us {
         flex-direction: column;
         gap: 32px;
     }

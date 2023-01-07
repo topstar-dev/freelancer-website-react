@@ -49,7 +49,7 @@ export default function Settings(props: any) {
     };
 
     return (
-        <Box className="rounx-settings">
+        <Box className="settings">
             <Box>
                 <Typography fontSize='24px'>{t('user-settings')}</Typography>
                 <br />
@@ -69,7 +69,7 @@ export default function Settings(props: any) {
                             value={normalizeUrl(url)}
                             label="Settings"
                             MenuProps={
-                                { className: isMobile ? "rounx-setting-menu rounx-setting-menu-mobile" : "rounx-setting-menu" }
+                                { className: isMobile ? "setting-menu setting-menu-mobile" : "setting-menu" }
                             }
                             labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
@@ -81,26 +81,26 @@ export default function Settings(props: any) {
                     </FormControl>
                     :
                     <Box sx={{ width: '284px' }}>
-                        <List className="rounx-settings-list" sx={{ width: '100%', paddingRight: '20px' }}>
+                        <List className="settings-list" sx={{ width: '100%', paddingRight: '20px' }}>
                             <ListItemButton
                                 selected={returnUrlByLang(url).includes('/settings/personal')}
                                 onClick={() => handleChange('/settings/personal')} >
-                                <img className="rounx-settings-icon" alt="personal" src="/images/account.png" />
-                                <img className="rounx-settings-icon-hover" alt="personal" src="/images/account-hover.png" />
+                                <img className="settings-icon" alt="personal" src="/images/account.png" />
+                                <img className="settings-icon-hover" alt="personal" src="/images/account-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-personal')} />
                             </ListItemButton>
                             <ListItemButton
                                 selected={returnUrlByLang(url).includes('/settings/security')}
                                 onClick={() => handleChange('/settings/security')}>
-                                <img className="rounx-settings-icon" alt="personal" src="/images/security.png" />
-                                <img className="rounx-settings-icon-hover" alt="personal" src="/images/security-hover.png" />
+                                <img className="settings-icon" alt="personal" src="/images/security.png" />
+                                <img className="settings-icon-hover" alt="personal" src="/images/security-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
                             <ListItemButton
                                 selected={returnUrlByLang(url).includes('/settings/currency')}
                                 onClick={() => handleChange('/settings/currency')}>
-                                <img className="rounx-settings-icon" alt="personal" src="/images/currency.png" />
-                                <img className="rounx-settings-icon-hover" alt="personal" src="/images/currency-hover.png" />
+                                <img className="settings-icon" alt="personal" src="/images/currency.png" />
+                                <img className="settings-icon-hover" alt="personal" src="/images/currency-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-currency')} />
                             </ListItemButton>
                         </List>
