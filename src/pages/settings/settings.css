@@ -1,9 +1,11 @@
-.rounx-setting-menu .MuiPaper-root {
-    margin-left: 40px !important;
+.rounx-setting-menu.rounx-setting-menu-mobile .MuiPaper-root {
+    margin-left: 23.5px !important;
+    left: unset !important;
 }
 
-.rounx-personal-select-menu .MuiPaper-root {
-    margin-left: 19.5px !important;
+.rounx-personal-select-menu.rounx-personal-select-menu-mobile .MuiPaper-root {
+    margin-left: 43.5px !important;
+    left: unset !important;
 }
 
 .rounx-settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {

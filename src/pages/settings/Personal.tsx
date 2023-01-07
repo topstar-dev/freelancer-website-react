@@ -18,11 +18,13 @@ import { ChangeEmailInterface, changePrimaryEmailAction } from "../../redux/acco
 import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { getLanguageList } from "../../redux/resources/resourcesActions";
 import { languages } from '../../i18n/i18nextConf';
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 
 export default function Personal() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
+    const { isMobile } = useBreakpoint();
     const { personal, loading } = useAppSelector(state => state.settings)
 
     const [personalData, setPersonalData] = React.useState<PersonalDataInterface>(personal);
@@ -308,7 +310,7 @@ export default function Personal() {
                         fullWidth
                         labelId="personal-gender"
                         MenuProps={{
-                            className: 'rounx-personal-select-menu'
+                            className: isMobile ? 'rounx-personal-select-menu rounx-personal-select-menu-mobile' : 'rounx-personal-select-menu'
                         }}
                         label={t('user-personal-account-gender')}
                         value={personalData?.gender ? personalData?.gender : ''}
@@ -339,7 +341,7 @@ export default function Personal() {
                             labelId="personal-language"
                             label={t('user-personal-account-language')}
                             MenuProps={{
-                                className: 'rounx-personal-select-menu'
+                                className: isMobile ? 'rounx-personal-select-menu rounx-personal-select-menu-mobile' : 'rounx-personal-select-menu'
                             }}
                             value={personalData?.language_code ? personalData?.language_code : ''}
                             onChange={(e) => {

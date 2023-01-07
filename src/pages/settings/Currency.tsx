@@ -7,11 +7,13 @@ import { getCurrencyList } from "../../redux/resources/resourcesActions";
 import { currencySettings, currencySettingsUpdate } from "../../redux/settings/settingsActions";
 import Button from "../../components/button/Button";
 import Form from "../../components/form/Form";
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 
 export default function Currency() {
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
+    const { isMobile } = useBreakpoint();
     const { currencyData } = useAppSelector(state => state.resources);
     const { selectedCurrency, loading } = useAppSelector(state => state.settings)
     const [backdrop, setBackdrop] = React.useState(false);
@@ -54,7 +56,7 @@ export default function Currency() {
                         labelId="personal-currency"
                         label={t('user-settings-currency')}
                         MenuProps={{
-                            className: 'rounx-personal-select-menu'
+                            className: isMobile ? 'rounx-personal-select-menu rounx-personal-select-menu-mobile' : 'rounx-personal-select-menu'
                         }}
                         value={selectedValue?.currency_code || selectedCurrency?.currency_code || ''}
                         onChange={(e) => {

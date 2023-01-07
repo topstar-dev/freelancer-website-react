@@ -69,7 +69,7 @@ export default function Settings(props: any) {
                             value={normalizeUrl(url)}
                             label="Settings"
                             MenuProps={
-                                { className: "rounx-setting-menu" }
+                                { className: isMobile ? "rounx-setting-menu rounx-setting-menu-mobile" : "rounx-setting-menu" }
                             }
                             labelId="settings-select-label"
                             onChange={(e) => handleChange(e.target.value as string)}
