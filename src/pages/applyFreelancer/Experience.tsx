@@ -61,7 +61,7 @@ const Experience = (props: any) => {
                     validationSchema={yup.object({
                         experiences: yup.array()
                             .of(yup.object().shape({
-                                job_title: yup.string().required(t('validation.tob-title-required')),
+                                job_title: yup.string().required(t('validation.job-title-required')),
                                 company_name: yup.string().required(t('validation.company-name-required')),
                                 start_year: yup
                                     .number()
