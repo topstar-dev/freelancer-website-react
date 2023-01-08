@@ -45,7 +45,10 @@
         "school-name-required": "School name is required",
         "language-name-required": "Language name is required",
         "language-skill-required": "Language skill is required",
-        "language-max": "Maximum 20 languages are allowed"
+        "language-max": "Maximum 20 languages are allowed",
+        "about-required": "About is required",
+        "province-required": "Province is required",
+        "city-required": "City is required"
     },
     "header-help": "Help",
     "header-blog": "Blog",

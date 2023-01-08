@@ -45,7 +45,10 @@
         "school-name-required": "学校名称为必填项",
         "language-name-required": "语言名称是必需的",
         "language-skill-required": "需要语言能力",
-        "language-max": "最多允许 20 种语言"
+        "language-max": "最多允许 20 种语言",
+        "about-required": "关于是必需的",
+        "province-required": "省份为必填项",
+        "city-required": "城市为必填项"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",

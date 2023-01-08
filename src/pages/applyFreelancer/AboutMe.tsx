@@ -67,16 +67,16 @@ const AboutMe = (props: any) => {
                     validationSchema={yup.object({
                         about: yup
                             .string()
-                            .required(t('validation.firstname-required')),
+                            .required(t('validation.about-required')),
                         country_id: yup
                             .string()
-                            .required(t('validation.lastname-required')),
+                            .required(t('validation.country-required')),
                         province_id: yup
                             .string()
-                            .required(t('validation.lastname-required')),
+                            .required(t('validation.province-required')),
                         city_id: yup
                             .string()
-                            .required(t('validation.lastname-required'))
+                            .required(t('validation.city-required'))
                     })}
                     onSubmit={(values) => { }}
                 >
@@ -92,7 +92,7 @@ const AboutMe = (props: any) => {
                                         name='about'
                                         type="text"
                                         label={t('freelancer.about.about')}
-                                        value={formik.values.about}
+                                        value={formik.values.about ? formik.values.about : ''}
                                         onChange={formik.handleChange}
                                         error={formik.touched.about && Boolean(formik.errors.about)}
                                         helperText={formik.touched.about && formik.errors.about && (formik.errors.about as ReactNode)}
@@ -104,13 +104,13 @@ const AboutMe = (props: any) => {
                                 <Box className="freelancer-card-spacing">
                                     <Form>
                                         <FormControl fullWidth>
-                                            <InputLabel id="freelancer-occupation-select-label">{t('freelancer.about.country')}</InputLabel>
+                                            <InputLabel id="freelancer-country-id-select-label">{t('freelancer.about.country')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.country')}
-                                                labelId="freelancer-occupation-select-label"
+                                                labelId="freelancer-country-id-select-label"
                                                 id="country_id"
                                                 name="country_id"
-                                                value={formik.values.country_id}
+                                                value={formik.values.country_id ? formik.values.country_id : ''}
                                                 onChange={(e) => {
                                                     setLoading(true)
                                                     dispatch(getProvincesList({ country_id: e.target.value })).then((res) => {
@@ -136,7 +136,7 @@ const AboutMe = (props: any) => {
                                                 labelId="freelancer-skills-select-label"
                                                 id="province_id"
                                                 name="province_id"
-                                                value={formik.values.province_id}
+                                                value={formik.values.province_id ? formik.values.province_id : ''}
                                                 onChange={(e) => {
                                                     setLoading(true)
                                                     dispatch(getCitiesList({ province_id: e.target.value })).then((res) => {
@@ -162,7 +162,7 @@ const AboutMe = (props: any) => {
                                                 labelId="freelancer-skills-select-label"
                                                 id="city_id"
                                                 name="city_id"
-                                                value={formik.values.city_id}
+                                                value={formik.values.city_id ? formik.values.city_id : ''}
                                                 onChange={formik.handleChange}
                                             >
                                                 {cityList.map((city: any) => (
@@ -177,36 +177,34 @@ const AboutMe = (props: any) => {
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
-                                            // const { languages } = res;
-                                            const isValid = false;
-                                            if (!isValid) {
+                                            const { about, country_id, province_id, city_id } = res;
+                                            const isValid = about || country_id || province_id || city_id;
+                                            if (!(Boolean(isValid))) {
                                                 formik.submitForm();
-                                            }
-
-                                            const saveData = {
-                                                ...freelancerApplicationInfo,
-                                                about: formik.values.about,
-                                                location: {
-                                                    country_id: formik.values.country_id,
-                                                    province_id: formik.values.province_id,
-                                                    city_id: formik.values.city_id
-                                                },
-                                                username: userInfo?.username
-                                            }
-
-                                            // if (isValid) {
-                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify(saveData))
-                                            setLoading(true);
-                                            dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
-                                                if (res.payload && res.payload.success) {
-                                                    navigate('/apply-freelancer')
+                                            } else {
+                                                const saveData = {
+                                                    ...freelancerApplicationInfo,
+                                                    about: formik.values.about,
+                                                    location: {
+                                                        country_id: formik.values.country_id,
+                                                        province_id: formik.values.province_id,
+                                                        city_id: formik.values.city_id
+                                                    },
+                                                    username: userInfo?.username
                                                 }
-                                            }).catch(() => {
 
-                                            }).finally(() => {
-                                                setLoading(false)
-                                            })
-                                            // }
+                                                sessionStorage.setItem('freelancer-application-info', JSON.stringify(saveData))
+                                                setLoading(true);
+                                                dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
+                                                    if (res.payload && res.payload.success) {
+                                                        navigate('/apply-freelancer')
+                                                    }
+                                                }).catch(() => {
+
+                                                }).finally(() => {
+                                                    setLoading(false)
+                                                })
+                                            }
                                         })
                                     }}
                                     style={{ float: "right", marginLeft: 10 }}
