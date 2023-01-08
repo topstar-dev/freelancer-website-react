@@ -19,10 +19,14 @@ import { changeLanguage } from "../../redux/resources/resourcesSlice";
 import { getLanguageList } from "../../redux/resources/resourcesActions";
 import { languages } from '../../i18n/i18nextConf';
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import { useNavigate } from "../../routes/Router";
+import { removeTokens } from "../../redux/account/accountApi";
+import { updateUserInfo } from "../../redux/auth/authSlice";
 
 export default function Personal() {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
     const { isMobile } = useBreakpoint();
     const { personal, loading } = useAppSelector(state => state.settings)
@@ -179,11 +183,12 @@ export default function Personal() {
                                 >
                                     <DialogTitle>Change email</DialogTitle>
                                     <DialogContent>
-                                        <Form style={{ padding: '5px 0' }}>
+                                        <Form>
                                             <TextField
                                                 fullWidth
                                                 id="email_code"
                                                 name="email_code"
+                                                style={{ marginTop: 6 }}
                                                 value={formik.values.email_code}
                                                 onChange={formik.handleChange}
                                                 label={t('code')}
@@ -194,6 +199,7 @@ export default function Personal() {
                                                 fullWidth
                                                 id="password"
                                                 name="password"
+                                                style={{ marginBottom: 6 }}
                                                 value={formik.values.password}
                                                 label={t('signin-password')}
                                                 type={showEmailChangePassword ? 'text' : 'password'}
@@ -214,9 +220,9 @@ export default function Personal() {
                                                     ),
                                                 }}
                                             ></TextField>
-                                            <DialogActions>
-                                                <Button variant="text" onClick={() => setOpen(false)}>Cancel</Button>
-                                                <Button variant="text" onClick={() => {
+                                            <DialogActions style={{ padding: 0, marginBottom: -6 }}>
+                                                <Button variant="text" onClick={() => setOpen(false)}>{t('cancel')}</Button>
+                                                <Button variant="text" style={{ marginLeft: 0 }} onClick={() => {
                                                     formik.validateForm().then((res: any) => {
                                                         const { password } = res;
                                                         if (password) {
@@ -232,9 +238,12 @@ export default function Personal() {
                                                             dispatch(changePrimaryEmailAction(dataObj)).then((response: any) => {
                                                                 const { payload } = response;
                                                                 if (payload.success) {
-                                                                    enqueueSnackbar(payload.message)
+                                                                    const message = `${payload.message}${t('please-re-sign-in')}`;
+                                                                    enqueueSnackbar(message);
+                                                                    navigate('/');
+                                                                    dispatch(updateUserInfo(null));
+                                                                    removeTokens();
                                                                     formik.resetForm();
-                                                                    formik.setFieldValue('new_email', dataObj.new_email);
                                                                 } else {
                                                                     enqueueSnackbar(payload.message)
                                                                 }
@@ -248,7 +257,7 @@ export default function Personal() {
                                                             })
                                                         }
                                                     })
-                                                }}>Confirm</Button>
+                                                }}>{t('confirm')}</Button>
                                             </DialogActions>
                                         </Form>
                                     </DialogContent>
