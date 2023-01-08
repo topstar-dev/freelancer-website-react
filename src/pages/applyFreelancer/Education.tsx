@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Divider, TextField } from '@mui/material';
+import { Divider, FormHelperText, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Form from '../../components/form/Form';
@@ -72,8 +72,9 @@ const Education = (props: any) => {
                                     .required(t('validation.description-required'))
                                     .min(20, t('validation.description-min'))
                                     .max(1000, t('validation.description-max'))
-                            })
-                        )
+                                    .nullable()
+                            }))
+                            .max(20, t('validation.education-max'))
                     })}
                     onSubmit={values => {
                         console.log("onSubmit", JSON.stringify(values, null, 2));
@@ -186,6 +187,7 @@ const Education = (props: any) => {
                                         })
                                     }}
                                 </FieldArray>
+                                {formik.touched.educations && formik.errors.educations && typeof formik.errors.educations === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.educations as ReactNode}</FormHelperText>}
                             </Box>
                             <Box className={`freelancer-footer`}>
                                 <Button
