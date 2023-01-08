@@ -164,7 +164,6 @@ const Languages = (props: any) => {
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
                                             const { languages } = res;
-                                            console.log(res)
                                             const isValid = languages ? languages.length < 1 : true;
                                             if (!isValid) {
                                                 formik.submitForm();
