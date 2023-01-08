@@ -75,9 +75,8 @@ const Experience = (props: any) => {
                                     .moreThan(yup.ref("start_year"), t('validation.end-year-min'))
                                     .max(new Date().getFullYear(), t('validation.end-year-max')),
                                 description: yup.string()
-                                    .required(t('validation.description-required'))
-                                    .min(20, t('validation.description-min'))
-                                    .max(1000, t('validation.description-max'))
+                                    .min(20, t('validation.characters-min', { min: 20 }))
+                                    .max(1000, t('validation.characters-max', { max: 1000 }))
                             }))
                             .min(1)
                             .max(2, 'max 2p')
