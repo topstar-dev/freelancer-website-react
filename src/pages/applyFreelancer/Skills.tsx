@@ -76,12 +76,14 @@ const Skills = (props: any) => {
                     validationSchema={yup.object({
                         occupation_category: yup
                             .string()
-                            .required(t('validation.firstname-required')),
+                            .required(t('validation.occupation-category-required')),
                         skills: yup.array().of(
                             yup.object().shape({
-                                skill_id: yup.string().required("First name is required")
+                                skill_id: yup.string().required(t('validation.skills-required'))
                             })
-                        ).length(1, 'select')
+                        )
+                            .min(2, t('validation.skills-min'))
+                            .max(100, t('validation.skills-max'))
                     })}
                     onSubmit={(values) => { }}
                 >
@@ -126,14 +128,14 @@ const Skills = (props: any) => {
                                                 <MenuItem key={skill.skill_id} value={skill.skill_id}>{skill.skill_name}</MenuItem>
                                             ))}
                                         </TextField>
-                                        {/* {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>} */}
+                                        {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>}
                                     </FormControl>
                                 </Form >
                                 {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing-divider">
                                     <Divider />
                                 </Box>}
-                                {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing">
-                                    <Box className='heading-title'>{t('freelancer.skills.selected')}</Box>
+                                <Box className="freelancer-card-spacing">
+                                    {formik.values.skills.length > 0 && <Box className='heading-title'>{t('freelancer.skills.selected')}</Box>}
                                     <Box>
                                         <Stack
                                             display={'flex'}
@@ -155,7 +157,7 @@ const Skills = (props: any) => {
                                             </FieldArray>
                                         </Stack>
                                     </Box>
-                                </Box>}
+                                </Box>
                             </Box>
                             <Box className={`freelancer-footer`}>
                                 <Button

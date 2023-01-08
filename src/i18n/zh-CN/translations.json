@@ -27,7 +27,11 @@
         "firstname-required": "请输入姓氏",
         "lastname-required": "请输入名字",
         "birthday-required": "请选择出生日期",
-        "country-required": "请选择国家"
+        "country-required": "请选择国家",
+        "occupation-category-required": "职业类别为必填项",
+        "skills-required": "请选择技能",
+        "skills-min": "技能数量不能小于2",
+        "skills-max": "技能数量不能大于100"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",

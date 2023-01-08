@@ -27,7 +27,11 @@
         "firstname-required": "First name is required",
         "lastname-required": "Last name is required",
         "birthday-required": "Birthday is required",
-        "country-required": "Country is required"
+        "country-required": "Country is required",
+        "occupation-category-required": "Occupation Category is required",
+        "skills-required": "Please select skills",
+        "skills-min": "The number of skills cannot be less than 2",
+        "skills-max": "The number of skills cannot be greater than 100"
     },
     "header-help": "Help",
     "header-blog": "Blog",
