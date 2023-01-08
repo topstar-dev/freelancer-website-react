@@ -168,7 +168,7 @@ export default function Security() {
                                                 })).then((response) => {
                                                     const { payload } = response;
                                                     if (payload.success) {
-                                                        const message = `${payload.message} (${t('password-change-success')})`;
+                                                        const message = `${payload.message}${t('please-re-sign-in')}`;
                                                         enqueueSnackbar(message);
                                                         navigate('/');
                                                         dispatch(updateUserInfo(null));
@@ -390,11 +390,12 @@ export default function Security() {
                                             >
                                                 {formik2 => (
                                                     <WithTranslateFormErrors {...formik2}>
-                                                        <Form style={{ padding: '5px 0' }}>
+                                                        <Form>
                                                             <TextField
                                                                 fullWidth
                                                                 id="password"
                                                                 name="password"
+                                                                style={{ marginTop: 6, marginBottom: 6 }}
                                                                 value={formik2.values.password}
                                                                 label={t('user-security-change-password-current')}
                                                                 type='password'
@@ -402,9 +403,9 @@ export default function Security() {
                                                                 error={formik2.touched.password && Boolean(formik2.errors.password)}
                                                                 helperText={(formik2.touched.password && formik2.errors.password) as ReactNode}
                                                             ></TextField>
-                                                            <DialogActions style={{ paddingRight: 0 }}>
-                                                                <Button variant="text" style={{ width: 70 }} onClick={() => setOpen(false)}>Cancel</Button>
-                                                                <Button variant="text" style={{ width: 70, marginLeft: 0 }} onClick={() => {
+                                                            <DialogActions style={{ padding: 0, marginBottom: -6 }}>
+                                                                <Button variant="text" onClick={() => setOpen(false)}>{t('cancel')}</Button>
+                                                                <Button variant="text" style={{ marginLeft: 0 }} onClick={() => {
                                                                     formik2.validateForm().then((res: any) => {
                                                                         const { password } = res;
                                                                         if (password) {
@@ -432,7 +433,7 @@ export default function Security() {
                                                                             })
                                                                         }
                                                                     })
-                                                                }}>Confirm</Button>
+                                                                }}>{t('confirm')}</Button>
                                                             </DialogActions>
                                                         </Form>
                                                     </WithTranslateFormErrors>
