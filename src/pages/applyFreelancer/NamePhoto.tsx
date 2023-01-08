@@ -66,7 +66,7 @@ const NamePhoto = (props: any) => {
                                         name="first_name"
                                         type="text"
                                         label={t('freelancer.info.first-name')}
-                                        value={formik.values.first_name}
+                                        value={formik.values.first_name ? formik.values.first_name : ''}
                                         onChange={formik.handleChange}
                                         error={formik.touched.first_name && Boolean(formik.errors.first_name)}
                                         helperText={formik.touched.first_name && formik.errors.first_name && formik.errors.first_name as ReactNode}
@@ -77,7 +77,7 @@ const NamePhoto = (props: any) => {
                                         name="last_name"
                                         type="text"
                                         label={t('freelancer.info.last-name')}
-                                        value={formik.values.last_name}
+                                        value={formik.values.last_name ? formik.values.last_name : ''}
                                         onChange={formik.handleChange}
                                         error={formik.touched.last_name && Boolean(formik.errors.last_name)}
                                         helperText={formik.touched.last_name && formik.errors.last_name && formik.errors.last_name as ReactNode}

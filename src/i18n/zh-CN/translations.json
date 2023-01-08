@@ -40,7 +40,9 @@
         "end-year-max": "结束年份不能大于当前年份",
         "description-required": "结束年份不能大于当前年份",
         "description-min": "字符数不能少于20个",
-        "description-max": "字符数不能大于1000"
+        "description-max": "字符数不能大于1000",
+        "major-name-required": "专业名称是必需的",
+        "school-name-required": "学校名称为必填项"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",

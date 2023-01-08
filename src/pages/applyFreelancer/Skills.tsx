@@ -98,7 +98,7 @@ const Skills = (props: any) => {
                                             labelId="freelancer-occupation-select-label"
                                             id="occupation_category"
                                             name="occupation_category"
-                                            value={formik.values.occupation_category}
+                                            value={formik.values.occupation_category ? formik.values.occupation_category : ''}
                                             onChange={(e) => {
                                                 setLoading(true)
                                                 formik.handleChange(e)

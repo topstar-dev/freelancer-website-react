@@ -40,7 +40,9 @@
         "end-year-max": "End year can not be greater than current year",
         "description-required": "End year can not be greater than current year",
         "description-min": "The number of characters can not be less than 20",
-        "description-max": "The number of characters can not be greater than 1000"
+        "description-max": "The number of characters can not be greater than 1000",
+        "major-name-required": "Major name is required",
+        "school-name-required": "School name is required"
     },
     "header-help": "Help",
     "header-blog": "Blog",

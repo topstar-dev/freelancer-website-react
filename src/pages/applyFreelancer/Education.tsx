@@ -61,11 +61,23 @@ const Education = (props: any) => {
                     validationSchema={yup.object({
                         educations: yup.array().of(
                             yup.object().shape({
-                                major_name: yup.string().required("First name is required"),
-                                school_name: yup.string().required("Last name is required"),
-                                start_year: yup.string().required("Last name is required"),
-                                end_year: yup.string().required("Last name is required"),
-                                description: yup.string().required("Last name is required")
+                                major_name: yup.string().required(t('validation.major-name-required')),
+                                school_name: yup.string().required(t('validation.school-name-required')),
+                                start_year: yup
+                                    .number()
+                                    .integer()
+                                    .min(1990, t('validation.start-year-max', { max: 1990 }))
+                                    .required(t('validation.start-year-required')),
+                                end_year: yup
+                                    .number()
+                                    .integer()
+                                    .nullable()
+                                    .moreThan(yup.ref("start_year"), t('validation.end-year-min'))
+                                    .max(new Date().getFullYear(), t('validation.end-year-max')),
+                                description: yup.string()
+                                    .required(t('validation.description-required'))
+                                    .min(20, t('validation.description-min'))
+                                    .max(1000, t('validation.description-max'))
                             })
                         )
                     })}
@@ -121,7 +133,7 @@ const Education = (props: any) => {
                                                                 name={majorName}
                                                                 type="text"
                                                                 label={t('freelancer.education.major')}
-                                                                value={exp.major_name}
+                                                                value={exp.major_name ? exp.major_name : ''}
                                                                 onChange={formik.handleChange}
                                                                 error={touchedMajorName && Boolean(errorMajorName)}
                                                                 helperText={touchedMajorName && errorMajorName && (errorMajorName as ReactNode)}
@@ -132,7 +144,7 @@ const Education = (props: any) => {
                                                                 name={schoolName}
                                                                 type="text"
                                                                 label={t('freelancer.education.school')}
-                                                                value={exp.school_name}
+                                                                value={exp.school_name ? exp.school_name : ''}
                                                                 onChange={formik.handleChange}
                                                                 error={touchedSchoolName && Boolean(errorSchoolName)}
                                                                 helperText={touchedSchoolName && errorSchoolName && (errorSchoolName as ReactNode)}
@@ -144,7 +156,7 @@ const Education = (props: any) => {
                                                                     name={startYear}
                                                                     type="text"
                                                                     label={t('freelancer.education.start-year')}
-                                                                    value={exp.start_year}
+                                                                    value={exp.start_year ? exp.start_year : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedStartYear && Boolean(errorStartYear)}
                                                                     helperText={touchedStartYear && errorStartYear && (errorStartYear as ReactNode)}
@@ -155,7 +167,7 @@ const Education = (props: any) => {
                                                                     name={endYear}
                                                                     type="text"
                                                                     label={t('freelancer.education.end-year')}
-                                                                    value={exp.end_year}
+                                                                    value={exp.end_year ? exp.end_year : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedEndYear && Boolean(errorEndYear)}
                                                                     helperText={touchedEndYear && errorEndYear && (errorEndYear as ReactNode)}
@@ -169,7 +181,7 @@ const Education = (props: any) => {
                                                                 name={description}
                                                                 type="text"
                                                                 label={t('freelancer.education.description')}
-                                                                value={exp.description}
+                                                                value={exp.description ? exp.description : ''}
                                                                 onChange={formik.handleChange}
                                                                 error={touchedDescription && Boolean(errorDescription)}
                                                                 helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
