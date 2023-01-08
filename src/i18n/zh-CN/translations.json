@@ -31,7 +31,16 @@
         "occupation-category-required": "职业类别为必填项",
         "skills-required": "请选择技能",
         "skills-min": "技能数量不能小于2",
-        "skills-max": "技能数量不能大于100"
+        "skills-max": "技能数量不能大于100",
+        "tob-title-required": "职位名称为必填项",
+        "company-name-required": "公司名称为必填项",
+        "start-year-required": "开始年份是必需的",
+        "start-year-max": "起始年份不能小于 {{max}}",
+        "end-year-min": "结束年份不能小于开始年份",
+        "end-year-max": "结束年份不能大于当前年份",
+        "description-required": "结束年份不能大于当前年份",
+        "description-min": "字符数不能少于20个",
+        "description-max": "字符数不能大于1000"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",

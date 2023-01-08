@@ -31,7 +31,16 @@
         "occupation-category-required": "Occupation Category is required",
         "skills-required": "Please select skills",
         "skills-min": "The number of skills cannot be less than 2",
-        "skills-max": "The number of skills cannot be greater than 100"
+        "skills-max": "The number of skills cannot be greater than 100",
+        "tob-title-required": "Job title is required",
+        "company-name-required": "Company name is required",
+        "start-year-required": "Start year is required",
+        "start-year-max": "Start year can not be less than {{max}}",
+        "end-year-min": "End year can not be less than Start year",
+        "end-year-max": "End year can not be greater than current year",
+        "description-required": "End year can not be greater than current year",
+        "description-min": "The number of characters can not be less than 20",
+        "description-max": "The number of characters can not be greater than 1000"
     },
     "header-help": "Help",
     "header-blog": "Blog",
