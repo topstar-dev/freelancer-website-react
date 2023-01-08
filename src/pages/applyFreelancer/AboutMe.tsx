@@ -28,11 +28,17 @@ const AboutMe = (props: any) => {
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
-        about: freelancerApplicationInfo.about || '',
-        country_id: freelancerApplicationInfo.location?.country_id ? freelancerApplicationInfo.location?.country_id : '',
-        province_id: freelancerApplicationInfo.location?.province_id ? freelancerApplicationInfo.location?.province_id : '',
-        city_id: freelancerApplicationInfo.location?.city_id ? freelancerApplicationInfo.location?.city_id : ''
+        about: '',
+        country_id: '',
+        province_id: '',
+        city_id: ''
     });
+    // const [freelancerData] = useState({
+    //     about: freelancerApplicationInfo.about || '',
+    //     country_id: freelancerApplicationInfo.location?.country_id ? freelancerApplicationInfo.location?.country_id : '',
+    //     province_id: freelancerApplicationInfo.location?.province_id ? freelancerApplicationInfo.location?.province_id : '',
+    //     city_id: freelancerApplicationInfo.location?.city_id ? freelancerApplicationInfo.location?.city_id : ''
+    // });
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -113,7 +119,7 @@ const AboutMe = (props: any) => {
                                                 value={formik.values.country_id ? formik.values.country_id : ''}
                                                 onChange={(e) => {
                                                     setLoading(true)
-                                                    dispatch(getProvincesList({ country_id: e.target.value })).then((res) => {
+                                                    dispatch(getProvincesList({ country_id: Number(e.target.value) })).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             setProvinceList(res.payload.data.records);
                                                         }
@@ -139,7 +145,7 @@ const AboutMe = (props: any) => {
                                                 value={formik.values.province_id ? formik.values.province_id : ''}
                                                 onChange={(e) => {
                                                     setLoading(true)
-                                                    dispatch(getCitiesList({ province_id: e.target.value })).then((res) => {
+                                                    dispatch(getCitiesList({ province_id: Number(e.target.value) })).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             setCityList(res.payload.data.records);
                                                         }

@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
-import { Divider, TextField } from '@mui/material';
+import { Divider, FormHelperText, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Form from '../../components/form/Form';
@@ -77,9 +77,10 @@ const Experience = (props: any) => {
                                 description: yup.string()
                                     .min(20, t('validation.characters-min', { min: 20 }))
                                     .max(1000, t('validation.characters-max', { max: 1000 }))
+                                    .nullable()
                             }))
                             .min(1)
-                            .max(2, 'max 2p')
+                            .max(20, t('validation.experience-max'))
                     })}
                     onSubmit={values => {
                         console.log("onSubmit", JSON.stringify(values, null, 2));
@@ -194,6 +195,7 @@ const Experience = (props: any) => {
                                         })
                                     )}
                                 </FieldArray>
+                                {formik.touched.experiences && formik.errors.experiences && typeof formik.errors.experiences === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.experiences as ReactNode}</FormHelperText>}
                             </Box>
                             <Box className={`freelancer-footer`}>
                                 <Button
