@@ -43,9 +43,12 @@
         "description-max": "字符数不能大于1000",
         "major-name-required": "请输入专业名称",
         "school-name-required": "请输入学校名称",
-        "language-name-required": "请选择语言",
+        "language-name-required": "请输入语言名称",
         "language-skill-required": "请选择语言能力",
-        "language-max": "最多允许 20 种语言"
+        "language-max": "最多允许 20 种语言",
+        "about-required": "请输入个人简介",
+        "province-required": "请选择省份",
+        "city-required": "请选择城市"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",
