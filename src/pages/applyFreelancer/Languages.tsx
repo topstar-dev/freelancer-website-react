@@ -77,10 +77,10 @@ const Languages = (props: any) => {
                     validationSchema={yup.object({
                         languages: yup.array().of(
                             yup.object().shape({
-                                language_code: yup.string().required("First name is required"),
-                                language_skill: yup.string().required("Last name is required")
-                            })
-                        ).max(2)
+                                language_code: yup.string().required(t('validation.language-name-required')),
+                                language_skill: yup.string().required(t('validation.language-skill-required'))
+                            }))
+                            .max(20, t('validation.language-max'))
                     })}
                     onSubmit={values => {
                         console.log("onSubmit", JSON.stringify(values, null, 2));

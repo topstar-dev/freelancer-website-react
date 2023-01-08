@@ -42,7 +42,10 @@
         "description-min": "字符数不能少于20个",
         "description-max": "字符数不能大于1000",
         "major-name-required": "专业名称是必需的",
-        "school-name-required": "学校名称为必填项"
+        "school-name-required": "学校名称为必填项",
+        "language-name-required": "语言名称是必需的",
+        "language-skill-required": "需要语言能力",
+        "language-max": "最多允许 20 种语言"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",

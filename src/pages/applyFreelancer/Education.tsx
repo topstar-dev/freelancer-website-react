@@ -20,13 +20,7 @@ const Education = (props: any) => {
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
-        educations: freelancerApplicationInfo.educations || [{
-            major_name: '',
-            school_name: '',
-            start_year: '',
-            end_year: '',
-            description: '',
-        }]
+        educations: freelancerApplicationInfo.educations || []
     });
 
     useEffect(() => {
@@ -89,9 +83,9 @@ const Education = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
                                 <FieldArray name="educations">
-                                    {({ unshift, remove }) => (
-                                        formik.values.educations.map((exp: any, index: number) => {
-                                            pushMethod = unshift;
+                                    {({ unshift, remove }) => {
+                                        pushMethod = unshift;
+                                        return formik.values.educations.map((exp: any, index: number) => {
 
                                             const majorName = `educations[${index}].major_name`;
                                             const touchedMajorName = getIn(formik.touched, majorName);
@@ -119,9 +113,7 @@ const Education = (props: any) => {
                                                         <CloseIcon
                                                             className='close-icon'
                                                             onClick={() => {
-                                                                if (formik.values.educations.length > 1) {
-                                                                    remove(index)
-                                                                }
+                                                                remove(index)
                                                             }}
                                                         />
                                                     </Box>
@@ -192,7 +184,7 @@ const Education = (props: any) => {
                                                 </Box>
                                             )
                                         })
-                                    )}
+                                    }}
                                 </FieldArray>
                             </Box>
                             <Box className={`freelancer-footer`}>

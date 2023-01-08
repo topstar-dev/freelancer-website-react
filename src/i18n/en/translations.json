@@ -42,7 +42,10 @@
         "description-min": "The number of characters can not be less than 20",
         "description-max": "The number of characters can not be greater than 1000",
         "major-name-required": "Major name is required",
-        "school-name-required": "School name is required"
+        "school-name-required": "School name is required",
+        "language-name-required": "Language name is required",
+        "language-skill-required": "Language skill is required",
+        "language-max": "Maximum 20 languages are allowed"
     },
     "header-help": "Help",
     "header-blog": "Blog",
