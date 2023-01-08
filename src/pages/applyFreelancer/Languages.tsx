@@ -157,6 +157,7 @@ const Languages = (props: any) => {
                                         })
                                     )}
                                 </FieldArray>
+                                {formik.touched.languages && formik.errors.languages && typeof formik.errors.languages === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.languages as ReactNode}</FormHelperText>}
                             </Box>
                             <Box className={`freelancer-footer`}>
                                 <Button
