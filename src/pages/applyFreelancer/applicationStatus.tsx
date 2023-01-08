@@ -42,12 +42,13 @@ const FailedApplication = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { userInfo } = useAppSelector(state => state.auth);
+    const status = JSON.parse(sessionStorage.getItem('freelancer-application-status') || '{}');
 
     return (
         <Card className={`freelancer-card text-centered freelancer-card-spacing`}>
             <Box className={`freelancer-heading`}>
                 <Box className='heading-title' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-title')}</Box>
-                <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-message', { message: '' })}</Box>
+                <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-message', { message: status.unapproved_reason })}</Box>
             </Box>
             <Button onClick={() => {
                 dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
