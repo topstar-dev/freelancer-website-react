@@ -1,7 +1,7 @@
-import { TextField } from '@mui/material';
+import { TextField as MuiTextField } from '@mui/material';
 import { styled } from "@mui/material/styles";
 
-const RounxTextField = styled(TextField)((theme) => {
+const TextField = styled(MuiTextField)((theme) => {
     const { palette } = theme.theme;
     const { primary } = palette;
     return {
@@ -13,4 +13,4 @@ const RounxTextField = styled(TextField)((theme) => {
     }
 })
 
-export default RounxTextField;
+export default TextField;
