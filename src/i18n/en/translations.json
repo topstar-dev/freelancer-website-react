@@ -32,7 +32,7 @@
         "skills-required": "Please select skills",
         "skills-min": "The number of skills cannot be less than 2",
         "skills-max": "The number of skills cannot be greater than 100",
-        "tob-title-required": "Job title is required",
+        "job-title-required": "Job title is required",
         "company-name-required": "Company name is required",
         "start-year-required": "Start year is required",
         "start-year-max": "Start year can not be less than {{max}}",
