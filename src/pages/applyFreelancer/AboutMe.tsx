@@ -203,6 +203,7 @@ const AboutMe = (props: any) => {
                                                 setLoading(true);
                                                 dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
                                                     if (res.payload && res.payload.success) {
+                                                        sessionStorage.removeItem('freelancer-application-info');
                                                         navigate('/apply-freelancer')
                                                     }
                                                 }).catch(() => {

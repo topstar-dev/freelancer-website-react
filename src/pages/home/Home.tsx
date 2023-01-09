@@ -30,6 +30,7 @@ export default function HomePage() {
     React.useEffect(() => {
         document.title = t('title.home');
         sessionStorage.removeItem('signup-info')
+        sessionStorage.removeItem('freelancer-application-info');
         pageView(window.location.pathname)
     })
 
