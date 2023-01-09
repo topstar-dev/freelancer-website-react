@@ -78,11 +78,9 @@ const AboutMe = (props: any) => {
                             .string()
                             .required(t('validation.country-required')),
                         province_id: yup
-                            .string()
-                            .required(t('validation.province-required')),
+                            .string(),
                         city_id: yup
                             .string()
-                            .required(t('validation.city-required'))
                     })}
                     onSubmit={(values) => { }}
                 >
