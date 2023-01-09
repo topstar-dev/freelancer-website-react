@@ -149,7 +149,7 @@ const AboutMe = (props: any) => {
                                                 onChange={(e) => {
                                                     setLoading(true)
                                                     formik.setFieldValue('city_id', "")
-                                                    dispatch(getCitiesList({ province_id: Number(e.target.value) })).then((res) => {
+                                                    dispatch(getCitiesList({ province_id: Number(e.target.value), country_id: Number(formik.values.country_id) })).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             setCityList(res.payload.data.records);
                                                         }

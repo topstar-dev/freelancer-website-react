@@ -14,6 +14,7 @@ export interface GetProvincesInterface {
 
 export interface GetCitiesInterface {
     province_id: number;
+    country_id: number;
     page_index?: number,
     page_size?: number
 }
