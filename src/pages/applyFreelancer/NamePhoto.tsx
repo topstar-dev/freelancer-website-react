@@ -21,6 +21,9 @@ const NamePhoto = (props: any) => {
         last_name: freelancerApplicationInfo.last_name || ""
     });
 
+    const [profileBgAvatar, setProfileBgAvatar] = useState<any>();
+    const [profilePhotoAvatar, setProfilePhotoAvatar] = useState<any>();
+
     useEffect(() => {
         document.title = t('title.freelancer');
     })
@@ -56,8 +59,30 @@ const NamePhoto = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
                                 <Box className="profile-photo-container">
-                                    <Box className="profile-bg"></Box>
-                                    <Box className="round-profile-photo"></Box>
+                                    <Box className="profile-bg">
+                                        {profileBgAvatar && <img className='profile-bg-image' alt="profile_bg_avatar" src={profileBgAvatar} />}
+                                        <label className='profile-bg-handle' htmlFor="profile_bg_avatar">
+                                            <input
+                                                id="profile_bg_avatar"
+                                                type="file"
+                                                onChange={(e: any) => {
+                                                    setProfileBgAvatar(URL.createObjectURL(e.target.files[0]));
+                                                }}
+                                            />
+                                        </label>
+                                    </Box>
+                                    <Box className="profile-photo">
+                                        {profilePhotoAvatar && <img className='profile-photo-image' alt="profile_photo_avatar" src={profilePhotoAvatar} />}
+                                        <label className='profile-bg-handle center' htmlFor="profile_photo_avatar">
+                                            <input
+                                                id="profile_photo_avatar"
+                                                type="file"
+                                                onChange={(e: any) => {
+                                                    setProfilePhotoAvatar(URL.createObjectURL(e.target.files[0]));
+                                                }}
+                                            />
+                                        </label>
+                                    </Box>
                                 </Box>
                                 <Form className="freelancer-card-spacing">
                                     <TextField
