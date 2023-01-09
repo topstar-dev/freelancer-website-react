@@ -134,7 +134,7 @@ const Skills = (props: any) => {
                                 {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing-divider ">
                                     <Divider />
                                 </Box>}
-                                <Box className="freelancer-card-spacing">
+                                <Box className={formik.values.skills.length > 0 ? 'freelancer-card-spacing' : ''}>
                                     {formik.values.skills.length > 0 && <Box style={{ marginBottom: 24 }} className='heading-title'>{t('freelancer.skills.selected')}</Box>}
                                     <Box>
                                         <Stack
