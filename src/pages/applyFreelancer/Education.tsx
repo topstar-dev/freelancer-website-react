@@ -144,7 +144,7 @@ const Education = (props: any) => {
                                                                     error={touchedSchoolName && Boolean(errorSchoolName)}
                                                                     helperText={touchedSchoolName && errorSchoolName && (errorSchoolName as ReactNode)}
                                                                 />
-                                                                <Box style={{ display: 'flex', gap: '24px' }}>
+                                                                <Box style={{ display: 'flex', gap: '20px' }}>
                                                                     <TextField
                                                                         fullWidth
                                                                         id={startYear}

@@ -156,7 +156,7 @@ const Experience = (props: any) => {
                                                                     error={touchedCompanyName && Boolean(errorCompanyName)}
                                                                     helperText={touchedCompanyName && errorCompanyName && (errorCompanyName as ReactNode)}
                                                                 />
-                                                                <Box style={{ display: 'flex', gap: '24px' }}>
+                                                                <Box style={{ display: 'flex', gap: '20px' }}>
                                                                     <TextField
                                                                         fullWidth
                                                                         id={startYear}
