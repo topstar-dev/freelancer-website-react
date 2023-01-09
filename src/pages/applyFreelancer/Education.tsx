@@ -31,24 +31,6 @@ const Education = (props: any) => {
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
             <Card className={`freelancer-card`}>
-                <Box className={`freelancer-heading  heading-flex`}>
-                    <Box>
-                        <Box className='heading-title'>{t('freelancer.education.title')}</Box>
-                        <Box className='heading-steps'>{t('freelancer.education.subtitle')}</Box>
-                    </Box>
-                    <Box className="center-item">
-                        <AddIcon className='add-icon' onClick={() => {
-                            pushMethod({
-                                major_name: '',
-                                school_name: '',
-                                start_year: '',
-                                end_year: '',
-                                description: '',
-                            })
-                        }} />
-                    </Box>
-                </Box>
-                <Divider />
                 <Formik
                     enableReinitialize
                     initialValues={freelancerData}
@@ -81,6 +63,26 @@ const Education = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
+                            <Box className={`freelancer-heading  heading-flex`}>
+                                <Box>
+                                    <Box className='heading-title'>{t('freelancer.education.title')}</Box>
+                                    <Box className='heading-steps'>{t('freelancer.education.subtitle')}</Box>
+                                </Box>
+                                <Box className="center-item">
+                                    {formik.values.educations.length < 20 &&
+                                        <AddIcon className='add-icon' onClick={() => {
+                                            pushMethod({
+                                                major_name: '',
+                                                school_name: '',
+                                                start_year: '',
+                                                end_year: '',
+                                                description: '',
+                                            })
+                                        }} />
+                                    }
+                                </Box>
+                            </Box>
+                            <Divider />
                             <Box className={`freelancer-body`}>
                                 <FieldArray name="educations">
                                     {({ unshift, remove }) => {

@@ -56,21 +56,6 @@ const Languages = (props: any) => {
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
             <Card className={`freelancer-card`}>
-                <Box className={`freelancer-heading heading-flex`}>
-                    <Box>
-                        <Box className='heading-title'>{t('freelancer.languages.title')}</Box>
-                        <Box className='heading-steps'>{t('freelancer.languages.subtitle')}</Box>
-                    </Box>
-                    <Box className="center-item">
-                        <AddIcon className='add-icon' onClick={() => {
-                            pushMethod({
-                                language_code: '',
-                                language_skill: ''
-                            })
-                        }} />
-                    </Box>
-                </Box>
-                <Divider />
                 <Formik
                     enableReinitialize
                     initialValues={freelancerData}
@@ -89,6 +74,23 @@ const Languages = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
+                            <Box className={`freelancer-heading heading-flex`}>
+                                <Box>
+                                    <Box className='heading-title'>{t('freelancer.languages.title')}</Box>
+                                    <Box className='heading-steps'>{t('freelancer.languages.subtitle')}</Box>
+                                </Box>
+                                <Box className="center-item">
+                                    {formik.values.languages.length < 20 &&
+                                        <AddIcon className='add-icon' onClick={() => {
+                                            pushMethod({
+                                                language_code: '',
+                                                language_skill: ''
+                                            })
+                                        }} />
+                                    }
+                                </Box>
+                            </Box>
+                            <Divider />
                             <Box className={`freelancer-body`}>
                                 <FieldArray name="languages">
                                     {({ unshift, remove }) => (

@@ -40,24 +40,6 @@ const Experience = (props: any) => {
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
             <Card className={`freelancer-card`}>
-                <Box className={`freelancer-heading heading-flex`}>
-                    <Box>
-                        <Box className='heading-title'>{t('freelancer.experience.title')}</Box>
-                        <Box className='heading-steps'>{t('freelancer.experience.subtitle')}</Box>
-                    </Box>
-                    <Box className="center-item">
-                        <AddIcon className='add-icon' onClick={() => {
-                            pushMethod({
-                                company_name: '',
-                                job_title: '',
-                                start_year: '',
-                                end_year: '',
-                                description: '',
-                            })
-                        }} />
-                    </Box>
-                </Box>
-                <Divider />
                 <Formik
                     enableReinitialize
                     initialValues={freelancerData}
@@ -91,6 +73,26 @@ const Experience = (props: any) => {
                 >
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
+                            <Box className={`freelancer-heading heading-flex`}>
+                                <Box>
+                                    <Box className='heading-title'>{t('freelancer.experience.title')}</Box>
+                                    <Box className='heading-steps'>{t('freelancer.experience.subtitle')}</Box>
+                                </Box>
+                                <Box className="center-item">
+                                    {formik.values.experiences.length < 20 &&
+                                        <AddIcon className='add-icon' onClick={() => {
+                                            pushMethod({
+                                                company_name: '',
+                                                job_title: '',
+                                                start_year: '',
+                                                end_year: '',
+                                                description: '',
+                                            })
+                                        }} />
+                                    }
+                                </Box>
+                            </Box>
+                            <Divider />
                             <Box className={`freelancer-body`}>
                                 <FieldArray name="experiences">
                                     {({ unshift, remove }) => (
