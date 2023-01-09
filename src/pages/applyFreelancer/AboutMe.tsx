@@ -118,15 +118,19 @@ const AboutMe = (props: any) => {
                                                 name="country_id"
                                                 value={formik.values.country_id ? formik.values.country_id : ''}
                                                 onChange={(e) => {
-                                                    setLoading(true)
-                                                    dispatch(getProvincesList({ country_id: Number(e.target.value) })).then((res) => {
-                                                        if (res.payload && res.payload.success) {
-                                                            setProvinceList(res.payload.data.records);
-                                                        }
-                                                    }).catch((err: any) => {
-                                                    }).finally(() => {
-                                                        setLoading(false)
-                                                    })
+                                                    formik.setFieldValue('province_id', "")
+                                                    formik.setFieldValue('city_id', "")
+                                                    if (e.target.value.toString() !== '49') {
+                                                        setLoading(true)
+                                                        dispatch(getProvincesList({ country_id: Number(e.target.value) })).then((res) => {
+                                                            if (res.payload && res.payload.success) {
+                                                                setProvinceList(res.payload.data.records);
+                                                            }
+                                                        }).catch((err: any) => {
+                                                        }).finally(() => {
+                                                            setLoading(false)
+                                                        })
+                                                    }
                                                     formik.handleChange(e)
                                                 }}
                                             >
@@ -135,7 +139,7 @@ const AboutMe = (props: any) => {
                                                 ))}
                                             </Select>
                                         </FormControl>
-                                        <FormControl fullWidth>
+                                        {formik.values.country_id?.toString() !== '49' && <FormControl fullWidth>
                                             <InputLabel id="freelancer-skills-select-label">{t('freelancer.about.province')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.province')}
@@ -145,6 +149,7 @@ const AboutMe = (props: any) => {
                                                 value={formik.values.province_id ? formik.values.province_id : ''}
                                                 onChange={(e) => {
                                                     setLoading(true)
+                                                    formik.setFieldValue('city_id', "")
                                                     dispatch(getCitiesList({ province_id: Number(e.target.value) })).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             setCityList(res.payload.data.records);
@@ -160,8 +165,8 @@ const AboutMe = (props: any) => {
                                                     <MenuItem key={province.province_id} value={province.province_id}>{province.province_name}</MenuItem>
                                                 ))}
                                             </Select>
-                                        </FormControl>
-                                        <FormControl fullWidth>
+                                        </FormControl>}
+                                        {formik.values.country_id?.toString() !== '49' && <FormControl fullWidth>
                                             <InputLabel id="freelancer-skills-select-label">{t('freelancer.about.city')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.city')}
@@ -175,7 +180,7 @@ const AboutMe = (props: any) => {
                                                     <MenuItem key={city.city_id} value={city.city_id}>{city.city_name}</MenuItem>
                                                 ))}
                                             </Select>
-                                        </FormControl>
+                                        </FormControl>}
                                     </Form>
                                 </Box>
                             </Box>
@@ -183,6 +188,7 @@ const AboutMe = (props: any) => {
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
+                                            console.log(formik.values)
                                             const { about, country_id, province_id, city_id } = res;
                                             const isValid = about || country_id || province_id || city_id;
                                             if (!(Boolean(isValid))) {
