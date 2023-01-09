@@ -90,7 +90,7 @@ const Skills = (props: any) => {
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
-                                <Form className="freelancer-card-spacing" style={{ paddingTop: 32 }}>
+                                <Form className="freelancer-card-spacing" style={{ paddingTop: 40 }}>
                                     <FormControl error={formik.touched.occupation_category && Boolean(formik.errors.occupation_category)} fullWidth>
                                         <InputLabel id="freelancer-occupation-select-label">{t('freelancer.skills.occupation')}</InputLabel>
                                         <Select

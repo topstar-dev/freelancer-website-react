@@ -88,7 +88,7 @@ const AboutMe = (props: any) => {
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
-                                <Box className="freelancer-card-spacing" style={{ paddingTop: 32 }}>
+                                <Box className="freelancer-card-spacing" style={{ paddingTop: 40 }}>
                                     <TextField
                                         multiline={true}
                                         rows={8}
