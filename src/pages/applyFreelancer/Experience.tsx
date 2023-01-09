@@ -20,13 +20,16 @@ const Experience = (props: any) => {
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
-        experiences: freelancerApplicationInfo.experiences || [{
-            company_name: '',
-            job_title: '',
-            start_year: '',
-            end_year: '',
-            description: '',
-        }]
+        experiences: freelancerApplicationInfo.experiences && freelancerApplicationInfo.experiences.length > 0 ?
+            freelancerApplicationInfo.experiences
+            :
+            [{
+                company_name: '',
+                job_title: '',
+                start_year: '',
+                end_year: '',
+                description: '',
+            }]
     });
 
     useEffect(() => {
