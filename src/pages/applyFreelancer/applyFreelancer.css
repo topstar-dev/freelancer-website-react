@@ -62,15 +62,9 @@
 
 /* card footer style */
 .freelancer-footer {
-    padding: 0 24px 24px;
-    height: 64px;
+    padding: 24px;
+    height: 88px;
 }
-
-.freelancer-footer-full {
-    padding: 24px !important;
-    height: 88px !important;
-}
-
 
 /* about info */
 .info-banner {

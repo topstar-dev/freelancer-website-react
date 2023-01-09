@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getCitiesList, getCountriesList, getProvincesList } from '../../redux/resources/resourcesActions';
 import { submitFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 
+const COUNTRY_ID_CHINA = '49';
 const AboutMe = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -118,7 +119,7 @@ const AboutMe = (props: any) => {
                                                 onChange={(e) => {
                                                     formik.setFieldValue('province_id', "")
                                                     formik.setFieldValue('city_id', "")
-                                                    if (e.target.value.toString() === '49') {
+                                                    if (e.target.value.toString() === COUNTRY_ID_CHINA) {
                                                         setLoading(true)
                                                         dispatch(getProvincesList({ country_id: Number(e.target.value) })).then((res) => {
                                                             if (res.payload && res.payload.success) {
@@ -137,7 +138,7 @@ const AboutMe = (props: any) => {
                                                 ))}
                                             </Select>
                                         </FormControl>
-                                        {formik.values.country_id?.toString() === '49' && <FormControl fullWidth>
+                                        {formik.values.country_id?.toString() === COUNTRY_ID_CHINA && <FormControl fullWidth>
                                             <InputLabel id="freelancer-skills-select-label">{t('freelancer.about.province')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.province')}
@@ -164,7 +165,7 @@ const AboutMe = (props: any) => {
                                                 ))}
                                             </Select>
                                         </FormControl>}
-                                        {formik.values.country_id?.toString() === '49' && <FormControl fullWidth>
+                                        {formik.values.country_id?.toString() === COUNTRY_ID_CHINA && <FormControl fullWidth>
                                             <InputLabel id="freelancer-skills-select-label">{t('freelancer.about.city')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.city')}

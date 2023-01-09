@@ -192,7 +192,7 @@ const Education = (props: any) => {
                                 </FieldArray>
                                 {formik.touched.educations && formik.errors.educations && typeof formik.errors.educations === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.educations as ReactNode}</FormHelperText>}
                             </Box>
-                            <Box className={formik.values.educations.length === 0 ? `freelancer-footer freelancer-footer-full` : `freelancer-footer`}>
+                            <Box className={`freelancer-footer`}>
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
