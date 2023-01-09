@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
@@ -105,57 +105,59 @@ const Languages = (props: any) => {
                                             const errorLanguageSkill = getIn(formik.errors, languageSkill);
 
                                             return (
-                                                <Box key={index} className="freelancer-experience-flex">
-                                                    <Box className="freelancer-card-spacing">
-                                                        <CloseIcon
-                                                            className='close-icon'
-                                                            onClick={() => {
-                                                                if (formik.values.languages.length > 1) {
-                                                                    remove(index)
-                                                                }
-                                                            }}
-                                                        />
+                                                <React.Fragment key={index}>
+                                                    <Box className="freelancer-experience-flex">
+                                                        <Box className="freelancer-card-spacing">
+                                                            <CloseIcon
+                                                                className='close-icon'
+                                                                onClick={() => {
+                                                                    if (formik.values.languages.length > 1) {
+                                                                        remove(index)
+                                                                    }
+                                                                }}
+                                                            />
+                                                        </Box>
+                                                        <Box className="freelancer-card-spacing-multiple">
+                                                            <Form>
+                                                                <FormControl error={touchedLanguageCode && Boolean(errorLanguageCode)} fullWidth>
+                                                                    <InputLabel id="freelancer-language-select-label">{t('freelancer.languages.language')}</InputLabel>
+                                                                    <Select
+                                                                        label={t('freelancer.languages.language')}
+                                                                        labelId="freelancer-language-select-label"
+                                                                        id={languageCode}
+                                                                        name={languageCode}
+                                                                        value={lang.language_code}
+                                                                        onChange={formik.handleChange}
+                                                                    >
+                                                                        {languageList.map((lang: any) => (
+                                                                            <MenuItem key={lang.language_code} value={lang.language_code}>{lang.language_name}</MenuItem>
+                                                                        ))}
+                                                                    </Select>
+                                                                    {touchedLanguageCode && errorLanguageCode && <FormHelperText>{errorLanguageCode as ReactNode}</FormHelperText>}
+                                                                </FormControl>
+                                                                <FormControl error={touchedLanguageSkill && Boolean(errorLanguageSkill)} fullWidth>
+                                                                    <InputLabel id="freelancer-language-skills-select-label">{t('freelancer.languages.language-skill')}</InputLabel>
+                                                                    <Select
+                                                                        label={t('freelancer.languages.language-skill')}
+                                                                        labelId="freelancer-language-skills-select-label"
+                                                                        id={languageSkill}
+                                                                        name={languageSkill}
+                                                                        value={lang.language_skill}
+                                                                        onChange={formik.handleChange}
+                                                                    >
+                                                                        <MenuItem value={`BEGINNER`}>Beginner</MenuItem>
+                                                                        <MenuItem value={`INTERMEDIATE`}>Intermediate</MenuItem>
+                                                                        <MenuItem value={`PROFICIENT`}>Proficient</MenuItem>
+                                                                        <MenuItem value={`FLUENT`}>Fluent</MenuItem>
+                                                                        <MenuItem value={`NATIVE`}>Native</MenuItem>
+                                                                    </Select>
+                                                                    {touchedLanguageSkill && errorLanguageSkill && <FormHelperText>{errorLanguageSkill as ReactNode}</FormHelperText>}
+                                                                </FormControl>
+                                                            </Form>
+                                                        </Box>
                                                     </Box>
-                                                    <Box className="freelancer-card-spacing" style={{ paddingLeft: 0, width: '100%' }}>
-                                                        <Form>
-                                                            <FormControl error={touchedLanguageCode && Boolean(errorLanguageCode)} fullWidth>
-                                                                <InputLabel id="freelancer-language-select-label">{t('freelancer.languages.language')}</InputLabel>
-                                                                <Select
-                                                                    label={t('freelancer.languages.language')}
-                                                                    labelId="freelancer-language-select-label"
-                                                                    id={languageCode}
-                                                                    name={languageCode}
-                                                                    value={lang.language_code}
-                                                                    onChange={formik.handleChange}
-                                                                >
-                                                                    {languageList.map((lang: any) => (
-                                                                        <MenuItem key={lang.language_code} value={lang.language_code}>{lang.language_name}</MenuItem>
-                                                                    ))}
-                                                                </Select>
-                                                                {touchedLanguageCode && errorLanguageCode && <FormHelperText>{errorLanguageCode as ReactNode}</FormHelperText>}
-                                                            </FormControl>
-                                                            <FormControl error={touchedLanguageSkill && Boolean(errorLanguageSkill)} fullWidth>
-                                                                <InputLabel id="freelancer-language-skills-select-label">{t('freelancer.languages.language-skill')}</InputLabel>
-                                                                <Select
-                                                                    label={t('freelancer.languages.language-skill')}
-                                                                    labelId="freelancer-language-skills-select-label"
-                                                                    id={languageSkill}
-                                                                    name={languageSkill}
-                                                                    value={lang.language_skill}
-                                                                    onChange={formik.handleChange}
-                                                                >
-                                                                    <MenuItem value={`BEGINNER`}>Beginner</MenuItem>
-                                                                    <MenuItem value={`INTERMEDIATE`}>Intermediate</MenuItem>
-                                                                    <MenuItem value={`PROFICIENT`}>Proficient</MenuItem>
-                                                                    <MenuItem value={`FLUENT`}>Fluent</MenuItem>
-                                                                    <MenuItem value={`NATIVE`}>Native</MenuItem>
-                                                                </Select>
-                                                                {touchedLanguageSkill && errorLanguageSkill && <FormHelperText>{errorLanguageSkill as ReactNode}</FormHelperText>}
-                                                            </FormControl>
-                                                        </Form>
-                                                        {index < formik.values.languages.length - 1 && <Divider className="freelancer-card-spacing" />}
-                                                    </Box>
-                                                </Box>
+                                                    {index < formik.values.languages.length - 1 && <Box className="right-divider"><Divider /></Box>}
+                                                </React.Fragment>
                                             )
                                         })
                                     )}

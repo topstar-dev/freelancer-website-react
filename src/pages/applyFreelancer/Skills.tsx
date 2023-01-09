@@ -131,7 +131,7 @@ const Skills = (props: any) => {
                                         {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>}
                                     </FormControl>
                                 </Form >
-                                {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing">
+                                {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing-divider ">
                                     <Divider />
                                 </Box>}
                                 <Box className="freelancer-card-spacing">

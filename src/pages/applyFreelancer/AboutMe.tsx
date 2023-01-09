@@ -102,7 +102,7 @@ const AboutMe = (props: any) => {
                                         helperText={formik.touched.about && formik.errors.about && (formik.errors.about as ReactNode)}
                                     />
                                 </Box>
-                                <Box className="freelancer-card-spacing-divider">
+                                <Box className="freelancer-card-spacing">
                                     <Divider />
                                 </Box>
                                 <Box className="freelancer-card-spacing">

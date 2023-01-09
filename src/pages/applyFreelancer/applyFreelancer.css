@@ -43,6 +43,10 @@
     padding: 24px;
 } */
 
+.right-divider {
+    padding: 24px 24px 0 70px;
+}
+
 .freelancer-card-spacing-divider {
     padding: 0 24px;
 }
@@ -51,10 +55,20 @@
     padding: 24px;
 }
 
+.freelancer-card-spacing-multiple {
+    padding: 48px 24px 24px 0;
+    width: 100%;
+}
+
 /* card footer style */
 .freelancer-footer {
     padding: 0 24px 24px;
     height: 64px;
+}
+
+.freelancer-footer-full {
+    padding: 24px !important;
+    height: 88px !important;
 }
 
 

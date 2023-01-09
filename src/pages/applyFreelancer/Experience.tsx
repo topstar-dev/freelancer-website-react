@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
@@ -120,82 +120,84 @@ const Experience = (props: any) => {
                                             const errorDescription = getIn(formik.errors, description);
 
                                             return (
-                                                <Box key={index} className="freelancer-experience-flex">
-                                                    <Box className="freelancer-card-spacing">
-                                                        <CloseIcon
-                                                            className='close-icon'
-                                                            onClick={() => {
-                                                                if (formik.values.experiences.length > 1) {
-                                                                    remove(index)
-                                                                }
-                                                            }}
-                                                        />
-                                                    </Box>
-                                                    <Box className="freelancer-card-spacing" style={{ paddingLeft: 0, width: '100%' }}>
-                                                        <Form>
-                                                            <TextField
-                                                                fullWidth
-                                                                id={jobTitle}
-                                                                name={jobTitle}
-                                                                type="text"
-                                                                label={t('freelancer.experience.position')}
-                                                                value={exp.job_title ? exp.job_title : ''}
-                                                                onChange={formik.handleChange}
-                                                                error={touchedJobTitle && Boolean(errorJobTitle)}
-                                                                helperText={touchedJobTitle && errorJobTitle && (errorJobTitle as ReactNode)}
+                                                <React.Fragment key={index}>
+                                                    <Box className="freelancer-experience-flex">
+                                                        <Box className="freelancer-card-spacing">
+                                                            <CloseIcon
+                                                                className='close-icon'
+                                                                onClick={() => {
+                                                                    if (formik.values.experiences.length > 1) {
+                                                                        remove(index)
+                                                                    }
+                                                                }}
                                                             />
-                                                            <TextField
-                                                                fullWidth
-                                                                id={companyName}
-                                                                name={companyName}
-                                                                type="text"
-                                                                label={t('freelancer.experience.company')}
-                                                                value={exp.company_name ? exp.company_name : ''}
-                                                                onChange={formik.handleChange}
-                                                                error={touchedCompanyName && Boolean(errorCompanyName)}
-                                                                helperText={touchedCompanyName && errorCompanyName && (errorCompanyName as ReactNode)}
-                                                            />
-                                                            <Box style={{ display: 'flex', gap: '24px' }}>
+                                                        </Box>
+                                                        <Box className="freelancer-card-spacing-multiple">
+                                                            <Form className="freelancer-form">
                                                                 <TextField
                                                                     fullWidth
-                                                                    id={startYear}
-                                                                    name={startYear}
+                                                                    id={jobTitle}
+                                                                    name={jobTitle}
                                                                     type="text"
-                                                                    label={t('freelancer.experience.start-year')}
-                                                                    value={exp.start_year ? exp.start_year : ''}
+                                                                    label={t('freelancer.experience.position')}
+                                                                    value={exp.job_title ? exp.job_title : ''}
                                                                     onChange={formik.handleChange}
-                                                                    error={touchedStartYear && Boolean(errorStartYear)}
-                                                                    helperText={touchedStartYear && errorStartYear && (errorStartYear as ReactNode)}
+                                                                    error={touchedJobTitle && Boolean(errorJobTitle)}
+                                                                    helperText={touchedJobTitle && errorJobTitle && (errorJobTitle as ReactNode)}
                                                                 />
                                                                 <TextField
                                                                     fullWidth
-                                                                    id={endYear}
-                                                                    name={endYear}
+                                                                    id={companyName}
+                                                                    name={companyName}
                                                                     type="text"
-                                                                    label={t('freelancer.experience.end-year')}
-                                                                    value={exp.end_year ? exp.end_year : ''}
+                                                                    label={t('freelancer.experience.company')}
+                                                                    value={exp.company_name ? exp.company_name : ''}
                                                                     onChange={formik.handleChange}
-                                                                    error={touchedEndYear && Boolean(errorEndYear)}
-                                                                    helperText={touchedEndYear && errorEndYear && (errorEndYear as ReactNode)}
+                                                                    error={touchedCompanyName && Boolean(errorCompanyName)}
+                                                                    helperText={touchedCompanyName && errorCompanyName && (errorCompanyName as ReactNode)}
                                                                 />
-                                                            </Box>
-                                                            <TextField
-                                                                multiline={true}
-                                                                rows={5}
-                                                                fullWidth
-                                                                id={description}
-                                                                name={description}
-                                                                type="text"
-                                                                label={t('freelancer.experience.description')}
-                                                                value={exp.description ? exp.description : ''}
-                                                                onChange={formik.handleChange}
-                                                                error={touchedDescription && Boolean(errorDescription)}
-                                                                helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
-                                                            />
-                                                        </Form>
-                                                        {index < formik.values.experiences.length - 1 && <Divider className="freelancer-card-spacing" />}
+                                                                <Box style={{ display: 'flex', gap: '24px' }}>
+                                                                    <TextField
+                                                                        fullWidth
+                                                                        id={startYear}
+                                                                        name={startYear}
+                                                                        type="text"
+                                                                        label={t('freelancer.experience.start-year')}
+                                                                        value={exp.start_year ? exp.start_year : ''}
+                                                                        onChange={formik.handleChange}
+                                                                        error={touchedStartYear && Boolean(errorStartYear)}
+                                                                        helperText={touchedStartYear && errorStartYear && (errorStartYear as ReactNode)}
+                                                                    />
+                                                                    <TextField
+                                                                        fullWidth
+                                                                        id={endYear}
+                                                                        name={endYear}
+                                                                        type="text"
+                                                                        label={t('freelancer.experience.end-year')}
+                                                                        value={exp.end_year ? exp.end_year : ''}
+                                                                        onChange={formik.handleChange}
+                                                                        error={touchedEndYear && Boolean(errorEndYear)}
+                                                                        helperText={touchedEndYear && errorEndYear && (errorEndYear as ReactNode)}
+                                                                    />
+                                                                </Box>
+                                                                <TextField
+                                                                    multiline={true}
+                                                                    rows={5}
+                                                                    fullWidth
+                                                                    id={description}
+                                                                    name={description}
+                                                                    type="text"
+                                                                    label={t('freelancer.experience.description')}
+                                                                    value={exp.description ? exp.description : ''}
+                                                                    onChange={formik.handleChange}
+                                                                    error={touchedDescription && Boolean(errorDescription)}
+                                                                    helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
+                                                                />
+                                                            </Form>
+                                                        </Box>
                                                     </Box>
-                                                </Box>
+                                                    {index < formik.values.experiences.length - 1 && <Box className="right-divider"><Divider /></Box>}
+                                                </React.Fragment>
                                             )
                                         })
                                     )}

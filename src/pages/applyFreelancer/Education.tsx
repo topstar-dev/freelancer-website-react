@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
@@ -110,87 +110,89 @@ const Education = (props: any) => {
                                             const errorDescription = getIn(formik.errors, description);
 
                                             return (
-                                                <Box key={index} className="freelancer-experience-flex">
-                                                    <Box className="freelancer-card-spacing">
-                                                        <CloseIcon
-                                                            className='close-icon'
-                                                            onClick={() => {
-                                                                remove(index)
-                                                            }}
-                                                        />
-                                                    </Box>
-                                                    <Box className="freelancer-card-spacing" style={{ paddingLeft: 0, width: '100%' }}>
-                                                        <Form>
-                                                            <TextField
-                                                                fullWidth
-                                                                id={majorName}
-                                                                name={majorName}
-                                                                type="text"
-                                                                label={t('freelancer.education.major')}
-                                                                value={exp.major_name ? exp.major_name : ''}
-                                                                onChange={formik.handleChange}
-                                                                error={touchedMajorName && Boolean(errorMajorName)}
-                                                                helperText={touchedMajorName && errorMajorName && (errorMajorName as ReactNode)}
+                                                <React.Fragment key={index}>
+                                                    <Box className="freelancer-experience-flex">
+                                                        <Box className="freelancer-card-spacing">
+                                                            <CloseIcon
+                                                                className='close-icon'
+                                                                onClick={() => {
+                                                                    remove(index)
+                                                                }}
                                                             />
-                                                            <TextField
-                                                                fullWidth
-                                                                id={schoolName}
-                                                                name={schoolName}
-                                                                type="text"
-                                                                label={t('freelancer.education.school')}
-                                                                value={exp.school_name ? exp.school_name : ''}
-                                                                onChange={formik.handleChange}
-                                                                error={touchedSchoolName && Boolean(errorSchoolName)}
-                                                                helperText={touchedSchoolName && errorSchoolName && (errorSchoolName as ReactNode)}
-                                                            />
-                                                            <Box style={{ display: 'flex', gap: '24px' }}>
+                                                        </Box>
+                                                        <Box className="freelancer-card-spacing-multiple">
+                                                            <Form>
                                                                 <TextField
                                                                     fullWidth
-                                                                    id={startYear}
-                                                                    name={startYear}
+                                                                    id={majorName}
+                                                                    name={majorName}
                                                                     type="text"
-                                                                    label={t('freelancer.education.start-year')}
-                                                                    value={exp.start_year ? exp.start_year : ''}
+                                                                    label={t('freelancer.education.major')}
+                                                                    value={exp.major_name ? exp.major_name : ''}
                                                                     onChange={formik.handleChange}
-                                                                    error={touchedStartYear && Boolean(errorStartYear)}
-                                                                    helperText={touchedStartYear && errorStartYear && (errorStartYear as ReactNode)}
+                                                                    error={touchedMajorName && Boolean(errorMajorName)}
+                                                                    helperText={touchedMajorName && errorMajorName && (errorMajorName as ReactNode)}
                                                                 />
                                                                 <TextField
                                                                     fullWidth
-                                                                    id={endYear}
-                                                                    name={endYear}
+                                                                    id={schoolName}
+                                                                    name={schoolName}
                                                                     type="text"
-                                                                    label={t('freelancer.education.end-year')}
-                                                                    value={exp.end_year ? exp.end_year : ''}
+                                                                    label={t('freelancer.education.school')}
+                                                                    value={exp.school_name ? exp.school_name : ''}
                                                                     onChange={formik.handleChange}
-                                                                    error={touchedEndYear && Boolean(errorEndYear)}
-                                                                    helperText={touchedEndYear && errorEndYear && (errorEndYear as ReactNode)}
+                                                                    error={touchedSchoolName && Boolean(errorSchoolName)}
+                                                                    helperText={touchedSchoolName && errorSchoolName && (errorSchoolName as ReactNode)}
                                                                 />
-                                                            </Box>
-                                                            <TextField
-                                                                multiline={true}
-                                                                rows={5}
-                                                                fullWidth
-                                                                id={description}
-                                                                name={description}
-                                                                type="text"
-                                                                label={t('freelancer.education.description')}
-                                                                value={exp.description ? exp.description : ''}
-                                                                onChange={formik.handleChange}
-                                                                error={touchedDescription && Boolean(errorDescription)}
-                                                                helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
-                                                            />
-                                                        </Form>
-                                                        {index < formik.values.educations.length - 1 && <Divider className="freelancer-card-spacing" />}
+                                                                <Box style={{ display: 'flex', gap: '24px' }}>
+                                                                    <TextField
+                                                                        fullWidth
+                                                                        id={startYear}
+                                                                        name={startYear}
+                                                                        type="text"
+                                                                        label={t('freelancer.education.start-year')}
+                                                                        value={exp.start_year ? exp.start_year : ''}
+                                                                        onChange={formik.handleChange}
+                                                                        error={touchedStartYear && Boolean(errorStartYear)}
+                                                                        helperText={touchedStartYear && errorStartYear && (errorStartYear as ReactNode)}
+                                                                    />
+                                                                    <TextField
+                                                                        fullWidth
+                                                                        id={endYear}
+                                                                        name={endYear}
+                                                                        type="text"
+                                                                        label={t('freelancer.education.end-year')}
+                                                                        value={exp.end_year ? exp.end_year : ''}
+                                                                        onChange={formik.handleChange}
+                                                                        error={touchedEndYear && Boolean(errorEndYear)}
+                                                                        helperText={touchedEndYear && errorEndYear && (errorEndYear as ReactNode)}
+                                                                    />
+                                                                </Box>
+                                                                <TextField
+                                                                    multiline={true}
+                                                                    rows={5}
+                                                                    fullWidth
+                                                                    id={description}
+                                                                    name={description}
+                                                                    type="text"
+                                                                    label={t('freelancer.education.description')}
+                                                                    value={exp.description ? exp.description : ''}
+                                                                    onChange={formik.handleChange}
+                                                                    error={touchedDescription && Boolean(errorDescription)}
+                                                                    helperText={touchedDescription && errorDescription && (errorDescription as ReactNode)}
+                                                                />
+                                                            </Form>
+                                                        </Box>
                                                     </Box>
-                                                </Box>
+                                                    {index < formik.values.educations.length - 1 && <Box className="right-divider"><Divider /></Box>}
+                                                </React.Fragment>
                                             )
                                         })
                                     }}
                                 </FieldArray>
                                 {formik.touched.educations && formik.errors.educations && typeof formik.errors.educations === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.educations as ReactNode}</FormHelperText>}
                             </Box>
-                            <Box className={`freelancer-footer`}>
+                            <Box className={formik.values.educations.length === 0 ? `freelancer-footer freelancer-footer-full` : `freelancer-footer`}>
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
