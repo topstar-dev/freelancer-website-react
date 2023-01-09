@@ -73,7 +73,7 @@ const Education = (props: any) => {
                                     .max(1000, t('validation.characters-max', { max: 1000 }))
                                     .nullable()
                             }))
-                            .max(20, t('validation.education-max'))
+                            .max(20)
                     })}
                     onSubmit={values => {
                         console.log("onSubmit", JSON.stringify(values, null, 2));

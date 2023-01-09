@@ -83,7 +83,7 @@ const Experience = (props: any) => {
                                     .nullable()
                             }))
                             .min(1)
-                            .max(20, t('validation.experience-max'))
+                            .max(20)
                     })}
                     onSubmit={values => {
                         console.log("onSubmit", JSON.stringify(values, null, 2));
