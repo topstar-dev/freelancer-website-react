@@ -431,14 +431,15 @@ export default function Security() {
                                                                                     const { message, success } = payload;
                                                                                     enqueueSnackbar(message);
                                                                                     if (success) {
+                                                                                        setSecurityData({ ...securityData, recovery_email: '' })
                                                                                         dispatch(securitySettings());
                                                                                     }
                                                                                 }).catch((err) => {
                                                                                     enqueueSnackbar(err.payload.message)
                                                                                 }).finally(() => {
-                                                                                    setOpen(false)
                                                                                     formik2.resetForm();
                                                                                     formik.resetForm();
+                                                                                    setOpen(false)
                                                                                     setBackdrop(false);
                                                                                 })
                                                                             }
