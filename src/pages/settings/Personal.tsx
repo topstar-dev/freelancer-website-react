@@ -252,6 +252,7 @@ export default function Personal() {
                                                                     enqueueSnackbar(err.payload.message);
                                                                 }
                                                             }).finally(() => {
+                                                                formik.resetForm();
                                                                 setBackdrop(false);
                                                                 setOpen(false)
                                                             })

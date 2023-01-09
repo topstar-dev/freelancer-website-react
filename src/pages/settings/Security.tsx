@@ -404,36 +404,46 @@ export default function Security() {
                                                                 helperText={(formik2.touched.password && formik2.errors.password) as ReactNode}
                                                             ></TextField>
                                                             <DialogActions style={{ padding: 0, marginBottom: -6 }}>
-                                                                <Button variant="text" onClick={() => setOpen(false)}>{t('cancel')}</Button>
-                                                                <Button variant="text" style={{ marginLeft: 0 }} onClick={() => {
-                                                                    formik2.validateForm().then((res: any) => {
-                                                                        const { password } = res;
-                                                                        if (password) {
-                                                                            formik2.setFieldTouched('password', true, true);
-                                                                            formik2.setFieldError('password', password);
-                                                                        } else {
-                                                                            const deleteEmailCodeObj: DeleteRecoveryEmailInterface = {
-                                                                                password: formik2.values.password
-                                                                            }
-                                                                            setBackdrop(true);
-                                                                            dispatch(deleteRecoveryEmailAction(deleteEmailCodeObj)).then((res: any) => {
-                                                                                const { payload } = res;
-                                                                                const { message, success } = payload;
-                                                                                enqueueSnackbar(message);
-                                                                                if (success) {
-                                                                                    dispatch(securitySettings());
+                                                                <Button
+                                                                    variant="text"
+                                                                    onClick={() => {
+                                                                        formik2.setFieldValue('password', '')
+                                                                        setOpen(false)
+                                                                    }}>
+                                                                    {t('cancel')}
+                                                                </Button>
+                                                                <Button
+                                                                    variant="text"
+                                                                    style={{ marginLeft: 0 }}
+                                                                    onClick={() => {
+                                                                        formik2.validateForm().then((res: any) => {
+                                                                            const { password } = res;
+                                                                            if (password) {
+                                                                                formik2.setFieldTouched('password', true, true);
+                                                                                formik2.setFieldError('password', password);
+                                                                            } else {
+                                                                                const deleteEmailCodeObj: DeleteRecoveryEmailInterface = {
+                                                                                    password: formik2.values.password
                                                                                 }
-                                                                            }).catch((err) => {
-                                                                                enqueueSnackbar(err.payload.message)
-                                                                            }).finally(() => {
-                                                                                setOpen(false)
-                                                                                formik2.resetForm();
-                                                                                formik.resetForm();
-                                                                                setBackdrop(false);
-                                                                            })
-                                                                        }
-                                                                    })
-                                                                }}>{t('confirm')}</Button>
+                                                                                setBackdrop(true);
+                                                                                dispatch(deleteRecoveryEmailAction(deleteEmailCodeObj)).then((res: any) => {
+                                                                                    const { payload } = res;
+                                                                                    const { message, success } = payload;
+                                                                                    enqueueSnackbar(message);
+                                                                                    if (success) {
+                                                                                        dispatch(securitySettings());
+                                                                                    }
+                                                                                }).catch((err) => {
+                                                                                    enqueueSnackbar(err.payload.message)
+                                                                                }).finally(() => {
+                                                                                    setOpen(false)
+                                                                                    formik2.resetForm();
+                                                                                    formik.resetForm();
+                                                                                    setBackdrop(false);
+                                                                                })
+                                                                            }
+                                                                        })
+                                                                    }}>{t('confirm')}</Button>
                                                             </DialogActions>
                                                         </Form>
                                                     </WithTranslateFormErrors>
