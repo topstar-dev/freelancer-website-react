@@ -186,9 +186,8 @@ const AboutMe = (props: any) => {
                                 <Button
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
-                                            console.log(formik.values)
-                                            const { about, country_id, province_id, city_id } = res;
-                                            const isValid = about || country_id || province_id || city_id;
+                                            const { about, country_id } = res;
+                                            const isValid = about || country_id;
                                             if (!(Boolean(isValid))) {
                                                 formik.submitForm();
                                             } else {
