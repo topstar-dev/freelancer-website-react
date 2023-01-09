@@ -118,7 +118,7 @@ const AboutMe = (props: any) => {
                                                 onChange={(e) => {
                                                     formik.setFieldValue('province_id', "")
                                                     formik.setFieldValue('city_id', "")
-                                                    if (e.target.value.toString() !== '49') {
+                                                    if (e.target.value.toString() === '49') {
                                                         setLoading(true)
                                                         dispatch(getProvincesList({ country_id: Number(e.target.value) })).then((res) => {
                                                             if (res.payload && res.payload.success) {
@@ -137,7 +137,7 @@ const AboutMe = (props: any) => {
                                                 ))}
                                             </Select>
                                         </FormControl>
-                                        {formik.values.country_id?.toString() !== '49' && <FormControl fullWidth>
+                                        {formik.values.country_id?.toString() === '49' && <FormControl fullWidth>
                                             <InputLabel id="freelancer-skills-select-label">{t('freelancer.about.province')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.province')}
@@ -164,7 +164,7 @@ const AboutMe = (props: any) => {
                                                 ))}
                                             </Select>
                                         </FormControl>}
-                                        {formik.values.country_id?.toString() !== '49' && <FormControl fullWidth>
+                                        {formik.values.country_id?.toString() === '49' && <FormControl fullWidth>
                                             <InputLabel id="freelancer-skills-select-label">{t('freelancer.about.city')}</InputLabel>
                                             <Select
                                                 label={t('freelancer.about.city')}
