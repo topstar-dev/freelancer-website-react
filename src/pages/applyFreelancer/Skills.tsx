@@ -4,7 +4,7 @@ import { Box, Stack } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
-import { Backdrop, Chip, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Autocomplete, Backdrop, Chip, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
@@ -113,25 +113,26 @@ const Skills = (props: any) => {
                                         {formik.touched.occupation_category && formik.errors.occupation_category && <FormHelperText>{formik.errors.occupation_category as ReactNode}</FormHelperText>}
                                     </FormControl>
                                     <FormControl error={formik.touched.skills && Boolean(formik.errors.skills)} fullWidth>
-                                        <InputLabel id="freelancer-skills-select-label">{t('freelancer.skills.skills')}</InputLabel>
-                                        <TextField
-                                            select
-                                            value={''}
-                                            onChange={(e) => {
-                                                let isExist = formik.values.skills.findIndex((s: any) => e.target.value === s.skill_id)
+                                        <Autocomplete
+                                            disablePortal
+                                            blurOnSelect
+                                            value={null}
+                                            onChange={(e, value) => {
+                                                let isExist = formik.values.skills.findIndex((s: any) => value?.id === s.skill_id)
                                                 if (isExist === -1) {
-                                                    pushMethod({ skill_id: e.target.value })
+                                                    pushMethod({ skill_id: value?.id })
                                                 }
                                             }}
-                                        >
-                                            {skillsList.map((skill: any) => (
-                                                <MenuItem key={skill.skill_id} value={skill.skill_id}>{skill.skill_name}</MenuItem>
-                                            ))}
-                                        </TextField>
+                                            options={skillsList.map((c: any) => ({
+                                                label: c.skill_name,
+                                                id: c.skill_id
+                                            }))}
+                                            renderInput={(params) => <TextField {...params} error={formik.touched.skills && Boolean(formik.errors.skills)} label={t('freelancer.skills.skills')} />}
+                                        />
                                         {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>}
                                     </FormControl>
                                 </Form >
-                                {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing-divider ">
+                                {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing">
                                     <Divider />
                                 </Box>}
                                 <Box className={formik.values.skills.length > 0 ? 'freelancer-card-spacing' : ''}>
