@@ -177,7 +177,11 @@ export default function Personal() {
                                 </Button>
                                 <Dialog
                                     open={open}
-                                    onClose={() => setOpen(false)}
+                                    onClose={() => {
+                                        formik.setFieldValue('email_code', '')
+                                        formik.setFieldValue('password', '')
+                                        setOpen(false)
+                                    }}
                                     maxWidth="lg"
                                     className="deleteEmailModal"
                                 >
@@ -221,7 +225,15 @@ export default function Personal() {
                                                 }}
                                             ></TextField>
                                             <DialogActions style={{ padding: 0, marginBottom: -6 }}>
-                                                <Button variant="text" onClick={() => setOpen(false)}>{t('cancel')}</Button>
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() => {
+                                                        formik.setFieldValue('email_code', '')
+                                                        formik.setFieldValue('password', '')
+                                                        setOpen(false)
+                                                    }}>
+                                                    {t('cancel')}
+                                                </Button>
                                                 <Button variant="text" style={{ marginLeft: 0 }} onClick={() => {
                                                     formik.validateForm().then((res: any) => {
                                                         const { password } = res;
