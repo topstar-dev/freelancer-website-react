@@ -84,21 +84,22 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                     dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
                         if (res.payload && res.payload.success) {
                             sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
+                            setBackdrop(false);
                             navigate(pageUrl);
                         }
                     }).catch((err) => {
-
+                        setBackdrop(false);
                     })
                 } else {
+                    setBackdrop(false);
                     navigate(`${pageUrl}/status`)
                 }
             }
         }).catch((err) => {
+            setBackdrop(false);
             if (err) {
                 enqueueSnackbar(err && err.payload.message)
             }
-        }).finally(() => {
-            setBackdrop(false);
         })
     }
 

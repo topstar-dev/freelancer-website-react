@@ -18,7 +18,7 @@ const Skills = (props: any) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [called, setCalled] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [skillsList, setSkillsList] = useState([]);
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};

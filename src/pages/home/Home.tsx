@@ -31,6 +31,7 @@ export default function HomePage() {
         document.title = t('title.home');
         sessionStorage.removeItem('signup-info')
         sessionStorage.removeItem('freelancer-application-info');
+        sessionStorage.removeItem('freelancer-application-status');
         pageView(window.location.pathname)
     })
 
