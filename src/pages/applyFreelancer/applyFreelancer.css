@@ -81,7 +81,7 @@
     position: relative;
 }
 
-.profile-bg {
+.profile-image-box {
     height: 134px;
     border-bottom: 1px solid #757575;
     position: relative;
@@ -91,13 +91,13 @@
     overflow: hidden
 }
 
-.profile-bg-image {
+.profile-image {
     flex-shrink: 0;
     min-width: 100%;
     min-height: 100%
 }
 
-.profile-bg-handle {
+.image-handle {
     border-radius: 100%;
     height: 50px;
     width: 50px;
@@ -110,16 +110,16 @@
     cursor: pointer;
 }
 
-.profile-bg-handle.center {
+.image-handle.center {
     top: 33px;
     right: 33px
 }
 
-.profile-bg-handle input {
+.image-handle input {
     display: none;
 }
 
-.profile-photo {
+.avatar-image-box {
     height: 120px;
     width: 120px;
     border-radius: 100%;
@@ -136,7 +136,7 @@
     overflow: hidden
 }
 
-.profile-photo-image {
+.avatar-image {
     flex-shrink: 0;
     min-width: 120px;
     min-height: 120px;

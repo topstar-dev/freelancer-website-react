@@ -21,8 +21,8 @@ const NamePhoto = (props: any) => {
         last_name: freelancerApplicationInfo.last_name || ""
     });
 
-    const [profileBgAvatar, setProfileBgAvatar] = useState<any>();
-    const [profilePhotoAvatar, setProfilePhotoAvatar] = useState<any>();
+    const [profileImage, setProfileImage] = useState<any>();
+    const [avatarImage, setAvatarImage] = useState<any>();
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -59,26 +59,26 @@ const NamePhoto = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
                                 <Box className="profile-photo-container">
-                                    <Box className="profile-bg">
-                                        {profileBgAvatar && <img className='profile-bg-image' alt="profile_bg_avatar" src={profileBgAvatar} />}
-                                        <label className='profile-bg-handle' htmlFor="profile_bg_avatar">
+                                    <Box className="profile-image-box">
+                                        {profileImage && <img className='profile-image' alt="profile_image" src={profileImage} />}
+                                        <label className='image-handle' htmlFor="profile_image">
                                             <input
-                                                id="profile_bg_avatar"
+                                                id="profile_image"
                                                 type="file"
                                                 onChange={(e: any) => {
-                                                    setProfileBgAvatar(URL.createObjectURL(e.target.files[0]));
+                                                    setProfileImage(URL.createObjectURL(e.target.files[0]));
                                                 }}
                                             />
                                         </label>
                                     </Box>
-                                    <Box className="profile-photo">
-                                        {profilePhotoAvatar && <img className='profile-photo-image' alt="profile_photo_avatar" src={profilePhotoAvatar} />}
-                                        <label className='profile-bg-handle center' htmlFor="profile_photo_avatar">
+                                    <Box className="avatar-image-box">
+                                        {avatarImage && <img className='avatar-image' alt="avatar_image" src={avatarImage} />}
+                                        <label className='image-handle center' htmlFor="avatar_image">
                                             <input
-                                                id="profile_photo_avatar"
+                                                id="avatar_image"
                                                 type="file"
                                                 onChange={(e: any) => {
-                                                    setProfilePhotoAvatar(URL.createObjectURL(e.target.files[0]));
+                                                    setAvatarImage(URL.createObjectURL(e.target.files[0]));
                                                 }}
                                             />
                                         </label>
