@@ -125,7 +125,7 @@ const NamePhoto = (props: any) => {
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
                                             if (!(first_name || last_name)) {
-                                                navigate('/apply-freelancer/experience')
+                                                navigate('/apply-freelancer/experiences')
                                             }
                                         })
                                     }}

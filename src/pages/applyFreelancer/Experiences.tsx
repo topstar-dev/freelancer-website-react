@@ -13,7 +13,7 @@ import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
 
-const Experience = (props: any) => {
+const Experiences = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     let pushMethod: any = () => { }
@@ -75,8 +75,8 @@ const Experience = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-heading heading-flex`}>
                                 <Box>
-                                    <Box className='heading-title'>{t('freelancer.experience.title')}</Box>
-                                    <Box className='heading-steps'>{t('freelancer.experience.subtitle')}</Box>
+                                    <Box className='heading-title'>{t('freelancer.experiences.title')}</Box>
+                                    <Box className='heading-steps'>{t('freelancer.experiences.subtitle')}</Box>
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.experiences.length < 20 &&
@@ -139,7 +139,7 @@ const Experience = (props: any) => {
                                                                     id={jobTitle}
                                                                     name={jobTitle}
                                                                     type="text"
-                                                                    label={t('freelancer.experience.position')}
+                                                                    label={t('freelancer.experiences.position')}
                                                                     value={exp.job_title ? exp.job_title : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedJobTitle && Boolean(errorJobTitle)}
@@ -150,7 +150,7 @@ const Experience = (props: any) => {
                                                                     id={companyName}
                                                                     name={companyName}
                                                                     type="text"
-                                                                    label={t('freelancer.experience.company')}
+                                                                    label={t('freelancer.experiences.company')}
                                                                     value={exp.company_name ? exp.company_name : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedCompanyName && Boolean(errorCompanyName)}
@@ -162,7 +162,7 @@ const Experience = (props: any) => {
                                                                         id={startYear}
                                                                         name={startYear}
                                                                         type="text"
-                                                                        label={t('freelancer.experience.start-year')}
+                                                                        label={t('freelancer.experiences.start-year')}
                                                                         value={exp.start_year ? exp.start_year : ''}
                                                                         onChange={formik.handleChange}
                                                                         error={touchedStartYear && Boolean(errorStartYear)}
@@ -173,7 +173,7 @@ const Experience = (props: any) => {
                                                                         id={endYear}
                                                                         name={endYear}
                                                                         type="text"
-                                                                        label={t('freelancer.experience.end-year')}
+                                                                        label={t('freelancer.experiences.end-year')}
                                                                         value={exp.end_year ? exp.end_year : ''}
                                                                         onChange={formik.handleChange}
                                                                         error={touchedEndYear && Boolean(errorEndYear)}
@@ -187,7 +187,7 @@ const Experience = (props: any) => {
                                                                     id={description}
                                                                     name={description}
                                                                     type="text"
-                                                                    label={t('freelancer.experience.description')}
+                                                                    label={t('freelancer.experiences.description')}
                                                                     value={exp.description ? exp.description : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedDescription && Boolean(errorDescription)}
@@ -220,7 +220,7 @@ const Experience = (props: any) => {
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
                                             if (isValid) {
-                                                navigate('/apply-freelancer/education')
+                                                navigate('/apply-freelancer/educations')
                                             }
                                         })
                                     }}
@@ -246,4 +246,4 @@ const Experience = (props: any) => {
     )
 }
 
-export default Experience;
+export default Experiences;
