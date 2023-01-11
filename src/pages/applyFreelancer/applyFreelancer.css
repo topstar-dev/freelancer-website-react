@@ -147,11 +147,8 @@
 }
 
 .avatar-image {
-    flex-shrink: 0;
-    min-width: 120px;
-    min-height: 120px;
-    max-width: 120px;
-    max-height: 120px;
+    height: 100% !important;
+    width: 100% !important;
 }
 
 /* experience style */

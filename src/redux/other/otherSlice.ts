@@ -5,12 +5,14 @@ export interface OtherState {
     message?: string | null;
     loading: boolean;
     userAvatar: any;
+    userProfile: any
 }
 
 const initialState: OtherState = {
     loading: false,
     message: null,
-    userAvatar: null
+    userAvatar: null,
+    userProfile: null
 }
 
 export const otherSlice = createSlice({

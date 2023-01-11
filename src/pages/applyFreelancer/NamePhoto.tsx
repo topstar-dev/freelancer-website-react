@@ -4,6 +4,7 @@ import { Box } from '@mui/system';
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Avatar from '@mui/material/Avatar';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
 import { Divider, TextField } from '@mui/material';
@@ -11,10 +12,14 @@ import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { imageDownload } from '../../redux/other/otherActions';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { userAvatar, loading } = useAppSelector(state => state.other)
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerSkills] = useState({
@@ -22,12 +27,24 @@ const NamePhoto = (props: any) => {
         last_name: freelancerApplicationInfo.last_name || ""
     });
 
-    const [profileImage, setProfileImage] = useState<any>();
     const [avatarImage, setAvatarImage] = useState<any>();
+    const [profileImage, setProfileImage] = useState<any>();
 
     useEffect(() => {
         document.title = t('title.freelancer');
     })
+
+    useEffect(() => {
+        if (freelancerApplicationInfo.avatar_url && !userAvatar && !loading) {
+            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: freelancerApplicationInfo.avatar_url }))
+        }
+    }, [dispatch, freelancerApplicationInfo.avatar_url, avatarImage])
+
+    // useEffect(() => {
+    //     if (freelancerApplicationInfo.profile_url && !profileImage) {
+
+    //     }
+    // }, [freelancerApplicationInfo.profile_url, profileImage])
 
     return (
         <Box>
@@ -78,10 +95,10 @@ const NamePhoto = (props: any) => {
                                         </label>
                                     </Box>
                                     <Box className="avatar-image-box">
-                                        {avatarImage ?
-                                            <img className='avatar-image' alt="avatar_image" src={avatarImage} />
+                                        {userAvatar ?
+                                            <Avatar className='avatar-image' alt="avatar_image" src={userAvatar} />
                                             :
-                                            <img className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
+                                            <Avatar className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
                                         }
                                         <label className='image-handle center' htmlFor="avatar_image">
                                             <input
