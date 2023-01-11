@@ -247,7 +247,7 @@ export default function Personal() {
                                                             formik.setFieldTouched('email_code', true, true);
                                                             formik.setFieldError('email_code', email_code);
                                                         }
-                                                        if (!(password && email_code)) {
+                                                        if (!(password || email_code)) {
                                                             setBackdrop(true);
                                                             const dataObj: ChangeEmailInterface = {
                                                                 email_code: formik.values.email_code,
