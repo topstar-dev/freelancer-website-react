@@ -237,11 +237,16 @@ export default function Personal() {
                                                 </Button>
                                                 <Button variant="text" style={{ marginLeft: 0 }} onClick={() => {
                                                     formik.validateForm().then((res: any) => {
-                                                        const { password } = res;
+                                                        const { password, email_code } = res;
                                                         if (password) {
                                                             formik.setFieldTouched('password', true, true);
                                                             formik.setFieldError('password', password);
-                                                        } else {
+                                                        }
+                                                        if (email_code) {
+                                                            formik.setFieldTouched('email_code', true, true);
+                                                            formik.setFieldError('email_code', email_code);
+                                                        }
+                                                        if (!(password && email_code)) {
                                                             setBackdrop(true);
                                                             const dataObj: ChangeEmailInterface = {
                                                                 email_code: formik.values.email_code,
@@ -257,6 +262,8 @@ export default function Personal() {
                                                                     dispatch(updateUserInfo(null));
                                                                     removeTokens();
                                                                     formik.resetForm();
+                                                                    setBackdrop(false);
+                                                                    setOpen(false)
                                                                 } else {
                                                                     enqueueSnackbar(payload.message)
                                                                 }
@@ -264,10 +271,6 @@ export default function Personal() {
                                                                 if (err && err.payload) {
                                                                     enqueueSnackbar(err.payload.message);
                                                                 }
-                                                            }).finally(() => {
-                                                                formik.resetForm();
-                                                                setBackdrop(false);
-                                                                setOpen(false)
                                                             })
                                                         }
                                                     })
