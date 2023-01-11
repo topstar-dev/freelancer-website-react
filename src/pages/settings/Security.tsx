@@ -235,7 +235,7 @@ export default function Security() {
                                     fullWidth
                                     id="new_email"
                                     name="new_email"
-                                    value={formik.values.new_email || securityData.recovery_email || ''}
+                                    value={formik.values.new_email || ''}
                                     onChange={formik.handleChange}
                                     label={t('user-security-recovery-email')}
                                     error={formik.touched.new_email && Boolean(formik.errors.new_email)}
@@ -321,6 +321,7 @@ export default function Security() {
                                                                 setChangeEmail(false);
                                                                 formik.resetForm();
                                                                 formik.setFieldValue('new_email', dataObj.new_email);
+                                                                setSecurityData({ ...securityData, recovery_email: dataObj.new_email })
                                                             } else {
                                                                 enqueueSnackbar(payload.message)
                                                             }
@@ -378,6 +379,7 @@ export default function Security() {
                                         <DialogTitle>{t('user-security-recovery-email-delete')}</DialogTitle>
                                         <DialogContent>
                                             <Formik
+                                                enableReinitialize
                                                 initialValues={{
                                                     password: ""
                                                 }}
