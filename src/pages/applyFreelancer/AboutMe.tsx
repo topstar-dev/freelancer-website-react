@@ -29,17 +29,11 @@ const AboutMe = (props: any) => {
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
-        about: '',
-        country_id: '',
-        province_id: '',
-        city_id: ''
+        about: freelancerApplicationInfo.about || '',
+        country_id: freelancerApplicationInfo.location?.country_id ? freelancerApplicationInfo.location?.country_id : '',
+        province_id: freelancerApplicationInfo.location?.province_id ? freelancerApplicationInfo.location?.province_id : '',
+        city_id: freelancerApplicationInfo.location?.city_id ? freelancerApplicationInfo.location?.city_id : ''
     });
-    // const [freelancerData] = useState({
-    //     about: freelancerApplicationInfo.about || '',
-    //     country_id: freelancerApplicationInfo.location?.country_id ? freelancerApplicationInfo.location?.country_id : '',
-    //     province_id: freelancerApplicationInfo.location?.province_id ? freelancerApplicationInfo.location?.province_id : '',
-    //     city_id: freelancerApplicationInfo.location?.city_id ? freelancerApplicationInfo.location?.city_id : ''
-    // });
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -70,6 +64,7 @@ const AboutMe = (props: any) => {
                 </Box>
                 <Divider />
                 <Formik
+                    enableReinitialize
                     initialValues={freelancerData}
                     validationSchema={yup.object({
                         about: yup
