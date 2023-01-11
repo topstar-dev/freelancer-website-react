@@ -114,7 +114,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
             </div>
             <Menu
                 id="menu-appbar"
-                className={`user - menu - list ${isMobile ? 'user-menu-list-mobile' : ''}`}
+                className={`user-menu-list ${isMobile ? 'user-menu-list-mobile' : ''}`}
                 anchorEl={anchorEl}
                 anchorOrigin={{
                     vertical: "bottom",
