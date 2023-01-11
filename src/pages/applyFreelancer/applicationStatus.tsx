@@ -54,7 +54,7 @@ const FailedApplication = () => {
                 dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
                     if (res.payload && res.payload.success) {
                         sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
-                        navigate(`/apply-freelancer/status`);
+                        navigate(`/apply-freelancer/skills`);
                     }
                 }).catch((err) => {
 
