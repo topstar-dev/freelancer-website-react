@@ -28,6 +28,7 @@ export default function Security() {
     const [backdrop, setBackdrop] = React.useState(false);
     const [showNewPassword, setNewShowPassword] = React.useState(false);
     const [showEmailChangePassword, setShowEmailChangePassword] = React.useState(false);
+    const [showEmailDeletePassword, setShowEmailDeletePassword] = React.useState(false);
     const [changeEmail, setChangeEmail] = React.useState(false);
     const [open, setOpen] = React.useState(false);
 
@@ -404,6 +405,19 @@ export default function Security() {
                                                                 onChange={formik2.handleChange}
                                                                 error={formik2.touched.password && Boolean(formik2.errors.password)}
                                                                 helperText={(formik2.touched.password && formik2.errors.password) as ReactNode}
+                                                                InputProps={{
+                                                                    endAdornment: (
+                                                                        <InputAdornment position="end">
+                                                                            <IconButton
+                                                                                aria-label="toggle password visibility"
+                                                                                onClick={() => setShowEmailDeletePassword(!showEmailDeletePassword)}
+                                                                                edge="end"
+                                                                            >
+                                                                                {showEmailChangePassword ? <VisibilityOff /> : <Visibility />}
+                                                                            </IconButton>
+                                                                        </InputAdornment>
+                                                                    ),
+                                                                }}
                                                             ></TextField>
                                                             <DialogActions style={{ padding: 0, marginBottom: -6 }}>
                                                                 <Button
