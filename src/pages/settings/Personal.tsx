@@ -263,7 +263,6 @@ export default function Personal() {
                                                                     dispatch(updateUserInfo(null));
                                                                     removeTokens();
                                                                     formik.resetForm();
-                                                                    setBackdrop(false);
                                                                     setOpen(false)
                                                                 } else {
                                                                     enqueueSnackbar(payload.message)
@@ -272,6 +271,8 @@ export default function Personal() {
                                                                 if (err && err.payload) {
                                                                     enqueueSnackbar(err.payload.message);
                                                                 }
+                                                            }).finally(() => {
+                                                                setBackdrop(false)
                                                             })
                                                         }
                                                     })
