@@ -85,7 +85,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                         if (res.payload && res.payload.success) {
                             sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
                             setBackdrop(false);
-                            navigate(`${pageUrl}/skills`);
+                            navigate(`${pageUrl.trim()}/skills`);
                         }
                     }).catch((err) => {
                         setBackdrop(false);
@@ -135,7 +135,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 <Divider />
                 <MenuList sx={{ width: "270px", maxWidth: "100%", padding: 0 }}>
                     {userInfo && userInfo.user_type === 'FREELANCER' ?
-                        <MenuItem className='user-menu-items' onClick={() => freelancerApplicationClick(`/ apply - freelancer`)}>
+                        <MenuItem className='user-menu-items' onClick={() => freelancerApplicationClick(`/apply-freelancer`)}>
                             {t('header-user-submit-freelancer')}
                         </MenuItem>
                         :
@@ -146,7 +146,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                     </MenuItem>
                     <MenuItem className='user-menu-items' onClick={() => {
                         setAnchorEl(null);
-                        navigate(`/ settings / personal`)
+                        navigate(`/settings/personal`)
                     }}>
                         {t('header-user-settings')}
                     </MenuItem>
