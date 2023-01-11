@@ -30,9 +30,9 @@ const AboutMe = (props: any) => {
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
         about: freelancerApplicationInfo.about || '',
-        country_id: freelancerApplicationInfo.location?.country_id ? freelancerApplicationInfo.location?.country_id : '',
-        province_id: freelancerApplicationInfo.location?.province_id ? freelancerApplicationInfo.location?.province_id : '',
-        city_id: freelancerApplicationInfo.location?.city_id ? freelancerApplicationInfo.location?.city_id : ''
+        country_id: freelancerApplicationInfo?.country_id ? freelancerApplicationInfo?.country_id : '',
+        province_id: freelancerApplicationInfo?.province_id ? freelancerApplicationInfo?.province_id : '',
+        city_id: freelancerApplicationInfo?.city_id ? freelancerApplicationInfo?.city_id : ''
     });
 
     useEffect(() => {
@@ -51,8 +51,30 @@ const AboutMe = (props: any) => {
             }).finally(() => {
                 setLoading(false)
             })
+
+            if (freelancerData.province_id) {
+                dispatch(getProvincesList({ country_id: Number(freelancerData.country_id) })).then((res) => {
+                    if (res.payload && res.payload.success) {
+                        setProvinceList(res.payload.data.records);
+                    }
+                }).catch((err: any) => {
+                }).finally(() => {
+                    setLoading(false)
+                })
+            }
+
+            if (freelancerData.city_id) {
+                dispatch(getCitiesList({ province_id: Number(freelancerData.province_id), country_id: Number(freelancerData.country_id) })).then((res) => {
+                    if (res.payload && res.payload.success) {
+                        setCityList(res.payload.data.records);
+                    }
+                }).catch((err: any) => {
+                }).finally(() => {
+                    setLoading(false)
+                })
+            }
         }
-    }, [dispatch, called])
+    }, [dispatch, called, freelancerData.province_id, freelancerData.city_id, freelancerData.country_id])
 
     return (
         <Box>
@@ -198,7 +220,14 @@ const AboutMe = (props: any) => {
                                                     username: userInfo?.username
                                                 }
 
-                                                sessionStorage.setItem('freelancer-application-info', JSON.stringify(saveData))
+                                                sessionStorage.setItem('freelancer-application-info', JSON.stringify({
+                                                    ...freelancerApplicationInfo,
+                                                    about: formik.values.about,
+                                                    country_id: formik.values.country_id,
+                                                    province_id: formik.values.province_id,
+                                                    city_id: formik.values.city_id,
+                                                    username: userInfo?.username
+                                                }))
                                                 setLoading(true);
                                                 dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
                                                     if (res.payload && res.payload.success) {
