@@ -208,7 +208,7 @@ const AboutMe = (props: any) => {
                                                 dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
                                                     if (res.payload && res.payload.success) {
                                                         sessionStorage.removeItem('freelancer-application-info');
-                                                        navigate('/apply-freelancer')
+                                                        navigate('/apply-freelancer/skills')
                                                     }
                                                 }).catch(() => {
 

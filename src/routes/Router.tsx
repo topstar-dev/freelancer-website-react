@@ -106,7 +106,7 @@ export default function Router() {
         element: <CustomRouter isHeader={true} protectedRoute={true} />,
         children: [
           {
-            path: `${baseUrl}/apply-freelancer`,
+            path: `${baseUrl}/apply-freelancer/skills`,
             element: <Skills />
           },
           {
