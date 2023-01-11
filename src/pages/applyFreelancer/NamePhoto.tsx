@@ -21,7 +21,7 @@ const NamePhoto = (props: any) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
-    const { userAvatar, userProfile, loading } = useAppSelector(state => state.other)
+    const { userAvatar, userProfile, loading, loadingProfile } = useAppSelector(state => state.other)
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerSkills] = useState({
@@ -42,11 +42,11 @@ const NamePhoto = (props: any) => {
         }
     }, [dispatch, loading, freelancerApplicationInfo.avatar_url, userAvatar])
 
-    // useEffect(() => {
-    //     if (freelancerApplicationInfo.profile_url && !profileImage) {
-
-    //     }
-    // }, [freelancerApplicationInfo.profile_url, profileImage])
+    useEffect(() => {
+        if (freelancerApplicationInfo.profile_url && !userProfile && !loadingProfile) {
+            // dispatch(imageDownload({ functionType: 'USER_PROFILE', fileName: freelancerApplicationInfo.avatar_url }))
+        }
+    }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
 
     return (
         <Box>
@@ -156,24 +156,24 @@ const NamePhoto = (props: any) => {
                                                 formik.setFieldError('last_name', last_name);
                                             }
 
-                                            let avatarImageCheck = true;
+                                            let avatarImageCheck = false;
                                             if (!userAvatar) {
                                                 if (!avatarImage) {
-                                                    avatarImageCheck = false;
+                                                    avatarImageCheck = true;
                                                     enqueueSnackbar(t('validation.avatar-image'))
                                                 }
                                             }
 
-                                            let profileImageCheck = true;
+                                            let profileImageCheck = false;
                                             if (!userProfile) {
                                                 if (!profileImage) {
-                                                    profileImageCheck = false;
+                                                    profileImageCheck = true;
                                                     enqueueSnackbar(t('validation.profile-image'))
                                                 }
                                             }
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
-                                            if (!(first_name || last_name || avatarImage || profileImageCheck)) {
+                                            if (!(first_name || last_name || avatarImageCheck || profileImageCheck)) {
                                                 navigate('/apply-freelancer/experiences')
                                             }
                                         })

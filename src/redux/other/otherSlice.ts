@@ -4,12 +4,14 @@ import { imageDownload } from './otherActions';
 export interface OtherState {
     message?: string | null;
     loading: boolean;
+    loadingProfile: boolean;
     userAvatar: any;
     userProfile: any
 }
 
 const initialState: OtherState = {
     loading: false,
+    loadingProfile: false,
     message: null,
     userAvatar: null,
     userProfile: null

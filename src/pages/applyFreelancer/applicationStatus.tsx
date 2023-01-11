@@ -1,8 +1,10 @@
+import { Backdrop, CircularProgress } from '@mui/material';
 import { Box } from '@mui/system';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
+import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
 import { useNavigate } from '../../routes/Router';
@@ -10,16 +12,35 @@ import './applyFreelancer.css';
 
 const ApplicationStatus = (props: any) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const [backdrop, setBackdrop] = React.useState(false);
 
-    const getStatus = () => {
-        const statusData = JSON.parse(sessionStorage.getItem('freelancer-application-status') || '{}');
-        const status = statusData.status;
+    const returnComponent = (status: string) => {
         if (status === 'FAILED') {
             return <FailedApplication />
         } else if (status === 'APPLYING') {
             return <ApplyingApplication />
         } else if (status === 'PASSED') {
             return <PassedApplication />
+        }
+    }
+
+    const getStatus = () => {
+        const statusData = JSON.parse(sessionStorage.getItem('freelancer-application-status') || '{}');
+        if (!statusData) {
+            setBackdrop(true)
+            dispatch(getFreelancerApplicationAction()).then((res) => {
+                if (res.payload && res.payload.success) {
+                    const status = res.payload.data.status;
+                    sessionStorage.setItem('freelancer-application-status', JSON.stringify(res.payload.data))
+                    return returnComponent(status);
+                }
+            }).catch(() => {
+            }).finally(() => {
+                setBackdrop(false)
+            })
+        } else {
+            return returnComponent(statusData.status);
         }
     }
 
@@ -33,6 +54,12 @@ const ApplicationStatus = (props: any) => {
                 {t('freelancer.title')}
             </Box>
             {getStatus()}
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={backdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Box>
     )
 }
