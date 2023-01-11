@@ -225,7 +225,7 @@ export default function Personal() {
                                                     ),
                                                 }}
                                             ></TextField>
-                                            <DialogActions style={{ padding: 0 }}>
+                                            <DialogActions style={{ padding: 0, marginTop: 4 }}>
                                                 <Button
                                                     variant="outlined"
                                                     style={{ marginRight: 12 }}
