@@ -103,6 +103,7 @@ export default function Personal() {
                 </Typography>
                 <br />
                 <Formik
+                    enableReinitialize
                     initialValues={
                         {
                             new_email: personalData?.primary_email,
@@ -131,7 +132,7 @@ export default function Personal() {
                                     id="new_email"
                                     name="new_email"
                                     type="text"
-                                    value={formik.values.new_email ? formik.values.new_email : (personalData?.primary_email || '')}
+                                    value={formik.values.new_email || ''}
                                     onChange={formik.handleChange}
                                     label={t('user-personal-account-email')}
                                     error={formik.touched.new_email && Boolean(formik.errors.new_email)}
