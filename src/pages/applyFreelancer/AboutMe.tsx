@@ -205,10 +205,10 @@ const AboutMe = (props: any) => {
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
                                             const { about, country_id } = res;
-                                            const isValid = about || country_id;
-                                            if (!(Boolean(isValid))) {
+                                            if (about || country_id) {
                                                 formik.submitForm();
                                             } else {
+                                                console.log('asdfsdf')
                                                 const saveData = {
                                                     ...freelancerApplicationInfo,
                                                     about: formik.values.about,
