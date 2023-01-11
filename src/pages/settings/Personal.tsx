@@ -227,7 +227,8 @@ export default function Personal() {
                                             ></TextField>
                                             <DialogActions style={{ padding: 0, marginBottom: -6 }}>
                                                 <Button
-                                                    variant="text"
+                                                    variant="outlined"
+                                                    style={{ marginRight: 12 }}
                                                     onClick={() => {
                                                         formik.setFieldValue('email_code', '')
                                                         formik.setFieldValue('password', '')
@@ -235,7 +236,7 @@ export default function Personal() {
                                                     }}>
                                                     {t('cancel')}
                                                 </Button>
-                                                <Button variant="text" style={{ marginLeft: 0 }} onClick={() => {
+                                                <Button variant="outlined" style={{ marginLeft: 0 }} onClick={() => {
                                                     formik.validateForm().then((res: any) => {
                                                         const { password, email_code } = res;
                                                         if (password) {
