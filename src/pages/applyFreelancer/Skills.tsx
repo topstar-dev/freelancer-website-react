@@ -182,7 +182,7 @@ const Skills = (props: any) => {
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
                                             if (!(occupation_category || skillsValidate)) {
-                                                navigate(`/apply-freelancer/info`)
+                                                navigate(`/apply-freelancer/name-photos`)
                                             }
                                         })
                                     }}

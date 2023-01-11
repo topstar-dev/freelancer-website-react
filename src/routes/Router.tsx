@@ -24,8 +24,8 @@ import NotFound from "../pages/error/NotFound";
 // apply-freelancer
 import Skills from "../pages/applyFreelancer/Skills";
 import NamePhoto from "../pages/applyFreelancer/NamePhoto";
-import Experience from "../pages/applyFreelancer/Experience";
-import Education from "../pages/applyFreelancer/Education";
+import Experiences from "../pages/applyFreelancer/Experiences";
+import Educations from "../pages/applyFreelancer/Educations";
 import Languages from "../pages/applyFreelancer/Languages";
 import AboutMe from "../pages/applyFreelancer/AboutMe";
 
@@ -114,16 +114,16 @@ export default function Router() {
             element: <ApplicationStatus />
           },
           {
-            path: `${baseUrl}/apply-freelancer/info`,
+            path: `${baseUrl}/apply-freelancer/name-photos`,
             element: <NamePhoto />
           },
           {
-            path: `${baseUrl}/apply-freelancer/experience`,
-            element: <Experience />
+            path: `${baseUrl}/apply-freelancer/experiences`,
+            element: <Experiences />
           },
           {
-            path: `${baseUrl}/apply-freelancer/education`,
-            element: <Education />
+            path: `${baseUrl}/apply-freelancer/educations`,
+            element: <Educations />
           },
           {
             path: `${baseUrl}/apply-freelancer/languages`,

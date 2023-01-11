@@ -13,7 +13,7 @@ import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
 
-const Education = (props: any) => {
+const Educations = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     let pushMethod: any = () => { }
@@ -65,8 +65,8 @@ const Education = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-heading  heading-flex`}>
                                 <Box>
-                                    <Box className='heading-title'>{t('freelancer.education.title')}</Box>
-                                    <Box className='heading-steps'>{t('freelancer.education.subtitle')}</Box>
+                                    <Box className='heading-title'>{t('freelancer.educations.title')}</Box>
+                                    <Box className='heading-steps'>{t('freelancer.educations.subtitle')}</Box>
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.educations.length < 20 &&
@@ -127,7 +127,7 @@ const Education = (props: any) => {
                                                                     id={majorName}
                                                                     name={majorName}
                                                                     type="text"
-                                                                    label={t('freelancer.education.major')}
+                                                                    label={t('freelancer.educations.major')}
                                                                     value={exp.major_name ? exp.major_name : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedMajorName && Boolean(errorMajorName)}
@@ -138,7 +138,7 @@ const Education = (props: any) => {
                                                                     id={schoolName}
                                                                     name={schoolName}
                                                                     type="text"
-                                                                    label={t('freelancer.education.school')}
+                                                                    label={t('freelancer.educations.school')}
                                                                     value={exp.school_name ? exp.school_name : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedSchoolName && Boolean(errorSchoolName)}
@@ -150,7 +150,7 @@ const Education = (props: any) => {
                                                                         id={startYear}
                                                                         name={startYear}
                                                                         type="text"
-                                                                        label={t('freelancer.education.start-year')}
+                                                                        label={t('freelancer.educations.start-year')}
                                                                         value={exp.start_year ? exp.start_year : ''}
                                                                         onChange={formik.handleChange}
                                                                         error={touchedStartYear && Boolean(errorStartYear)}
@@ -161,7 +161,7 @@ const Education = (props: any) => {
                                                                         id={endYear}
                                                                         name={endYear}
                                                                         type="text"
-                                                                        label={t('freelancer.education.end-year')}
+                                                                        label={t('freelancer.educations.end-year')}
                                                                         value={exp.end_year ? exp.end_year : ''}
                                                                         onChange={formik.handleChange}
                                                                         error={touchedEndYear && Boolean(errorEndYear)}
@@ -175,7 +175,7 @@ const Education = (props: any) => {
                                                                     id={description}
                                                                     name={description}
                                                                     type="text"
-                                                                    label={t('freelancer.education.description')}
+                                                                    label={t('freelancer.educations.description')}
                                                                     value={exp.description ? exp.description : ''}
                                                                     onChange={formik.handleChange}
                                                                     error={touchedDescription && Boolean(errorDescription)}
@@ -234,4 +234,4 @@ const Education = (props: any) => {
     )
 }
 
-export default Education;
+export default Educations;
