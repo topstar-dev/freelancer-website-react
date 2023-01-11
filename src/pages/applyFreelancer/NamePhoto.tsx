@@ -1,15 +1,16 @@
+import { ReactNode, useEffect, useState } from 'react';
+import { Formik } from 'formik';
 import { Box } from '@mui/system';
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
 import { Divider, TextField } from '@mui/material';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
-import './applyFreelancer.css';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
-import { Formik } from 'formik';
-import { ReactNode, useEffect, useState } from 'react';
+import './applyFreelancer.css';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
@@ -60,7 +61,11 @@ const NamePhoto = (props: any) => {
                             <Box className={`freelancer-body`}>
                                 <Box className="profile-photo-container">
                                     <Box className="profile-image-box">
-                                        {profileImage && <img className='profile-image' alt="profile_image" src={profileImage} />}
+                                        {profileImage ?
+                                            <img className='profile-image' alt="profile_image" src={profileImage} />
+                                            :
+                                            <img className='profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
+                                        }
                                         <label className='image-handle' htmlFor="profile_image">
                                             <input
                                                 id="profile_image"
@@ -69,10 +74,15 @@ const NamePhoto = (props: any) => {
                                                     setProfileImage(URL.createObjectURL(e.target.files[0]));
                                                 }}
                                             />
+                                            <CameraAltIcon className='camera-icon' />
                                         </label>
                                     </Box>
                                     <Box className="avatar-image-box">
-                                        {avatarImage && <img className='avatar-image' alt="avatar_image" src={avatarImage} />}
+                                        {avatarImage ?
+                                            <img className='avatar-image' alt="avatar_image" src={avatarImage} />
+                                            :
+                                            <img className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
+                                        }
                                         <label className='image-handle center' htmlFor="avatar_image">
                                             <input
                                                 id="avatar_image"
@@ -81,6 +91,7 @@ const NamePhoto = (props: any) => {
                                                     setAvatarImage(URL.createObjectURL(e.target.files[0]));
                                                 }}
                                             />
+                                            <CameraAltIcon className='camera-icon' />
                                         </label>
                                     </Box>
                                 </Box>
