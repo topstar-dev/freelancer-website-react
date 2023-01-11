@@ -120,7 +120,7 @@ export default function Personal() {
                             .required(t('validation.code-required')),
                         password: yup
                             .string()
-                            .required(t('validation.set-password-required'))
+                            .required(t('validation.password-required'))
                     })}
                     onSubmit={() => { }}
                 >
