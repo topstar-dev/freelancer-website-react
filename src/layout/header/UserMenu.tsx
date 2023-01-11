@@ -92,7 +92,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                     })
                 } else {
                     setBackdrop(false);
-                    navigate(`${pageUrl} / status`)
+                    navigate(`${pageUrl}/status`)
                 }
             }
         }).catch((err) => {
