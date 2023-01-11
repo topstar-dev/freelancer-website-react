@@ -85,14 +85,14 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                         if (res.payload && res.payload.success) {
                             sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
                             setBackdrop(false);
-                            navigate(pageUrl);
+                            navigate(`${pageUrl}/skills`);
                         }
                     }).catch((err) => {
                         setBackdrop(false);
                     })
                 } else {
                     setBackdrop(false);
-                    navigate(`${pageUrl}/status`)
+                    navigate(`${pageUrl} / status`)
                 }
             }
         }).catch((err) => {
@@ -114,7 +114,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
             </div>
             <Menu
                 id="menu-appbar"
-                className={`user-menu-list ${isMobile ? 'user-menu-list-mobile' : ''}`}
+                className={`user - menu - list ${isMobile ? 'user-menu-list-mobile' : ''}`}
                 anchorEl={anchorEl}
                 anchorOrigin={{
                     vertical: "bottom",
@@ -135,7 +135,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 <Divider />
                 <MenuList sx={{ width: "270px", maxWidth: "100%", padding: 0 }}>
                     {userInfo && userInfo.user_type === 'FREELANCER' ?
-                        <MenuItem className='user-menu-items' onClick={() => freelancerApplicationClick(`/apply-freelancer`)}>
+                        <MenuItem className='user-menu-items' onClick={() => freelancerApplicationClick(`/ apply - freelancer`)}>
                             {t('header-user-submit-freelancer')}
                         </MenuItem>
                         :
@@ -146,7 +146,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                     </MenuItem>
                     <MenuItem className='user-menu-items' onClick={() => {
                         setAnchorEl(null);
-                        navigate(`/settings/personal`)
+                        navigate(`/ settings / personal`)
                     }}>
                         {t('header-user-settings')}
                     </MenuItem>
