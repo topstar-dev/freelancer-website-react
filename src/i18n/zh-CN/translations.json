@@ -46,7 +46,9 @@
         "language-skill-required": "请选择语言能力",
         "about-required": "请输入个人简介",
         "province-required": "请选择省份",
-        "city-required": "请选择城市"
+        "city-required": "请选择城市",
+        "avatar-image": "请上传头像",
+        "profile-image": "请上传背景图片"
     },
     "header-help": "帮助文档",
     "header-blog": "至圆博客",
@@ -159,8 +161,8 @@
             "banner": "请使用您的真实姓名和头像",
             "title": "姓名和照片",
             "subtitle": "第2步，共6步",
-            "first-name": "姓氏",
-            "last-name": "名字"
+            "first-name": "名字",
+            "last-name": "姓氏"
         },
         "experience": {
             "title": "工作经历",

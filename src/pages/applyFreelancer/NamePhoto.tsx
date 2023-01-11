@@ -14,12 +14,14 @@ import WithTranslateFormErrors from '../../services/validationScemaOnLangChange'
 import './applyFreelancer.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload } from '../../redux/other/otherActions';
+import { useSnackbar } from 'notistack';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { userAvatar, loading } = useAppSelector(state => state.other)
+    const { enqueueSnackbar } = useSnackbar();
+    const { userAvatar, userProfile, loading } = useAppSelector(state => state.other)
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerSkills] = useState({
@@ -154,8 +156,24 @@ const NamePhoto = (props: any) => {
                                                 formik.setFieldError('last_name', last_name);
                                             }
 
+                                            let avatarImageCheck = true;
+                                            if (!userAvatar) {
+                                                if (!avatarImage) {
+                                                    avatarImageCheck = false;
+                                                    enqueueSnackbar(t('validation.avatar-image'))
+                                                }
+                                            }
+
+                                            let profileImageCheck = true;
+                                            if (!userProfile) {
+                                                if (!profileImage) {
+                                                    profileImageCheck = false;
+                                                    enqueueSnackbar(t('validation.profile-image'))
+                                                }
+                                            }
+
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
-                                            if (!(first_name || last_name)) {
+                                            if (!(first_name || last_name || avatarImage || profileImageCheck)) {
                                                 navigate('/apply-freelancer/experiences')
                                             }
                                         })

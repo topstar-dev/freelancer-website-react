@@ -46,7 +46,9 @@
         "language-skill-required": "Language skill is required",
         "about-required": "About is required",
         "province-required": "Province is required",
-        "city-required": "City is required"
+        "city-required": "City is required",
+        "avatar-image": "Avatar image is required",
+        "profile-image": "Profile image is required"
     },
     "header-help": "Help",
     "header-blog": "Blog",
