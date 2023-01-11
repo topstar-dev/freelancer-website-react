@@ -220,6 +220,7 @@ const AboutMe = (props: any) => {
                                                     username: userInfo?.username
                                                 }
 
+                                                sessionStorage.removeItem('freelancer-application-status');
                                                 sessionStorage.setItem('freelancer-application-info', JSON.stringify({
                                                     ...freelancerApplicationInfo,
                                                     about: formik.values.about,
