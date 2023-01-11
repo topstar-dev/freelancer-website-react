@@ -38,7 +38,7 @@ const NamePhoto = (props: any) => {
         if (freelancerApplicationInfo.avatar_url && !userAvatar && !loading) {
             dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: freelancerApplicationInfo.avatar_url }))
         }
-    }, [dispatch, freelancerApplicationInfo.avatar_url, avatarImage])
+    }, [dispatch, loading, freelancerApplicationInfo.avatar_url, userAvatar])
 
     // useEffect(() => {
     //     if (freelancerApplicationInfo.profile_url && !profileImage) {
@@ -95,10 +95,13 @@ const NamePhoto = (props: any) => {
                                         </label>
                                     </Box>
                                     <Box className="avatar-image-box">
-                                        {userAvatar ?
-                                            <Avatar className='avatar-image' alt="avatar_image" src={userAvatar} />
+                                        {avatarImage ?
+                                            <Avatar className='avatar-image' alt="avatar_image" src={avatarImage} />
                                             :
-                                            <Avatar className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
+                                            userAvatar ?
+                                                <Avatar className='avatar-image' alt="avatar_image" src={userAvatar} />
+                                                :
+                                                <Avatar className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
                                         }
                                         <label className='image-handle center' htmlFor="avatar_image">
                                             <input
