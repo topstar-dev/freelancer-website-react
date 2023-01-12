@@ -401,7 +401,7 @@ export default function Security() {
                                                                 style={{ marginTop: 6, marginBottom: 6 }}
                                                                 value={formik2.values.password}
                                                                 label={t('user-security-change-password-current')}
-                                                                type='password'
+                                                                type={showEmailDeletePassword ? 'text' : 'password'}
                                                                 onChange={formik2.handleChange}
                                                                 error={formik2.touched.password && Boolean(formik2.errors.password)}
                                                                 helperText={(formik2.touched.password && formik2.errors.password) as ReactNode}
@@ -413,7 +413,7 @@ export default function Security() {
                                                                                 onClick={() => setShowEmailDeletePassword(!showEmailDeletePassword)}
                                                                                 edge="end"
                                                                             >
-                                                                                {showEmailChangePassword ? <VisibilityOff /> : <Visibility />}
+                                                                                {showEmailDeletePassword ? <VisibilityOff /> : <Visibility />}
                                                                             </IconButton>
                                                                         </InputAdornment>
                                                                     ),
