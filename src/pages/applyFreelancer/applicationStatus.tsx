@@ -13,34 +13,37 @@ import './applyFreelancer.css';
 const ApplicationStatus = (props: any) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const [backdrop, setBackdrop] = React.useState(false);
 
-    const returnComponent = (status: string) => {
-        if (status === 'FAILED') {
-            return <FailedApplication />
-        } else if (status === 'APPLYING') {
-            return <ApplyingApplication />
-        } else if (status === 'PASSED') {
-            return <PassedApplication />
-        }
-    }
+    const statusData = sessionStorage.getItem('freelancer-application-status') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-status')}`) : '';
+    const [status, setStatus] = React.useState(statusData ? statusData.status : '')
 
-    const getStatus = () => {
-        const statusData = JSON.parse(sessionStorage.getItem('freelancer-application-status') || '{}');
+    useEffect(() => {
         if (!statusData) {
             setBackdrop(true)
             dispatch(getFreelancerApplicationAction()).then((res) => {
                 if (res.payload && res.payload.success) {
                     const status = res.payload.data.status;
                     sessionStorage.setItem('freelancer-application-status', JSON.stringify(res.payload.data))
-                    return returnComponent(status);
+                    setStatus(status);
                 }
             }).catch(() => {
             }).finally(() => {
                 setBackdrop(false)
             })
-        } else {
-            return returnComponent(statusData.status);
+        }
+    }, [statusData, dispatch])
+
+    const getStatus = () => {
+        if (status === 'FAILED') {
+            return <FailedApplication />
+        } else if (status === 'APPLYING') {
+            return <ApplyingApplication />
+        } else if (status === 'PASSED') {
+            return <PassedApplication />
+        } else if (status === 'NO_APPLICATION') {
+            navigate('/apply-freelancer/skills');
         }
     }
 

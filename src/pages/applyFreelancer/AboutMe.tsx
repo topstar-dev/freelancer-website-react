@@ -13,12 +13,14 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getCitiesList, getCountriesList, getProvincesList } from '../../redux/resources/resourcesActions';
 import { submitFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
+import { useSnackbar } from 'notistack';
 
 const COUNTRY_ID_CHINA = '49';
 const AboutMe = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const { enqueueSnackbar } = useSnackbar()
     const { userInfo } = useAppSelector(state => state.auth);
 
     const [loading, setLoading] = useState(true);
@@ -220,7 +222,6 @@ const AboutMe = (props: any) => {
                                                     username: userInfo?.username
                                                 }
 
-                                                sessionStorage.removeItem('freelancer-application-status');
                                                 sessionStorage.setItem('freelancer-application-info', JSON.stringify({
                                                     ...freelancerApplicationInfo,
                                                     about: formik.values.about,
@@ -232,11 +233,14 @@ const AboutMe = (props: any) => {
                                                 setLoading(true);
                                                 dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
                                                     if (res.payload && res.payload.success) {
+                                                        sessionStorage.setItem('freelancer-application-status', JSON.stringify({ status: 'APPLYING' }));
                                                         sessionStorage.removeItem('freelancer-application-info');
                                                         navigate('/apply-freelancer/status')
+                                                    } else {
+                                                        enqueueSnackbar(res.payload.message);
                                                     }
-                                                }).catch(() => {
-
+                                                }).catch((err) => {
+                                                    enqueueSnackbar(err.message);
                                                 }).finally(() => {
                                                     setLoading(false)
                                                 })
