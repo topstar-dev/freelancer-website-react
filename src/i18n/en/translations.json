@@ -146,6 +146,11 @@
     "user-security-recovery-email-change": "Change email",
     "user-currency-title": "Select currency",
     "at_least_8_characters": "At least 8 characters",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "proficient": "Proficient",
+    "fluent": "Fluent",
+    "native-fluent": "Native",
     "freelancer": {
         "title": "Submit freelancer application",
         "skills": {
@@ -176,7 +181,7 @@
         "educations": {
             "title": "Educations",
             "subtitle": "Step 4 of 6",
-            "major": "Major",
+            "major": "Major name",
             "school": "School name",
             "start-year": "Start year",
             "end-year": "End year",

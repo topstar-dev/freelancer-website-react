@@ -145,11 +145,11 @@ const Languages = (props: any) => {
                                                                         value={lang.language_skill}
                                                                         onChange={formik.handleChange}
                                                                     >
-                                                                        <MenuItem value={`BEGINNER`}>Beginner</MenuItem>
-                                                                        <MenuItem value={`INTERMEDIATE`}>Intermediate</MenuItem>
-                                                                        <MenuItem value={`PROFICIENT`}>Proficient</MenuItem>
-                                                                        <MenuItem value={`FLUENT`}>Fluent</MenuItem>
-                                                                        <MenuItem value={`NATIVE`}>Native</MenuItem>
+                                                                        <MenuItem value={`BEGINNER`}>{t('beginner')}</MenuItem>
+                                                                        <MenuItem value={`INTERMEDIATE`}>{t('intermediate')}</MenuItem>
+                                                                        <MenuItem value={`PROFICIENT`}>{t('proficient')}</MenuItem>
+                                                                        <MenuItem value={`FLUENT`}>{t('fluent')}</MenuItem>
+                                                                        <MenuItem value={`NATIVE`}>{t('native-fluent')}</MenuItem>
                                                                     </Select>
                                                                     {touchedLanguageSkill && errorLanguageSkill && <FormHelperText>{errorLanguageSkill as ReactNode}</FormHelperText>}
                                                                 </FormControl>
