@@ -79,12 +79,15 @@ export default function Personal() {
                 dispatch(changeLanguage(language_code && languages.includes(language_code) ? language_code : 'en'))
             }
 
+            setBackdrop(true)
             dispatch(personalSettingsUpdate({ birthday: dayjs(birthday).format('YYYY-MM-DD'), language_code, gender })).then((res) => {
                 setCalled(false)
                 enqueueSnackbar(res.payload.message);
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
                 setPersonalData(personal);
+            }).finally(() => {
+                setBackdrop(false)
             })
         }
     }, [dispatch, enqueueSnackbar, personal, personalData])
