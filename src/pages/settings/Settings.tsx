@@ -15,12 +15,14 @@ import {
 import "./settings.css";
 import { normalizeUrl, returnUrlByLang, useNavigate } from "../../routes/Router";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import { useAppSelector } from "../../redux/hooks";
 
 export default function Settings(props: any) {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
     const { isMobile } = useBreakpoint();
+    const { userInfo } = useAppSelector(state => state.auth)
     const [url, setUrl] = React.useState(
         [...returnUrlByLang('/settings')].includes(location.pathname) ?
             '/settings/personal'
@@ -76,7 +78,7 @@ export default function Settings(props: any) {
                         >
                             <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
                             <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
-                            <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>
+                            {userInfo?.user_type !== 'CLIENT' && <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>}
                         </Select>
                     </FormControl>
                     :
@@ -96,13 +98,13 @@ export default function Settings(props: any) {
                                 <img className="settings-icon-hover" alt="personal" src="/images/security-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
-                            <ListItemButton
+                            {userInfo?.user_type !== 'CLIENT' && <ListItemButton
                                 selected={returnUrlByLang(url).includes('/settings/currency')}
                                 onClick={() => handleChange('/settings/currency')}>
                                 <img className="settings-icon" alt="personal" src="/images/currency.png" />
                                 <img className="settings-icon-hover" alt="personal" src="/images/currency-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-currency')} />
-                            </ListItemButton>
+                            </ListItemButton>}
                         </List>
                     </Box>
                 }
