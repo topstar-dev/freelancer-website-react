@@ -210,7 +210,6 @@ const AboutMe = (props: any) => {
                                             if (about || country_id) {
                                                 formik.submitForm();
                                             } else {
-                                                console.log('asdfsdf')
                                                 const saveData = {
                                                     ...freelancerApplicationInfo,
                                                     about: formik.values.about,

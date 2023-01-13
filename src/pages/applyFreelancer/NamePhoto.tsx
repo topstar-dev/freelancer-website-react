@@ -13,7 +13,7 @@ import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { imageDownload } from '../../redux/other/otherActions';
+import { imageDownload, imageUpload } from '../../redux/other/otherActions';
 import { useSnackbar } from 'notistack';
 
 const NamePhoto = (props: any) => {
@@ -44,7 +44,7 @@ const NamePhoto = (props: any) => {
 
     useEffect(() => {
         if (freelancerApplicationInfo.profile_url && !userProfile && !loadingProfile) {
-            // dispatch(imageDownload({ functionType: 'USER_PROFILE', fileName: freelancerApplicationInfo.avatar_url }))
+            dispatch(imageDownload({ functionType: 'USER_PROFILE', fileName: freelancerApplicationInfo.profile_url }))
         }
     }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
 
@@ -81,16 +81,25 @@ const NamePhoto = (props: any) => {
                                 <Box className="profile-photo-container">
                                     <Box className="profile-image-box">
                                         {profileImage ?
-                                            <img className='profile-image' alt="profile_image" src={profileImage} />
+                                            <img className='profile-image' alt="profile_image" src={profileImage.file} />
                                             :
-                                            <img className='profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
+                                            userProfile ?
+                                                <img className='profile-image' alt="profile_image" src={userProfile} />
+                                                :
+                                                <img className='profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
                                         }
                                         <label className='image-handle' htmlFor="profile_image">
                                             <input
                                                 id="profile_image"
                                                 type="file"
                                                 onChange={(e: any) => {
-                                                    setProfileImage(URL.createObjectURL(e.target.files[0]));
+                                                    const obj = {
+                                                        file: URL.createObjectURL(e.target.files[0]),
+                                                        blob: e.target.files[0],
+                                                        filename: e.target.files[0].name,
+                                                        extension: e.target.files[0].type
+                                                    }
+                                                    setProfileImage(obj);
                                                 }}
                                             />
                                             <CameraAltIcon className='camera-icon' />
@@ -166,7 +175,7 @@ const NamePhoto = (props: any) => {
 
                                             let profileImageCheck = false;
                                             if (!userProfile) {
-                                                if (!profileImage) {
+                                                if (!profileImage.file) {
                                                     profileImageCheck = true;
                                                     enqueueSnackbar(t('validation.profile-image'))
                                                 }
@@ -174,7 +183,23 @@ const NamePhoto = (props: any) => {
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
                                             if (!(first_name || last_name || avatarImageCheck || profileImageCheck)) {
-                                                navigate('/apply-freelancer/experiences')
+                                                if (profileImage.file) {
+                                                    let fileName = `${profileImage.filename}`;
+                                                    let file = new File([profileImage.blob], fileName, { type: profileImage.extension });
+                                                    dispatch(imageUpload({ functionType: 'USER_PROFILE', image: { file, fileName } })).then((res) => {
+                                                        if (res.payload.success) {
+                                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({
+                                                                ...freelancerApplicationInfo, ...formik.values, profile_url: res.payload.data.file_name
+                                                            }))
+                                                        }
+                                                    }).catch((err) => {
+                                                        console.log(err)
+                                                    }).finally(() => {
+                                                        navigate('/apply-freelancer/experiences')
+                                                    })
+                                                } else {
+                                                    navigate('/apply-freelancer/experiences')
+                                                }
                                             }
                                         })
                                     }}

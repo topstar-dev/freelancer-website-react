@@ -26,15 +26,26 @@ export const otherSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(imageDownload.pending, (state: OtherState) => {
-            state.userAvatar = null;
-            state.loading = true;
+        builder.addCase(imageDownload.pending, (state: OtherState, action) => {
+            if (action.meta.arg.functionType === 'USER_AVATAR') {
+                state.userAvatar = null;
+                state.loading = true;
+            } else if (action.meta.arg.functionType === 'USER_PROFILE') {
+                state.userProfile = null;
+                state.loadingProfile = true;
+            }
         });
         builder.addCase(imageDownload.fulfilled, (state: OtherState, action) => {
-            state.userAvatar = URL.createObjectURL(action.payload.file);
-            state.loading = false;
+            if (action.payload.functionType === 'USER_AVATAR') {
+                state.userAvatar = URL.createObjectURL(action.payload.file);
+                state.loading = false;
+            } else if (action.payload.functionType === 'USER_PROFILE') {
+                state.userProfile = URL.createObjectURL(action.payload.file);
+                state.loadingProfile = false;
+            }
         });
-        builder.addCase(imageDownload.rejected, () => {
+        builder.addCase(imageDownload.rejected, (state: OtherState, action) => {
+
         });
     }
 });
