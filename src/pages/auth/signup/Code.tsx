@@ -93,7 +93,7 @@ export default function Code(mainProps: any) {
                                             const signupInfo = JSON.parse(`${sessionStorage.getItem('signup-info')}`);
 
                                             const signUpData = {
-                                                user_type: signupInfo.type as 'CLIENT' | 'FREELANCER',
+                                                user_type: signupInfo.type,
                                                 first_name: signupInfo.first_name,
                                                 last_name: signupInfo.last_name,
                                                 birthday: signupInfo.birthday,

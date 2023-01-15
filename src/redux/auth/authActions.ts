@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { languages } from "../../i18n/i18nextConf";
 import { removeTokens, setTokens } from "../account/accountApi";
+import { FUNCTION_TYPES } from "../constants";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar } from "../other/otherSlice";
 import { changeLanguage } from "../resources/resourcesSlice";
@@ -72,7 +73,7 @@ export const signInUser = createAsyncThunk(
                     dispatch(changeLanguage(languages.includes(response.data.language) ? response.data.language : 'en'))
                 }
                 if (response.data?.avatar_url) {
-                    dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: response.data.avatar_url }))
+                    dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: response.data.avatar_url }))
                 } else {
                     dispatch(clearAvatar());
                 }

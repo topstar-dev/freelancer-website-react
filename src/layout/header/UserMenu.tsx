@@ -16,6 +16,7 @@ import { clearAvatar } from '../../redux/other/otherSlice';
 import { setTokens } from '../../redux/account/accountApi';
 import { changeLanguage } from '../../redux/resources/resourcesSlice';
 import { languages } from '../../i18n/i18nextConf';
+import { FUNCTION_TYPES } from '../../redux/constants';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -36,7 +37,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     useEffect(() => {
         source = axios.CancelToken.source();
         if (userInfo && userInfo.avatar_url && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: userInfo.avatar_url }))
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: userInfo.avatar_url }))
         }
     }, [dispatch, userInfo, userAvatar, loading])
 

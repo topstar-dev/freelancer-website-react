@@ -28,6 +28,7 @@ import { imageDownload, imageUpload } from '../../redux/other/otherActions';
 import { setAvatar, setProfile } from '../../redux/other/otherSlice';
 import './applyFreelancer.css';
 import "cropperjs/dist/cropper.css";
+import { FUNCTION_TYPES } from '../../redux/constants';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
@@ -53,13 +54,13 @@ const NamePhoto = (props: any) => {
 
     useEffect(() => {
         if (freelancerApplicationInfo.avatar_url && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: 'USER_AVATAR', fileName: freelancerApplicationInfo.avatar_url }))
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: freelancerApplicationInfo.avatar_url }))
         }
     }, [dispatch, loading, freelancerApplicationInfo.avatar_url, userAvatar])
 
     useEffect(() => {
         if (freelancerApplicationInfo.profile_url && !userProfile && !loadingProfile) {
-            dispatch(imageDownload({ functionType: 'USER_PROFILE', fileName: freelancerApplicationInfo.profile_url }))
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: freelancerApplicationInfo.profile_url }))
         }
     }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
 
@@ -72,10 +73,10 @@ const NamePhoto = (props: any) => {
                 dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName } })).then((res) => {
                     if (res.payload.success) {
                         const imageUrlUpdate: any = {};
-                        if (imageData.functionType === 'USER_PROFILE') {
+                        if (imageData.functionType === FUNCTION_TYPES.USER_PROFILE) {
                             dispatch(setProfile(tempImageData.file));
                             imageUrlUpdate['profile_url'] = res.payload.data.file_name;
-                        } else if (imageData.functionType === 'USER_AVATAR') {
+                        } else if (imageData.functionType === FUNCTION_TYPES.USER_AVATAR) {
                             dispatch(setAvatar(imageData.file));
                             imageUrlUpdate['avatar_url'] = res.payload.data.file_name;
                         }
@@ -148,7 +149,7 @@ const NamePhoto = (props: any) => {
                                                         blob: e.target.files[0],
                                                         filename: e.target.files[0].name,
                                                         extension: e.target.files[0].type,
-                                                        functionType: 'USER_PROFILE'
+                                                        functionType: FUNCTION_TYPES.USER_PROFILE
                                                     }
                                                     setTempImageData(obj)
                                                     setShow(true);
@@ -173,7 +174,7 @@ const NamePhoto = (props: any) => {
                                                         blob: e.target.files[0],
                                                         filename: e.target.files[0].name,
                                                         extension: e.target.files[0].type,
-                                                        functionType: 'USER_AVATAR'
+                                                        functionType: FUNCTION_TYPES.USER_AVATAR
                                                     }
                                                     setTempImageData(obj)
                                                     setShow(true);

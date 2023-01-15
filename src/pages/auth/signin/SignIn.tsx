@@ -28,6 +28,7 @@ import Card from "../../../components/card/Card";
 import '../auth.css';
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { useNavigate } from "../../../routes/Router";
+import { USER_TYPES } from "../../../redux/constants";
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -179,10 +180,10 @@ export default function SignIn() {
               >
                 <MenuList>
                   <MenuItem onClick={() => {
-                    navigate(`/sign-up?type=CLIENT`)
+                    navigate(`/sign-up?type=${USER_TYPES.CLIENT}`)
                   }}>{t('client-account')}</MenuItem>
                   <MenuItem onClick={() => {
-                    navigate(`/sign-up?type=FREELANCER`)
+                    navigate(`/sign-up?type=${USER_TYPES.FREELANCER}`)
                   }}>{t('freelancer-account')}</MenuItem>
                 </MenuList>
               </Popover>

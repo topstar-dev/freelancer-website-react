@@ -16,6 +16,7 @@ import "./settings.css";
 import { normalizeUrl, returnUrlByLang, useNavigate } from "../../routes/Router";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import { useAppSelector } from "../../redux/hooks";
+import { USER_TYPES } from "../../redux/constants";
 
 export default function Settings(props: any) {
     const { t } = useTranslation();
@@ -78,7 +79,7 @@ export default function Settings(props: any) {
                         >
                             <MenuItem value={`/settings/personal`}>{t('user-settings-personal')}</MenuItem>
                             <MenuItem value={`/settings/security`}>{t('user-settings-security')}</MenuItem>
-                            {userInfo?.user_type !== 'CLIENT' && <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>}
+                            {userInfo?.user_type !== USER_TYPES.CLIENT && <MenuItem value={`/settings/currency`}>{t('user-settings-currency')}</MenuItem>}
                         </Select>
                     </FormControl>
                     :
@@ -98,7 +99,7 @@ export default function Settings(props: any) {
                                 <img className="settings-icon-hover" alt="personal" src="/images/security-hover.png" />
                                 <ListItemText style={{ paddingLeft: '10px' }} primary={t('user-settings-security')} />
                             </ListItemButton>
-                            {userInfo?.user_type !== 'CLIENT' && <ListItemButton
+                            {userInfo?.user_type !== USER_TYPES.CLIENT && <ListItemButton
                                 selected={returnUrlByLang(url).includes('/settings/currency')}
                                 onClick={() => handleChange('/settings/currency')}>
                                 <img className="settings-icon" alt="personal" src="/images/currency.png" />
