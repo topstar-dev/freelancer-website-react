@@ -189,6 +189,7 @@ export default function HomePage() {
                                 <img className="qr-code-image" alt="rounx-qrcode" src="/images/rounx-qrcode.jpg" />
                             }
                             <Backdrop
+                                className='only-backdrop'
                                 sx={{ color: '#fff', zIndex: 999 }}
                                 open={backdrop}
                             >

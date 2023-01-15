@@ -32,7 +32,6 @@ export const otherSlice = createSlice({
             state.userProfile = null;
         },
         setProfile: (state, action) => {
-            console.log(action)
             state.userProfile = action.payload;
         }
     },

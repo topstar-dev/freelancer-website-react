@@ -125,6 +125,7 @@ export default function EnterEmail(mainProps: any) {
         )}
       </Formik>
       <Backdrop
+        className='only-backdrop'
         sx={{ color: '#fff', zIndex: 999 }}
         open={backdrop}
       >

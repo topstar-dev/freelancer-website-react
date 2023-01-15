@@ -156,6 +156,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 </MenuList>
             </Menu>
             <Backdrop
+                className='only-backdrop'
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={backdrop}
             >

@@ -3,19 +3,31 @@ import { Formik } from 'formik';
 import { Box } from '@mui/system';
 import * as yup from "yup";
 import { useTranslation } from 'react-i18next';
+import {
+    Backdrop,
+    CircularProgress,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Divider,
+    TextField
+} from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Avatar from '@mui/material/Avatar';
+import { useSnackbar } from 'notistack';
+import Compressor from 'compressorjs';
+import Cropper from "react-cropper";
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
-import { Backdrop, CircularProgress, Divider, TextField } from '@mui/material';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload, imageUpload } from '../../redux/other/otherActions';
-import { useSnackbar } from 'notistack';
 import { setAvatar, setProfile } from '../../redux/other/otherSlice';
 import './applyFreelancer.css';
+import "cropperjs/dist/cropper.css";
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
@@ -29,7 +41,11 @@ const NamePhoto = (props: any) => {
         first_name: freelancerApplicationInfo.first_name || "",
         last_name: freelancerApplicationInfo.last_name || ""
     });
-    const [backdrop, setBackdrop] = useState(false)
+    const [backdrop, setBackdrop] = useState(false);
+    const [show, setShow] = useState<boolean>(false);
+    const [cropper, setCropper] = useState<any>();
+    const [cropData, setCropData] = useState("#");
+    const [tempImageData, setTempImageData] = useState<any>();
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -50,25 +66,39 @@ const NamePhoto = (props: any) => {
     const uploadImage = (imageData: any) => {
         let fileName = `${imageData.filename}`;
         let file = new File([imageData.blob], fileName, { type: imageData.extension });
+        new Compressor(file, {
+            quality: 0.6,
+            success(result) {
+                dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName } })).then((res) => {
+                    if (res.payload.success) {
+                        const imageUrlUpdate: any = {};
+                        if (imageData.functionType === 'USER_PROFILE') {
+                            dispatch(setProfile(tempImageData.file));
+                            imageUrlUpdate['profile_url'] = res.payload.data.file_name;
+                        } else if (imageData.functionType === 'USER_AVATAR') {
+                            dispatch(setAvatar(imageData.file));
+                            imageUrlUpdate['avatar_url'] = res.payload.data.file_name;
+                        }
+                        sessionStorage.setItem('freelancer-application-info', JSON.stringify({
+                            ...freelancerApplicationInfo,
+                            ...imageUrlUpdate
+                        }))
+                        enqueueSnackbar(res.payload.message)
+                    }
+                }).catch((err) => {
+                    enqueueSnackbar(err.message)
+                }).finally(() => {
+                    setBackdrop(false);
+                    setShow(false);
+                    setCropData("#");
+                    setTempImageData(null)
+                })
+            },
+            error(err) {
+                console.log(err.message);
+            },
+        });
         setBackdrop(true);
-        dispatch(imageUpload({ functionType: imageData.functionType, image: { file, fileName } })).then((res) => {
-            if (res.payload.success) {
-                sessionStorage.setItem('freelancer-application-info', JSON.stringify({
-                    ...freelancerApplicationInfo,
-                    [imageData.functionType === 'USER_PROFILE' ? 'profile_url' : 'avatar_url']: res.payload.data.file_name
-                }))
-                if (imageData.functionType === 'USER_PROFILE') {
-                    dispatch(setProfile(imageData.file));
-                } else if (imageData.functionType === 'USER_AVATAR') {
-                    dispatch(setAvatar(imageData.file));
-                }
-                enqueueSnackbar(res.payload.message)
-            }
-        }).catch((err) => {
-            enqueueSnackbar(err.message)
-        }).finally(() => {
-            setBackdrop(false)
-        })
     }
 
     return (
@@ -120,7 +150,8 @@ const NamePhoto = (props: any) => {
                                                         extension: e.target.files[0].type,
                                                         functionType: 'USER_PROFILE'
                                                     }
-                                                    uploadImage(obj);
+                                                    setTempImageData(obj)
+                                                    setShow(true);
                                                 }}
                                             />
                                             <CameraAltIcon className='camera-icon' />
@@ -144,12 +175,62 @@ const NamePhoto = (props: any) => {
                                                         extension: e.target.files[0].type,
                                                         functionType: 'USER_AVATAR'
                                                     }
-                                                    uploadImage(obj);
+                                                    setTempImageData(obj)
+                                                    setShow(true);
                                                 }}
                                             />
                                             <CameraAltIcon className='camera-icon' />
                                         </label>
                                     </Box>
+                                    <Dialog
+                                        open={show}
+                                        onClose={() => setShow(false)}
+                                        maxWidth="lg"
+                                        className="deleteEmailModal"
+                                    >
+                                        <DialogTitle>{t('upload image')}</DialogTitle>
+                                        <DialogContent>
+                                            <Cropper
+                                                style={{ height: 400, width: "100%" }}
+                                                zoomTo={0.5}
+                                                initialAspectRatio={1}
+                                                preview=".img-preview"
+                                                src={tempImageData?.file || "/images/profile-placeholder.png"}
+                                                viewMode={1}
+                                                minCropBoxHeight={10}
+                                                minCropBoxWidth={10}
+                                                background={false}
+                                                responsive={true}
+                                                autoCropArea={1}
+                                                checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+                                                onInitialized={(instance) => {
+                                                    setCropper(instance);
+                                                }}
+                                                guides={true}
+                                            />
+                                            <DialogActions style={{ padding: 0, marginBottom: -6 }}>
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() => {
+                                                        setShow(false)
+                                                    }}>
+                                                    {t('cancel')}
+                                                </Button>
+                                                <Button
+                                                    variant="text"
+                                                    style={{ marginLeft: 0 }}
+                                                    onClick={() => {
+                                                        setCropData(cropper.getCroppedCanvas().toDataURL())
+                                                        fetch(cropData)
+                                                            .then(res => res.blob())
+                                                            .then((x) => {
+                                                                let file = new File([x], tempImageData.filename, { type: tempImageData.extension });
+                                                                uploadImage({ ...tempImageData, newBlob: file, newFile: URL.createObjectURL(file) })
+                                                            })
+                                                    }}>{t('confirm')}</Button>
+                                            </DialogActions>
+                                        </DialogContent>
+                                    </Dialog>
                                 </Box>
                                 <Form className="freelancer-card-spacing">
                                     <TextField
@@ -227,6 +308,7 @@ const NamePhoto = (props: any) => {
                 </Formik>
             </Card>
             <Backdrop
+                className='only-backdrop'
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={backdrop}
             >

@@ -196,6 +196,7 @@ const Skills = (props: any) => {
                 </Formik>
             </Card>
             <Backdrop
+                className='only-backdrop'
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={loading}
             >

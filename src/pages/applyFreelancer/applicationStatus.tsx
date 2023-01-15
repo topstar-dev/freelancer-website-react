@@ -58,6 +58,7 @@ const ApplicationStatus = (props: any) => {
             </Box>
             {getStatus()}
             <Backdrop
+                className='only-backdrop'
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={backdrop}
             >

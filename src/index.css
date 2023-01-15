@@ -53,6 +53,10 @@ body,
   color: var(--color-primary) !important;
 }
 
+/* mui backdrop z-index */
+.MuiBackdrop-root.only-backdrop {
+  z-index: 1400 !important;
+}
 
 /* date picker selected */
 .MuiPickersDay-root.Mui-selected {

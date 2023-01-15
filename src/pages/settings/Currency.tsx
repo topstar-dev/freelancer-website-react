@@ -91,6 +91,7 @@ export default function Currency() {
                 </Button>
             </Form >
             <Backdrop
+                className='only-backdrop'
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={backdrop || loading}
             >

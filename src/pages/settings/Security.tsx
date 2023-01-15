@@ -197,6 +197,7 @@ export default function Security() {
             <br />
             <br />
             <Backdrop
+                className='only-backdrop'
                 sx={{ color: '#fff', zIndex: 999 }}
                 open={backdrop || loading}
             >
