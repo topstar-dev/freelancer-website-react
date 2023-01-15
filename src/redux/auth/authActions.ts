@@ -3,7 +3,7 @@ import { languages } from "../../i18n/i18nextConf";
 import { removeTokens, setTokens } from "../account/accountApi";
 import { FUNCTION_TYPES } from "../constants";
 import { imageDownload } from "../other/otherActions";
-import { clearAvatar } from "../other/otherSlice";
+import { clearAvatar, clearProfile } from "../other/otherSlice";
 import { changeLanguage } from "../resources/resourcesSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword, accountInfo } from "./authApi";
 export interface SignUpInterface {
@@ -77,6 +77,7 @@ export const signInUser = createAsyncThunk(
                 } else {
                     dispatch(clearAvatar());
                 }
+                dispatch(clearProfile());
             }
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {

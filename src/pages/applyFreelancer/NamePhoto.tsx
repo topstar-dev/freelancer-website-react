@@ -68,7 +68,7 @@ const NamePhoto = (props: any) => {
         let fileName = `${imageData.filename}`;
         let file = new File([imageData.blob], fileName, { type: imageData.extension });
         new Compressor(file, {
-            quality: 0.4,
+            quality: 0.6,
             success(result) {
                 dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName } })).then((res) => {
                     if (res.payload.success) {
@@ -195,17 +195,17 @@ const NamePhoto = (props: any) => {
                                         <DialogContent>
                                             <Cropper
                                                 style={{ height: 400, width: "100%" }}
-                                                zoomTo={0.5}
-                                                initialAspectRatio={1}
+                                                zoomTo={0}
+                                                viewMode={1}
+                                                aspectRatio={tempImageData?.functionType === FUNCTION_TYPES.USER_AVATAR ? 1 / 1 : 6 / 2}
                                                 preview=".img-preview"
                                                 src={tempImageData?.file || "/images/profile-placeholder.png"}
-                                                viewMode={1}
                                                 minCropBoxHeight={10}
                                                 minCropBoxWidth={10}
                                                 background={false}
                                                 responsive={true}
                                                 autoCropArea={1}
-                                                checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+                                                checkOrientation={false}
                                                 onInitialized={(instance) => {
                                                     setCropper(instance);
                                                 }}
