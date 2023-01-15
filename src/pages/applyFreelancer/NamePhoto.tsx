@@ -68,7 +68,7 @@ const NamePhoto = (props: any) => {
         let fileName = `${imageData.filename}`;
         let file = new File([imageData.blob], fileName, { type: imageData.extension });
         new Compressor(file, {
-            quality: 0.6,
+            quality: 0.4,
             success(result) {
                 dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName } })).then((res) => {
                     if (res.payload.success) {
@@ -143,6 +143,7 @@ const NamePhoto = (props: any) => {
                                             <input
                                                 id="profile_image"
                                                 type="file"
+                                                accept="image/png, image/jpeg"
                                                 onChange={(e: any) => {
                                                     const obj = {
                                                         file: URL.createObjectURL(e.target.files[0]),
@@ -168,6 +169,7 @@ const NamePhoto = (props: any) => {
                                             <input
                                                 id="avatar_image"
                                                 type="file"
+                                                accept="image/png, image/jpeg"
                                                 onChange={(e: any) => {
                                                     const obj = {
                                                         file: URL.createObjectURL(e.target.files[0]),
