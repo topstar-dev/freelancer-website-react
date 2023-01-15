@@ -23,6 +23,17 @@ export const otherSlice = createSlice({
     reducers: {
         clearAvatar: (state) => {
             state.userAvatar = null;
+        },
+        setAvatar: (state, action) => {
+
+            state.userAvatar = action.payload;
+        },
+        clearProfile: (state) => {
+            state.userProfile = null;
+        },
+        setProfile: (state, action) => {
+            console.log(action)
+            state.userProfile = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -50,6 +61,6 @@ export const otherSlice = createSlice({
     }
 });
 
-const { clearAvatar } = otherSlice.actions;
-export { clearAvatar }
+const { clearAvatar, setAvatar, clearProfile, setProfile } = otherSlice.actions;
+export { clearAvatar, setAvatar, clearProfile, setProfile }
 export default otherSlice.reducer;

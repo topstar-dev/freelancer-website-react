@@ -7,14 +7,15 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Avatar from '@mui/material/Avatar';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
-import { Divider, TextField } from '@mui/material';
+import { Backdrop, CircularProgress, Divider, TextField } from '@mui/material';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
-import './applyFreelancer.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload, imageUpload } from '../../redux/other/otherActions';
 import { useSnackbar } from 'notistack';
+import { setAvatar, setProfile } from '../../redux/other/otherSlice';
+import './applyFreelancer.css';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
@@ -28,9 +29,7 @@ const NamePhoto = (props: any) => {
         first_name: freelancerApplicationInfo.first_name || "",
         last_name: freelancerApplicationInfo.last_name || ""
     });
-
-    const [avatarImage, setAvatarImage] = useState<any>();
-    const [profileImage, setProfileImage] = useState<any>();
+    const [backdrop, setBackdrop] = useState(false)
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -47,6 +46,30 @@ const NamePhoto = (props: any) => {
             dispatch(imageDownload({ functionType: 'USER_PROFILE', fileName: freelancerApplicationInfo.profile_url }))
         }
     }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
+
+    const uploadImage = (imageData: any) => {
+        let fileName = `${imageData.filename}`;
+        let file = new File([imageData.blob], fileName, { type: imageData.extension });
+        setBackdrop(true);
+        dispatch(imageUpload({ functionType: imageData.functionType, image: { file, fileName } })).then((res) => {
+            if (res.payload.success) {
+                sessionStorage.setItem('freelancer-application-info', JSON.stringify({
+                    ...freelancerApplicationInfo,
+                    [imageData.functionType === 'USER_PROFILE' ? 'profile_url' : 'avatar_url']: res.payload.data.file_name
+                }))
+                if (imageData.functionType === 'USER_PROFILE') {
+                    dispatch(setProfile(imageData.file));
+                } else if (imageData.functionType === 'USER_AVATAR') {
+                    dispatch(setAvatar(imageData.file));
+                }
+                enqueueSnackbar(res.payload.message)
+            }
+        }).catch((err) => {
+            enqueueSnackbar(err.message)
+        }).finally(() => {
+            setBackdrop(false)
+        })
+    }
 
     return (
         <Box>
@@ -80,13 +103,10 @@ const NamePhoto = (props: any) => {
                             <Box className={`freelancer-body`}>
                                 <Box className="profile-photo-container">
                                     <Box className="profile-image-box">
-                                        {profileImage ?
-                                            <img className='profile-image' alt="profile_image" src={profileImage.file} />
+                                        {userProfile ?
+                                            <img className='profile-image' alt="profile_image" src={userProfile} />
                                             :
-                                            userProfile ?
-                                                <img className='profile-image' alt="profile_image" src={userProfile} />
-                                                :
-                                                <img className='profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
+                                            <img className='profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
                                         }
                                         <label className='image-handle' htmlFor="profile_image">
                                             <input
@@ -97,29 +117,34 @@ const NamePhoto = (props: any) => {
                                                         file: URL.createObjectURL(e.target.files[0]),
                                                         blob: e.target.files[0],
                                                         filename: e.target.files[0].name,
-                                                        extension: e.target.files[0].type
+                                                        extension: e.target.files[0].type,
+                                                        functionType: 'USER_PROFILE'
                                                     }
-                                                    setProfileImage(obj);
+                                                    uploadImage(obj);
                                                 }}
                                             />
                                             <CameraAltIcon className='camera-icon' />
                                         </label>
                                     </Box>
                                     <Box className="avatar-image-box">
-                                        {avatarImage ?
-                                            <Avatar className='avatar-image' alt="avatar_image" src={avatarImage} />
+                                        {userAvatar ?
+                                            <Avatar className='avatar-image' alt="avatar_image" src={userAvatar} />
                                             :
-                                            userAvatar ?
-                                                <Avatar className='avatar-image' alt="avatar_image" src={userAvatar} />
-                                                :
-                                                <Avatar className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
+                                            <Avatar className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
                                         }
                                         <label className='image-handle center' htmlFor="avatar_image">
                                             <input
                                                 id="avatar_image"
                                                 type="file"
                                                 onChange={(e: any) => {
-                                                    setAvatarImage(URL.createObjectURL(e.target.files[0]));
+                                                    const obj = {
+                                                        file: URL.createObjectURL(e.target.files[0]),
+                                                        blob: e.target.files[0],
+                                                        filename: e.target.files[0].name,
+                                                        extension: e.target.files[0].type,
+                                                        functionType: 'USER_AVATAR'
+                                                    }
+                                                    uploadImage(obj);
                                                 }}
                                             />
                                             <CameraAltIcon className='camera-icon' />
@@ -167,39 +192,19 @@ const NamePhoto = (props: any) => {
 
                                             let avatarImageCheck = false;
                                             if (!userAvatar) {
-                                                if (!avatarImage) {
-                                                    avatarImageCheck = true;
-                                                    enqueueSnackbar(t('validation.avatar-image'))
-                                                }
+                                                avatarImageCheck = true;
+                                                enqueueSnackbar(t('validation.avatar-image'))
                                             }
 
                                             let profileImageCheck = false;
                                             if (!userProfile) {
-                                                if (!profileImage.file) {
-                                                    profileImageCheck = true;
-                                                    enqueueSnackbar(t('validation.profile-image'))
-                                                }
+                                                profileImageCheck = true;
+                                                enqueueSnackbar(t('validation.profile-image'))
                                             }
 
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
                                             if (!(first_name || last_name || avatarImageCheck || profileImageCheck)) {
-                                                if (profileImage.file) {
-                                                    let fileName = `${profileImage.filename}`;
-                                                    let file = new File([profileImage.blob], fileName, { type: profileImage.extension });
-                                                    dispatch(imageUpload({ functionType: 'USER_PROFILE', image: { file, fileName } })).then((res) => {
-                                                        if (res.payload.success) {
-                                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({
-                                                                ...freelancerApplicationInfo, ...formik.values, profile_url: res.payload.data.file_name
-                                                            }))
-                                                        }
-                                                    }).catch((err) => {
-                                                        console.log(err)
-                                                    }).finally(() => {
-                                                        navigate('/apply-freelancer/experiences')
-                                                    })
-                                                } else {
-                                                    navigate('/apply-freelancer/experiences')
-                                                }
+                                                navigate('/apply-freelancer/experiences')
                                             }
                                         })
                                     }}
@@ -221,6 +226,12 @@ const NamePhoto = (props: any) => {
                     }
                 </Formik>
             </Card>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={backdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Box>
     )
 }
