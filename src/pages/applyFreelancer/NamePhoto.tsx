@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Formik } from 'formik';
 import { Box } from '@mui/system';
 import * as yup from "yup";
@@ -37,7 +37,7 @@ const NamePhoto = (props: any) => {
     const { enqueueSnackbar } = useSnackbar();
     const { userAvatar, userProfile, loading, loadingProfile } = useAppSelector(state => state.other)
 
-    const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
+    const freelancerApplicationInfo = useMemo(() => sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {}, []);
     const [freelancerSkills] = useState({
         first_name: freelancerApplicationInfo.first_name || "",
         last_name: freelancerApplicationInfo.last_name || ""
@@ -47,6 +47,51 @@ const NamePhoto = (props: any) => {
     const [cropper, setCropper] = useState<any>();
     const [cropData, setCropData] = useState("#");
     const [tempImageData, setTempImageData] = useState<any>();
+
+    useEffect(() => {
+        if (cropData && cropData !== '#') {
+            fetch(cropData)
+                .then(res => res.blob())
+                .then((x) => {
+                    const cropped = new File([x], tempImageData.file.name, { type: tempImageData.file.type })
+
+                    new Compressor(cropped, {
+                        quality: 0.6,
+                        success(result) {
+                            dispatch(imageUpload({ functionType: tempImageData.functionType, image: { file: result, fileName: tempImageData.file.name } })).then((res) => {
+                                if (res.payload.success) {
+                                    const imageUrlUpdate: any = {};
+                                    if (tempImageData.functionType === FUNCTION_TYPES.USER_PROFILE) {
+                                        dispatch(setProfile(URL.createObjectURL(result)));
+                                        imageUrlUpdate['profile_url'] = res.payload.data.file_name;
+                                    } else if (tempImageData.functionType === FUNCTION_TYPES.USER_AVATAR) {
+                                        dispatch(setAvatar(URL.createObjectURL(result)));
+                                        imageUrlUpdate['avatar_url'] = res.payload.data.file_name;
+                                    }
+                                    sessionStorage.setItem('freelancer-application-info', JSON.stringify({
+                                        ...freelancerApplicationInfo,
+                                        ...imageUrlUpdate
+                                    }))
+                                    enqueueSnackbar(res.payload.message)
+                                }
+                            }).catch((err) => {
+                                enqueueSnackbar(err.message)
+                            }).finally(() => {
+                                setBackdrop(false);
+                                setShow(false);
+                                setCropData("#");
+                                setTempImageData(null)
+                            })
+                        },
+                        error(err) {
+                            console.log(err.message);
+                            setBackdrop(false);
+                            setCropData("#");
+                        },
+                    });
+                })
+        }
+    }, [dispatch, enqueueSnackbar, freelancerApplicationInfo, cropData, tempImageData])
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -63,42 +108,6 @@ const NamePhoto = (props: any) => {
             dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: freelancerApplicationInfo.profile_url }))
         }
     }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
-
-    const uploadImage = (imageData: any) => {
-        new Compressor(imageData.cropped, {
-            quality: 0.6,
-            success(result) {
-                setBackdrop(true);
-                dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName: imageData.file.name } })).then((res) => {
-                    if (res.payload.success) {
-                        const imageUrlUpdate: any = {};
-                        if (imageData.functionType === FUNCTION_TYPES.USER_PROFILE) {
-                            dispatch(setProfile(URL.createObjectURL(result)));
-                            imageUrlUpdate['profile_url'] = res.payload.data.file_name;
-                        } else if (imageData.functionType === FUNCTION_TYPES.USER_AVATAR) {
-                            dispatch(setAvatar(URL.createObjectURL(result)));
-                            imageUrlUpdate['avatar_url'] = res.payload.data.file_name;
-                        }
-                        sessionStorage.setItem('freelancer-application-info', JSON.stringify({
-                            ...freelancerApplicationInfo,
-                            ...imageUrlUpdate
-                        }))
-                        enqueueSnackbar(res.payload.message)
-                    }
-                }).catch((err) => {
-                    enqueueSnackbar(err.message)
-                }).finally(() => {
-                    setBackdrop(false);
-                    setShow(false);
-                    setCropData("#");
-                    setTempImageData(null)
-                })
-            },
-            error(err) {
-                console.log(err.message);
-            },
-        });
-    }
 
     return (
         <Box>
@@ -227,14 +236,7 @@ const NamePhoto = (props: any) => {
                                                     style={{ marginLeft: 0 }}
                                                     onClick={() => {
                                                         setCropData(cropper.getCroppedCanvas().toDataURL())
-                                                        fetch(cropData)
-                                                            .then(res => res.blob())
-                                                            .then((x) => {
-                                                                uploadImage({
-                                                                    ...tempImageData,
-                                                                    cropped: new File([x], tempImageData.file.name, { type: tempImageData.file.type })
-                                                                })
-                                                            })
+                                                        setBackdrop(true);
                                                     }}>{t('confirm')}</Button>
                                             </DialogActions>
                                         </DialogContent>
