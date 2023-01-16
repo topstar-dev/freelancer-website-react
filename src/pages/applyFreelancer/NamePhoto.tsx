@@ -191,7 +191,7 @@ const NamePhoto = (props: any) => {
                                         maxWidth="lg"
                                         className="deleteEmailModal"
                                     >
-                                        <DialogTitle>{t('upload image')}</DialogTitle>
+                                        <DialogTitle>{t('adjust-image')}</DialogTitle>
                                         <DialogContent>
                                             <Cropper
                                                 style={{
