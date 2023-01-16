@@ -147,7 +147,7 @@ const NamePhoto = (props: any) => {
                                             <img className='profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
                                         }
                                         <label className='image-handle' htmlFor="profile_image">
-                                            <input
+                                            {tempImageData?.file ? '' : <input
                                                 id="profile_image"
                                                 type="file"
                                                 accept="image/png, image/jpeg"
@@ -160,7 +160,7 @@ const NamePhoto = (props: any) => {
                                                     setTempImageData(obj)
                                                     setShow(true);
                                                 }}
-                                            />
+                                            />}
                                             <CameraAltIcon className='camera-icon' />
                                         </label>
                                     </Box>
@@ -171,7 +171,7 @@ const NamePhoto = (props: any) => {
                                             <Avatar className='avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
                                         }
                                         <label className='image-handle center' htmlFor="avatar_image">
-                                            <input
+                                            {tempImageData?.file ? '' : <input
                                                 id="avatar_image"
                                                 type="file"
                                                 accept="image/png, image/jpeg"
@@ -184,7 +184,7 @@ const NamePhoto = (props: any) => {
                                                     setTempImageData(obj)
                                                     setShow(true);
                                                 }}
-                                            />
+                                            />}
                                             <CameraAltIcon className='camera-icon' />
                                         </label>
                                     </Box>
