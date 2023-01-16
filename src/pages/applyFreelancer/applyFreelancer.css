@@ -83,8 +83,7 @@
 }
 
 .profile-image-box {
-    max-height: 181px;
-    min-height: 134px;
+    height: 181px;
     position: relative;
     display: flex;
     justify-content: center;
