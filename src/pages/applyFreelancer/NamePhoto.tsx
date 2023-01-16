@@ -65,19 +65,18 @@ const NamePhoto = (props: any) => {
     }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
 
     const uploadImage = (imageData: any) => {
-        let fileName = `${imageData.filename}`;
-        let file = new File([imageData.blob], fileName, { type: imageData.extension });
-        new Compressor(file, {
+        new Compressor(imageData.cropped, {
             quality: 0.6,
             success(result) {
-                dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName } })).then((res) => {
+                setBackdrop(true);
+                dispatch(imageUpload({ functionType: imageData.functionType, image: { file: result, fileName: imageData.file.name } })).then((res) => {
                     if (res.payload.success) {
                         const imageUrlUpdate: any = {};
                         if (imageData.functionType === FUNCTION_TYPES.USER_PROFILE) {
-                            dispatch(setProfile(tempImageData.file));
+                            dispatch(setProfile(URL.createObjectURL(result)));
                             imageUrlUpdate['profile_url'] = res.payload.data.file_name;
                         } else if (imageData.functionType === FUNCTION_TYPES.USER_AVATAR) {
-                            dispatch(setAvatar(imageData.file));
+                            dispatch(setAvatar(URL.createObjectURL(result)));
                             imageUrlUpdate['avatar_url'] = res.payload.data.file_name;
                         }
                         sessionStorage.setItem('freelancer-application-info', JSON.stringify({
@@ -99,7 +98,6 @@ const NamePhoto = (props: any) => {
                 console.log(err.message);
             },
         });
-        setBackdrop(true);
     }
 
     return (
@@ -146,10 +144,8 @@ const NamePhoto = (props: any) => {
                                                 accept="image/png, image/jpeg"
                                                 onChange={(e: any) => {
                                                     const obj = {
-                                                        file: URL.createObjectURL(e.target.files[0]),
-                                                        blob: e.target.files[0],
-                                                        filename: e.target.files[0].name,
-                                                        extension: e.target.files[0].type,
+                                                        image: URL.createObjectURL(e.target.files[0]),
+                                                        file: e.target.files[0],
                                                         functionType: FUNCTION_TYPES.USER_PROFILE
                                                     }
                                                     setTempImageData(obj)
@@ -172,10 +168,8 @@ const NamePhoto = (props: any) => {
                                                 accept="image/png, image/jpeg"
                                                 onChange={(e: any) => {
                                                     const obj = {
-                                                        file: URL.createObjectURL(e.target.files[0]),
-                                                        blob: e.target.files[0],
-                                                        filename: e.target.files[0].name,
-                                                        extension: e.target.files[0].type,
+                                                        image: URL.createObjectURL(e.target.files[0]),
+                                                        file: e.target.files[0],
                                                         functionType: FUNCTION_TYPES.USER_AVATAR
                                                     }
                                                     setTempImageData(obj)
@@ -187,7 +181,10 @@ const NamePhoto = (props: any) => {
                                     </Box>
                                     <Dialog
                                         open={show}
-                                        onClose={() => setShow(false)}
+                                        onClose={() => {
+                                            setTempImageData(null);
+                                            setShow(false)
+                                        }}
                                         maxWidth="lg"
                                         className="deleteEmailModal"
                                     >
@@ -204,7 +201,7 @@ const NamePhoto = (props: any) => {
                                                 initialAspectRatio={tempImageData?.functionType === FUNCTION_TYPES.USER_AVATAR ? 1 / 1 : 6 / 2}
                                                 aspectRatio={tempImageData?.functionType === FUNCTION_TYPES.USER_AVATAR ? 1 / 1 : 6 / 2}
                                                 preview=".img-preview"
-                                                src={tempImageData?.file || "/images/profile-placeholder.png"}
+                                                src={tempImageData?.image || "/images/profile-placeholder.png"}
                                                 minCropBoxHeight={10}
                                                 minCropBoxWidth={10}
                                                 background={false}
@@ -220,6 +217,7 @@ const NamePhoto = (props: any) => {
                                                 <Button
                                                     variant="text"
                                                     onClick={() => {
+                                                        setTempImageData(null)
                                                         setShow(false)
                                                     }}>
                                                     {t('cancel')}
@@ -232,8 +230,10 @@ const NamePhoto = (props: any) => {
                                                         fetch(cropData)
                                                             .then(res => res.blob())
                                                             .then((x) => {
-                                                                let file = new File([x], tempImageData.filename, { type: tempImageData.extension });
-                                                                uploadImage({ ...tempImageData, newBlob: file, newFile: URL.createObjectURL(file) })
+                                                                uploadImage({
+                                                                    ...tempImageData,
+                                                                    cropped: new File([x], tempImageData.file.name, { type: tempImageData.file.type })
+                                                                })
                                                             })
                                                     }}>{t('confirm')}</Button>
                                             </DialogActions>
