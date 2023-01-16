@@ -61,6 +61,17 @@ const Skills = (props: any) => {
         return '';
     }
 
+    const getError = (formik: any) => {
+        const skills = formik.values.skills;
+        if (skills.length === 0) {
+            return t('validation.skills-required');
+        } else if (skills.length > 0 && skills.length < 2) {
+            return t('validation.skills-min')
+        } else if (skills.length > 100) {
+            return t('validation.skills-max')
+        }
+    }
+
     return (
         <Box>
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
@@ -82,6 +93,7 @@ const Skills = (props: any) => {
                                 skill_id: yup.string().required(t('validation.skills-required'))
                             })
                         )
+                            .required(t('validation.skills-required'))
                             .min(2, t('validation.skills-min'))
                             .max(100, t('validation.skills-max'))
                     })}
@@ -112,7 +124,7 @@ const Skills = (props: any) => {
                                         </Select>
                                         {formik.touched.occupation_category && formik.errors.occupation_category && <FormHelperText>{formik.errors.occupation_category as ReactNode}</FormHelperText>}
                                     </FormControl>
-                                    <FormControl error={formik.touched.skills && Boolean(formik.errors.skills)} fullWidth>
+                                    <FormControl error={formik.submitCount > 0 && formik.touched.skills && Boolean(formik.errors.skills)} fullWidth>
                                         <Autocomplete
                                             disablePortal
                                             blurOnSelect
@@ -127,9 +139,9 @@ const Skills = (props: any) => {
                                                 label: c.skill_name,
                                                 id: c.skill_id
                                             }))}
-                                            renderInput={(params) => <TextField {...params} error={formik.touched.skills && Boolean(formik.errors.skills)} label={t('freelancer.skills.skills')} />}
+                                            renderInput={(params) => <TextField {...params} error={formik.submitCount > 0 && formik.touched.skills && Boolean(formik.errors.skills)} label={t('freelancer.skills.skills')} />}
                                         />
-                                        {formik.touched.skills && formik.errors.skills && <FormHelperText>{formik.errors.skills as ReactNode}</FormHelperText>}
+                                        {formik.submitCount > 0 && formik.touched.skills && formik.errors.skills && <FormHelperText>{getError(formik) as ReactNode}</FormHelperText>}
                                     </FormControl>
                                 </Form >
                                 {formik.values.skills.length > 0 && <Box className="freelancer-card-spacing">
@@ -166,22 +178,13 @@ const Skills = (props: any) => {
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
                                             const { occupation_category, skills } = res;
-                                            if (occupation_category) {
-                                                formik.setFieldTouched('occupation_category', true, true);
-                                                formik.setFieldError('occupation_category', occupation_category);
-                                            }
-                                            const skillsValidate = formik.values.skills.length < 1
-                                            if (skillsValidate) {
-                                                formik.setFieldTouched('skills', true, true);
-                                                formik.setFieldError('skills', skills);
-                                            }
+                                            formik.submitForm();
                                             const saveData = {
                                                 occupation_category: formik.values.occupation_category,
                                                 skills: formik.values.skills.map((e: any, index: number) => ({ ...e, order: index }))
                                             }
-
                                             sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
-                                            if (!(occupation_category || skillsValidate)) {
+                                            if (!(occupation_category || skills)) {
                                                 navigate(`/apply-freelancer/name-photos`)
                                             }
                                         })
