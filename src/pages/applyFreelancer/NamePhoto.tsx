@@ -197,7 +197,7 @@ const NamePhoto = (props: any) => {
                                                 style={{
                                                     maxHeight: 400,
                                                     maxWidth: 600,
-                                                    marginBottom: 16
+                                                    marginBottom: 26
                                                 }}
                                                 zoomTo={0}
                                                 viewMode={1}
