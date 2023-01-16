@@ -194,9 +194,14 @@ const NamePhoto = (props: any) => {
                                         <DialogTitle>{t('upload image')}</DialogTitle>
                                         <DialogContent>
                                             <Cropper
-                                                style={{ height: 400, width: "100%" }}
+                                                style={{
+                                                    maxHeight: 400,
+                                                    maxWidth: 600,
+                                                    marginBottom: 16
+                                                }}
                                                 zoomTo={0}
                                                 viewMode={1}
+                                                initialAspectRatio={tempImageData?.functionType === FUNCTION_TYPES.USER_AVATAR ? 1 / 1 : 6 / 2}
                                                 aspectRatio={tempImageData?.functionType === FUNCTION_TYPES.USER_AVATAR ? 1 / 1 : 6 / 2}
                                                 preview=".img-preview"
                                                 src={tempImageData?.file || "/images/profile-placeholder.png"}
