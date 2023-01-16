@@ -15,7 +15,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <SnackbarProvider maxSnack={1}>
+      <SnackbarProvider maxSnack={3}>
         <App />
       </SnackbarProvider>
     </Provider>
