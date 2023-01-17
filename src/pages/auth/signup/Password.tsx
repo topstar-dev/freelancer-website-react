@@ -58,6 +58,15 @@ export default function Password(mainProps: any) {
                             is: (value: string) => (value && value.length > 0 ? true : false),
                             then: yup.string().oneOf([yup.ref("set_password")], t('validation.passwords-not-match')),
                         })
+                        .test('confirm_password', t('validation.confirm-password-required'), (value: any, context) => {
+                            const pattern = new RegExp("(?=.*[!@#\$%^&*_A-Za-z])(?=.*[!@#\$%^&*_0-9])(?=.[A-Za-z0-9])[A-Za-z0-9,.!@#\$%^&()_].{7,100}\$"); // eslint-disable-line
+                            if (!value) {
+                                return context.createError({ message: t('validation.confirm-password-required') })
+                            } else if (!pattern.test(value)) {
+                                return context.createError({ message: t('validation.please_enter_valid_password') })
+                            }
+                            return true;
+                        })
                 })}
                 onSubmit={(values) => { }}
             >
@@ -113,15 +122,7 @@ export default function Password(mainProps: any) {
                                 <Button onClick={() => {
                                     formik.validateForm().then((res: any) => {
                                         const { set_password, confirm_password } = res;
-
-                                        if (set_password) {
-                                            formik.setFieldTouched('set_password', true, true);
-                                            formik.setFieldError('set_password', set_password);
-                                        }
-                                        if (confirm_password) {
-                                            formik.setFieldTouched('confirm_password', true, true);
-                                            formik.setFieldError('confirm_password', confirm_password);
-                                        }
+                                        formik.submitForm();
                                         if (!(set_password || confirm_password)) {
                                             sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
                                             navigate(`/sign-up/email`)
