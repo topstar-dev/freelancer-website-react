@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Divider, FormHelperText, TextField } from '@mui/material';
+import { Backdrop, CircularProgress, Divider, FormHelperText, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Form from '../../components/form/Form';
@@ -12,16 +12,19 @@ import Card from '../../components/card/Card';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
+import { useEditFreelancer } from './useEditFreelancer';
 
 const Educations = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const editFreelancer = useEditFreelancer();
     let pushMethod: any = () => { }
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
         educations: freelancerApplicationInfo.educations || []
     });
+    const [backdrop, setBackdrop] = useState(false);
 
     useEffect(() => {
         document.title = t('title.freelancer');
@@ -206,9 +209,12 @@ const Educations = (props: any) => {
                                                 educations: formik.values.educations.map((e: any, index: number) => ({ ...e, order: index }))
                                             }
 
-                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
                                             if (isValid) {
-                                                navigate('/apply-freelancer/languages')
+                                                setBackdrop(true)
+                                                editFreelancer(saveData).then(() => {
+                                                    navigate('/apply-freelancer/languages')
+                                                }).catch(() => { })
+                                                    .finally(() => { setBackdrop(false) })
                                             }
                                         })
                                     }}
@@ -230,6 +236,13 @@ const Educations = (props: any) => {
                     }
                 </Formik>
             </Card>
+            <Backdrop
+                className='only-backdrop'
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={backdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Box>
     )
 }

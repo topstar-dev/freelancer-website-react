@@ -14,11 +14,13 @@ import WithTranslateFormErrors from '../../services/validationScemaOnLangChange'
 import './applyFreelancer.css';
 import { useAppDispatch } from '../../redux/hooks';
 import { getLanguageList } from '../../redux/resources/resourcesActions';
+import { useEditFreelancer } from './useEditFreelancer';
 
 const Languages = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const editFreelancer = useEditFreelancer();
 
     const [loading, setLoading] = useState(true);
     const [called, setCalled] = useState(false)
@@ -178,9 +180,12 @@ const Languages = (props: any) => {
                                                 languages: formik.values.languages.map((e: any, index: number) => ({ ...e, order: index }))
                                             }
 
-                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
                                             if (isValid) {
-                                                navigate('/apply-freelancer/about-me')
+                                                setLoading(true);
+                                                editFreelancer(saveData).then(() => {
+                                                    navigate('/apply-freelancer/about-me')
+                                                }).catch(() => { })
+                                                    .finally(() => { setLoading(false) })
                                             }
                                         })
                                     }}

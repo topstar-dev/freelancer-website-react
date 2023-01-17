@@ -12,11 +12,13 @@ import { useAppDispatch } from '../../redux/hooks';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import { FieldArray, Formik } from 'formik';
 import { getSkillsList } from '../../redux/occupationSkills/occupationSkillsActions';
+import { useEditFreelancer } from './useEditFreelancer';
 
 const Skills = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const editFreelancer = useEditFreelancer();
     const [called, setCalled] = useState(false);
     const [loading, setLoading] = useState(false);
     const [skillsList, setSkillsList] = useState([]);
@@ -183,9 +185,13 @@ const Skills = (props: any) => {
                                                 occupation_category: formik.values.occupation_category,
                                                 skills: formik.values.skills.map((e: any, index: number) => ({ ...e, order: index }))
                                             }
-                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...saveData }))
                                             if (!(occupation_category || skills)) {
-                                                navigate(`/apply-freelancer/name-photos`)
+                                                setLoading(true);
+                                                editFreelancer(saveData).then(() => {
+                                                    navigate(`/apply-freelancer/name-photos`)
+                                                })
+                                                    .catch(() => { })
+                                                    .finally(() => { setLoading(false) })
                                             }
                                         })
                                     }}

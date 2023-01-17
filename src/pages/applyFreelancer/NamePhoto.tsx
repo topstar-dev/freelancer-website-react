@@ -29,11 +29,13 @@ import { setAvatar, setProfile } from '../../redux/other/otherSlice';
 import './applyFreelancer.css';
 import "cropperjs/dist/cropper.css";
 import { FUNCTION_TYPES } from '../../redux/constants';
+import { useEditFreelancer } from './useEditFreelancer';
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const editFreelancer = useEditFreelancer();
     const { enqueueSnackbar } = useSnackbar();
     const { userAvatar, userProfile, loading, loadingProfile } = useAppSelector(state => state.other)
 
@@ -291,9 +293,12 @@ const NamePhoto = (props: any) => {
                                                 enqueueSnackbar(t('validation.profile-image'))
                                             }
 
-                                            sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...formik.values }))
                                             if (!(first_name || last_name || avatarImageCheck || profileImageCheck)) {
-                                                navigate('/apply-freelancer/experiences')
+                                                setBackdrop(true);
+                                                editFreelancer(formik.values).then(() => {
+                                                    navigate('/apply-freelancer/experiences')
+                                                }).catch(() => { })
+                                                    .finally(() => { setBackdrop(false) })
                                             }
                                         })
                                     }}
