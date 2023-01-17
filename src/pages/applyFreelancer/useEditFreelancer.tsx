@@ -12,7 +12,6 @@ export function useEditFreelancer() {
                 if (res.payload && res.payload.success) {
                     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
                     sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...data }))
-                    enqueueSnackbar(res.payload.message);
                     resolve(true);
                 } else {
                     enqueueSnackbar(res.payload.message);
