@@ -72,6 +72,7 @@ const FailedApplication = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [backdrop, setBackdrop] = React.useState(false);
     const { userInfo } = useAppSelector(state => state.auth);
     const status = JSON.parse(sessionStorage.getItem('freelancer-application-status') || '{}');
 
@@ -82,15 +83,24 @@ const FailedApplication = () => {
                 <Box className='heading-steps' style={{ marginBottom: 24 }}>{t('freelancer.status.failed-message', { message: status.unapproved_reason })}</Box>
             </Box>
             <Button onClick={() => {
+                setBackdrop(true)
                 dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
                     if (res.payload && res.payload.success) {
                         sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
                         navigate(`/apply-freelancer/skills`);
                     }
                 }).catch((err) => {
-
+                }).finally(() => {
+                    setBackdrop(false)
                 })
             }}>{t('freelancer.status.failed-button')}</Button>
+            <Backdrop
+                className='only-backdrop'
+                sx={{ color: '#fff', zIndex: 999 }}
+                open={backdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Card >
     )
 }
