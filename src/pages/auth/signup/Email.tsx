@@ -60,7 +60,7 @@ export default function Email(mainProps: any) {
                         <Form>
                             <img
                                 src="/images/rounx-symbol.png"
-                                alt="Rounx admin"
+                                alt="Rounx"
                                 width="60px"
                                 height="60px"
                                 style={{ alignSelf: "center" }}

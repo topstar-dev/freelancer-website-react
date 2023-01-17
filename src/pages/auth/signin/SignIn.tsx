@@ -92,7 +92,7 @@ export default function SignIn() {
             <Form onSubmit={props.handleSubmit}>
               <img
                 src="/images/rounx-symbol.png"
-                alt="Rounx admin"
+                alt="Rounx"
                 width="60px"
                 height="60px"
                 style={{ alignSelf: "center" }}

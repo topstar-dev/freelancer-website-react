@@ -23,7 +23,7 @@ export default function DesktopHeader({ pages, userMenu, selectedPage, setSelect
                     <img
                         className='logo'
                         src="/images/rounx-logo.png"
-                        alt="Rounx admin"
+                        alt="Rounx"
                         width="146px"
                         height="40px"
                         onClick={() => setSelectedPage("/")}
