@@ -238,7 +238,18 @@ const AboutMe = (props: any) => {
 
                                                 setLoading(true);
                                                 editFreelancer(saveData).then(() => {
-                                                    dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {
+                                                    const submitApplicationData = {
+                                                        ...saveData,
+                                                        educations: freelancerApplicationInfo.educations,
+                                                        experiences: freelancerApplicationInfo.experiences,
+                                                        languages: freelancerApplicationInfo.languages,
+                                                        first_name: freelancerApplicationInfo.first_name,
+                                                        last_name: freelancerApplicationInfo.last_name,
+                                                        occupation_category: freelancerApplicationInfo.occupation_category,
+                                                        skills: freelancerApplicationInfo.skills,
+                                                        username: userInfo?.username
+                                                    }
+                                                    dispatch(submitFreelancerApplicationAction(submitApplicationData)).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             sessionStorage.setItem('freelancer-application-status', JSON.stringify({ status: 'APPLYING' }));
                                                             sessionStorage.removeItem('freelancer-application-info');
