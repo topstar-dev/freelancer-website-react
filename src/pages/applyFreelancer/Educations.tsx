@@ -22,7 +22,16 @@ const Educations = (props: any) => {
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
-        educations: freelancerApplicationInfo.educations || []
+        educations: freelancerApplicationInfo.educations && freelancerApplicationInfo.educations.length > 0 ?
+            freelancerApplicationInfo.educations
+            :
+            [{
+                major_name: '',
+                school_name: '',
+                start_year: '',
+                end_year: '',
+                description: '',
+            }]
     });
     const [backdrop, setBackdrop] = useState(false);
 

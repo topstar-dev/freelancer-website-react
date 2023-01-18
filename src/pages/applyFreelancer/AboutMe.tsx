@@ -212,13 +212,11 @@ const AboutMe = (props: any) => {
                                             if (about || country_id) {
                                                 formik.submitForm();
                                             } else {
-                                                const saveData = {
-                                                    ...freelancerApplicationInfo,
+                                                const saveData: any = {
                                                     about: formik.values.about,
                                                     location: {
                                                         country_id: formik.values.country_id
-                                                    },
-                                                    username: userInfo?.username
+                                                    }
                                                 }
 
                                                 if (formik.values.province_id) {

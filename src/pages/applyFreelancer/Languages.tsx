@@ -29,10 +29,13 @@ const Languages = (props: any) => {
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerData] = useState({
-        languages: freelancerApplicationInfo.languages || [{
-            language_code: '',
-            language_skill: ''
-        }]
+        languages: freelancerApplicationInfo.languages && freelancerApplicationInfo.languages.length > 0 ?
+            freelancerApplicationInfo.languages
+            :
+            [{
+                language_code: '',
+                language_skill: ''
+            }]
     });
 
     useEffect(() => {
@@ -177,7 +180,11 @@ const Languages = (props: any) => {
                                             }
 
                                             const saveData = {
-                                                languages: formik.values.languages.map((e: any, index: number) => ({ ...e, order: index }))
+                                                languages: formik.values.languages.map((e: any, index: number) => ({
+                                                    language_code: e.language_code,
+                                                    anguage_skill: e.anguage_skill,
+                                                    order: index
+                                                }))
                                             }
 
                                             if (isValid) {
