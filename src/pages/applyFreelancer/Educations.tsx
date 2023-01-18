@@ -60,8 +60,7 @@ const Educations = (props: any) => {
                                     .number()
                                     .integer()
                                     .nullable()
-                                    .min(yup.ref("start_year"), t('validation.end-year-min'))
-                                    .max(new Date().getFullYear(), t('validation.end-year-max')),
+                                    .min(yup.ref("start_year"), t('validation.end-year-min')),
                                 description: yup.string()
                                     .min(20, t('validation.characters-min', { min: 20 }))
                                     .max(1000, t('validation.characters-max', { max: 1000 }))
