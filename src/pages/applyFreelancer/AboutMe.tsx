@@ -216,11 +216,17 @@ const AboutMe = (props: any) => {
                                                     ...freelancerApplicationInfo,
                                                     about: formik.values.about,
                                                     location: {
-                                                        country_id: formik.values.country_id,
-                                                        province_id: formik.values.province_id,
-                                                        city_id: formik.values.city_id
+                                                        country_id: formik.values.country_id
                                                     },
                                                     username: userInfo?.username
+                                                }
+
+                                                if (formik.values.province_id) {
+                                                    saveData.location['province_id'] = formik.values.province_id;
+                                                }
+
+                                                if (formik.values.city_id) {
+                                                    saveData.location['city_id'] = formik.values.city_id;
                                                 }
 
                                                 sessionStorage.setItem('freelancer-application-info', JSON.stringify({
@@ -231,6 +237,7 @@ const AboutMe = (props: any) => {
                                                     city_id: formik.values.city_id,
                                                     username: userInfo?.username
                                                 }))
+
                                                 setLoading(true);
                                                 editFreelancer(saveData).then(() => {
                                                     dispatch(submitFreelancerApplicationAction(saveData)).then((res) => {

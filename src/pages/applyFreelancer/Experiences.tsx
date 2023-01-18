@@ -230,7 +230,15 @@ const Experiences = (props: any) => {
                                             }
 
                                             const saveData = {
-                                                experiences: formik.values.experiences.map((e: any, index: number) => ({ ...e, order: index }))
+                                                experiences: formik.values.experiences.map((e: any, index: number) => {
+                                                    const tempObj: any = { order: index };
+                                                    Object.keys(e).forEach((exp) => {
+                                                        if (e[exp]) {
+                                                            tempObj[exp] = e[exp];
+                                                        }
+                                                    })
+                                                    return tempObj;
+                                                })
                                             }
 
                                             if (isValid) {

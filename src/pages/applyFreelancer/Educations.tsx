@@ -218,7 +218,15 @@ const Educations = (props: any) => {
                                             }
 
                                             const saveData = {
-                                                educations: formik.values.educations.map((e: any, index: number) => ({ ...e, order: index }))
+                                                educations: formik.values.educations.map((e: any, index: number) => {
+                                                    const tempObj: any = { order: index };
+                                                    Object.keys(e).forEach((edu) => {
+                                                        if (e[edu]) {
+                                                            tempObj[edu] = e[edu];
+                                                        }
+                                                    })
+                                                    return tempObj;
+                                                })
                                             }
 
                                             if (isValid) {
