@@ -182,7 +182,7 @@ const Languages = (props: any) => {
                                             const saveData = {
                                                 languages: formik.values.languages.map((e: any, index: number) => ({
                                                     language_code: e.language_code,
-                                                    anguage_skill: e.anguage_skill,
+                                                    language_skill: e.language_skill,
                                                     order: index
                                                 }))
                                             }

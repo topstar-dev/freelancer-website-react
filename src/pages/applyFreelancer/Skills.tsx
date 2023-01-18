@@ -183,8 +183,9 @@ const Skills = (props: any) => {
                                             formik.submitForm();
                                             const saveData = {
                                                 occupation_category: formik.values.occupation_category,
-                                                skills: formik.values.skills.map((e: any, index: number) => ({ ...e, order: index }))
+                                                skills: formik.values.skills.map((e: any, index: number) => ({ skill_id: e.skill_id, order: index }))
                                             }
+
                                             if (!(occupation_category || skills)) {
                                                 setLoading(true);
                                                 editFreelancer(saveData).then(() => {
