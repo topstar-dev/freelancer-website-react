@@ -285,10 +285,10 @@ const NamePhoto = (props: any) => {
 
                                             let avatarImageCheck = false;
                                             let profileImageCheck = false;
-                                            if (!userAvatar) {
+                                            if (!userAvatar && !loading) {
                                                 avatarImageCheck = true;
                                                 enqueueSnackbar(t('validation.avatar-image'))
-                                            } else if (!userProfile) {
+                                            } else if (!userProfile && !loadingProfile) {
                                                 profileImageCheck = true;
                                                 enqueueSnackbar(t('validation.profile-image'))
                                             }
