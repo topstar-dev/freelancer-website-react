@@ -56,7 +56,7 @@ const AboutMe = (props: any) => {
                 setLoading(false)
             })
 
-            if (freelancerData.province_id) {
+            if (freelancerData.country_id && freelancerData.country_id?.toString() === COUNTRY_ID_CHINA) {
                 dispatch(getProvincesList({ country_id: Number(freelancerData.country_id) })).then((res) => {
                     if (res.payload && res.payload.success) {
                         setProvinceList(res.payload.data.records);
@@ -67,7 +67,7 @@ const AboutMe = (props: any) => {
                 })
             }
 
-            if (freelancerData.city_id) {
+            if (freelancerData.province_id && freelancerData.country_id?.toString() === COUNTRY_ID_CHINA) {
                 dispatch(getCitiesList({ province_id: Number(freelancerData.province_id), country_id: Number(freelancerData.country_id) })).then((res) => {
                     if (res.payload && res.payload.success) {
                         setCityList(res.payload.data.records);
@@ -238,18 +238,7 @@ const AboutMe = (props: any) => {
 
                                                 setLoading(true);
                                                 editFreelancer(saveData).then(() => {
-                                                    const submitApplicationData = {
-                                                        ...saveData,
-                                                        educations: freelancerApplicationInfo.educations,
-                                                        experiences: freelancerApplicationInfo.experiences,
-                                                        languages: freelancerApplicationInfo.languages,
-                                                        first_name: freelancerApplicationInfo.first_name,
-                                                        last_name: freelancerApplicationInfo.last_name,
-                                                        occupation_category: freelancerApplicationInfo.occupation_category,
-                                                        skills: freelancerApplicationInfo.skills,
-                                                        username: userInfo?.username
-                                                    }
-                                                    dispatch(submitFreelancerApplicationAction(submitApplicationData)).then((res) => {
+                                                    dispatch(submitFreelancerApplicationAction()).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             sessionStorage.setItem('freelancer-application-status', JSON.stringify({ status: 'APPLYING' }));
                                                             sessionStorage.removeItem('freelancer-application-info');

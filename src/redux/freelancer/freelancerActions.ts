@@ -20,9 +20,9 @@ export const getFreelancerApplicationAction = createAsyncThunk(
 
 export const submitFreelancerApplicationAction = createAsyncThunk(
     'freelancer/submitApplication',
-    async (freelancerData: FreelancerDataInterface, { rejectWithValue }) => {
+    async (freelancerData: void, { rejectWithValue }) => {
         try {
-            const response = await submitFreelancerApplication(freelancerData);
+            const response = await submitFreelancerApplication();
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })

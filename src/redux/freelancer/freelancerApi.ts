@@ -1,5 +1,4 @@
 import { apiCall } from "../apiCall";
-import { FreelancerDataInterface } from "./freelancerActions";
 
 export const getFreelancerApplication = async () => {
     const requestOptions: RequestInit = {
@@ -8,10 +7,9 @@ export const getFreelancerApplication = async () => {
     return apiCall(`/user/v1/apply-freelancer`, requestOptions, true);
 };
 
-export const submitFreelancerApplication = async (freelancerData: FreelancerDataInterface) => {
+export const submitFreelancerApplication = async () => {
     const requestOptions: RequestInit = {
-        method: 'POST',
-        body: JSON.stringify(freelancerData)
+        method: 'POST'
     };
     return apiCall(`/user/v1/apply-freelancer`, requestOptions, true);
 };
