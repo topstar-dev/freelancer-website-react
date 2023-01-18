@@ -60,7 +60,7 @@ const Experiences = (props: any) => {
                                     .number()
                                     .integer()
                                     .nullable()
-                                    .moreThan(yup.ref("start_year"), t('validation.end-year-min'))
+                                    .min(yup.ref("start_year"), t('validation.end-year-min'))
                                     .max(new Date().getFullYear(), t('validation.end-year-max')),
                                 description: yup.string()
                                     .min(20, t('validation.characters-min', { min: 20 }))
