@@ -167,7 +167,13 @@ const Experiences = (props: any) => {
                                                                         type="text"
                                                                         label={t('freelancer.experiences.start-year')}
                                                                         value={exp.start_year ? exp.start_year : ''}
-                                                                        onChange={formik.handleChange}
+                                                                        onChange={(e) => {
+                                                                            if (!e.target.value) {
+                                                                                formik.handleChange(e);
+                                                                            } else if (!isNaN(Number(e.target.value))) {
+                                                                                formik.handleChange(e);
+                                                                            }
+                                                                        }}
                                                                         error={touchedStartYear && Boolean(errorStartYear)}
                                                                         helperText={touchedStartYear && errorStartYear && (errorStartYear as ReactNode)}
                                                                     />
@@ -178,7 +184,13 @@ const Experiences = (props: any) => {
                                                                         type="text"
                                                                         label={t('freelancer.experiences.end-year')}
                                                                         value={exp.end_year ? exp.end_year : ''}
-                                                                        onChange={formik.handleChange}
+                                                                        onChange={(e) => {
+                                                                            if (!e.target.value) {
+                                                                                formik.handleChange(e);
+                                                                            } else if (!isNaN(Number(e.target.value))) {
+                                                                                formik.handleChange(e);
+                                                                            }
+                                                                        }}
                                                                         error={touchedEndYear && Boolean(errorEndYear)}
                                                                         helperText={touchedEndYear && errorEndYear && (errorEndYear as ReactNode)}
                                                                     />
