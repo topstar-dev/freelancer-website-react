@@ -8,27 +8,27 @@
     left: unset !important;
 }
 
-.settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+.settings-list .MuiButtonBase-root {
     color: #757575 !important;
     position: relative;
 }
 
-.settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+.settings-list .MuiButtonBase-root.Mui-selected {
     border-radius: 4px;
     background-color: var(--color-primary-light) !important;
     color: var(--color-primary) !important;
 }
 
-.settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root:hover {
+.settings-list .MuiButtonBase-root:hover {
     border-radius: 4px !important;
     background-color: var(--color-primary-light) !important;
 }
 
-.settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected .settings-icon {
+.settings-list .MuiButtonBase-root.Mui-selected .settings-icon {
     display: none;
 }
 
-.settings-list .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected .settings-icon-hover {
+.settings-list .MuiButtonBase-root.Mui-selected .settings-icon-hover {
     display: block;
 }
 
@@ -43,12 +43,12 @@
     display: none;
 }
 
-.deleteEmailModal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+.deleteEmailModal .MuiPaper-root.MuiDialog-paper {
     min-width: 400px !important;
 }
 
 @media (max-width: 432px) {
-    .deleteEmailModal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+    .deleteEmailModal .MuiPaper-root.MuiDialog-paper {
         min-width: calc(100% - 32px) !important;
     }
 }
