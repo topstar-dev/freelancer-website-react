@@ -231,11 +231,18 @@ const Experiences = (props: any) => {
                                             const saveData = {
                                                 experiences: formik.values.experiences.map((e: any, index: number) => {
                                                     const tempObj: any = { order: index };
-                                                    Object.keys(e).forEach((exp) => {
-                                                        if (e[exp]) {
-                                                            tempObj[exp] = e[exp];
-                                                        }
-                                                    })
+                                                    tempObj['company_name'] = e.company_name;
+                                                    tempObj['job_title'] = e.job_title;
+                                                    tempObj['start_year'] = e.start_year;
+
+                                                    if (e['end_year']) {
+                                                        tempObj['end_year'] = e.end_year;
+                                                    }
+
+                                                    if (e['description']) {
+                                                        tempObj['description'] = e.description;
+                                                    }
+
                                                     return tempObj;
                                                 })
                                             }
