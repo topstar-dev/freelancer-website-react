@@ -95,6 +95,8 @@ const AboutMe = (props: any) => {
                     validationSchema={yup.object({
                         about: yup
                             .string()
+                            .min(20, t('validation.characters-min', { min: 20 }))
+                            .max(1000, t('validation.characters-max', { max: 1000 }))
                             .required(t('validation.about-required')),
                         country_id: yup
                             .string()
