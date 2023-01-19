@@ -12,15 +12,16 @@ import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import './applyFreelancer.css';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getLanguageList } from '../../redux/resources/resourcesActions';
 import { useEditFreelancer } from './useEditFreelancer';
 
 const Languages = (props: any) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const editFreelancer = useEditFreelancer();
+    const { language } = useAppSelector(state => state.resources);
 
     const [loading, setLoading] = useState(true);
     const [called, setCalled] = useState(false)
@@ -56,6 +57,12 @@ const Languages = (props: any) => {
             })
         }
     }, [dispatch, called])
+
+    useEffect(() => {
+        if (language && i18n.language && i18n.language !== language) {
+            setCalled(false)
+        }
+    }, [i18n, language])
 
     return (
         <Box>

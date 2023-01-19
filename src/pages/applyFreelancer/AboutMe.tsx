@@ -18,12 +18,13 @@ import { useEditFreelancer } from './useEditFreelancer';
 
 const COUNTRY_ID_CHINA = '49';
 const AboutMe = (props: any) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const editFreelancer = useEditFreelancer();
     const { userInfo } = useAppSelector(state => state.auth);
+    const { language } = useAppSelector(state => state.resources);
 
     const [loading, setLoading] = useState(true);
     const [called, setCalled] = useState(false)
@@ -79,6 +80,12 @@ const AboutMe = (props: any) => {
             }
         }
     }, [dispatch, called, freelancerData.province_id, freelancerData.city_id, freelancerData.country_id])
+
+    useEffect(() => {
+        if (language && i18n.language && i18n.language !== language) {
+            setCalled(false)
+        }
+    }, [i18n, language])
 
     return (
         <Box>
