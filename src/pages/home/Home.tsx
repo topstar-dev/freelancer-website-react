@@ -45,7 +45,7 @@ export default function HomePage() {
                             <MediaQuery maxWidth={514}>
                                 <br />
                             </MediaQuery>
-                            <MediaQuery minWidth={1171} maxWidth={1362.50}>
+                            <MediaQuery minWidth={1088} maxWidth={1362.50}>
                                 <br />
                             </MediaQuery>
                             {t('home-page-heading2')}
