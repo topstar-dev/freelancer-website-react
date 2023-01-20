@@ -78,7 +78,7 @@ export default function Footer() {
                         }}
                         className="qr-code-image"
                         alt="qrcode"
-                        src="/images/qrcode.jpg"
+                        src="/images/rounx-qrcode.jpg"
                     />
                 </Modal>
                 <a className="footer-brand-icon" target="_blank" rel="noreferrer" href="https://weibo.com/rounx">
