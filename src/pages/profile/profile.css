@@ -1,0 +1,85 @@
+/* main */
+.container-width {
+    width: 100%;
+    padding: 26px;
+}
+
+/* ======================
+= user info
+====================== */
+.userInfo-container {
+    padding: 0 !important;
+    overflow: hidden;
+    position: relative;
+}
+
+.userInfo-profile-image-box {
+    height: 181px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.userInfo-profile-image {
+    flex-shrink: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.userInfo-avatar-image-box {
+    height: 78px;
+    width: 78px;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    background-color: #fff;
+    position: relative;
+    top: -39px;
+    left: 26px;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.userInfo-avatar-image {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.userInfo-user-details {
+    padding: 0 26px 26px;
+}
+
+.userInfo-user-name {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.userInfo-user-id {
+    color: #757575;
+    font-size: 16px;
+}
+
+
+/* ======================
+= about
+====================== */
+
+.basicInfo-heading {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.basicInfo-location,
+.basicInfo-joining-date {
+    font-size: 16px;
+}
+
+.basicInfo-location span,
+.basicInfo-joining-date span {
+    color: #757575;
+}

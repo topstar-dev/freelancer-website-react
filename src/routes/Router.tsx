@@ -29,6 +29,9 @@ import Educations from "../pages/applyFreelancer/Educations";
 import Languages from "../pages/applyFreelancer/Languages";
 import AboutMe from "../pages/applyFreelancer/AboutMe";
 
+//profile
+import Profile from "../pages/profile/Profile";
+
 //settings
 import Settings from "../pages/settings/Settings";
 import Personal from "../pages/settings/Personal";
@@ -132,6 +135,15 @@ export default function Router() {
           {
             path: `${baseUrl}/apply-freelancer/about-me`,
             element: <AboutMe />
+          }
+        ]
+      },
+      {
+        element: <CustomRouter isHeader={true} protectedRoute={true} />,
+        children: [
+          {
+            path: `${baseUrl}/users/:username`,
+            element: <Profile />
           }
         ]
       },

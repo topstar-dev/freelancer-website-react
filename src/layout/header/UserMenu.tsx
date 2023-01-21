@@ -24,11 +24,11 @@ interface UserMenuPropsInterface {
 
 let source = axios.CancelToken.source();
 export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { isMobile } = useBreakpoint();
     const { enqueueSnackbar } = useSnackbar();
-    const { t } = useTranslation();
+    const { isMobile } = useBreakpoint();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [backdrop, setBackdrop] = React.useState(false);
     const { userAvatar, loading } = useAppSelector(state => state.other);
@@ -67,13 +67,6 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
         setAnchorEl(null);
     };
 
-    const signOutMethod = () => {
-        if (source) {
-            source.cancel();
-        }
-        dispatch(signOutUser());
-    }
-
     const freelancerApplicationClick = (pageUrl: string) => {
         setAnchorEl(null);
         setBackdrop(true);
@@ -102,6 +95,17 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 enqueueSnackbar(err && err.payload.message)
             }
         })
+    }
+
+    const userProfileClick = () => {
+        navigate(`/users/${userInfo?.username}`)
+    }
+
+    const signOutMethod = () => {
+        if (source) {
+            source.cancel();
+        }
+        dispatch(signOutUser());
     }
 
     return (
@@ -142,7 +146,9 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                         :
                         ('')
                     }
-                    <MenuItem className='user-menu-items'>
+                    <MenuItem className='user-menu-items' onClick={() => {
+                        userProfileClick();
+                    }}>
                         {t('header-user-profile')}
                     </MenuItem>
                     <MenuItem className='user-menu-items' onClick={() => {
