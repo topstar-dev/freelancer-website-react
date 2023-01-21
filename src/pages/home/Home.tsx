@@ -42,26 +42,12 @@ export default function HomePage() {
                     <Box>
                         <Typography className="home-section-title">
                             {t('home-page-heading1')}
-                            {
-                                language === 'en' ?
-                                    <>
-                                        <MediaQuery maxWidth={550}>
-                                            <br />
-                                        </MediaQuery>
-                                        <MediaQuery minWidth={1088} maxWidth={1435}>
-                                            <br />
-                                        </MediaQuery>
-                                    </>
-                                    :
-                                    <>
-                                        <MediaQuery maxWidth={550}>
-                                            <br />
-                                        </MediaQuery>
-                                        <MediaQuery minWidth={1000} maxWidth={1435} >
-                                            <br />
-                                        </MediaQuery>
-                                    </>
-                            }
+                            <MediaQuery maxWidth={550}>
+                                <br />
+                            </MediaQuery>
+                            <MediaQuery minWidth={language === 'en' ? 1088 : 1000} maxWidth={1435}>
+                                <br />
+                            </MediaQuery>
                             {t('home-page-heading2')}
                         </Typography>
                         <div className="home-section-details">
