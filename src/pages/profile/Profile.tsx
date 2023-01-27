@@ -1,6 +1,7 @@
 import { Backdrop, CircularProgress } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { USER_TYPES } from "../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
@@ -12,7 +13,9 @@ import './profile.css'
 export default function Profile(props: any) {
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar()
+    const { i18n } = useTranslation();
     const { userInfo } = useAppSelector(state => state.auth);
+    const { language } = useAppSelector(state => state.resources);
     const { username } = useParams();
 
     const [profile, setProfile] = useState<any>(null);
@@ -44,6 +47,12 @@ export default function Profile(props: any) {
             }
         }
     }, [dispatch, enqueueSnackbar, called, userInfo, username])
+
+    useEffect(() => {
+        if (language && i18n.language && i18n.language !== language) {
+            setCalled(false)
+        }
+    }, [i18n, language])
 
     if (backdrop) {
         return <Backdrop

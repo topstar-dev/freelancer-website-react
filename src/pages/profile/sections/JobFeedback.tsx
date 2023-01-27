@@ -1,9 +1,13 @@
-import { Avatar, Divider, LinearProgress, Rating } from "@mui/material";
+import { Avatar, CircularProgress, Divider, LinearProgress, Rating } from "@mui/material";
 import { Box } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
 import Card from "../../../components/card/Card";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const reviewComments = [
     {
@@ -20,8 +24,20 @@ const reviewComments = [
     }
 ]
 
-export default function JobFeedback() {
+export default function JobFeedback({ username }: any) {
+    const dispatch = useAppDispatch();
+
     const { t } = useTranslation();
+    const { jobFeedbackData, loading } = useAppSelector(state => state.jobFeedback);
+    const [called, setCalled] = useState(false);
+
+    useEffect(() => {
+        if (!called) {
+            setCalled(true);
+            dispatch(getJobFeedbackAction({ username }));
+        }
+    }, [dispatch, called, username])
+
     return (
         <Card className="jobFeedback-container container-width">
             <Box className="card-heading">{t('profile.job-feedback-title')}</Box>
@@ -49,20 +65,20 @@ export default function JobFeedback() {
                     </Box>
                 </Box>
                 <Box className="progress-reviews">
-                    <Box className="rating-rate">4.5</Box>
+                    <Box className="rating-rate">{jobFeedbackData?.records?.overall_rating}</Box>
                     <Box className="rating-box">
                         <Rating
                             readOnly
                             size="small"
                             name="rating"
-                            value={3}
+                            value={jobFeedbackData?.records?.star_count || 0}
                             precision={1}
                             onChange={(event, newValue) => {
                             }}
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                     </Box>
-                    <Box>58 {t('profile.job-feedback-reviews')}</Box>
+                    <Box>{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
                 </Box>
             </Box>
             <Divider style={{ margin: '14px 0' }} />
@@ -93,6 +109,17 @@ export default function JobFeedback() {
                         </Box>
                     </Box>
                 ))}
+            </Box>
+
+            <Box className="circular-progress-loader">
+                {loading ?
+                    <CircularProgress size={26} />
+                    :
+                    <>
+                        {t('profile.see-more')}
+                        <ExpandMoreIcon className="expand-icon" />
+                    </>
+                }
             </Box>
         </Card>
     )

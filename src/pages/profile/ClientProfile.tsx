@@ -14,7 +14,7 @@ export default function ClientProfile({ profile }: any) {
             </div>
             <div>
                 <BasicInformation {...basicInfo} />
-                <JobFeedback />
+                <JobFeedback username={profile.username} />
             </div>
         </div>
     )

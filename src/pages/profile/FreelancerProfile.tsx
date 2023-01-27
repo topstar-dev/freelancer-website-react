@@ -24,7 +24,7 @@ export default function FreelancerProfile({ profile }: any) {
                 <UserInfo {...userInfo} />
                 <BasicInformation {...basicInfo} />
                 <Languages languages={profile.languages} />
-                <JobFeedback />
+                <JobFeedback username={profile.username} />
             </div>
         </div>
     )
