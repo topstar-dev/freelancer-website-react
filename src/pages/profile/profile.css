@@ -88,13 +88,13 @@
 = job feedback
 ====================== */
 
-.language-box {
+.profile-language-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.language-box:not(:last-child) {
+.profile-language-box:not(:last-child) {
     margin-bottom: 16px;
 }
 

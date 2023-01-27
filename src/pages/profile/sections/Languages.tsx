@@ -11,7 +11,7 @@ export default function Languages({ languages }: any) {
             <Box className="card-heading">{t('profile.language-title')}</Box>
             <Box className="language-list-container">
                 {languages && languages.map((lang: any, index: number) => (
-                    <Box className="language-box" key={index}>
+                    <Box className="profile-language-box" key={index}>
                         <Box>
                             <Box className="language-box-name">{lang.language_name}</Box>
                             <Box className="language-box-skill">{t(`${Object.values(LANGUAGE_SKILLS)[Object.keys(LANGUAGE_SKILLS).findIndex(e => e === lang.language_skill)]}`)}</Box>
