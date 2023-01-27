@@ -15,6 +15,7 @@ import './applyFreelancer.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getLanguageList } from '../../redux/resources/resourcesActions';
 import { useEditFreelancer } from './useEditFreelancer';
+import { LANGUAGE_SKILLS } from '../../redux/constants';
 
 const Languages = (props: any) => {
     const { t, i18n } = useTranslation();
@@ -157,11 +158,13 @@ const Languages = (props: any) => {
                                                                         value={lang.language_skill}
                                                                         onChange={formik.handleChange}
                                                                     >
-                                                                        <MenuItem value={`BEGINNER`}>{t('beginner')}</MenuItem>
-                                                                        <MenuItem value={`INTERMEDIATE`}>{t('intermediate')}</MenuItem>
+                                                                        {Object.keys(LANGUAGE_SKILLS).map((skill: any, index: number) => (
+                                                                            <MenuItem value={skill}>{t(LANGUAGE_SKILLS[skill])}</MenuItem>
+                                                                        ))}
+                                                                        {/* <MenuItem value={`INTERMEDIATE`}>{t('intermediate')}</MenuItem>
                                                                         <MenuItem value={`PROFICIENT`}>{t('proficient')}</MenuItem>
                                                                         <MenuItem value={`FLUENT`}>{t('fluent')}</MenuItem>
-                                                                        <MenuItem value={`NATIVE`}>{t('native-fluent')}</MenuItem>
+                                                                        <MenuItem value={`NATIVE`}>{t('native-fluent')}</MenuItem> */}
                                                                     </Select>
                                                                     {touchedLanguageSkill && errorLanguageSkill && <FormHelperText>{errorLanguageSkill as ReactNode}</FormHelperText>}
                                                                 </FormControl>

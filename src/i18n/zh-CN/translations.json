@@ -215,6 +215,19 @@
             "passed-button": "完成"
         }
     },
+    "profile": {
+        "see-more": "查看更多",
+        "basic-info-title": "基本信息",
+        "basic-info-location": "位置",
+        "basic-info-join-date": "加入日期",
+        "language-title": "语言",
+        "job-feedback-title": "工作反馈",
+        "job-feedback-reviews": "条评价",
+        "about-title": "个人简介",
+        "skills-title": "技能",
+        "experience-title": "工作经历",
+        "education-title": "教育经历"
+    },
     "contact-us": {
         "title": "联系我们",
         "name": "至圆科技（大连）有限公司",

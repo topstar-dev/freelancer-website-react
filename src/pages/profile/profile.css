@@ -88,6 +88,33 @@
 = job feedback
 ====================== */
 
+.language-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.language-box:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.language-box-name {
+    margin-bottom: 5px;
+}
+
+.language-box-name,
+.language-box-skill {
+    font-size: 16px;
+}
+
+.language-box-skill {
+    color: #757575;
+}
+
+/* ======================
+= job feedback
+====================== */
+
 .progress-container {
     display: flex;
     width: 100%;

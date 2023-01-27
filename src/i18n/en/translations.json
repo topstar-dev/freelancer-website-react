@@ -215,6 +215,19 @@
             "passed-button": "Completed"
         }
     },
+    "profile": {
+        "see-more": "See more",
+        "basic-info-title": "Basic information",
+        "basic-info-location": "Location",
+        "basic-info-join-date": "Join date",
+        "language-title": "Languages",
+        "job-feedback-title": "Job feedback",
+        "job-feedback-reviews": "Reviews",
+        "about-title": "About",
+        "skills-title": "Skills",
+        "experience-title": "Experience",
+        "education-title": "Education"
+    },
     "contact-us": {
         "title": "Contact us",
         "name": "Rounx Technology (Dalian) Co., Ltd.",

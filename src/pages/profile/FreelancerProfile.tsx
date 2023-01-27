@@ -23,7 +23,7 @@ export default function FreelancerProfile({ profile }: any) {
             <div style={{ display: 'flex', width: '50%', flexDirection: 'column', gap: 16 }}>
                 <UserInfo {...userInfo} />
                 <BasicInformation {...basicInfo} />
-                <Languages />
+                <Languages languages={profile.languages} />
                 <JobFeedback />
             </div>
         </div>

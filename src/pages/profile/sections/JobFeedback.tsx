@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
 import Card from "../../../components/card/Card";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 const reviewComments = [
     {
@@ -20,9 +21,10 @@ const reviewComments = [
 ]
 
 export default function JobFeedback() {
+    const { t } = useTranslation();
     return (
         <Card className="jobFeedback-container container-width">
-            <Box className="card-heading">Job Feedback</Box>
+            <Box className="card-heading">{t('profile.job-feedback-title')}</Box>
             <Box className="progress-container">
                 <Box className="progress-ratings">
                     <Box className="progress-value">
@@ -60,7 +62,7 @@ export default function JobFeedback() {
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                     </Box>
-                    <Box>58 Reviews</Box>
+                    <Box>58 {t('profile.job-feedback-reviews')}</Box>
                 </Box>
             </Box>
             <Divider style={{ margin: '14px 0' }} />
@@ -80,8 +82,6 @@ export default function JobFeedback() {
                                         name="rating"
                                         value={review.rating}
                                         precision={1}
-                                        onChange={(event, newValue) => {
-                                        }}
                                         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                                     />
                                     <span className="review-date">{dayjs(review.date).format('YYYY-MM-DD')}</span>
