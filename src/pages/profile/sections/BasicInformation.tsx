@@ -1,15 +1,18 @@
 import { Box } from "@mui/system";
 import Card from "../../../components/card/Card";
 
-export default function BasicInformation() {
+export default function BasicInformation({
+    location,
+    join_date
+}: any) {
     return (
         <Card className="basicInfo-container container-width">
-            <Box className="basicInfo-heading">Basic information</Box>
-            <Box className="basicInfo-location">
-                Location: <span>China - Liaoning - Dalian</span>
+            <Box className="card-heading">Basic information</Box>
+            <Box className="basicInfo-location" style={{ marginBottom: 10 }}>
+                <span>Location:</span> {location}
             </Box>
             <Box className="basicInfo-joining-date">
-                Join date: <span>2020-03-06</span>
+                <span>Join date:</span> {join_date}
             </Box>
         </Card>
     )

@@ -1,15 +1,19 @@
 import BasicInformation from "./sections/BasicInformation";
 import JobFeedback from "./sections/JobFeedback";
+import { transformUBasicInformationData, transformUserInfoData } from "./transformers/sectionsTransformer";
 import UserInfo from "./sections/UserInfo";
 
-export default function ClientProfile(props: any) {
+export default function ClientProfile({ profile }: any) {
+    const userInfo = transformUserInfoData(profile);
+    const basicInfo = transformUBasicInformationData(profile);
+
     return (
         <div>
             <div>
-                <UserInfo />
+                <UserInfo {...userInfo} />
             </div>
             <div>
-                <BasicInformation />
+                <BasicInformation {...basicInfo} />
                 <JobFeedback />
             </div>
         </div>
