@@ -36,8 +36,8 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
 
     useEffect(() => {
         source = axios.CancelToken.source();
-        if (userInfo && userInfo.avatar_url && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: userInfo.avatar_url }))
+        if (userInfo && userInfo.avatar_file_name && !userAvatar && !loading) {
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: userInfo.avatar_file_name }))
         }
     }, [dispatch, userInfo, userAvatar, loading])
 
@@ -51,7 +51,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 if (currentLang !== res.payload.data.language) {
                     dispatch(changeLanguage(languages.includes(res.payload.data.language) ? res.payload.data.language : 'en'))
                 }
-                if (userInfo.avatar_url !== newUserData.avatar_url) {
+                if (userInfo.avatar_file_name !== newUserData.avatar_file_name) {
                     dispatch(clearAvatar());
                 }
             }

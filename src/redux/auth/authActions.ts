@@ -38,7 +38,7 @@ export interface ResetPasswordInterface {
 }
 
 export const getAccountInfo = createAsyncThunk(
-    'user/signup',
+    'user/getAccountInfo',
     async (params: any, { rejectWithValue }) => {
         try {
             const response = await accountInfo(params);
@@ -72,8 +72,8 @@ export const signInUser = createAsyncThunk(
                 if (currentLang !== response.data.language) {
                     dispatch(changeLanguage(languages.includes(response.data.language) ? response.data.language : 'en'))
                 }
-                if (response.data?.avatar_url) {
-                    dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: response.data.avatar_url }))
+                if (response.data?.avatar_file_name) {
+                    dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: response.data.avatar_file_name }))
                 } else {
                     dispatch(clearAvatar());
                 }

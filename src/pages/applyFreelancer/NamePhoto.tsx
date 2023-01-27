@@ -65,10 +65,10 @@ const NamePhoto = (props: any) => {
                                     const imageUrlUpdate: any = {};
                                     if (tempImageData.functionType === FUNCTION_TYPES.USER_PROFILE) {
                                         dispatch(setProfile(URL.createObjectURL(result)));
-                                        imageUrlUpdate['profile_url'] = res.payload.data.file_name;
+                                        imageUrlUpdate['profile_file_name'] = res.payload.data.file_name;
                                     } else if (tempImageData.functionType === FUNCTION_TYPES.USER_AVATAR) {
                                         dispatch(setAvatar(URL.createObjectURL(result)));
-                                        imageUrlUpdate['avatar_url'] = res.payload.data.file_name;
+                                        imageUrlUpdate['avatar_file_name'] = res.payload.data.file_name;
                                     }
                                     sessionStorage.setItem('freelancer-application-info', JSON.stringify({
                                         ...freelancerApplicationInfo,
@@ -100,16 +100,16 @@ const NamePhoto = (props: any) => {
     })
 
     useEffect(() => {
-        if (freelancerApplicationInfo.avatar_url && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: freelancerApplicationInfo.avatar_url }))
+        if (freelancerApplicationInfo.avatar_file_name && !userAvatar && !loading) {
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: freelancerApplicationInfo.avatar_file_name }))
         }
-    }, [dispatch, loading, freelancerApplicationInfo.avatar_url, userAvatar])
+    }, [dispatch, loading, freelancerApplicationInfo.avatar_file_name, userAvatar])
 
     useEffect(() => {
-        if (freelancerApplicationInfo.profile_url && !userProfile && !loadingProfile) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: freelancerApplicationInfo.profile_url }))
+        if (freelancerApplicationInfo.profile_file_name && !userProfile && !loadingProfile) {
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: freelancerApplicationInfo.profile_file_name }))
         }
-    }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_url, userProfile])
+    }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_file_name, userProfile])
 
     return (
         <Box>

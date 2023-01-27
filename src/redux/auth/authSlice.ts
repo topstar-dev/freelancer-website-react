@@ -6,7 +6,7 @@ import { signInUser, signOutUser } from './authActions';
 var userToken = getuserDataFromStorage();
 
 export interface UserInterface {
-    avatar_url: string | null;
+    avatar_file_name: string | null;
     email: string;
     language: string
     name: string
