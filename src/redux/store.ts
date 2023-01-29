@@ -3,21 +3,25 @@ import accountSlice from './account/accountSlice';
 import authReducer from './auth/authSlice';
 import freelancerSlice from './freelancer/freelancerSlice';
 import homeReducer from './home/homeSlice';
+import jobFeedbackSlice from './jobFeedback/jobFeedbackSlice';
 import occupationSkillsSlice from './occupationSkills/occupationSkillsSlice';
 import otherSlice from './other/otherSlice';
+import profileSlice from './profile/profileSlice';
 import resourcesSlice from './resources/resourcesSlice';
 import settingsSlice from './settings/settingsSlice';
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
     account: accountSlice,
-    home: homeReducer,
-    resources: resourcesSlice,
-    other: otherSlice,
-    settings: settingsSlice,
+    auth: authReducer,
     freelancer: freelancerSlice,
-    occupationSkills: occupationSkillsSlice
+    home: homeReducer,
+    jobFeedback: jobFeedbackSlice,
+    occupationSkills: occupationSkillsSlice,
+    other: otherSlice,
+    profile: profileSlice,
+    resources: resourcesSlice,
+    settings: settingsSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
 });

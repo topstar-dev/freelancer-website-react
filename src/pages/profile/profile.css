@@ -4,6 +4,25 @@
     padding: 26px;
 }
 
+.card-heading {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.circular-progress-loader {
+    display: flex;
+    justify-content: center;
+    margin: 26px 0 0;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.8;
+    color: var(--color-primary);
+}
+
+.expand-icon {
+    margin-left: 16px;
+}
+
 /* ======================
 = user info
 ====================== */
@@ -66,13 +85,8 @@
 
 
 /* ======================
-= about
+= basic information
 ====================== */
-
-.basicInfo-heading {
-    font-size: 20px;
-    margin-bottom: 16px;
-}
 
 .basicInfo-location,
 .basicInfo-joining-date {
@@ -82,4 +96,122 @@
 .basicInfo-location span,
 .basicInfo-joining-date span {
     color: #757575;
+}
+
+/* ======================
+= job feedback
+====================== */
+
+.profile-language-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-language-box:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.language-box-name {
+    margin-bottom: 5px;
+}
+
+.language-box-name,
+.language-box-skill {
+    font-size: 16px;
+}
+
+.language-box-skill {
+    color: #757575;
+}
+
+/* ======================
+= job feedback
+====================== */
+
+.progress-container {
+    display: flex;
+    width: 100%;
+}
+
+.progress-ratings {
+    width: 60%;
+}
+
+.progress-ratings .progress-value {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.progress-ratings .progress-value .rating-number {
+    display: block;
+    width: 18px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #757575;
+}
+
+.progress-ratings .progress-value .MuiLinearProgress-root {
+    width: calc(100% - 10px);
+    border-radius: 8px;
+    height: 14px;
+    background-color: #d9d9d9;
+}
+
+.progress-ratings .progress-value .MuiLinearProgress-root .MuiLinearProgress-bar {
+    background-color: #fbbd05;
+}
+
+.progress-reviews {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 40%;
+    padding-left: 26px;
+}
+
+.rating-rate {
+    font-size: 50px;
+    color: #757575;
+    margin-bottom: 10px;
+}
+
+.rating-box {
+    margin-bottom: 14px;
+}
+
+.review-list-container:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.review-box {
+    display: flex;
+    align-items: center;
+}
+
+.review-owner-avatar {
+    padding: 10px;
+}
+
+.review-owner-name {
+    padding-left: 3px;
+    margin-bottom: 2px;
+}
+
+.review-rating-date {
+    display: flex;
+    align-items: center;
+}
+
+.review-date {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #757575;
+}
+
+.review-owner-comment {
+    font-size: 14px;
 }

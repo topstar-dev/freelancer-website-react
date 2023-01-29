@@ -9,3 +9,14 @@ export const FUNCTION_TYPES = {
     USER_REPORT: 'USER_REPORT',
     USER_FEEDBACK: 'USER_FEEDBACK'
 }
+
+interface LanguageSkill {
+    [x: string]: string
+}
+export const LANGUAGE_SKILLS: LanguageSkill = {
+    BEGINNER: 'beginner',
+    INTERMEDIATE: 'intermediate',
+    PROFICIENT: 'proficient',
+    FLUENT: 'fluent',
+    NATIVE: 'native-fluent'
+}
