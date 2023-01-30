@@ -194,6 +194,10 @@
     margin-bottom: 14px;
 }
 
+.rating-box .MuiRating-iconEmpty .MuiSvgIcon-root {
+    fill: #faaf00;
+}
+
 .review-list-container:not(:last-child) {
     margin-bottom: 10px;
 }
