@@ -44,6 +44,10 @@
     color: var(--color-primary);
 }
 
+.circular-progress-loader button {
+    width: 100%;
+}
+
 .expand-icon {
     margin-left: 16px;
 }
