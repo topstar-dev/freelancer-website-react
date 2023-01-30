@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/system';
 
-import TawkProvider from '../components/TawkProvider';
 import AuthGuard from "../pages/auth/AuthGuard";
 
 import Footer from '../layout/footer/Footer';
@@ -42,7 +41,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
             </Box>
             <Footer />
         </Box>
-        <TawkProvider isHeader={isHeader} />
+        isHeader={isHeader}
     </>
 
     return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;

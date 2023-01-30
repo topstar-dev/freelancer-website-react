@@ -15,6 +15,7 @@ import EmblaCarousel from "../../components/carousal/Carousal";
 import { useNavigate } from "../../routes/Router";
 import MediaQuery from 'react-responsive'
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import { Crisp } from "crisp-sdk-web";
 import './home.css'
 
 export default function HomePage() {
@@ -26,6 +27,8 @@ export default function HomePage() {
     const { language } = useAppSelector(state => state.resources);
     const { userInfo } = useAppSelector((state) => state.auth);
     const [backdrop, setBackdrop] = React.useState(false);
+
+    Crisp.configure("a38aac52-0516-4039-921f-c1c14a21cfdf");
 
     React.useEffect(() => {
         document.title = t('title.home');

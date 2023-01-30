@@ -2,33 +2,16 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { pageView } from "../../services/eventTracker";
-import './contactUs.css';
-import { useMediaQuery } from "react-responsive";
-import { positionChatWidget } from "../../components/TawkProvider";
+import { Crisp } from "crisp-sdk-web";
+import './contactUs.css';;
 
 export default function ContactUs() {
   const { t } = useTranslation();
-  const isTabOrMobile = useMediaQuery({ query: '(max-width: 1000.99px)' });
 
   React.useEffect(() => {
     document.title = t('title.contact-us');
     pageView(window.location.pathname);
-    positionChatWidget(isTabOrMobile)
   })
-
-  const openWidget = () => {
-    const ifr = document.querySelector('iframe');
-    if (ifr) {
-      const divTag: any = ifr?.contentDocument?.body?.querySelector('.tawk-button');
-      if (divTag) {
-        divTag.click();
-      }
-    }
-  }
-
-  React.useEffect(() => {
-    positionChatWidget(isTabOrMobile)
-  }, [isTabOrMobile])
 
   return (
     <>
@@ -61,18 +44,12 @@ export default function ContactUs() {
               </span>
             </Typography>
             <Typography>
-              <span>{t('contact-us.business')}: </span>
-              <span className="primary-color">
-                <a className="primary-color" style={{ textDecoration: 'none' }} href="mailto:business@rounx.com">business@rounx.com</a>
-              </span>
-            </Typography>
-            <Typography>
               <span>{t('contact-us.online')}: </span>
               <span
                 className="primary-color"
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  openWidget()
+                  Crisp.chat.open()
                 }}
               >
                 {t('send-message')}
