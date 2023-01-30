@@ -9,6 +9,7 @@ import Card from "../../../components/card/Card";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
 import FeedbackAvatar from "./FeedbackAvatar";
+import Button from "../../../components/button/Button";
 
 export default function JobFeedback({ username }: any) {
     const dispatch = useAppDispatch();
@@ -112,14 +113,14 @@ export default function JobFeedback({ username }: any) {
                     {loading ?
                         <CircularProgress size={26} />
                         :
-                        <div style={{ display: 'flex', alignItems: 'center' }} onClick={() => {
+                        <Button variant="text" style={{ display: 'flex', alignItems: 'center' }} onClick={() => {
                             console.log(jobFeedbackData)
                             dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex + 1 }));
                             setPageIndex(pageIndex + 1)
                         }}>
                             {t('profile.see-more')}
                             <ExpandMoreIcon className="expand-icon" />
-                        </div>
+                        </Button>
                     }
                 </Box>
                 :
