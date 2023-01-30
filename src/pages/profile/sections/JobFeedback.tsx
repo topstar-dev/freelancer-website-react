@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { CircularProgress, Divider, LinearProgress, Rating } from "@mui/material";
+import { Divider, LinearProgress, Rating } from "@mui/material";
 import { Box } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from "react-i18next";
 import Card from "../../../components/card/Card";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
 import FeedbackAvatar from "./FeedbackAvatar";
-import Button from "../../../components/button/Button";
+import SeeMore from "../../../components/seeMore/SeeMore";
 
 export default function JobFeedback({ username }: any) {
     const dispatch = useAppDispatch();
@@ -108,24 +107,15 @@ export default function JobFeedback({ username }: any) {
                 ))}
             </Box>
 
-            {jobFeedbackData?.records?.job_feedbacks?.length !== jobFeedbackData?.total_size ?
-                <Box className="circular-progress-loader">
-                    {loading ?
-                        <CircularProgress size={26} />
-                        :
-                        <Button variant="text" style={{ display: 'flex', alignItems: 'center' }} onClick={() => {
-                            console.log(jobFeedbackData)
-                            dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex + 1 }));
-                            setPageIndex(pageIndex + 1)
-                        }}>
-                            {t('profile.see-more')}
-                            <ExpandMoreIcon className="expand-icon" />
-                        </Button>
-                    }
-                </Box>
-                :
-                <></>
-            }
+            <SeeMore
+                loading={loading}
+                currentLength={jobFeedbackData?.records?.job_feedbacks?.length}
+                totalSize={jobFeedbackData?.total_size}
+                onClick={() => {
+                    dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex + 1 }));
+                    setPageIndex(pageIndex + 1)
+                }}
+            />
         </Card>
     )
 }
