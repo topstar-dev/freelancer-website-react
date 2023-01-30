@@ -21,7 +21,7 @@ const FeedbackAvatar = ({ avatar_file_name }: any) => {
     }, [dispatch, called, avatar_file_name, jobFeedbackAvatars])
 
     if (!jobFeedbackAvatars[avatar_file_name]) {
-        return <img className="feedback-avatar" alt="feedback_image" src="/images/profile-placeholder.png" />
+        return <img className="feedback-avatar" alt="feedback_image" src="/images/avatar-placeholder.png" />
     }
     return <img className="feedback-avatar" alt="feedback_image" src={jobFeedbackAvatars[avatar_file_name]} />
 }

@@ -67,8 +67,8 @@ export default function JobFeedback({ username }: any) {
                             readOnly
                             size="small"
                             name="rating"
-                            value={jobFeedbackData?.records?.star_count || 0}
-                            precision={1}
+                            value={jobFeedbackData?.records?.overall_rating || 0}
+                            precision={0.1}
                             onChange={(event, newValue) => {
                             }}
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}

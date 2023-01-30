@@ -131,11 +131,12 @@
 
 .progress-container {
     display: flex;
+    gap: 48px;
     width: 100%;
 }
 
 .progress-ratings {
-    width: 60%;
+    width: calc(100% - 130px);
 }
 
 .progress-ratings .progress-value {
@@ -169,8 +170,7 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
-    width: 40%;
-    padding-left: 26px;
+    width: 130px;
 }
 
 .rating-rate {
