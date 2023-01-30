@@ -99,7 +99,7 @@
 }
 
 /* ======================
-= job feedback
+= languages
 ====================== */
 
 .profile-language-box {
@@ -193,7 +193,13 @@
 }
 
 .review-owner-avatar {
-    padding: 10px;
+    padding: 10px 10px 10px 0;
+}
+
+.review-owner-avatar .feedback-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
 }
 
 .review-owner-name {

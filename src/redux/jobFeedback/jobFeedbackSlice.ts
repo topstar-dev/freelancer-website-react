@@ -5,25 +5,50 @@ export interface JobFeedbackState {
     message?: string | null;
     loading: boolean;
     jobFeedbackData: any;
+    jobFeedbackAvatars: any;
 }
 
 const initialState: JobFeedbackState = {
     loading: false,
     message: null,
-    jobFeedbackData: null
+    jobFeedbackData: null,
+    jobFeedbackAvatars: {}
 }
 
 export const jobFeedbackSlice = createSlice({
     name: 'jobFeedback',
     initialState,
-    reducers: {},
+    reducers: {
+        addJobFeedbackAvatar: (state, action) => {
+            state.jobFeedbackAvatars[action.payload.imageName] = action.payload.image
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getJobFeedbackAction.pending, (state: JobFeedbackState) => {
-            state.jobFeedbackData = null;
             state.loading = true;
         });
         builder.addCase(getJobFeedbackAction.fulfilled, (state: JobFeedbackState, action) => {
-            state.jobFeedbackData = action.payload.data;
+            if (action.payload.success) {
+                if (state.jobFeedbackData && state.jobFeedbackData.records) {
+                    const feedbacks = [...state.jobFeedbackData.records.job_feedbacks]
+                    const newValue: any = [];
+                    action.payload.data.records.job_feedbacks.forEach((e: any) => {
+                        const index = feedbacks.findIndex(f => f.feedback_id === e.feedback_id)
+                        if (index === -1) {
+                            newValue.push(e);
+                        }
+                    })
+                    state.jobFeedbackData = {
+                        ...action.payload.data,
+                        records: {
+                            ...state.jobFeedbackData.records,
+                            job_feedbacks: [...feedbacks, ...newValue]
+                        }
+                    }
+                } else {
+                    state.jobFeedbackData = action.payload.data;
+                }
+            }
             state.loading = false;
         });
         builder.addCase(getJobFeedbackAction.rejected, (state: JobFeedbackState) => {
@@ -31,5 +56,8 @@ export const jobFeedbackSlice = createSlice({
         });
     }
 });
+
+const { addJobFeedbackAvatar } = jobFeedbackSlice.actions;
+export { addJobFeedbackAvatar }
 
 export default jobFeedbackSlice.reducer;

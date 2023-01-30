@@ -1,28 +1,14 @@
-import { Avatar, CircularProgress, Divider, LinearProgress, Rating } from "@mui/material";
+import { useEffect, useState } from "react";
+import dayjs from "dayjs";
+import { CircularProgress, Divider, LinearProgress, Rating } from "@mui/material";
 import { Box } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
-import Card from "../../../components/card/Card";
-import dayjs from "dayjs";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import Card from "../../../components/card/Card";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-const reviewComments = [
-    {
-        name: "Perry Lance",
-        rating: 4,
-        date: new Date(),
-        comment: "Delivered good work on this Node JS development project and I enjoyed working with him. His skills were reasonably strong. I enjoyed working with him."
-    },
-    {
-        name: "Davide S.",
-        rating: 5,
-        date: new Date(),
-        comment: "Delivered good work on this Node JS development project and I enjoyed working with him. His skills were reasonably strong. I enjoyed working with him."
-    }
-]
+import FeedbackAvatar from "./FeedbackAvatar";
 
 export default function JobFeedback({ username }: any) {
     const dispatch = useAppDispatch();
@@ -30,13 +16,23 @@ export default function JobFeedback({ username }: any) {
     const { t } = useTranslation();
     const { jobFeedbackData, loading } = useAppSelector(state => state.jobFeedback);
     const [called, setCalled] = useState(false);
+    const [pageIndex, setPageIndex] = useState(1)
 
     useEffect(() => {
         if (!called) {
             setCalled(true);
-            dispatch(getJobFeedbackAction({ username }));
+            dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex }));
         }
-    }, [dispatch, called, username])
+    }, [dispatch, called, username, pageIndex])
+
+    const getRatingCounts = (rating_star: number) => {
+        const ratingArr = jobFeedbackData?.records?.ratings;
+        if (ratingArr?.length) {
+            const star = ratingArr.find((e: any) => e.rating_star === rating_star);
+            return star ? (star.count * 100) / (jobFeedbackData?.records?.review_count || 1) : 0;
+        }
+        return 0;
+    }
 
     return (
         <Card className="jobFeedback-container container-width">
@@ -45,23 +41,23 @@ export default function JobFeedback({ username }: any) {
                 <Box className="progress-ratings">
                     <Box className="progress-value">
                         <span className="rating-number">5</span>
-                        <LinearProgress variant="determinate" value={100} />
+                        <LinearProgress variant="determinate" value={getRatingCounts(5)} />
                     </Box>
                     <Box className="progress-value">
                         <span className="rating-number">4</span>
-                        <LinearProgress variant="determinate" value={80} />
+                        <LinearProgress variant="determinate" value={getRatingCounts(4)} />
                     </Box>
                     <Box className="progress-value">
                         <span className="rating-number">3</span>
-                        <LinearProgress variant="determinate" value={33} />
+                        <LinearProgress variant="determinate" value={getRatingCounts(3)} />
                     </Box>
                     <Box className="progress-value">
                         <span className="rating-number">2</span>
-                        <LinearProgress variant="determinate" value={60} />
+                        <LinearProgress variant="determinate" value={getRatingCounts(2)} />
                     </Box>
                     <Box className="progress-value">
                         <span className="rating-number">1</span>
-                        <LinearProgress variant="determinate" value={10} />
+                        <LinearProgress variant="determinate" value={getRatingCounts(1)} />
                     </Box>
                 </Box>
                 <Box className="progress-reviews">
@@ -83,11 +79,11 @@ export default function JobFeedback({ username }: any) {
             </Box>
             <Divider style={{ margin: '14px 0' }} />
             <Box>
-                {reviewComments.map((review: any, index) => (
+                {jobFeedbackData?.records?.job_feedbacks?.map((review: any, index: number) => (
                     <Box className="review-list-container" key={index}>
                         <Box className="review-box">
                             <Box className="review-owner-avatar">
-                                <Avatar />
+                                <FeedbackAvatar avatar_file_name={review.avatar_file_name ? review.avatar_file_name : ''} />
                             </Box>
                             <Box>
                                 <Box className="review-owner-name">{review.name}</Box>
@@ -96,31 +92,39 @@ export default function JobFeedback({ username }: any) {
                                         readOnly
                                         size="small"
                                         name="rating"
-                                        value={review.rating}
+                                        value={review.rating_stars || 0}
                                         precision={1}
                                         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                                     />
-                                    <span className="review-date">{dayjs(review.date).format('YYYY-MM-DD')}</span>
+                                    <span className="review-date">{dayjs(review.review_time).format('YYYY-MM-DD')}</span>
                                 </Box>
                             </Box>
                         </Box>
                         <Box className="review-owner-comment">
-                            {review.comment}
+                            {review.review_content}
                         </Box>
                     </Box>
                 ))}
             </Box>
 
-            <Box className="circular-progress-loader">
-                {loading ?
-                    <CircularProgress size={26} />
-                    :
-                    <>
-                        {t('profile.see-more')}
-                        <ExpandMoreIcon className="expand-icon" />
-                    </>
-                }
-            </Box>
+            {jobFeedbackData?.records?.job_feedbacks?.length !== jobFeedbackData?.total_size ?
+                <Box className="circular-progress-loader">
+                    {loading ?
+                        <CircularProgress size={26} />
+                        :
+                        <div style={{ display: 'flex', alignItems: 'center' }} onClick={() => {
+                            console.log(jobFeedbackData)
+                            dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex + 1 }));
+                            setPageIndex(pageIndex + 1)
+                        }}>
+                            {t('profile.see-more')}
+                            <ExpandMoreIcon className="expand-icon" />
+                        </div>
+                    }
+                </Box>
+                :
+                <></>
+            }
         </Card>
     )
 }
