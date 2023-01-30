@@ -1,4 +1,29 @@
 /* main */
+.profile-layout-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    gap: 16px;
+}
+
+.right-profile-section,
+.left-profile-section {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.profile-layout-container.profile-layout-container-mobile {
+    flex-direction: column-reverse;
+}
+
+.profile-layout-container.profile-layout-container-mobile .right-profile-section,
+.profile-layout-container.profile-layout-container-mobile .left-profile-section {
+    width: 100%;
+    /* flex-direction: column-reverse; */
+}
+
 .container-width {
     width: 100%;
     padding: 26px;

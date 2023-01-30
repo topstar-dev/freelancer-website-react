@@ -1,3 +1,4 @@
+import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import About from "./sections/About";
 import BasicInformation from "./sections/BasicInformation";
 import Educations from "./sections/Educations";
@@ -9,18 +10,23 @@ import UserInfo from "./sections/UserInfo";
 import { transformUBasicInformationData, transformUserInfoData } from "./transformers/sectionsTransformer";
 
 export default function FreelancerProfile({ profile }: any) {
+    const { isDesktop } = useBreakpoint();
     const userInfo = transformUserInfoData(profile);
     const basicInfo = transformUBasicInformationData(profile);
 
     return (
-        <div style={{ display: 'flex', width: '100%', flexDirection: 'row-reverse', gap: 16 }}>
-            <div style={{ display: 'flex', width: '50%', flexDirection: 'column', gap: 16 }}>
+        <div className={isDesktop ?
+            'profile-layout-container'
+            :
+            'profile-layout-container profile-layout-container-mobile'
+        }>
+            <div className="right-profile-section">
                 <About />
                 <Skills />
                 <Experiences />
                 <Educations />
             </div>
-            <div style={{ display: 'flex', width: '50%', flexDirection: 'column', gap: 16 }}>
+            <div className="left-profile-section">
                 <UserInfo {...userInfo} />
                 <BasicInformation {...basicInfo} />
                 <Languages languages={profile.languages} />
