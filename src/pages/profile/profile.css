@@ -21,7 +21,6 @@
 .profile-layout-container.profile-layout-container-mobile .right-profile-section,
 .profile-layout-container.profile-layout-container-mobile .left-profile-section {
     width: 100%;
-    /* flex-direction: column-reverse; */
 }
 
 .container-width {
