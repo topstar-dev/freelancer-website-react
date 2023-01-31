@@ -1,9 +1,10 @@
-import { CircularProgress } from "@mui/material";
+import { ButtonBase, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from "react-i18next";
 import './seeMore.css';
 import Card from "../card/Card";
+import TouchRipple from "@mui/material/ButtonBase/TouchRipple";
 
 const SeeMore = ({
     loading,
@@ -14,16 +15,18 @@ const SeeMore = ({
     const { t } = useTranslation();
 
     return currentLength !== totalSize ?
-        <Card className="circular-progress-loader">
-            {loading ?
-                <CircularProgress size={26} />
-                :
-                <Box style={{ display: 'flex', alignItems: 'center' }} onClick={onClick}>
-                    {t('profile.see-more')}
-                    <ExpandMoreIcon className="expand-icon" />
-                </Box>
-            }
-        </Card>
+        <ButtonBase style={{ width: '100%' }}>
+            <Card className="circular-progress-loader" onClick={!loading ? onClick : () => { }}>
+                {loading ?
+                    <CircularProgress size={26} />
+                    :
+                    <Box style={{ display: 'flex', alignItems: 'center' }}>
+                        {t('profile.see-more')}
+                        <ExpandMoreIcon className="expand-icon" />
+                    </Box>
+                }
+            </Card>
+        </ButtonBase>
         :
         <Card className="circular-progress-loader-empty"></Card>
 }

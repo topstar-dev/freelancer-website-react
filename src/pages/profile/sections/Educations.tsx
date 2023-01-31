@@ -4,7 +4,7 @@ import Card from "../../../components/card/Card";
 
 export default function Educations({ educations }: any) {
     const { t } = useTranslation();
-    console.log(educations)
+
     const getDetailsLabel = (exp: any) => {
         if (exp.end_year) {
             return {

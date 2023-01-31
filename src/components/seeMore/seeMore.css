@@ -10,6 +10,7 @@
     border-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    width: 100%;
 }
 
 .circular-progress-loader-empty {
