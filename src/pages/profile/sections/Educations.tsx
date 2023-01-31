@@ -22,9 +22,9 @@ export default function Educations({ educations }: any) {
     return (
         <Card className="educations-container container-width">
             <Box className="card-heading">{t('profile.education-title')}</Box>
-            <Box>
+            <Box className="profile-educations-box">
                 {educations?.map((edu: any, index: number) => (
-                    <Box className="profile-educations-box" key={index}>
+                    <Box className="profile-educations-item" key={index}>
                         <Box>
                             <Box className="educations-title">{edu.school_name}</Box>
                             <Box className="educations-details">{getDetailsLabel(edu).first} &#183; {getDetailsLabel(edu).last}</Box>

@@ -267,6 +267,12 @@
 .profile-experience-box {
     display: flex;
     flex-direction: column;
+    gap: 16px;
+}
+
+.profile-experience-item {
+    display: flex;
+    flex-direction: column;
     gap: 7px;
 }
 
@@ -291,6 +297,12 @@
 ====================== */
 
 .profile-educations-box {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.profile-educations-item {
     display: flex;
     flex-direction: column;
     gap: 7px;
