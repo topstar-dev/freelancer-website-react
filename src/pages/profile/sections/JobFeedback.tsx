@@ -35,78 +35,79 @@ export default function JobFeedback({ username }: any) {
     }
 
     return (
-        <Card className="jobFeedback-container container-width">
-            <Box className="card-heading">{t('profile.job-feedback-title')}</Box>
-            <Box className="progress-container">
-                <Box className="progress-ratings">
-                    <Box className="progress-value">
-                        <span className="rating-number">5</span>
-                        <LinearProgress variant="determinate" value={getRatingCounts(5)} />
+        <Box>
+            <Card className="see-more-container container-width">
+                <Box className="card-heading">{t('profile.job-feedback-title')}</Box>
+                <Box className="progress-container">
+                    <Box className="progress-ratings">
+                        <Box className="progress-value">
+                            <span className="rating-number">5</span>
+                            <LinearProgress variant="determinate" value={getRatingCounts(5)} />
+                        </Box>
+                        <Box className="progress-value">
+                            <span className="rating-number">4</span>
+                            <LinearProgress variant="determinate" value={getRatingCounts(4)} />
+                        </Box>
+                        <Box className="progress-value">
+                            <span className="rating-number">3</span>
+                            <LinearProgress variant="determinate" value={getRatingCounts(3)} />
+                        </Box>
+                        <Box className="progress-value">
+                            <span className="rating-number">2</span>
+                            <LinearProgress variant="determinate" value={getRatingCounts(2)} />
+                        </Box>
+                        <Box className="progress-value">
+                            <span className="rating-number">1</span>
+                            <LinearProgress variant="determinate" value={getRatingCounts(1)} />
+                        </Box>
                     </Box>
-                    <Box className="progress-value">
-                        <span className="rating-number">4</span>
-                        <LinearProgress variant="determinate" value={getRatingCounts(4)} />
-                    </Box>
-                    <Box className="progress-value">
-                        <span className="rating-number">3</span>
-                        <LinearProgress variant="determinate" value={getRatingCounts(3)} />
-                    </Box>
-                    <Box className="progress-value">
-                        <span className="rating-number">2</span>
-                        <LinearProgress variant="determinate" value={getRatingCounts(2)} />
-                    </Box>
-                    <Box className="progress-value">
-                        <span className="rating-number">1</span>
-                        <LinearProgress variant="determinate" value={getRatingCounts(1)} />
+                    <Box className="progress-reviews">
+                        <Box className="rating-rate">{jobFeedbackData?.records?.overall_rating}</Box>
+                        <Box className="rating-box">
+                            <Rating
+                                readOnly
+                                size="small"
+                                name="rating"
+                                value={jobFeedbackData?.records?.overall_rating || 0}
+                                precision={0.1}
+                                onChange={(event, newValue) => {
+                                }}
+                                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                            />
+                        </Box>
+                        <Box>{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
                     </Box>
                 </Box>
-                <Box className="progress-reviews">
-                    <Box className="rating-rate">{jobFeedbackData?.records?.overall_rating}</Box>
-                    <Box className="rating-box">
-                        <Rating
-                            readOnly
-                            size="small"
-                            name="rating"
-                            value={jobFeedbackData?.records?.overall_rating || 0}
-                            precision={0.1}
-                            onChange={(event, newValue) => {
-                            }}
-                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                        />
-                    </Box>
-                    <Box>{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
-                </Box>
-            </Box>
-            <Divider style={{ margin: '14px 0' }} />
-            <Box>
-                {jobFeedbackData?.records?.job_feedbacks?.map((review: any, index: number) => (
-                    <Box className="review-list-container" key={index}>
-                        <Box className="review-box">
-                            <Box className="review-owner-avatar">
-                                <FeedbackAvatar avatar_file_name={review.avatar_file_name ? review.avatar_file_name : ''} />
-                            </Box>
-                            <Box>
-                                <Box className="review-owner-name">{review.name}</Box>
-                                <Box className="review-rating-date">
-                                    <Rating
-                                        readOnly
-                                        size="small"
-                                        name="rating"
-                                        value={review.rating_stars || 0}
-                                        precision={1}
-                                        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                                    />
-                                    <span className="review-date">{dayjs(review.review_time).format('YYYY-MM-DD')}</span>
+                <Divider style={{ margin: '14px 0' }} />
+                <Box>
+                    {jobFeedbackData?.records?.job_feedbacks?.map((review: any, index: number) => (
+                        <Box className="review-list-container" key={index}>
+                            <Box className="review-box">
+                                <Box className="review-owner-avatar">
+                                    <FeedbackAvatar avatar_file_name={review.avatar_file_name ? review.avatar_file_name : ''} />
+                                </Box>
+                                <Box>
+                                    <Box className="review-owner-name">{review.name}</Box>
+                                    <Box className="review-rating-date">
+                                        <Rating
+                                            readOnly
+                                            size="small"
+                                            name="rating"
+                                            value={review.rating_stars || 0}
+                                            precision={1}
+                                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                        />
+                                        <span className="review-date">{dayjs(review.review_time).format('YYYY-MM-DD')}</span>
+                                    </Box>
                                 </Box>
                             </Box>
+                            <Box className="review-owner-comment">
+                                {review.review_content}
+                            </Box>
                         </Box>
-                        <Box className="review-owner-comment">
-                            {review.review_content}
-                        </Box>
-                    </Box>
-                ))}
-            </Box>
-
+                    ))}
+                </Box>
+            </Card>
             <SeeMore
                 loading={loading}
                 currentLength={jobFeedbackData?.records?.job_feedbacks?.length}
@@ -116,6 +117,6 @@ export default function JobFeedback({ username }: any) {
                     setPageIndex(pageIndex + 1)
                 }}
             />
-        </Card>
+        </Box>
     )
 }

@@ -29,6 +29,12 @@
     padding: 26px;
 }
 
+.see-more-container {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .card-heading {
     font-size: 20px;
     margin-bottom: 16px;
@@ -234,5 +240,74 @@
 }
 
 .review-owner-comment {
+    font-size: 14px;
+}
+
+/* ======================
+= about
+====================== */
+
+.about-content {
+    font-size: 16px;
+}
+
+/* ======================
+= skills
+====================== */
+
+.skill-chip {
+    margin-left: 0 !important;
+    font-size: 16px !important;
+}
+
+
+/* ======================
+= experiences
+====================== */
+
+.profile-experience-box {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.experience-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.experience-details {
+    font-size: 12px;
+    color: #757575;
+    margin-top: 2px;
+}
+
+.experience-description {
+    font-size: 14px;
+}
+
+
+/* ======================
+= educations
+====================== */
+
+.profile-educations-box {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.educations-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.educations-details {
+    font-size: 12px;
+    color: #757575;
+    margin-top: 2px;
+}
+
+.educations-description {
     font-size: 14px;
 }

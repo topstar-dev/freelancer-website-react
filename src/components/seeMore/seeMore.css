@@ -1,15 +1,26 @@
 .circular-progress-loader {
     display: flex;
     justify-content: center;
-    margin: 26px 0 0;
     align-items: center;
     cursor: pointer;
     opacity: 0.8;
     color: var(--color-primary);
+    height: 54px;
+
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-.circular-progress-loader button {
-    width: 100%;
+.circular-progress-loader-empty {
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 2px;
+}
+
+.circular-progress-loader:hover {
+    background-color: #eeeeee;
 }
 
 .expand-icon {

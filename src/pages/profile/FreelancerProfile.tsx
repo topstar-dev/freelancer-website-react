@@ -21,10 +21,10 @@ export default function FreelancerProfile({ profile }: any) {
             'profile-layout-container profile-layout-container-mobile'
         }>
             <div className="right-profile-section">
-                <About />
-                <Skills />
-                <Experiences />
-                <Educations />
+                <About about={profile.about} />
+                <Skills skills={profile.skills} />
+                <Experiences experiences={profile.experiences} />
+                <Educations educations={profile.educations} />
             </div>
             <div className="left-profile-section">
                 <UserInfo {...userInfo} />
