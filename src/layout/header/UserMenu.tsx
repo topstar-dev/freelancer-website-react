@@ -105,6 +105,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
         if (source) {
             source.cancel();
         }
+        setAnchorEl(null);
         dispatch(signOutUser());
     }
 
@@ -147,6 +148,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                         ('')
                     }
                     <MenuItem className='user-menu-items' onClick={() => {
+                        setAnchorEl(null);
                         userProfileClick();
                     }}>
                         {t('header-user-profile')}
