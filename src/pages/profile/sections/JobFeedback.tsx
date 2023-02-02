@@ -62,7 +62,7 @@ export default function JobFeedback({ username }: any) {
                         </Box>
                     </Box>
                     <Box className="progress-reviews">
-                        <Box className="rating-rate">{jobFeedbackData?.records?.overall_rating}</Box>
+                        <Box className="rating-rate">{(jobFeedbackData?.records?.overall_rating)?.toPrecision(2)}</Box>
                         <Box className="rating-box">
                             <Rating
                                 readOnly

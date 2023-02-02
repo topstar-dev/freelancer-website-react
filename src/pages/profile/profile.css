@@ -248,6 +248,7 @@
 
 .about-content {
     font-size: 16px;
+    word-break: break-word;
 }
 
 /* ======================
