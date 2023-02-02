@@ -15,7 +15,7 @@ const SeeMore = ({
     const { t } = useTranslation();
 
     return currentLength !== totalSize ?
-        <ButtonBase style={{ width: '100%' }}>
+        <ButtonBase className="see-more-base" style={{ width: '100%' }}>
             <Card className="circular-progress-loader" onClick={!loading ? onClick : () => { }}>
                 {loading ?
                     <CircularProgress size={26} />
