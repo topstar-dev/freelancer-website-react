@@ -17,6 +17,7 @@ import MediaQuery from 'react-responsive'
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import { Crisp } from "crisp-sdk-web";
 import './home.css'
+import FAQ from "./sections/FAQ";
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -112,6 +113,8 @@ export default function HomePage() {
                     </Box>
                 </Box>
             </Box>
+            <Divider style={{ margin: '96px 0' }} />
+            <FAQ />
             <Divider style={{ margin: '96px 0' }} />
             <Box className="home-third-section" style={{ marginBottom: '95px' }}>
                 <Box className="home-third-left">

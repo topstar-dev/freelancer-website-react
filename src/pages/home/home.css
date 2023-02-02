@@ -120,3 +120,31 @@ third section
         justify-content: center;
     }
 }
+
+/* =======================
+= FAQ
+======================= */
+
+.home-faq-section .MuiAccordion-root:not(.MuiAccordion-root:last-child) {
+    margin-bottom: 12px !important;
+}
+
+.home-faq-section .MuiAccordion-root {
+    box-shadow: none !important;
+    border-radius: 4px !important;
+    padding: 4px 16px !important;
+    border: 1px solid lightgray;
+}
+
+.home-faq-section .MuiAccordion-root::before {
+    display: none !important;
+}
+
+.faq-question {
+    font-size: 20px !important;
+}
+
+.faq-answer {
+    font-size: 18px !important;
+    color: #757575 !important;
+}
