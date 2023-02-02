@@ -1,12 +1,3 @@
-.see-more-base {
-    border-bottom-left-radius: 4px !important;
-    border-bottom-right-radius: 4px !important;
-}
-
-.see-more-base .MuiTouchRipple-child {
-    background-color: #e1dbdb !important;
-}
-
 .circular-progress-loader {
     display: flex;
     justify-content: center;
@@ -31,10 +22,6 @@
 
 .circular-progress-loader:hover {
     background-color: #eeeeee;
-}
-
-.circular-progress-loader:active {
-    background-color: transparent;
 }
 
 .expand-icon {
