@@ -2,9 +2,8 @@ import { ButtonBase, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from "react-i18next";
-import './seeMore.css';
 import Card from "../card/Card";
-import TouchRipple from "@mui/material/ButtonBase/TouchRipple";
+import './seeMore.css';
 
 const SeeMore = ({
     loading,
