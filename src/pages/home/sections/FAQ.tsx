@@ -33,7 +33,7 @@ const FAQ = () => {
             <Typography className="home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
                 {t('faq.title')}
             </Typography>
-            <Box>
+            <Box className="accordion-box">
                 {faqs.map((faq: any) => (
                     <Accordion key={faq.question} expanded={expanded === faq.question} onChange={handleChange(faq.question)}>
                         <AccordionSummary

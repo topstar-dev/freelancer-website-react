@@ -125,8 +125,10 @@ third section
 = FAQ
 ======================= */
 
-.home-faq-section .MuiAccordion-root:not(.MuiAccordion-root:last-child) {
-    margin-bottom: 12px !important;
+.home-faq-section .MuiBox-root.accordion-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .home-faq-section .MuiAccordion-root {
@@ -138,6 +140,10 @@ third section
 
 .home-faq-section .MuiAccordion-root::before {
     display: none !important;
+}
+
+.home-faq-section .MuiAccordion-root.Mui-expanded {
+    margin: 0 !important;
 }
 
 .faq-question {
