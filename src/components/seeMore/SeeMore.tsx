@@ -19,7 +19,7 @@ const SeeMore = ({
                 {loading ?
                     <CircularProgress size={26} />
                     :
-                    <Box style={{ display: 'flex', alignItems: 'center' }}>
+                    <Box className="see-more-text">
                         {t('profile.see-more')}
                         <ExpandMoreIcon className="expand-icon" />
                     </Box>
