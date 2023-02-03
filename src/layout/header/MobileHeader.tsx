@@ -20,13 +20,11 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                 <Box>
                     {menuOpen ?
                         <CloseIcon
-                            style={{ marginLeft: 16 }}
                             onClick={() => setMenuOpen(!menuOpen)}
                             className="mobile-burger"
                         />
                         :
                         <MenuIcon
-                            style={{ marginLeft: 16 }}
                             onClick={() => setMenuOpen(!menuOpen)}
                             className="mobile-burger"
                         />
@@ -54,7 +52,7 @@ export default function MobileHeader({ pages, userMenu, selectedPage, setSelecte
                         </div>
                         :
                         <div>
-                            <Button variant="text" className="no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
+                            <Button variant="text" style={{ marignRight: -16 }} className="no-signin-handle" onClick={() => navigate(`/sign-in`)}>{t('signin')}</Button>
                         </div>
                 }
             </Box>

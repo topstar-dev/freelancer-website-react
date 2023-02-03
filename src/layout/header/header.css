@@ -86,7 +86,7 @@
 .mobile-header {
     height: 73px;
     display: flex;
-    padding: 16px 8px;
+    padding: 16px 24px;
     justify-content: space-between;
     border-bottom: 1px solid #cccccc;
 }
