@@ -21,7 +21,7 @@ export default function JobFeedback({ username }: any) {
     useEffect(() => {
         if (!called) {
             setCalled(true);
-            dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex }));
+            dispatch(getJobFeedbackAction({ username, page_size: 5, page_index: pageIndex }));
         }
     }, [dispatch, called, username, pageIndex])
 

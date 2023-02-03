@@ -25,11 +25,15 @@ export default function Profile(props: any) {
     useEffect(() => {
         if (!called) {
             setCalled(true);
-            if (userInfo && userInfo.user_type && username) {
+            if (username) {
                 setBackdrop(true)
                 const getActionPromise = () => {
-                    if (userInfo.user_type === USER_TYPES.CLIENT) {
-                        return dispatch(getClientProfileAction({ username }))
+                    if (userInfo && userInfo.user_type) {
+                        if (userInfo.user_type === USER_TYPES.CLIENT) {
+                            return dispatch(getClientProfileAction({ username }))
+                        } else {
+                            return dispatch(getFreelancerProfileAction({ username }))
+                        }
                     } else {
                         return dispatch(getFreelancerProfileAction({ username }))
                     }
@@ -71,7 +75,7 @@ export default function Profile(props: any) {
             case USER_TYPES.FREELANCER:
                 return <FreelancerProfile profile={profile} />
             default:
-                return <>Invalid USER</>
+                return <FreelancerProfile profile={profile} />
         }
     } else {
         return <>No Data</>

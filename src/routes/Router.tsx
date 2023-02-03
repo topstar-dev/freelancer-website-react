@@ -139,7 +139,7 @@ export default function Router() {
         ]
       },
       {
-        element: <CustomRouter isHeader={true} protectedRoute={true} />,
+        element: <CustomRouter isHeader={true} protectedRoute={false} />,
         children: [
           {
             path: `${baseUrl}/users/:username`,
