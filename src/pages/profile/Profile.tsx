@@ -69,13 +69,13 @@ export default function Profile(props: any) {
     }
 
     if (profile) {
-        switch (userInfo?.user_type) {
+        switch (profile.user_type) {
             case USER_TYPES.CLIENT:
                 return <ClientProfile profile={profile} />
             case USER_TYPES.FREELANCER:
                 return <FreelancerProfile profile={profile} />
             default:
-                return <FreelancerProfile profile={profile} />
+                return <>Invalid user</>
         }
     } else {
         return <>No Data</>

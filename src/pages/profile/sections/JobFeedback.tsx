@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { Divider, LinearProgress, Rating } from "@mui/material";
 import { Box } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
 import { useTranslation } from "react-i18next";
 import Card from "../../../components/card/Card";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
 import FeedbackAvatar from "./FeedbackAvatar";
 import SeeMore from "../../../components/seeMore/SeeMore";
@@ -14,16 +14,48 @@ export default function JobFeedback({ username }: any) {
     const dispatch = useAppDispatch();
 
     const { t } = useTranslation();
-    const { jobFeedbackData, loading } = useAppSelector(state => state.jobFeedback);
     const [called, setCalled] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [pageIndex, setPageIndex] = useState(1)
+    const [jobFeedbackData, setJobFeedbackData] = useState<any>({})
+
+    const getJobFeedbacks = useCallback((pageIndexValue: number) => {
+        setLoading(true);
+        dispatch(getJobFeedbackAction({ username, page_size: 5, page_index: pageIndexValue })).then((res) => {
+            if (res.payload.success) {
+                if (jobFeedbackData && jobFeedbackData.records) {
+                    const feedbacks = [...jobFeedbackData.records.job_feedbacks]
+                    const newValue: any = [];
+                    res.payload.data.records.job_feedbacks.forEach((e: any) => {
+                        const index = feedbacks.findIndex(f => f.feedback_id === e.feedback_id)
+                        if (index === -1) {
+                            newValue.push(e);
+                        }
+                    })
+                    setJobFeedbackData({
+                        ...res.payload.data,
+                        records: {
+                            ...jobFeedbackData.records,
+                            job_feedbacks: [...feedbacks, ...newValue]
+                        }
+                    });
+                } else {
+                    setJobFeedbackData(res.payload.data);
+                }
+            }
+        }).catch((err) => {
+
+        }).finally(() => {
+            setLoading(false)
+        });
+    }, [dispatch, username, jobFeedbackData])
 
     useEffect(() => {
         if (!called) {
             setCalled(true);
-            dispatch(getJobFeedbackAction({ username, page_size: 5, page_index: pageIndex }));
+            getJobFeedbacks(pageIndex);
         }
-    }, [dispatch, called, username, pageIndex])
+    }, [called, pageIndex, getJobFeedbacks])
 
     const getRatingCounts = (rating_star: number) => {
         const ratingArr = jobFeedbackData?.records?.ratings;
@@ -113,7 +145,7 @@ export default function JobFeedback({ username }: any) {
                 currentLength={jobFeedbackData?.records?.job_feedbacks?.length}
                 totalSize={jobFeedbackData?.total_size}
                 onClick={() => {
-                    dispatch(getJobFeedbackAction({ username, page_size: 10, page_index: pageIndex + 1 }));
+                    getJobFeedbacks(pageIndex + 1);
                     setPageIndex(pageIndex + 1)
                 }}
             />
