@@ -82,6 +82,10 @@
     width: 88px;
 }
 
+.no-signin-handle.mobile-handle {
+    margin-right: -16px !important;
+}
+
 /* mobile css */
 .mobile-header {
     height: 73px;
