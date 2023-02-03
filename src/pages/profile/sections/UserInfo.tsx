@@ -41,7 +41,7 @@ export default function UserInfo({
                     {userAvatar ?
                         <Avatar className='userInfo-avatar-image' alt="avatar_image" src={userAvatar} />
                         :
-                        <Avatar className='userInfo-avatar-image' alt="profile_image" src="/images/avatar-placeholder.png" />
+                        <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
                     }
                 </Box>
             </Box>
