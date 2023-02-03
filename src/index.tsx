@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { SnackbarProvider } from "notistack";
 import { Provider } from 'react-redux';
+import { Crisp } from "crisp-sdk-web";
 import { store } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,6 +12,8 @@ import './index.css';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
+
+Crisp.configure("a38aac52-0516-4039-921f-c1c14a21cfdf");
 
 root.render(
   <React.StrictMode>
