@@ -1,11 +1,13 @@
 @font-face {
   font-family: "SourceHanSansSC";
+  font-display: auto;
   src: local("SourceHanSansSC"),
     url("./fonts/SourceHanSansSC/SourceHanSansSC-Regular.otf") format("truetype");
 }
 
 @font-face {
   font-family: "Roboto";
+  font-display: auto;
   src: local("Roboto"),
     url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
