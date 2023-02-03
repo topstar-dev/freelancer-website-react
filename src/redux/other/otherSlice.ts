@@ -38,7 +38,7 @@ export const otherSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(imageDownload.pending, (state: OtherState, action) => {
-            if (action.meta.arg.functionType === FUNCTION_TYPES.USER_AVATAR && action.meta.arg.isCurrentAvatar) {
+            if (action.meta.arg.functionType === FUNCTION_TYPES.USER_AVATAR) {
                 state.userAvatar = null;
                 state.loading = true;
             } else if (action.meta.arg.functionType === FUNCTION_TYPES.USER_PROFILE) {
@@ -47,7 +47,7 @@ export const otherSlice = createSlice({
             }
         });
         builder.addCase(imageDownload.fulfilled, (state: OtherState, action) => {
-            if (action.payload.functionType === FUNCTION_TYPES.USER_AVATAR && action.meta.arg.isCurrentAvatar) {
+            if (action.payload.functionType === FUNCTION_TYPES.USER_AVATAR) {
                 state.userAvatar = URL.createObjectURL(action.payload.file);
                 state.loading = false;
             } else if (action.payload.functionType === FUNCTION_TYPES.USER_PROFILE) {

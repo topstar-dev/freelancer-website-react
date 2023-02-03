@@ -73,7 +73,7 @@ export const signInUser = createAsyncThunk(
                     dispatch(changeLanguage(languages.includes(response.data.language) ? response.data.language : 'en'))
                 }
                 if (response.data?.avatar_file_name) {
-                    dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: response.data.avatar_file_name, isCurrentAvatar: true }))
+                    dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: response.data.avatar_file_name }))
                 } else {
                     dispatch(clearAvatar());
                 }

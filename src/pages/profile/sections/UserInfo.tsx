@@ -17,7 +17,7 @@ export default function UserInfo({
 
     useEffect(() => {
         if (avatar_file_name && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name, isCurrentAvatar: true }))
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name }))
         }
     }, [dispatch, loading, avatar_file_name, userAvatar])
 

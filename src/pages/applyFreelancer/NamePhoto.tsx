@@ -101,7 +101,7 @@ const NamePhoto = (props: any) => {
 
     useEffect(() => {
         if (freelancerApplicationInfo.avatar_file_name && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: freelancerApplicationInfo.avatar_file_name, isCurrentAvatar: true }))
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: freelancerApplicationInfo.avatar_file_name }))
         }
     }, [dispatch, loading, freelancerApplicationInfo.avatar_file_name, userAvatar])
 

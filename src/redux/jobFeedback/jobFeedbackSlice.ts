@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getJobFeedbackAction } from './jobFeedbackActions';
+import { feedbackImageDownload, getJobFeedbackAction } from './jobFeedbackActions';
 
 export interface JobFeedbackState {
     message?: string | null;
@@ -18,11 +18,7 @@ const initialState: JobFeedbackState = {
 export const jobFeedbackSlice = createSlice({
     name: 'jobFeedback',
     initialState,
-    reducers: {
-        addJobFeedbackAvatar: (state, action) => {
-            state.jobFeedbackAvatars[action.payload.imageName] = action.payload.image
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getJobFeedbackAction.pending, (state: JobFeedbackState) => {
             state.loading = true;
@@ -54,10 +50,13 @@ export const jobFeedbackSlice = createSlice({
         builder.addCase(getJobFeedbackAction.rejected, (state: JobFeedbackState) => {
             state.loading = false
         });
+
+        builder.addCase(feedbackImageDownload.fulfilled, (state: JobFeedbackState, action) => {
+            if (action.payload.success) {
+                state.jobFeedbackAvatars[action.meta.arg.fileName] = URL.createObjectURL(action.payload.file);
+            }
+        });
     }
 });
-
-const { addJobFeedbackAvatar } = jobFeedbackSlice.actions;
-export { addJobFeedbackAvatar }
 
 export default jobFeedbackSlice.reducer;
