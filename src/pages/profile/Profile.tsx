@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { USER_TYPES } from "../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getClientProfileAction, getFreelancerProfileAction } from "../../redux/profile/profileActions";
+import { getProfileAction } from "../../redux/profile/profileActions";
 import ClientProfile from "./ClientProfile";
 import FreelancerProfile from "./FreelancerProfile";
 import './profile.css'
@@ -14,7 +14,6 @@ export default function Profile(props: any) {
     const dispatch = useAppDispatch();
     const { enqueueSnackbar } = useSnackbar()
     const { i18n } = useTranslation();
-    const { userInfo } = useAppSelector(state => state.auth);
     const { language } = useAppSelector(state => state.resources);
     const { username } = useParams();
 
@@ -27,30 +26,19 @@ export default function Profile(props: any) {
             setCalled(true);
             if (username) {
                 setBackdrop(true)
-                const getActionPromise = () => {
-                    if (userInfo && userInfo.user_type) {
-                        if (userInfo.user_type === USER_TYPES.CLIENT) {
-                            return dispatch(getClientProfileAction({ username }))
-                        } else {
-                            return dispatch(getFreelancerProfileAction({ username }))
-                        }
-                    } else {
-                        return dispatch(getFreelancerProfileAction({ username }))
-                    }
-                }
-                getActionPromise().then((res) => {
+                dispatch(getProfileAction({ username })).then((res: any) => {
                     const { payload } = res;
                     if (payload.success) {
                         setProfile(payload.data);
                     }
-                }).catch((err) => {
+                }).catch((err: any) => {
                     enqueueSnackbar(err.message)
                 }).finally(() => {
                     setBackdrop(false)
                 })
             }
         }
-    }, [dispatch, enqueueSnackbar, called, userInfo, username])
+    }, [dispatch, enqueueSnackbar, called, username])
 
     useEffect(() => {
         if (language && i18n.language && i18n.language !== language) {

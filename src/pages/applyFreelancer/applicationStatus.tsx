@@ -6,7 +6,7 @@ import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
 import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
+import { getProfileAction } from '../../redux/profile/profileActions';
 import { useNavigate } from '../../routes/Router';
 import './applyFreelancer.css';
 
@@ -84,12 +84,12 @@ const FailedApplication = () => {
             </Box>
             <Button onClick={() => {
                 setBackdrop(true)
-                dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
+                dispatch(getProfileAction({ username: `${userInfo?.username}` })).then((res: any) => {
                     if (res.payload && res.payload.success) {
                         sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
                         navigate(`/apply-freelancer/skills`);
                     }
-                }).catch((err) => {
+                }).catch((err: any) => {
                 }).finally(() => {
                     setBackdrop(false)
                 })

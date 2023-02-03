@@ -11,7 +11,7 @@ import { useNavigate } from '../../routes/Router';
 import useBreakpoint from '../../components/breakpoints/BreakpointProvider';
 import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useSnackbar } from 'notistack';
-import { getFreelancerProfileAction } from '../../redux/profile/profileActions';
+import { getProfileAction } from '../../redux/profile/profileActions';
 import { clearAvatar } from '../../redux/other/otherSlice';
 import { setTokens } from '../../redux/account/accountApi';
 import { changeLanguage } from '../../redux/resources/resourcesSlice';
@@ -75,13 +75,13 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                 const status = res.payload.data.status;
                 sessionStorage.setItem('freelancer-application-status', JSON.stringify(res.payload.data))
                 if (['NO_APPLICATION'].includes(status)) {
-                    dispatch(getFreelancerProfileAction({ username: `${userInfo?.username}` })).then((res) => {
+                    dispatch(getProfileAction({ username: `${userInfo?.username}` })).then((res: any) => {
                         if (res.payload && res.payload.success) {
                             sessionStorage.setItem('freelancer-application-info', JSON.stringify(res.payload.data))
                             setBackdrop(false);
                             navigate(`${pageUrl.trim()}/skills`);
                         }
-                    }).catch((err) => {
+                    }).catch((err: any) => {
                         setBackdrop(false);
                     })
                 } else {

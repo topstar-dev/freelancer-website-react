@@ -1,12 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { downloadImage } from "../other/otherApi";
-import { editClientProile, editFreelancerProile, getClientProile, getFreelancerProile } from "./profileApi";
+import { editClientProile, editFreelancerProile, getProile } from "./profileApi";
 
-export interface GetClientProfileInterface {
-    username: string
-}
-
-export interface GetFreelancerProfileInterface {
+export interface GetProfileInterface {
     username: string
 }
 
@@ -15,11 +11,11 @@ export interface ProfileImageDownloadInterface {
     fileName: string
 }
 
-export const getClientProfileAction = createAsyncThunk(
-    'profile/getClientProfile',
-    async (params: GetClientProfileInterface, { rejectWithValue }) => {
+export const getProfileAction = createAsyncThunk(
+    'profile/getProfile',
+    async (params: GetProfileInterface, { rejectWithValue }) => {
         try {
-            const response = await getClientProile(params);
+            const response = await getProile(params);
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })
@@ -32,18 +28,6 @@ export const editClientProfileAction = createAsyncThunk(
     async (params: any, { rejectWithValue }) => {
         try {
             const response = await editClientProile(params);
-            return response.success ? response : rejectWithValue(response);
-        } catch (error: any) {
-            return rejectWithValue({ message: "Error occured" })
-        }
-    }
-)
-
-export const getFreelancerProfileAction = createAsyncThunk(
-    'profile/getFreelancerProfile',
-    async (params: GetFreelancerProfileInterface, { rejectWithValue }) => {
-        try {
-            const response = await getFreelancerProile(params);
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })

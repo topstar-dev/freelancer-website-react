@@ -1,13 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FUNCTION_TYPES } from '../constants';
-import { getClientProfileAction, getFreelancerProfileAction, profileImageDownload } from './profileActions';
+import { getProfileAction, profileImageDownload } from './profileActions';
 
 export interface ProfileState {
     message?: string | null;
     loading: boolean;
-    loadingClientProfile: boolean;
-    clientProfile: any;
-    freelancerProfile: any;
+    profile: any;
     userAvatar: any;
     loadingAvatar: any;
     userProfile: any;
@@ -15,11 +13,9 @@ export interface ProfileState {
 }
 
 const initialState: ProfileState = {
-    loading: false,
-    loadingClientProfile: false,
     message: null,
-    clientProfile: null,
-    freelancerProfile: null,
+    loading: false,
+    profile: null,
     userAvatar: null,
     loadingAvatar: false,
     userProfile: null,
@@ -31,28 +27,16 @@ export const profileSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getFreelancerProfileAction.pending, (state: ProfileState) => {
-            state.freelancerProfile = null;
+        builder.addCase(getProfileAction.pending, (state: ProfileState) => {
+            state.profile = null;
             state.loading = true;
         });
-        builder.addCase(getFreelancerProfileAction.fulfilled, (state: ProfileState, action) => {
-            state.freelancerProfile = action.payload.data;
+        builder.addCase(getProfileAction.fulfilled, (state: ProfileState, action) => {
+            state.profile = action.payload.data;
             state.loading = false;
         });
-        builder.addCase(getFreelancerProfileAction.rejected, (state: ProfileState) => {
+        builder.addCase(getProfileAction.rejected, (state: ProfileState) => {
             state.loading = false
-        });
-
-        builder.addCase(getClientProfileAction.pending, (state: ProfileState) => {
-            state.clientProfile = null;
-            state.loadingClientProfile = true;
-        });
-        builder.addCase(getClientProfileAction.fulfilled, (state: ProfileState, action) => {
-            state.clientProfile = action.payload.data;
-            state.loadingClientProfile = false;
-        });
-        builder.addCase(getClientProfileAction.rejected, (state: ProfileState) => {
-            state.loadingClientProfile = false
         });
 
         builder.addCase(profileImageDownload.pending, (state: ProfileState, action) => {
