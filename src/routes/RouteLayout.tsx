@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/system';
+import { Crisp } from "crisp-sdk-web";
 
 import AuthGuard from "../pages/auth/AuthGuard";
 
 import Footer from '../layout/footer/Footer';
 import Header from '../layout/header/Header';
 import useBreakpoint from '../components/breakpoints/BreakpointProvider';
+import { returnUrlByLang } from './Router';
 
 interface RoutesInterface {
     isHeader: boolean,
@@ -14,10 +16,23 @@ interface RoutesInterface {
 }
 const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     const { isDesktop } = useBreakpoint();
+    const location = useLocation();
 
     useEffect(() => {
         document.documentElement.lang = localStorage.getItem('i18nextLng') || 'en';
     })
+
+    useEffect(() => {
+        try {
+            if (Crisp.chat) {
+                if (isHeader && [...returnUrlByLang('/'), ...returnUrlByLang('/contact')].includes(location.pathname)) {
+                    Crisp.chat.show()
+                } else {
+                    Crisp.chat.hide()
+                }
+            }
+        } catch (err) { }
+    }, [location.pathname, isHeader])
 
     const getContentHeight = () => {
         const headerHeight = !isHeader ? 0 : (isDesktop ? 72 : 73);
@@ -41,7 +56,6 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
             </Box>
             <Footer />
         </Box>
-        isHeader={isHeader}
     </>
 
     return protectedRoute ? <AuthGuard>{content}</AuthGuard> : content;
