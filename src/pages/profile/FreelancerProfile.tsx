@@ -14,24 +14,40 @@ export default function FreelancerProfile({ profile }: any) {
     const userInfo = transformUserInfoData(profile);
     const basicInfo = transformUBasicInformationData(profile);
 
+    if (isDesktop) {
+        return (
+            <div className={'profile-layout-container'}>
+                <div className="right-profile-section">
+                    <About about={profile.about} />
+                    <Skills skills={profile.skills} />
+                    <Experiences experiences={profile.experiences} />
+                    <Educations educations={profile.educations} />
+                </div>
+                <div className="left-profile-section">
+                    <UserInfo {...userInfo} />
+                    <BasicInformation {...basicInfo} />
+                    <Languages languages={profile.languages} />
+                    <JobFeedback username={profile.username} />
+                </div>
+            </div>
+        )
+    }
+
     return (
-        <div className={isDesktop ?
-            'profile-layout-container'
-            :
-            'profile-layout-container profile-layout-container-mobile'
-        }>
+        <div className={'profile-layout-container profile-layout-container-mobile'}>
             <div className="right-profile-section">
+                <Languages languages={profile.languages} />
+                <BasicInformation {...basicInfo} />
+                <JobFeedback username={profile.username} />
+            </div>
+            <div className="left-profile-section">
+                <UserInfo {...userInfo} />
                 <About about={profile.about} />
                 <Skills skills={profile.skills} />
                 <Experiences experiences={profile.experiences} />
                 <Educations educations={profile.educations} />
             </div>
-            <div className="left-profile-section">
-                <UserInfo {...userInfo} />
-                <BasicInformation {...basicInfo} />
-                <Languages languages={profile.languages} />
-                <JobFeedback username={profile.username} />
-            </div>
         </div>
     )
+
 }
