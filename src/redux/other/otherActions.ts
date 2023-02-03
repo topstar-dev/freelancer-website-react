@@ -4,7 +4,7 @@ import { downloadImage, uploadImage } from "./otherApi";
 export interface ImageDownloadInterface {
     functionType: string,
     fileName: string,
-    skip?: boolean
+    isCurrentAvatar?: boolean
 }
 
 export const imageDownload = createAsyncThunk(

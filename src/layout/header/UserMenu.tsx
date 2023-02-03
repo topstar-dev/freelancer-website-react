@@ -37,7 +37,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     useEffect(() => {
         source = axios.CancelToken.source();
         if (userInfo && userInfo.avatar_file_name && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: userInfo.avatar_file_name }))
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: userInfo.avatar_file_name, isCurrentAvatar: true }))
         }
     }, [dispatch, userInfo, userAvatar, loading])
 

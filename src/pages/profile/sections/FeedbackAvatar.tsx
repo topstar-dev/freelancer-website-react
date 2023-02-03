@@ -12,7 +12,7 @@ const FeedbackAvatar = ({ avatar_file_name }: any) => {
     useEffect(() => {
         if (avatar_file_name && !jobFeedbackAvatars[avatar_file_name] && !called) {
             setCalled(true);
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name, skip: true })).then((res) => {
+            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name })).then((res) => {
                 if (res.payload.success) {
                     dispatch(addJobFeedbackAvatar({ imageName: avatar_file_name, image: URL.createObjectURL(res.payload.file) }))
                 }
