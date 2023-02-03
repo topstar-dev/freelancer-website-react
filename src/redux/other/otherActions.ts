@@ -3,7 +3,8 @@ import { downloadImage, uploadImage } from "./otherApi";
 
 export interface ImageDownloadInterface {
     functionType: string,
-    fileName: string
+    fileName: string,
+    skip?: boolean
 }
 
 export const imageDownload = createAsyncThunk(
