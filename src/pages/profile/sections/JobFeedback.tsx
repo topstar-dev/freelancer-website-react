@@ -9,11 +9,13 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
 import FeedbackAvatar from "./FeedbackAvatar";
 import SeeMore from "../../../components/seeMore/SeeMore";
+import { useSnackbar } from "notistack";
 
 export default function JobFeedback({ username }: any) {
     const dispatch = useAppDispatch();
 
     const { t } = useTranslation();
+    const { enqueueSnackbar } = useSnackbar();
     const [called, setCalled] = useState(false);
     const [loading, setLoading] = useState(false);
     const [pageIndex, setPageIndex] = useState(1)
@@ -42,13 +44,15 @@ export default function JobFeedback({ username }: any) {
                 } else {
                     setJobFeedbackData(res.payload.data);
                 }
+            } else {
+                enqueueSnackbar(res.payload.message)
             }
         }).catch((err) => {
-
+            enqueueSnackbar(err.message)
         }).finally(() => {
             setLoading(false)
         });
-    }, [dispatch, username, jobFeedbackData])
+    }, [dispatch, username, jobFeedbackData, enqueueSnackbar])
 
     useEffect(() => {
         if (!called) {
