@@ -14,19 +14,25 @@ export default function FreelancerProfile({ profile }: any) {
     const userInfo = transformUserInfoData(profile);
     const basicInfo = transformUBasicInformationData(profile);
 
+    const isAboutDisplay = profile.about;
+    const isSkillDisplay = profile.skills && profile.skills.length > 0;
+    const isExperienceDisplay = profile.experiences && profile.experiences.length > 0;
+    const isEducationDisplay = profile.educations && profile.educations.length > 0;
+    const isLanguageDisplay = profile.languages && profile.languages.length > 0;
+
     if (isDesktop) {
         return (
             <div className={'profile-layout-container'}>
                 <div className="right-profile-section">
-                    <About about={profile.about} />
-                    <Skills skills={profile.skills} />
-                    <Experiences experiences={profile.experiences} />
-                    <Educations educations={profile.educations} />
+                    {isAboutDisplay && <About about={profile.about} />}
+                    {isSkillDisplay && <Skills skills={profile.skills} />}
+                    {isExperienceDisplay && <Experiences experiences={profile.experiences} />}
+                    {isEducationDisplay && <Educations educations={profile.educations} />}
                 </div>
                 <div className="left-profile-section">
                     <UserInfo {...userInfo} />
                     <BasicInformation {...basicInfo} />
-                    <Languages languages={profile.languages} />
+                    {isLanguageDisplay && <Languages languages={profile.languages} />}
                     <JobFeedback username={profile.username} />
                 </div>
             </div>
@@ -36,16 +42,16 @@ export default function FreelancerProfile({ profile }: any) {
     return (
         <div className={'profile-layout-container profile-layout-container-mobile'}>
             <div className="right-profile-section">
-                <Languages languages={profile.languages} />
+                {isLanguageDisplay && <Languages languages={profile.languages} />}
                 <BasicInformation {...basicInfo} />
                 <JobFeedback username={profile.username} />
             </div>
             <div className="left-profile-section">
                 <UserInfo {...userInfo} />
-                <About about={profile.about} />
-                <Skills skills={profile.skills} />
-                <Experiences experiences={profile.experiences} />
-                <Educations educations={profile.educations} />
+                {isAboutDisplay && <About about={profile.about} />}
+                {isSkillDisplay && <Skills skills={profile.skills} />}
+                {isExperienceDisplay && <Experiences experiences={profile.experiences} />}
+                {isEducationDisplay && <Educations educations={profile.educations} />}
             </div>
         </div>
     )
