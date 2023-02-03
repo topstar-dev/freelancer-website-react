@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getClientProfileAction, getFreelancerProfileAction } from './profileActions';
+import { FUNCTION_TYPES } from '../constants';
+import { getClientProfileAction, getFreelancerProfileAction, profileImageDownload } from './profileActions';
 
 export interface ProfileState {
     message?: string | null;
@@ -7,6 +8,10 @@ export interface ProfileState {
     loadingClientProfile: boolean;
     clientProfile: any;
     freelancerProfile: any;
+    userAvatar: any;
+    loadingAvatar: any;
+    userProfile: any;
+    loadingProfile: any;
 }
 
 const initialState: ProfileState = {
@@ -14,7 +19,11 @@ const initialState: ProfileState = {
     loadingClientProfile: false,
     message: null,
     clientProfile: null,
-    freelancerProfile: null
+    freelancerProfile: null,
+    userAvatar: null,
+    loadingAvatar: false,
+    userProfile: null,
+    loadingProfile: false
 }
 
 export const profileSlice = createSlice({
@@ -44,6 +53,25 @@ export const profileSlice = createSlice({
         });
         builder.addCase(getClientProfileAction.rejected, (state: ProfileState) => {
             state.loadingClientProfile = false
+        });
+
+        builder.addCase(profileImageDownload.pending, (state: ProfileState, action) => {
+            if (action.meta.arg.functionType === FUNCTION_TYPES.USER_AVATAR) {
+                state.userAvatar = null;
+                state.loadingAvatar = true;
+            } else if (action.meta.arg.functionType === FUNCTION_TYPES.USER_PROFILE) {
+                state.userProfile = null;
+                state.loadingProfile = true;
+            }
+        });
+        builder.addCase(profileImageDownload.fulfilled, (state: ProfileState, action) => {
+            if (action.payload.functionType === FUNCTION_TYPES.USER_AVATAR) {
+                state.userAvatar = URL.createObjectURL(action.payload.file);
+                state.loadingAvatar = false;
+            } else if (action.payload.functionType === FUNCTION_TYPES.USER_PROFILE) {
+                state.userProfile = URL.createObjectURL(action.payload.file);
+                state.loadingProfile = false;
+            }
         });
     }
 });

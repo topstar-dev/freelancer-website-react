@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Card from '../../../components/card/Card'
 import { FUNCTION_TYPES } from "../../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { imageDownload } from "../../../redux/other/otherActions";
+import { profileImageDownload } from "../../../redux/profile/profileActions";
 
 export default function UserInfo({
     full_name,
@@ -13,17 +13,17 @@ export default function UserInfo({
     ...rest
 }: any) {
     const dispatch = useAppDispatch();
-    const { userAvatar, loading, userProfile, loadingProfile } = useAppSelector(state => state.other);
+    const { userAvatar, loadingAvatar, userProfile, loadingProfile } = useAppSelector(state => state.profile);
 
     useEffect(() => {
-        if (avatar_file_name && !userAvatar && !loading) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name }))
+        if (avatar_file_name && !userAvatar && !loadingAvatar) {
+            dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name }))
         }
-    }, [dispatch, loading, avatar_file_name, userAvatar])
+    }, [dispatch, loadingAvatar, avatar_file_name, userAvatar])
 
     useEffect(() => {
         if (profile_file_name && !userProfile && !loadingProfile) {
-            dispatch(imageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: profile_file_name }))
+            dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: profile_file_name }))
         }
     }, [dispatch, loadingProfile, profile_file_name, userProfile])
 

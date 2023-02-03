@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { downloadImage } from "../other/otherApi";
 import { editClientProile, editFreelancerProile, getClientProile, getFreelancerProile } from "./profileApi";
 
 export interface GetClientProfileInterface {
@@ -7,6 +8,11 @@ export interface GetClientProfileInterface {
 
 export interface GetFreelancerProfileInterface {
     username: string
+}
+
+export interface ProfileImageDownloadInterface {
+    functionType: string,
+    fileName: string
 }
 
 export const getClientProfileAction = createAsyncThunk(
@@ -51,6 +57,18 @@ export const editFreelancerProfileAction = createAsyncThunk(
         try {
             const response = await editFreelancerProile(params);
             return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
+
+export const profileImageDownload = createAsyncThunk(
+    'profile/downloadImage',
+    async (imageData: ProfileImageDownloadInterface, { rejectWithValue }) => {
+        try {
+            const response = await downloadImage(imageData);
+            return response.success ? { ...response, functionType: imageData.functionType } : rejectWithValue({ ...response, functionType: imageData.functionType });
         } catch (error: any) {
             return rejectWithValue({ message: "Error occured" })
         }
