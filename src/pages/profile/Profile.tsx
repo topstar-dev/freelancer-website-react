@@ -2,7 +2,7 @@ import { Backdrop, CircularProgress } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { USER_TYPES } from "../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getProfileAction } from "../../redux/profile/profileActions";
@@ -13,6 +13,7 @@ import './profile.css'
 
 export default function Profile(props: any) {
     const dispatch = useAppDispatch();
+    const location = useLocation();
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar()
     const { i18n } = useTranslation();
@@ -51,6 +52,11 @@ export default function Profile(props: any) {
             }
         }
     }, [dispatch, enqueueSnackbar, called, username, errorPage])
+
+    useEffect(() => {
+        setErrorPage(false)
+        setCalled(false);
+    }, [location.pathname])
 
     useEffect(() => {
         if (language && i18n.language && i18n.language !== language) {
