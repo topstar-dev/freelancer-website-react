@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { USER_TYPES } from "../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getProfileAction } from "../../redux/profile/profileActions";
+import NotFound from "../error/NotFound";
 import ClientProfile from "./ClientProfile";
 import FreelancerProfile from "./FreelancerProfile";
 import './profile.css'
@@ -21,6 +22,7 @@ export default function Profile(props: any) {
     const [profile, setProfile] = useState<any>(null);
     const [called, setCalled] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
+    const [errorPage, setErrorPage] = useState(false);
 
     useEffect(() => {
         document.title = t('title.profile')
@@ -35,6 +37,11 @@ export default function Profile(props: any) {
                     const { payload } = res;
                     if (payload.success) {
                         setProfile(payload.data);
+                    } else if (payload.error === "NOT_FOUND") {
+                        if (!errorPage) {
+                            enqueueSnackbar(payload.message)
+                        }
+                        setErrorPage(true);
                     }
                 }).catch((err: any) => {
                     enqueueSnackbar(err.message)
@@ -43,13 +50,17 @@ export default function Profile(props: any) {
                 })
             }
         }
-    }, [dispatch, enqueueSnackbar, called, username])
+    }, [dispatch, enqueueSnackbar, called, username, errorPage])
 
     useEffect(() => {
         if (language && i18n.language && i18n.language !== language) {
             setCalled(false)
         }
     }, [i18n, language])
+
+    if (errorPage) {
+        return <NotFound />
+    }
 
     if (backdrop) {
         return <Backdrop

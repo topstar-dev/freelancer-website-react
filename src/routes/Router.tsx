@@ -139,15 +139,6 @@ export default function Router() {
         ]
       },
       {
-        element: <CustomRouter isHeader={true} protectedRoute={false} />,
-        children: [
-          {
-            path: `${baseUrl}/users/:username`,
-            element: <Profile />
-          }
-        ]
-      },
-      {
         element: <CustomRouter isHeader={true} protectedRoute={true} />,
         children: [
           {
@@ -171,8 +162,20 @@ export default function Router() {
   languages.forEach(lang => {
     routeList = [...routeList, ...routesWithBaseUrl(returnLangLabel(lang))]
   })
+  const profileRoutes: any = languages.map((lang) => {
+    return {
+      element: <CustomRouter isHeader={true} protectedRoute={false} />,
+      children: [
+        {
+          path: `${returnLangLabel(lang)}/:username`,
+          element: <Profile />
+        }
+      ]
+    }
+  })
   return useRoutes([
     ...routeList,
+    ...profileRoutes,
     {
       path: "*",
       element: <CustomRouter isHeader={true} protectedRoute={false} />,

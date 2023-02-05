@@ -98,7 +98,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
     }
 
     const userProfileClick = () => {
-        navigate(`/users/${userInfo?.username}`)
+        navigate(`/${userInfo?.username}`)
     }
 
     const signOutMethod = () => {
