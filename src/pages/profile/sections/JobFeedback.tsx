@@ -114,35 +114,41 @@ export default function JobFeedback({ username }: any) {
                         <Box>{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
                     </Box>
                 </Box>
-                <Divider style={{ margin: '14px 0' }} />
-                <Box>
-                    {jobFeedbackData?.records?.job_feedbacks?.map((review: any, index: number) => (
-                        <Box className="review-list-container" key={index}>
-                            <Box className="review-box">
-                                <Box className="review-owner-avatar">
-                                    <FeedbackAvatar avatar_file_name={review.avatar_file_name ? review.avatar_file_name : ''} />
-                                </Box>
-                                <Box>
-                                    <Box className="review-owner-name">{review.name}</Box>
-                                    <Box className="review-rating-date">
-                                        <Rating
-                                            readOnly
-                                            size="small"
-                                            name="rating"
-                                            value={review.rating_stars || 0}
-                                            precision={1}
-                                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                                        />
-                                        <span className="review-date">{dayjs(review.review_time).format('YYYY-MM-DD')}</span>
+                {!Boolean(jobFeedbackData?.records?.job_feedbacks) && jobFeedbackData?.records?.job_feedbacks?.length === 0 ?
+                    ""
+                    :
+                    <>
+                        <Divider style={{ margin: '14px 0' }} />
+                        <Box>
+                            {jobFeedbackData?.records?.job_feedbacks?.map((review: any, index: number) => (
+                                <Box className="review-list-container" key={index}>
+                                    <Box className="review-box">
+                                        <Box className="review-owner-avatar">
+                                            <FeedbackAvatar avatar_file_name={review.avatar_file_name ? review.avatar_file_name : ''} />
+                                        </Box>
+                                        <Box>
+                                            <Box className="review-owner-name">{review.name}</Box>
+                                            <Box className="review-rating-date">
+                                                <Rating
+                                                    readOnly
+                                                    size="small"
+                                                    name="rating"
+                                                    value={review.rating_stars || 0}
+                                                    precision={1}
+                                                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                                />
+                                                <span className="review-date">{dayjs(review.review_time).format('YYYY-MM-DD')}</span>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                    <Box className="review-owner-comment">
+                                        {review.review_content}
                                     </Box>
                                 </Box>
-                            </Box>
-                            <Box className="review-owner-comment">
-                                {review.review_content}
-                            </Box>
+                            ))}
                         </Box>
-                    ))}
-                </Box>
+                    </>
+                }
             </Card>
             <SeeMore
                 loading={loading}
