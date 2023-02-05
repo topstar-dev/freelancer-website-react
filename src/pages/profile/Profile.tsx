@@ -12,6 +12,7 @@ import './profile.css'
 
 export default function Profile(props: any) {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar()
     const { i18n } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
@@ -20,6 +21,10 @@ export default function Profile(props: any) {
     const [profile, setProfile] = useState<any>(null);
     const [called, setCalled] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
+
+    useEffect(() => {
+        document.title = t('title.profile')
+    })
 
     useEffect(() => {
         if (!called) {

@@ -12,7 +12,8 @@
         "currency": "Settings (Currency) - Rounx",
         "personal": "Settings (Personal info) - Rounx",
         "security": "Settings (Security) - Rounx",
-        "freelancer": "Submit freelancer application - Rounx"
+        "freelancer": "Submit freelancer application - Rounx",
+        "profile": "Profile - Rounx"
     },
     "validation": {
         "email-valid": "Enter a valid email",
