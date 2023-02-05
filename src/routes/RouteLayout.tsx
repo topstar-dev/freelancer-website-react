@@ -25,7 +25,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
     useEffect(() => {
         try {
             if (Crisp.chat) {
-                if (isHeader && [...returnUrlByLang('/'), ...returnUrlByLang('/contact')].includes(location.pathname)) {
+                if (isHeader && [...returnUrlByLang('/'), ...returnUrlByLang('/zh-CN'), ...returnUrlByLang('/contact')].includes(location.pathname)) {
                     Crisp.chat.show()
                 } else {
                     Crisp.chat.hide()
