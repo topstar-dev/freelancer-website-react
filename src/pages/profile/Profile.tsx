@@ -14,7 +14,6 @@ import './profile.css'
 export default function Profile(props: any) {
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar()
     const { i18n } = useTranslation();
     const { language } = useAppSelector(state => state.resources);
@@ -26,10 +25,6 @@ export default function Profile(props: any) {
     const [errorPage, setErrorPage] = useState(false);
 
     useEffect(() => {
-        document.title = t('title.profile')
-    })
-
-    useEffect(() => {
         if (!called) {
             setCalled(true);
             if (username) {
@@ -37,6 +32,7 @@ export default function Profile(props: any) {
                 dispatch(getProfileAction({ username })).then((res: any) => {
                     const { payload } = res;
                     if (payload.success) {
+                        document.title = `${payload.data.full_name} - Rounx`
                         setProfile(payload.data);
                     } else if (payload.error === "NOT_FOUND") {
                         if (!errorPage) {
