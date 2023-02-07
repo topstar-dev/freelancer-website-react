@@ -20,7 +20,7 @@ export default function Experiences({ experiences }: any) {
     }
     return (
         <Card className="experiences-container container-width">
-            <Box className="card-heading">{t('profile.experience-title')}</Box>
+            <Box className="card-heading">{t('profile.experiences-title')}</Box>
             <Box className="profile-experience-box">
                 {experiences?.map((exp: any, index: number) => (
                     <Box className="profile-experience-item" key={index}>

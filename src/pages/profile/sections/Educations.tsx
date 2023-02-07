@@ -21,7 +21,7 @@ export default function Educations({ educations }: any) {
 
     return (
         <Card className="educations-container container-width">
-            <Box className="card-heading">{t('profile.education-title')}</Box>
+            <Box className="card-heading">{t('profile.educations-title')}</Box>
             <Box className="profile-educations-box">
                 {educations?.map((edu: any, index: number) => (
                     <Box className="profile-educations-item" key={index}>
