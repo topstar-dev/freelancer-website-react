@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import Card from "../../../components/card/Card";
+import EditIcon from '@mui/icons-material/Edit';
+import Card from "../../../../components/card/Card";
 
-export default function Educations({ educations }: any) {
+export default function Educations({ educations, currentProfile }: any) {
     const { t } = useTranslation();
 
     const getDetailsLabel = (exp: any) => {
@@ -21,7 +22,10 @@ export default function Educations({ educations }: any) {
 
     return (
         <Card className="educations-container container-width">
-            <Box className="card-heading">{t('profile.education-title')}</Box>
+            <Box className="card-heading">
+                {t('profile.education-title')}
+                {currentProfile && <EditIcon className="edit-icon" />}
+            </Box>
             <Box className="profile-educations-box">
                 {educations?.map((edu: any, index: number) => (
                     <Box className="profile-educations-item" key={index}>

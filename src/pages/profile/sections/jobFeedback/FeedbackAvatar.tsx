@@ -1,8 +1,8 @@
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
-import { FUNCTION_TYPES } from "../../../redux/constants";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { feedbackImageDownload } from "../../../redux/jobFeedback/jobFeedbackActions";
+import { FUNCTION_TYPES } from "../../../../redux/constants";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { feedbackImageDownload } from "../../../../redux/jobFeedback/jobFeedbackActions";
 
 const FeedbackAvatar = ({ avatar_file_name }: any) => {
     const dispatch = useAppDispatch();

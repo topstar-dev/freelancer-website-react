@@ -1,13 +1,18 @@
-import BasicInformation from "./sections/BasicInformation";
-import JobFeedback from "./sections/JobFeedback";
+import BasicInformation from "./sections/basicInformation/BasicInformation";
+import JobFeedback from "./sections/jobFeedback/JobFeedback";
 import { transformUBasicInformationData, transformUserInfoData } from "./transformers/sectionsTransformer";
-import UserInfo from "./sections/UserInfo";
+import UserInfo from "./sections/userInfo/UserInfo";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import { useAppSelector } from "../../redux/hooks";
 
 export default function ClientProfile({ profile }: any) {
     const { isDesktop } = useBreakpoint();
-    const userInfo = transformUserInfoData(profile);
+    const profileUserInfo = transformUserInfoData(profile);
     const basicInfo = transformUBasicInformationData(profile);
+
+    const { userInfo } = useAppSelector(state => state.auth);
+
+    const currentProfile = profileUserInfo.username === userInfo?.username;
 
     if (isDesktop) {
         return (
@@ -16,8 +21,8 @@ export default function ClientProfile({ profile }: any) {
                     <JobFeedback username={profile.username} />
                 </div>
                 <div className="left-profile-section">
-                    <UserInfo {...userInfo} />
-                    <BasicInformation {...basicInfo} />
+                    <UserInfo {...profileUserInfo} currentProfile={currentProfile} />
+                    <BasicInformation {...basicInfo} currentProfile={currentProfile} />
                 </div>
             </div>
         )

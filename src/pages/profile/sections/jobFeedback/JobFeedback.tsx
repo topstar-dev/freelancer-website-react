@@ -4,11 +4,11 @@ import { Divider, LinearProgress, Rating } from "@mui/material";
 import { Box } from "@mui/system";
 import StarIcon from '@mui/icons-material/Star';
 import { useTranslation } from "react-i18next";
-import Card from "../../../components/card/Card";
-import { useAppDispatch } from "../../../redux/hooks";
-import { getJobFeedbackAction } from "../../../redux/jobFeedback/jobFeedbackActions";
+import Card from "../../../../components/card/Card";
+import { useAppDispatch } from "../../../../redux/hooks";
+import { getJobFeedbackAction } from "../../../../redux/jobFeedback/jobFeedbackActions";
 import FeedbackAvatar from "./FeedbackAvatar";
-import SeeMore from "../../../components/seeMore/SeeMore";
+import SeeMore from "../../../../components/seeMore/SeeMore";
 import { useSnackbar } from "notistack";
 
 export default function JobFeedback({ username }: any) {
@@ -73,7 +73,9 @@ export default function JobFeedback({ username }: any) {
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className="card-heading">{t('profile.job-feedback-title')}</Box>
+                <Box className="card-heading">
+                    {t('profile.job-feedback-title')}
+                </Box>
                 <Box className="progress-container">
                     <Box className="progress-ratings">
                         <Box className="progress-value">

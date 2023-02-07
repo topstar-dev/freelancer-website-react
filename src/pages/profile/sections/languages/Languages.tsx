@@ -1,14 +1,18 @@
 import { Box, Rating } from "@mui/material";
 import CircleIcon from '@mui/icons-material/Circle';
-import Card from "../../../components/card/Card";
-import { LANGUAGE_SKILLS } from "../../../redux/constants";
+import EditIcon from '@mui/icons-material/Edit';
+import Card from "../../../../components/card/Card";
+import { LANGUAGE_SKILLS } from "../../../../redux/constants";
 import { useTranslation } from "react-i18next";
 
-export default function Languages({ languages }: any) {
+export default function Languages({ languages, currentProfile }: any) {
     const { t } = useTranslation();
     return (
         <Card className="languages-container container-width">
-            <Box className="card-heading">{t('profile.language-title')}</Box>
+            <Box className="card-heading">
+                {t('profile.language-title')}
+                {currentProfile && <EditIcon className="edit-icon" />}
+            </Box>
             <Box className="language-list-container">
                 {languages && languages.map((lang: any, index: number) => (
                     <Box className="profile-language-box" key={index}>

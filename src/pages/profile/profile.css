@@ -37,6 +37,15 @@
 .card-heading {
     font-size: 20px;
     margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-heading .edit-icon {
+    cursor: pointer;
+    color: #757575;
+    font-size: 24px;
 }
 
 /* ======================

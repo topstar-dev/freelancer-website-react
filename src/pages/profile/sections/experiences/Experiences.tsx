@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import Card from "../../../components/card/Card";
+import EditIcon from '@mui/icons-material/Edit';
+import Card from "../../../../components/card/Card";
 
-export default function Experiences({ experiences }: any) {
+export default function Experiences({ experiences, currentProfile }: any) {
     const { t } = useTranslation();
 
     const getDetailsLabel = (exp: any) => {
@@ -20,7 +21,10 @@ export default function Experiences({ experiences }: any) {
     }
     return (
         <Card className="experiences-container container-width">
-            <Box className="card-heading">{t('profile.experience-title')}</Box>
+            <Box className="card-heading">
+                {t('profile.experience-title')}
+                {currentProfile && <EditIcon className="edit-icon" />}
+            </Box>
             <Box className="profile-experience-box">
                 {experiences?.map((exp: any, index: number) => (
                     <Box className="profile-experience-item" key={index}>

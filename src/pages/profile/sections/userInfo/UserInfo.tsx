@@ -1,9 +1,9 @@
 import { Avatar, Box } from "@mui/material";
 import { useEffect } from "react";
-import Card from '../../../components/card/Card'
-import { FUNCTION_TYPES } from "../../../redux/constants";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { profileImageDownload } from "../../../redux/profile/profileActions";
+import Card from '../../../../components/card/Card'
+import { FUNCTION_TYPES } from "../../../../redux/constants";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { profileImageDownload } from "../../../../redux/profile/profileActions";
 
 export default function UserInfo({
     full_name,
