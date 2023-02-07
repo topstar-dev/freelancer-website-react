@@ -35,10 +35,9 @@ export default function Profile(props: any) {
                         document.title = `${payload.data.full_name} - Rounx`
                         setProfile(payload.data);
                     } else if (payload.error === "NOT_FOUND") {
-                        if (!errorPage) {
-                            enqueueSnackbar(payload.message)
-                        }
                         setErrorPage(true);
+                    } else {
+                        enqueueSnackbar(payload.message)
                     }
                 }).catch((err: any) => {
                     enqueueSnackbar(err.message)

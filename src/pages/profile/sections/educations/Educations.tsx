@@ -23,7 +23,7 @@ export default function Educations({ educations, currentProfile }: any) {
     return (
         <Card className="educations-container container-width">
             <Box className="card-heading">
-                {t('profile.education-title')}
+                {t('profile.educations-title')}
                 {currentProfile && <EditIcon className="edit-icon" />}
             </Box>
             <Box className="profile-educations-box">

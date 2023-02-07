@@ -22,7 +22,7 @@ export default function Experiences({ experiences, currentProfile }: any) {
     return (
         <Card className="experiences-container container-width">
             <Box className="card-heading">
-                {t('profile.experience-title')}
+                {t('profile.experiences-title')}
                 {currentProfile && <EditIcon className="edit-icon" />}
             </Box>
             <Box className="profile-experience-box">
