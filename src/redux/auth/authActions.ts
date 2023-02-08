@@ -79,6 +79,7 @@ export const signInUser = createAsyncThunk(
                     dispatch(clearAvatar());
                 }
                 dispatch(clearProfile());
+                dispatch(clearAvatarProfile())
             }
             return response.success ? response : rejectWithValue(response);
         } catch (error: any) {
