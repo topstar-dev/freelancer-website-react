@@ -4,7 +4,7 @@
     align-items: center;
     cursor: pointer;
     opacity: 0.8;
-    color: var(--color-primary);
+    color: var(--color-primary) !important;
     height: 54px;
 
     border-top: 0;
@@ -32,4 +32,8 @@
 
 .expand-icon {
     margin-left: 16px;
+}
+
+.circular-progress-loader .MuiCircularProgress-root {
+    color: var(--color-primary) !important;
 }
