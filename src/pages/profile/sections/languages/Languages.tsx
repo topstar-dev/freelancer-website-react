@@ -9,7 +9,7 @@ import EditLanguages from "./editLanguages";
 
 export default function Languages({ languages, currentProfile }: any) {
     const { t } = useTranslation();
-    const [currentLength, setCurrentLength] = useState(languages.length);
+    const [currentLength, setCurrentLength] = useState(2);
 
     return (
         <Box>
