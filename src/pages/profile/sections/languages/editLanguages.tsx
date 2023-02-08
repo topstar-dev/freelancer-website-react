@@ -134,7 +134,7 @@ const EditLanguages = ({ languages }: any) => {
                                                         <Box key={index} className="flex-items">
                                                             <Box className="profile-card-spacing">
                                                                 <CloseIcon
-                                                                    className='close-icon'
+                                                                    className='profile-close-icon'
                                                                     onClick={() => {
                                                                         if (formik.values.languages.length > 1) {
                                                                             remove(index)
