@@ -160,16 +160,17 @@ export default function JobFeedback({ username }: any) {
                     getJobFeedbacks(pageIndex + 1);
                     setPageIndex(pageIndex + 1)
                 }}
-                onClickLess={() => {
-                    setJobFeedbackData({
-                        ...jobFeedbackData,
-                        records: {
-                            ...jobFeedbackData.records,
-                            job_feedbacks: jobFeedbackData.records.job_feedbacks.slice(0, 5)
-                        }
-                    });
-                    setPageIndex(1)
-                }}
+                showEmpltyOnLast={jobFeedbackData?.records?.job_feedbacks?.length === jobFeedbackData?.total_size}
+            // onClickLess={() => {
+            //     setJobFeedbackData({
+            //         ...jobFeedbackData,
+            //         records: {
+            //             ...jobFeedbackData.records,
+            //             job_feedbacks: jobFeedbackData.records.job_feedbacks.slice(0, 5)
+            //         }
+            //     });
+            //     setPageIndex(1)
+            // }}
             />
         </Box>
     )

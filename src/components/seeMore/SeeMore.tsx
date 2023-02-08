@@ -11,7 +11,8 @@ const SeeMore = ({
     currentLength,
     totalSize,
     onClick,
-    onClickLess
+    onClickLess,
+    showEmpltyOnLast
 }: any) => {
     const { t } = useTranslation();
 
@@ -29,6 +30,9 @@ const SeeMore = ({
             </Card>
         </ButtonBase>
     } else if (currentLength === totalSize) {
+        if (showEmpltyOnLast) {
+            return <Card className="circular-progress-loader-empty"></Card>
+        }
         return <ButtonBase className="see-more-base" style={{ width: '100%' }}>
             <Card className="circular-progress-loader" onClick={!loading ? onClickLess : () => { }}>
                 {loading ?
