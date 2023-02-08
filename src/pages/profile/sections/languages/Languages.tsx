@@ -1,39 +1,58 @@
 import { Box, Rating } from "@mui/material";
 import CircleIcon from '@mui/icons-material/Circle';
-import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
 import { LANGUAGE_SKILLS } from "../../../../redux/constants";
 import { useTranslation } from "react-i18next";
+import SeeMore from "../../../../components/seeMore/SeeMore";
+import { useState } from "react";
+import EditLanguages from "./editLanguages";
 
 export default function Languages({ languages, currentProfile }: any) {
     const { t } = useTranslation();
+    const [currentLength, setCurrentLength] = useState(2);
+    const [loading, setLoading] = useState(false);
+
     return (
-        <Card className="languages-container container-width">
-            <Box className="card-heading">
-                {t('profile.language-title')}
-                {currentProfile && <EditIcon className="edit-icon" />}
-            </Box>
-            <Box className="language-list-container">
-                {languages && languages.map((lang: any, index: number) => (
-                    <Box className="profile-language-box" key={index}>
-                        <Box>
-                            <Box className="language-box-name">{lang.language_name}</Box>
-                            <Box className="language-box-skill">{t(`${Object.values(LANGUAGE_SKILLS)[Object.keys(LANGUAGE_SKILLS).findIndex(e => e === lang.language_skill)]}`)}</Box>
+        <Box>
+            <Card className="see-more-container container-width">
+                <Box className="card-heading">
+                    {t('profile.language-title')}
+                    {currentProfile && <EditLanguages languages={languages} />}
+                </Box>
+                <Box className="language-list-container">
+                    {languages && languages.slice(0, currentLength).map((lang: any, index: number) => (
+                        <Box className="profile-language-box" key={index}>
+                            <Box>
+                                <Box className="language-box-name">{lang.language_name}</Box>
+                                <Box className="language-box-skill">{t(`${Object.values(LANGUAGE_SKILLS)[Object.keys(LANGUAGE_SKILLS).findIndex(e => e === lang.language_skill)]}`)}</Box>
+                            </Box>
+                            <Box>
+                                <Rating
+                                    readOnly
+                                    size="medium"
+                                    name="language-skill"
+                                    value={(Object.keys(LANGUAGE_SKILLS)).indexOf(lang.language_skill) + 1}
+                                    precision={1}
+                                    icon={<CircleIcon fontSize="inherit" />}
+                                    emptyIcon={<CircleIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                />
+                            </Box>
                         </Box>
-                        <Box>
-                            <Rating
-                                readOnly
-                                size="medium"
-                                name="language-skill"
-                                value={(Object.keys(LANGUAGE_SKILLS)).indexOf(lang.language_skill) + 1}
-                                precision={1}
-                                icon={<CircleIcon fontSize="inherit" />}
-                                emptyIcon={<CircleIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                            />
-                        </Box>
-                    </Box>
-                ))}
-            </Box>
-        </Card>
+                    ))}
+                </Box>
+            </Card>
+            <SeeMore
+                loading={loading}
+                currentLength={currentLength}
+                totalSize={languages?.length}
+                onClick={() => {
+                    setLoading(true);
+                    setTimeout(() => {
+                        setCurrentLength(currentLength + 2)
+                        setLoading(false);
+                    }, 1000);
+                }}
+            />
+        </Box>
     )
 }

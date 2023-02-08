@@ -48,6 +48,31 @@
     font-size: 24px;
 }
 
+.flex-items {
+    display: flex;
+}
+
+.profile-card-spacing {
+    padding: 24px;
+}
+
+.profile-card-spacing-multiple {
+    padding: 40px 24px 24px 0;
+    width: 100%;
+}
+
+.profile-edit-dialog-body {
+    max-height: 100%;
+    overflow: auto;
+    min-width: 500px;
+}
+
+@media (max-width:499px) {
+    .profile-edit-dialog-body {
+        min-width: 100%;
+    }
+}
+
 /* ======================
 = user info
 ====================== */

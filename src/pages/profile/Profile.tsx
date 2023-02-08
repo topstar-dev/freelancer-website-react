@@ -1,6 +1,6 @@
 import { Backdrop, CircularProgress } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useParams } from "react-router-dom";
 import { USER_TYPES } from "../../redux/constants";
@@ -10,6 +10,10 @@ import NotFound from "../error/NotFound";
 import ClientProfile from "./ClientProfile";
 import FreelancerProfile from "./FreelancerProfile";
 import './profile.css'
+
+const ProfileContext = React.createContext<any>({
+    updateProfileData: () => { }
+})
 
 export default function Profile(props: any) {
     const dispatch = useAppDispatch();
@@ -76,13 +80,27 @@ export default function Profile(props: any) {
     if (profile) {
         switch (profile.user_type) {
             case USER_TYPES.CLIENT:
-                return <ClientProfile profile={profile} />
+                return <ProfileContext.Provider value={(data: any) => {
+                    setProfile({ ...profile, ...data });
+                }}>
+                    <ClientProfile profile={profile} />
+                </ProfileContext.Provider>
             case USER_TYPES.FREELANCER:
-                return <FreelancerProfile profile={profile} />
+                return <ProfileContext.Provider value={{
+                    updateProfileData: (data: any) => {
+                        setProfile({ ...profile, ...data });
+                    }
+                }}>
+                    <FreelancerProfile profile={profile} />
+                </ProfileContext.Provider>
             default:
                 return <>Invalid user</>
         }
     } else {
         return <>No Data</>
     }
+}
+
+export const useProfileContext = () => {
+    return React.useContext(ProfileContext);
 }
