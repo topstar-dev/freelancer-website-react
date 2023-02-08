@@ -31,7 +31,7 @@ const SeeMore = ({
             </Card>
         </ButtonBase>
     } else if (currentLength >= totalSize) {
-        if (showEmpltyOnLast || totalSize === 0 || totalSize === limit) {
+        if (showEmpltyOnLast || totalSize <= limit) {
             return <Card className="circular-progress-loader-empty"></Card>
         }
         return <ButtonBase className="see-more-base" style={{ width: '100%' }}>
