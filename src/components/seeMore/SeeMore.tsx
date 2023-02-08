@@ -30,7 +30,7 @@ const SeeMore = ({
                 }
             </Card>
         </ButtonBase>
-    } else if (currentLength === totalSize) {
+    } else if (currentLength >= totalSize) {
         if (showEmpltyOnLast || totalSize === 0 || totalSize === limit) {
             return <Card className="circular-progress-loader-empty"></Card>
         }

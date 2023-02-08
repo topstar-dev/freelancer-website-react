@@ -102,7 +102,7 @@ const EditLanguages = ({ languages }: any) => {
                                 <DialogTitle>
                                     <Box className={`heading-flex`}>
                                         <Box>
-                                            <Box className='heading-title'>{t('freelancer.languages.title')}</Box>
+                                            <Box className='profile-edit-heading-title'>{t('freelancer.languages.title')}</Box>
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.languages.length < 20 &&
