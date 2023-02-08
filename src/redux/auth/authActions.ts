@@ -4,6 +4,7 @@ import { removeTokens, setTokens } from "../account/accountApi";
 import { FUNCTION_TYPES } from "../constants";
 import { imageDownload } from "../other/otherActions";
 import { clearAvatar, clearProfile } from "../other/otherSlice";
+import { clearAvatarProfile } from "../profile/profileSlice";
 import { changeLanguage } from "../resources/resourcesSlice";
 import { signIn, signUp, sendEmailCode, checkEmailCode, resetPassword, accountInfo } from "./authApi";
 export interface SignUpInterface {
@@ -90,6 +91,7 @@ export const signOutUser = createAsyncThunk(
     'user/signout',
     async (arg: void, { rejectWithValue, dispatch }) => {
         try {
+            dispatch(clearAvatarProfile())
             await removeTokens();
             const response = {
                 success: true,

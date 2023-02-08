@@ -25,7 +25,12 @@ const initialState: ProfileState = {
 export const profileSlice = createSlice({
     name: 'profile',
     initialState,
-    reducers: {},
+    reducers: {
+        clearAvatarProfile: (state) => {
+            state.userAvatar = null;
+            state.userProfile = null;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getProfileAction.pending, (state: ProfileState) => {
             state.profile = null;
@@ -59,5 +64,8 @@ export const profileSlice = createSlice({
         });
     }
 });
+
+const { clearAvatarProfile } = profileSlice.actions;
+export { clearAvatarProfile }
 
 export default profileSlice.reducer;
