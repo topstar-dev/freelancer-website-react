@@ -14,12 +14,16 @@ export function useEditFreelancer() {
                     sessionStorage.setItem('freelancer-application-info', JSON.stringify({ ...freelancerApplicationInfo, ...data }))
                     resolve(true);
                 } else {
-                    enqueueSnackbar(res.payload.message);
-                    reject();
+                    if (res.payload.error && res.payload.error === 'NAME_UNABLE_MODIFY') {
+                        resolve(true);
+                    } else {
+                        enqueueSnackbar(res.payload.message);
+                        reject(res);
+                    }
                 }
             }).catch((err) => {
                 enqueueSnackbar(err.message);
-                reject();
+                reject(err);
             })
         })
     }
