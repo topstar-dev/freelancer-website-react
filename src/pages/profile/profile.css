@@ -4,6 +4,7 @@
     width: 100%;
     flex-direction: row-reverse;
     gap: 16px;
+    justify-content: center;
 }
 
 .right-profile-section,
