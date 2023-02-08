@@ -10,16 +10,9 @@
 .right-profile-section,
 .left-profile-section {
     display: flex;
+    width: 50%;
     flex-direction: column;
     gap: 16px;
-}
-
-.left-profile-section {
-    width: 497px;
-}
-
-.right-profile-section {
-    width: 497px;
 }
 
 .profile-layout-container.profile-layout-container-mobile {
@@ -135,7 +128,6 @@
 }
 
 .userInfo-profile-image-box {
-    height: 165px;
     position: relative;
     display: flex;
     justify-content: center;
