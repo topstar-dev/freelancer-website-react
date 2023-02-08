@@ -48,6 +48,7 @@ export default function Languages({ languages, currentProfile }: any) {
                 loading={false}
                 currentLength={currentLength}
                 totalSize={languages?.length}
+                limit={2}
                 onClick={() => {
                     setCurrentLength(currentLength + 2)
                 }}

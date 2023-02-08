@@ -156,6 +156,7 @@ export default function JobFeedback({ username }: any) {
                 loading={loading}
                 currentLength={jobFeedbackData?.records?.job_feedbacks?.length}
                 totalSize={jobFeedbackData?.total_size}
+                limit={5}
                 onClick={() => {
                     getJobFeedbacks(pageIndex + 1);
                     setPageIndex(pageIndex + 1)
