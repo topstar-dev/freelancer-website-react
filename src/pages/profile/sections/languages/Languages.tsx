@@ -10,7 +10,6 @@ import EditLanguages from "./editLanguages";
 export default function Languages({ languages, currentProfile }: any) {
     const { t } = useTranslation();
     const [currentLength, setCurrentLength] = useState(2);
-    const [loading, setLoading] = useState(false);
 
     return (
         <Box>
@@ -42,15 +41,11 @@ export default function Languages({ languages, currentProfile }: any) {
                 </Box>
             </Card>
             <SeeMore
-                loading={loading}
+                loading={false}
                 currentLength={currentLength}
                 totalSize={languages?.length}
                 onClick={() => {
-                    setLoading(true);
-                    setTimeout(() => {
-                        setCurrentLength(currentLength + 2)
-                        setLoading(false);
-                    }, 1000);
+                    setCurrentLength(currentLength + 2)
                 }}
             />
         </Box>
