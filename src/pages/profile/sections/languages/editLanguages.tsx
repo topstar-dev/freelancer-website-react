@@ -181,7 +181,6 @@ const EditLanguages = ({ languages }: any) => {
                                         {t('cancel')}
                                     </Button>
                                     <Button
-                                        variant="text"
                                         style={{ marginLeft: 0 }}
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
@@ -216,7 +215,7 @@ const EditLanguages = ({ languages }: any) => {
                                                         .finally(() => { setLoading(false) })
                                                 }
                                             })
-                                        }}>{t('confirm')}</Button>
+                                        }}>{t('user-personal-account-save')}</Button>
                                 </DialogActions>
                             </DialogContent>
                         </WithTranslateFormErrors>
