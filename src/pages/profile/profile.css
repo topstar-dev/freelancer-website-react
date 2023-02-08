@@ -88,8 +88,14 @@
     padding: 24px;
 }
 
+.profile-close-icon {
+    color: #757575;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
 .profile-card-spacing-multiple {
-    padding: 40px 24px 24px 0;
+    padding: 24px 24px 0 0;
     width: 100%;
 }
 
