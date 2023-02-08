@@ -1,8 +1,8 @@
 import { Avatar, Box } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from '../../../../components/card/Card'
 import { FUNCTION_TYPES } from "../../../../redux/constants";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch } from "../../../../redux/hooks";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 
 export default function UserInfo({
@@ -13,17 +13,36 @@ export default function UserInfo({
     ...rest
 }: any) {
     const dispatch = useAppDispatch();
-    const { userAvatar, loadingAvatar, userProfile, loadingProfile } = useAppSelector(state => state.profile);
+    const [userAvatar, setUserAvatar] = useState<any>(null);
+    const [loadingAvatar, setLoadingAvatar] = useState(false);
+    const [userProfile, setUserProfile] = useState<any>(null);
+    const [loadingProfile, setLoadingProfile] = useState(false);
 
     useEffect(() => {
         if (avatar_file_name && !userAvatar && !loadingAvatar) {
-            dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name }))
+            setLoadingAvatar(true)
+            dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name })).then((res: any) => {
+                if (res.payload.success) {
+                    setUserAvatar(URL.createObjectURL(res.payload.file))
+                }
+            }).catch(() => { })
+                .finally(() => {
+                    setLoadingAvatar(false);
+                })
         }
     }, [dispatch, loadingAvatar, avatar_file_name, userAvatar])
 
     useEffect(() => {
         if (profile_file_name && !userProfile && !loadingProfile) {
-            dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: profile_file_name }))
+            setLoadingProfile(true)
+            dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: profile_file_name })).then((res: any) => {
+                if (res.payload.success) {
+                    setUserProfile(URL.createObjectURL(res.payload.file))
+                }
+            }).catch(() => { })
+                .finally(() => {
+                    setLoadingProfile(false);
+                })
         }
     }, [dispatch, loadingProfile, profile_file_name, userProfile])
 
