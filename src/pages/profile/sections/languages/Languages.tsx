@@ -9,16 +9,16 @@ import EditLanguages from "./editLanguages";
 
 export default function Languages({ languages, currentProfile }: any) {
     const { t } = useTranslation();
-    const [currentLength, setCurrentLength] = useState(2);
+    const [currentLength, setCurrentLength] = useState(languages.length);
 
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className="card-heading">
+                <Box className={languages.length ? "card-heading" : "card-heading-new-item"}>
                     {t('profile.language-title')}
                     {currentProfile && <EditLanguages languages={languages} />}
                 </Box>
-                <Box className="language-list-container">
+                {languages.length && <Box className="language-list-container">
                     {languages && languages.slice(0, currentLength).map((lang: any, index: number) => (
                         <Box className="profile-language-box" key={index}>
                             <Box>
@@ -38,7 +38,7 @@ export default function Languages({ languages, currentProfile }: any) {
                             </Box>
                         </Box>
                     ))}
-                </Box>
+                </Box>}
             </Card>
             <SeeMore
                 loading={false}

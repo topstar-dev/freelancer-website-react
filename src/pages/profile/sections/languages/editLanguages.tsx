@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
+import { ButtonBase, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { ReactNode, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -55,7 +55,22 @@ const EditLanguages = ({ languages }: any) => {
 
     return (
         <>
-            <EditIcon className="edit-icon" onClick={() => setShow(true)} />
+            {languages && languages.length > 0 ?
+                <EditIcon
+                    className="edit-icon"
+                    onClick={() => setShow(true)}
+                />
+                :
+                <ButtonBase
+                    onClick={() => setShow(true)}
+                    className="add-new-chip">
+                    <Chip
+                        label={<Box className="add-title">
+                            <AddIcon /> Add Languages
+                        </Box>} variant="outlined"
+                    />
+                </ButtonBase>
+            }
             <Dialog
                 fullScreen={isMobile}
                 open={show}
@@ -67,7 +82,7 @@ const EditLanguages = ({ languages }: any) => {
             >
                 <Formik
                     enableReinitialize
-                    initialValues={{ languages: languages }}
+                    initialValues={{ languages: languages.length ? languages : [{ language_code: '', language_skill: '' }] }}
                     validationSchema={yup.object({
                         languages: yup.array().of(
                             yup.object().shape({
