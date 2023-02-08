@@ -99,7 +99,7 @@ const EditLanguages = ({ languages }: any) => {
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
-                                <DialogTitle>
+                                <DialogTitle style={{ marginTop: 6 }}>
                                     <Box className={`heading-flex`}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('freelancer.languages.title')}</Box>
@@ -187,7 +187,7 @@ const EditLanguages = ({ languages }: any) => {
                                     </FieldArray>
                                     {formik.touched.languages && formik.errors.languages && typeof formik.errors.languages === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.languages as ReactNode}</FormHelperText>}
                                 </Box>
-                                <DialogActions style={{ padding: '24px' }}>
+                                <DialogActions style={{ paddingBottom: '20px', paddingRight: '24px', paddingTop: '40px' }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {
