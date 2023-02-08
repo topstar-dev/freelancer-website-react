@@ -65,7 +65,13 @@
 }
 
 .profile-edit-dialog-body {
-    max-height: 100%;
+    max-height: 73vh;
+    overflow: auto;
+    min-width: 500px;
+}
+
+.profile-edit-dialog-body.profile-edit-dialog-body-mobile {
+    max-height: calc(100% - 160px);
     overflow: auto;
     min-width: 500px;
 }
@@ -177,6 +183,10 @@
 
 .language-box-skill {
     color: #757575;
+}
+
+.editLanguagesModal .MuiDialogContent-root {
+    padding: 0 !important;
 }
 
 /* ======================

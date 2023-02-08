@@ -63,7 +63,7 @@ const EditLanguages = ({ languages }: any) => {
                     setShow(false)
                 }}
                 maxWidth="lg"
-                className="deleteEmailModal"
+                className="editLanguagesModal"
             >
                 <Formik
                     enableReinitialize
@@ -101,7 +101,7 @@ const EditLanguages = ({ languages }: any) => {
                                         </Box>
                                     </Box>
                                 </DialogTitle>
-                                <Box className="profile-edit-dialog-body">
+                                <Box className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
                                     <FieldArray name="languages">
                                         {({ unshift, remove }) => (
                                             formik.values.languages.map((lang: any, index: number) => {
@@ -172,7 +172,7 @@ const EditLanguages = ({ languages }: any) => {
                                     </FieldArray>
                                     {formik.touched.languages && formik.errors.languages && typeof formik.errors.languages === 'string' && <FormHelperText style={{ padding: '0 72px', color: '#d32f2f' }}>{formik.errors.languages as ReactNode}</FormHelperText>}
                                 </Box>
-                                <DialogActions style={{ padding: 0, marginBottom: -6 }}>
+                                <DialogActions style={{ padding: '24px' }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {
@@ -181,7 +181,7 @@ const EditLanguages = ({ languages }: any) => {
                                         {t('cancel')}
                                     </Button>
                                     <Button
-                                        style={{ marginLeft: 0 }}
+                                        style={{ marginLeft: 10 }}
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
                                                 const { languages } = res;
