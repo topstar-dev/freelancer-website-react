@@ -47,6 +47,9 @@ export default function Languages({ languages, currentProfile }: any) {
                 onClick={() => {
                     setCurrentLength(currentLength + 2)
                 }}
+                onClickLess={() => {
+                    setCurrentLength(2);
+                }}
             />
         </Box>
     )

@@ -218,6 +218,7 @@
     },
     "profile": {
         "see-more": "See more",
+        "see-less": "See less",
         "basic-info-title": "Basic information",
         "basic-info-location": "Location",
         "basic-info-join-date": "Join date",

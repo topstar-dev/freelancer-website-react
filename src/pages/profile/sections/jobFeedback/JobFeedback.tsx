@@ -160,6 +160,16 @@ export default function JobFeedback({ username }: any) {
                     getJobFeedbacks(pageIndex + 1);
                     setPageIndex(pageIndex + 1)
                 }}
+                onClickLess={() => {
+                    setJobFeedbackData({
+                        ...jobFeedbackData,
+                        records: {
+                            ...jobFeedbackData.records,
+                            job_feedbacks: jobFeedbackData.records.job_feedbacks.slice(0, 5)
+                        }
+                    });
+                    setPageIndex(1)
+                }}
             />
         </Box>
     )

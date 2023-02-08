@@ -218,6 +218,7 @@
     },
     "profile": {
         "see-more": "查看更多",
+        "see-less": "少看",
         "basic-info-title": "基本信息",
         "basic-info-location": "位置",
         "basic-info-join-date": "加入日期",
