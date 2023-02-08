@@ -16,6 +16,9 @@
 
 .profile-layout-container.profile-layout-container-mobile {
     flex-direction: column-reverse;
+    max-width: 550px !important;
+    margin: 0 auto;
+    transition: width 0.5s;
 }
 
 .profile-layout-container.profile-layout-container-mobile .right-profile-section,
@@ -80,6 +83,7 @@
     padding: 0 !important;
     overflow: hidden;
     position: relative;
+    height: 362px;
 }
 
 .userInfo-profile-image-box {
@@ -98,13 +102,13 @@
 }
 
 .userInfo-avatar-image-box {
-    height: 78px;
-    width: 78px;
+    height: 100px;
+    width: 100px;
     border-radius: 100%;
     border: 2px solid #fff;
     background-color: #fff;
     position: relative;
-    top: -39px;
+    top: -50px;
     left: 26px;
     z-index: 1;
 

@@ -48,7 +48,7 @@ export default function UserInfo({
 
     return (
         <Card className="userInfo-container container-width">
-            <Box style={{ marginBottom: -24 }}>
+            <Box style={{ marginBottom: -28 }}>
                 <Box className="userInfo-profile-image-box">
                     {userProfile ?
                         <img className='userInfo-profile-image' alt="profile_image" src={userProfile} />
