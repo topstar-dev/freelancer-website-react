@@ -17,9 +17,9 @@ export function useEditFreelancer() {
                     if (res.payload.error && res.payload.error === 'NAME_UNABLE_MODIFY') {
                         resolve(true);
                     } else {
-                        enqueueSnackbar(res.payload.message);
                         reject(res);
                     }
+                    enqueueSnackbar(res.payload.message);
                 }
             }).catch((err) => {
                 enqueueSnackbar(err.message);
