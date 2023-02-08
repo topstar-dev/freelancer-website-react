@@ -18,27 +18,31 @@ export default function Languages({ languages, currentProfile }: any) {
                     {t('profile.language-title')}
                     {currentProfile && <EditLanguages languages={languages} />}
                 </Box>
-                {languages.length && <Box className="language-list-container">
-                    {languages && languages.slice(0, currentLength).map((lang: any, index: number) => (
-                        <Box className="profile-language-box" key={index}>
-                            <Box>
-                                <Box className="language-box-name">{lang.language_name}</Box>
-                                <Box className="language-box-skill">{t(`${Object.values(LANGUAGE_SKILLS)[Object.keys(LANGUAGE_SKILLS).findIndex(e => e === lang.language_skill)]}`)}</Box>
+                {languages.length ?
+                    <Box className="language-list-container">
+                        {languages && languages.slice(0, currentLength).map((lang: any, index: number) => (
+                            <Box className="profile-language-box" key={index}>
+                                <Box>
+                                    <Box className="language-box-name">{lang.language_name}</Box>
+                                    <Box className="language-box-skill">{t(`${Object.values(LANGUAGE_SKILLS)[Object.keys(LANGUAGE_SKILLS).findIndex(e => e === lang.language_skill)]}`)}</Box>
+                                </Box>
+                                <Box>
+                                    <Rating
+                                        readOnly
+                                        size="medium"
+                                        name="language-skill"
+                                        value={(Object.keys(LANGUAGE_SKILLS)).indexOf(lang.language_skill) + 1}
+                                        precision={1}
+                                        icon={<CircleIcon fontSize="inherit" />}
+                                        emptyIcon={<CircleIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                    />
+                                </Box>
                             </Box>
-                            <Box>
-                                <Rating
-                                    readOnly
-                                    size="medium"
-                                    name="language-skill"
-                                    value={(Object.keys(LANGUAGE_SKILLS)).indexOf(lang.language_skill) + 1}
-                                    precision={1}
-                                    icon={<CircleIcon fontSize="inherit" />}
-                                    emptyIcon={<CircleIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                                />
-                            </Box>
-                        </Box>
-                    ))}
-                </Box>}
+                        ))}
+                    </Box>
+                    :
+                    ''
+                }
             </Card>
             <SeeMore
                 loading={false}

@@ -121,11 +121,12 @@
 }
 
 .userInfo-profile-image-box {
+    height: 165px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .userInfo-profile-image {
