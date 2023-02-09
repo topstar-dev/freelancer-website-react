@@ -64,14 +64,8 @@
     flex-direction: column;
 }
 
-.card-heading-new-item .add-new-chip {
-    width: 165px !important;
-    border-radius: 16px !important;
-}
-
-.add-new-chip:hover .MuiChip-outlined {
-    cursor: pointer;
-    opacity: 0.8;
+.add-new-chip {
+    width: fit-content !important;
 }
 
 .add-title {

@@ -61,15 +61,14 @@ const EditLanguages = ({ languages }: any) => {
                     onClick={() => setShow(true)}
                 />
                 :
-                <ButtonBase
+                <Chip
+                    className="add-new-chip"
                     onClick={() => setShow(true)}
-                    className="add-new-chip">
-                    <Chip
-                        label={<Box className="add-title">
-                            <AddIcon /> Add Languages
-                        </Box>} variant="outlined"
-                    />
-                </ButtonBase>
+                    variant="outlined"
+                    style={{ paddingLeft: '10px', paddingRight: '10px' }}
+                    avatar={<AddIcon/>}
+                    label={t('add-languages')}
+                />
             }
             <Dialog
                 fullScreen={isMobile}
