@@ -11,7 +11,7 @@ import './applyFreelancer.css';
 import { useAppDispatch } from '../../redux/hooks';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
 import { FieldArray, Formik } from 'formik';
-import { getSkillsList } from '../../redux/occupationSkills/occupationSkillsActions';
+import { getOccupationCategories, getSkillsList } from '../../redux/occupationSkills/occupationSkillsActions';
 import { useEditFreelancer } from './useEditFreelancer';
 
 const Skills = (props: any) => {
@@ -22,10 +22,11 @@ const Skills = (props: any) => {
     const [called, setCalled] = useState(false);
     const [loading, setLoading] = useState(false);
     const [skillsList, setSkillsList] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     const freelancerApplicationInfo = sessionStorage.getItem('freelancer-application-info') ? JSON.parse(`${sessionStorage.getItem('freelancer-application-info')}`) : {};
     const [freelancerSkills, setFreelancerSkills] = useState({
-        occupation_category: freelancerApplicationInfo.occupation_category || "",
+        occupation_category_id: freelancerApplicationInfo.occupation_category_id || "",
         skills: freelancerApplicationInfo.skills || []
     });
 
@@ -35,7 +36,7 @@ const Skills = (props: any) => {
 
     const getSkills = useCallback((occupationCategory: string) => {
         setLoading(true)
-        dispatch(getSkillsList({ occupation_category: occupationCategory })).then((res) => {
+        dispatch(getSkillsList({ occupation_category_id: occupationCategory })).then((res) => {
             if (res.payload && res.payload.success) {
                 setSkillsList(res.payload.data.records);
             }
@@ -48,11 +49,22 @@ const Skills = (props: any) => {
     useEffect(() => {
         if (!called) {
             setCalled(true);
-            if (freelancerSkills.occupation_category) {
-                getSkills(freelancerSkills.occupation_category)
-            }
+            setLoading(true);
+            dispatch(getOccupationCategories()).then((res) => {
+                if (res.payload.success) {
+                    setCategories(res.payload.data);
+                }
+            }).catch(() => {
+
+            }).finally(() => {
+                if (freelancerSkills.occupation_category_id) {
+                    getSkills(freelancerSkills.occupation_category_id)
+                } else {
+                    setLoading(false);
+                }
+            })
         }
-    }, [called, freelancerSkills.occupation_category, getSkills])
+    }, [dispatch, called, freelancerSkills.occupation_category_id, getSkills])
 
     let pushMethod: any = () => { };
     const getSkillLabel = (id: number) => {
@@ -87,7 +99,7 @@ const Skills = (props: any) => {
                     enableReinitialize
                     initialValues={freelancerSkills}
                     validationSchema={yup.object({
-                        occupation_category: yup
+                        occupation_category_id: yup
                             .string()
                             .required(t('validation.occupation-category-required')),
                         skills: yup.array().of(
@@ -105,14 +117,14 @@ const Skills = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
                                 <Form className="freelancer-card-spacing" style={{ paddingTop: 40 }}>
-                                    <FormControl error={formik.touched.occupation_category && Boolean(formik.errors.occupation_category)} fullWidth>
+                                    <FormControl error={formik.touched.occupation_category_id && Boolean(formik.errors.occupation_category_id)} fullWidth>
                                         <InputLabel id="freelancer-occupation-select-label">{t('freelancer.skills.occupation')}</InputLabel>
                                         <Select
                                             label={t('freelancer.skills.occupation')}
                                             labelId="freelancer-occupation-select-label"
-                                            id="occupation_category"
-                                            name="occupation_category"
-                                            value={formik.values.occupation_category ? formik.values.occupation_category : ''}
+                                            id="occupation_category_id"
+                                            name="occupation_category_id"
+                                            value={formik.values.occupation_category_id ? formik.values.occupation_category_id : ''}
                                             onChange={(e) => {
                                                 setLoading(true)
                                                 formik.handleChange(e)
@@ -121,10 +133,11 @@ const Skills = (props: any) => {
                                                 getSkills(e.target.value);
                                             }}
                                         >
-                                            <MenuItem value={`DEVELOPMENT`}>{t('freelancer.skills.development')}</MenuItem>
-                                            <MenuItem value={`DESIGN`}>{t('freelancer.skills.design')}</MenuItem>
+                                            {categories.map((c: any) => (
+                                                <MenuItem key={c.occupation_category_id} value={c.occupation_category_id}>{c.occupation_category_name}</MenuItem>
+                                            ))}
                                         </Select>
-                                        {formik.touched.occupation_category && formik.errors.occupation_category && <FormHelperText>{formik.errors.occupation_category as ReactNode}</FormHelperText>}
+                                        {formik.touched.occupation_category_id && formik.errors.occupation_category_id && <FormHelperText>{formik.errors.occupation_category_id as ReactNode}</FormHelperText>}
                                     </FormControl>
                                     <FormControl error={formik.submitCount > 0 && formik.touched.skills && Boolean(formik.errors.skills)} fullWidth>
                                         <Autocomplete
@@ -179,14 +192,14 @@ const Skills = (props: any) => {
                                     disabled={loading}
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
-                                            const { occupation_category, skills } = res;
+                                            const { occupation_category_id, skills } = res;
                                             formik.submitForm();
                                             const saveData = {
-                                                occupation_category: formik.values.occupation_category,
+                                                occupation_category_id: formik.values.occupation_category_id,
                                                 skills: formik.values.skills.map((e: any, index: number) => ({ skill_id: e.skill_id, order: index }))
                                             }
 
-                                            if (!(occupation_category || skills)) {
+                                            if (!(occupation_category_id || skills)) {
                                                 setLoading(true);
                                                 editFreelancer(saveData).then(() => {
                                                     navigate(`/apply-freelancer/name-photos`)

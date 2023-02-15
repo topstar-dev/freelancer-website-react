@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getSkills, searchSkills, submitSuggestedSkills } from "./occupationSkillsApi";
+import { getOcuupationCategories, getSkills, searchSkills, submitSuggestedSkills } from "./occupationSkillsApi";
 
 export interface GetSkillsInterface {
-    occupation_category?: string;
+    occupation_category_id?: string;
     page_index?: number;
     page_size?: number;
     order_by?: 'skill_name' | 'skill_stars' | 'skill_usage';
@@ -11,16 +11,28 @@ export interface GetSkillsInterface {
 
 export interface SearchSkillsInterface {
     keyword: string;
-    occupation_category?: string;
+    occupation_category_id?: string;
     page_index?: number;
     page_size?: number;
 }
 
 export interface SubmitSkillsInterface {
-    occupation_category: string;
+    occupation_category_id: string;
     skill_description: string;
     skill_name: string;
 }
+
+export const getOccupationCategories = createAsyncThunk(
+    'occupationSkills/getOccupationCategories',
+    async (skillsParamData: void, { rejectWithValue }) => {
+        try {
+            const response = await getOcuupationCategories();
+            return response.success ? response : rejectWithValue(response);
+        } catch (error: any) {
+            return rejectWithValue({ message: "Error occured" })
+        }
+    }
+)
 
 export const getSkillsList = createAsyncThunk(
     'occupationSkills/getSkills',

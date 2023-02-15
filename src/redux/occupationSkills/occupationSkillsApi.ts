@@ -1,6 +1,13 @@
 import { apiCall } from "../apiCall";
 import { GetSkillsInterface, SearchSkillsInterface, SubmitSkillsInterface } from "./occupationSkillsActions";
 
+export const getOcuupationCategories = () => {
+    const requestOptions: RequestInit = {
+        method: 'GET'
+    };
+    return apiCall(`/user/v1/occupation-categories`, requestOptions);
+};
+
 export const getSkills = (getSkillsParam: GetSkillsInterface | void) => {
     const requestOptions: RequestInit = {
         method: 'GET'
