@@ -116,7 +116,7 @@ export default function JobFeedback({ username }: any) {
                         <Box>{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
                     </Box>
                 </Box>
-                {!Boolean(jobFeedbackData?.records?.job_feedbacks) && jobFeedbackData?.records?.job_feedbacks?.length === 0 ?
+                {!jobFeedbackData?.records?.job_feedbacks.length ?
                     ""
                     :
                     <>
