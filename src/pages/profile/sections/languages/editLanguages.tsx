@@ -1,4 +1,4 @@
-import { ButtonBase, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { ReactNode, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -66,7 +66,7 @@ const EditLanguages = ({ languages }: any) => {
                     onClick={() => setShow(true)}
                     variant="outlined"
                     style={{ paddingLeft: '10px', paddingRight: '10px' }}
-                    avatar={<AddIcon/>}
+                    avatar={<AddIcon />}
                     label={t('add-languages')}
                 />
             }
