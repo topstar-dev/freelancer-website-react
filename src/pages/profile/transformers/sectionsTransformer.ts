@@ -9,6 +9,7 @@ export const transformUserInfoData = (data: any) => {
         last_name,
         profile_file_name,
         profile_original_name,
+        identity_status,
         username,
     } = data;
 
@@ -20,6 +21,7 @@ export const transformUserInfoData = (data: any) => {
         last_name,
         profile_file_name,
         profile_original_name,
+        identity_status,
         username
     }
 }

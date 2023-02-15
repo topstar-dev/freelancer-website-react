@@ -132,6 +132,18 @@
     position: relative;
 }
 
+.user-info-edit {
+    padding: 16px 26px 0 0;
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+}
+
+.user-info-edit .user-info-edit-icon {
+    color: #757575;
+    cursor: pointer;
+}
+
 .userInfo-profile-image-box {
     position: relative;
     display: flex;
@@ -175,6 +187,13 @@
 .userInfo-user-name {
     font-size: 20px;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.userInfo-user-icon {
+    color: var(--color-primary);
+    margin-left: 8px;
 }
 
 .userInfo-user-id {

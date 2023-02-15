@@ -1,15 +1,19 @@
 import { Avatar, Box } from "@mui/material";
 import { useEffect, useState } from "react";
+import VerifiedIcon from '@mui/icons-material/Verified';
 import Card from '../../../../components/card/Card'
 import { FUNCTION_TYPES } from "../../../../redux/constants";
 import { useAppDispatch } from "../../../../redux/hooks";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
+import EditUserInfo from "./EditUserInfo";
 
 export default function UserInfo({
     full_name,
     username,
     avatar_file_name,
     profile_file_name,
+    identity_status,
+    currentProfile,
     ...rest
 }: any) {
     const dispatch = useAppDispatch();
@@ -56,16 +60,22 @@ export default function UserInfo({
                         <img className='userInfo-profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
                     }
                 </Box>
-                <Box className="userInfo-avatar-image-box">
-                    {userAvatar ?
-                        <Avatar className='userInfo-avatar-image' alt="avatar_image" src={userAvatar} />
-                        :
-                        <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
-                    }
+                <Box>
+                    <Box className="userInfo-avatar-image-box">
+                        {userAvatar ?
+                            <Avatar className='userInfo-avatar-image' alt="avatar_image" src={userAvatar} />
+                            :
+                            <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
+                        }
+                    </Box>
+                    {currentProfile && <EditUserInfo />}
                 </Box>
             </Box>
             <Box className="userInfo-user-details">
-                <Box className="userInfo-user-name">{full_name}</Box>
+                <Box className="userInfo-user-name">
+                    {full_name}
+                    {identity_status === 'PASSED' && <VerifiedIcon className="userInfo-user-icon" />}
+                </Box>
                 <Box className="userInfo-user-id">@{username}</Box>
             </Box>
         </Card>
