@@ -38,7 +38,7 @@ export default function Skills({ skills, currentProfile }: any) {
                                 display: 'flex',
                                 alignItems: 'center'
                             }}
-                            className="skill-chip"
+                            className="skill-chip-extra"
                         >
                             {`+${skills.length - skills?.slice(0, currentLength)?.length}`}
                         </div>

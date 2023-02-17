@@ -368,6 +368,12 @@
     font-size: 16px !important;
 }
 
+.skill-chip-extra {
+    color: #757575;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
 
 /* ======================
 = experiences
