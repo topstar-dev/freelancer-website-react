@@ -108,7 +108,6 @@
     "country": "Country / Region",
     "set-password": "Set password",
     "confirm-password": "Confirm password",
-    "send-message": "Send message",
     "email": "Email",
     "code": "Enter code",
     "reset-password": "Reset Password",
@@ -236,13 +235,11 @@
     "contact-us": {
         "title": "Contact us",
         "name": "Rounx Technology (Dalian) Co., Ltd.",
-        "type": "Remote Work",
         "timing-title": "Working hours",
-        "timing": "Monday-Friday: 8:00 AM - 5:00 PM UTC+8",
+        "timing": "Monday - Friday: 8:00 AM - 5:00 PM UTC+8",
         "contact-details": "Contact details",
         "customer": "Customer Support",
-        "business": "Business Cooperation",
-        "online": "Online customer service (24 x 7)"
+        "online": "Customer Service (24 x 7)"
     },
     "faq": {
         "title": "Frequently Asked Questions",

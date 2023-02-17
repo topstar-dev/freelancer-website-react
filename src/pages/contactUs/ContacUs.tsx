@@ -23,7 +23,7 @@ export default function ContactUs() {
         <Box>
           <Box>
             <Typography style={{ fontWeight: 'bold', marginBottom: '10px' }}>{t('contact-us.name')}</Typography>
-            <Typography>Remote Work</Typography>
+            <Typography>Remote work</Typography>
           </Box>
         </Box>
         <Box>
@@ -52,7 +52,7 @@ export default function ContactUs() {
                   Crisp.chat.open()
                 }}
               >
-                {t('send-message')}
+                Send message
               </span>
             </Typography>
           </Box>

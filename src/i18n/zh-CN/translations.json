@@ -108,7 +108,6 @@
     "country": "国家/地区",
     "set-password": "设置密码",
     "confirm-password": "确认密码",
-    "send-message": "发送消息",
     "email": "电子邮件地址",
     "code": "输入验证码",
     "reset-password": "重置密码",
@@ -235,14 +234,12 @@
     },
     "contact-us": {
         "title": "联系我们",
-        "name": "至圆科技（大连）有限公司",
-        "type": "Remote Work",
-        "timing-title": "工作时间",
-        "timing": "周一至周五：8:00 AM - 5:00 PM UTC+8",
-        "contact-details": "联系方式",
-        "customer": "客户支持",
-        "business": "商务合作",
-        "online": "在线客服 (24 x 7)"
+        "name": "Rounx Technology (Dalian) Co., Ltd.",
+        "timing-title": "Working hours",
+        "timing": "Monday - Friday: 8:00 AM - 5:00 PM UTC+8",
+        "contact-details": "Contact details",
+        "customer": "Customer Support",
+        "online": "Customer Service (24 x 7)"
     },
     "faq": {
         "title": "Frequently Asked Questions",
