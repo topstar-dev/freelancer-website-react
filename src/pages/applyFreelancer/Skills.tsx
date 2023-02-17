@@ -178,7 +178,7 @@ const Skills = (props: any) => {
                                                     pushMethod = unshift;
                                                     return formik.values.skills.map((skill: any, index: number) => {
                                                         return (
-                                                            <Chip style={{ marginLeft: 0 }} key={index} label={getSkillLabel(skill.skill_id)} variant="outlined" onDelete={() => { remove(index) }} />
+                                                            <Chip style={{ marginLeft: 0 }} key={index} label={skill.skill_name ? skill.skill_name : getSkillLabel(skill.skill_id)} variant="outlined" onDelete={() => { remove(index) }} />
                                                         )
                                                     })
                                                 }}
