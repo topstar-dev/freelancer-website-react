@@ -7,7 +7,7 @@ import SeeMore from "../../../../components/seeMore/SeeMore";
 
 export default function About({ about, currentProfile }: any) {
     const { t } = useTranslation();
-    const [currentLength, setCurrentLength] = useState(200);
+    const [currentLength, setCurrentLength] = useState(50);
 
     return (
         <Box>
@@ -30,7 +30,7 @@ export default function About({ about, currentProfile }: any) {
                     setCurrentLength(about.length)
                 }}
                 onClickLess={() => {
-                    setCurrentLength(200);
+                    setCurrentLength(50);
                 }}
             />
         </Box>
