@@ -2,9 +2,12 @@ import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
+import SeeMore from "../../../../components/seeMore/SeeMore";
+import { useState } from "react";
 
 export default function Experiences({ experiences, currentProfile }: any) {
     const { t } = useTranslation();
+    const [currentLength, setCurrentLength] = useState(2);
 
     const getDetailsLabel = (exp: any) => {
         if (exp.end_year) {
@@ -20,22 +23,36 @@ export default function Experiences({ experiences, currentProfile }: any) {
         }
     }
     return (
-        <Card className="experiences-container container-width">
-            <Box className="card-heading">
-                {t('profile.experiences-title')}
-                {currentProfile && <EditIcon className="edit-icon" />}
-            </Box>
-            <Box className="profile-experience-box">
-                {experiences?.map((exp: any, index: number) => (
-                    <Box className="profile-experience-item" key={index}>
-                        <Box>
-                            <Box className="experience-title">{exp.company_name}</Box>
-                            <Box className="experience-details">{getDetailsLabel(exp).first} &#183; {getDetailsLabel(exp).last}</Box>
+        <Box>
+            <Card className="see-more-container container-width">
+                <Box className="card-heading">
+                    {t('profile.experiences-title')}
+                    {currentProfile && <EditIcon className="edit-icon" />}
+                </Box>
+                <Box className="profile-experience-box">
+                    {experiences?.slice(0, currentLength)?.map((exp: any, index: number) => (
+                        <Box className="profile-experience-item" key={index}>
+                            <Box>
+                                <Box className="experience-title">{exp.company_name}</Box>
+                                <Box className="experience-details">{getDetailsLabel(exp).first} &#183; {getDetailsLabel(exp).last}</Box>
+                            </Box>
+                            {exp.description && <Box className="experience-description">{exp.description}</Box>}
                         </Box>
-                        {exp.description && <Box className="experience-description">{exp.description}</Box>}
-                    </Box>
-                ))}
-            </Box>
-        </Card>
+                    ))}
+                </Box>
+            </Card>
+            <SeeMore
+                loading={false}
+                currentLength={currentLength}
+                totalSize={experiences?.length}
+                limit={2}
+                onClick={() => {
+                    setCurrentLength(currentLength + 2)
+                }}
+                onClickLess={() => {
+                    setCurrentLength(2);
+                }}
+            />
+        </Box>
     )
 }
