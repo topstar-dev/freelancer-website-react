@@ -31,6 +31,20 @@ export default function Skills({ skills, currentProfile }: any) {
                             <Chip className="skill-chip" key={index} label={skill.skill_name} variant="outlined" />
                         )
                     })}
+                    {skills.length > currentLength ?
+                        <div
+                            style={{
+                                height: '32px',
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}
+                            className="skill-chip"
+                        >
+                            {`+${skills.length - skills?.slice(0, currentLength)?.length}`}
+                        </div>
+                        :
+                        ''
+                    }
                 </Stack>
             </Card >
             <SeeMore
