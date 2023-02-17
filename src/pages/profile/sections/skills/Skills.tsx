@@ -40,7 +40,7 @@ export default function Skills({ skills, currentProfile }: any) {
                             }}
                             className="skill-chip-extra"
                         >
-                            {`+${skills.length - skills?.slice(0, currentLength)?.length}`}
+                            {`+ ${skills.length - skills?.slice(0, currentLength)?.length}`}
                         </div>
                         :
                         ''
