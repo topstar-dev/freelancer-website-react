@@ -18,7 +18,7 @@ export default function Experiences({ experiences, currentProfile }: any) {
         } else {
             return {
                 first: `${exp.job_title}`,
-                last: `${exp.start_year} to date`
+                last: `${exp.start_year} - ${t('profile.present')}`
             }
         }
     }

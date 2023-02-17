@@ -18,7 +18,7 @@ export default function Educations({ educations, currentProfile }: any) {
         } else {
             return {
                 first: `${exp.major_name}`,
-                last: `${exp.start_year} to date`
+                last: `${exp.start_year} - ${t('profile.present')}`
             }
         }
     }
