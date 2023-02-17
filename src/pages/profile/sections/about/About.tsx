@@ -18,6 +18,7 @@ export default function About({ about, currentProfile }: any) {
                 </Box>
                 <Box className="about-content">
                     {about.substr(0, currentLength)}
+                    {about.length > currentLength ? '...' : ''}
                 </Box>
             </Card>
             <SeeMore
