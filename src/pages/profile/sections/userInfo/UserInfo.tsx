@@ -74,7 +74,7 @@ export default function UserInfo({
             <Box className="userInfo-user-details">
                 <Box className="userInfo-user-name">
                     {full_name}
-                    {identity_status === 'PASSED' && <VerifiedIcon className="userInfo-user-icon" />}
+                    {identity_status && <VerifiedIcon className="userInfo-user-verified-icon" />}
                 </Box>
                 <Box className="userInfo-user-id">@{username}</Box>
             </Box>

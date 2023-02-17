@@ -191,9 +191,10 @@
     align-items: center;
 }
 
-.userInfo-user-icon {
+.userInfo-user-verified-icon {
     color: var(--color-primary);
     margin-left: 8px;
+    font-size: 18px !important;
 }
 
 .userInfo-user-id {
