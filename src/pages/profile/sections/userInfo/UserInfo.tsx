@@ -60,7 +60,7 @@ export default function UserInfo({
                         <img className='userInfo-profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
                     }
                 </Box>
-                <Box>
+                <Box style={{ display: 'flex' }}>
                     <Box className="userInfo-avatar-image-box">
                         {userAvatar ?
                             <Avatar className='userInfo-avatar-image' alt="avatar_image" src={userAvatar} />
