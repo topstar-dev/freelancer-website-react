@@ -18,14 +18,13 @@ export default function About({ about, currentProfile }: any) {
                 </Box>
                 <Box className="about-content">
                     {about.substr(0, currentLength)}
-                    {currentLength !== about.length ? '...' : ''}
                 </Box>
             </Card>
             <SeeMore
                 loading={false}
                 currentLength={currentLength}
                 totalSize={about?.length}
-                limit={2}
+                limit={200}
                 onClick={() => {
                     setCurrentLength(about.length)
                 }}

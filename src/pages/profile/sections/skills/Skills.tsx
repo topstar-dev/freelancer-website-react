@@ -37,7 +37,7 @@ export default function Skills({ skills, currentProfile }: any) {
                 loading={false}
                 currentLength={currentLength}
                 totalSize={skills?.length}
-                limit={2}
+                limit={7}
                 onClick={() => {
                     setCurrentLength(skills.length)
                 }}
