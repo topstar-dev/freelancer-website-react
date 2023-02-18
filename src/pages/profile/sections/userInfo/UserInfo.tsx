@@ -9,6 +9,8 @@ import EditUserInfo from "./EditUserInfo";
 
 export default function UserInfo({
     full_name,
+    first_name,
+    last_name,
     username,
     avatar_file_name,
     profile_file_name,
@@ -68,7 +70,16 @@ export default function UserInfo({
                             <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
                         }
                     </Box>
-                    {currentProfile && <EditUserInfo />}
+                    {currentProfile && <EditUserInfo
+                        first_name={first_name}
+                        last_name={last_name}
+                        userAvatar={userAvatar}
+                        userProfile={userProfile}
+                        setUserAvatar={setUserAvatar}
+                        setUserProfile={setUserProfile}
+                        loadingAvatar={loadingAvatar}
+                        loadingProfile={loadingProfile}
+                    />}
                 </Box>
             </Box>
             <Box className="userInfo-user-details">

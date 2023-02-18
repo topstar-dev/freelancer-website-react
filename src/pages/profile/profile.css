@@ -106,13 +106,13 @@
 }
 
 .profile-edit-dialog-body {
-    max-height: 73vh;
+    max-height: 83vh;
     overflow: auto;
     min-width: 500px;
 }
 
 .profile-edit-dialog-body.profile-edit-dialog-body-mobile {
-    height: calc(100% - 160px);
+    height: 100%;
     overflow: auto;
     min-width: 500px;
 }
