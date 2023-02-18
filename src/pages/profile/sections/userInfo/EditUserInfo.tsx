@@ -108,6 +108,7 @@ const EditUserInfo = ({
                 setEditMode(false)
             }}
             maxWidth="lg"
+            className='userinfo-profile-edit'
         >
             <Formik
                 enableReinitialize
@@ -130,7 +131,7 @@ const EditUserInfo = ({
                 {formik =>
                     <WithTranslateFormErrors {...formik}>
                         <DialogContent>
-                            <DialogTitle style={{ padding: '0 0 24px 0' }}>
+                            <DialogTitle style={{ padding: '0 24px 24px 24px' }}>
                                 <Box className={`heading-flex`}>
                                     <Box>
                                         <Box className='profile-edit-heading-title'>{t('freelancer.info.title')}</Box>
@@ -266,7 +267,7 @@ const EditUserInfo = ({
                                     />
                                 </Form>
                             </Box>
-                            <DialogActions style={{ paddingTop: '24px', paddingRight: 0, paddingBottom: 0 }}>
+                            <DialogActions style={{ paddingTop: '24px', paddingRight: '24px', paddingBottom: 0 }}>
                                 <Button
                                     variant="text"
                                     onClick={() => {
