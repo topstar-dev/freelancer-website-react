@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
 import SeeMore from "../../../../components/seeMore/SeeMore";
+import EditAbout from "./editAbout";
 
 export default function About({ about, currentProfile }: any) {
     const { t } = useTranslation();
@@ -12,9 +12,9 @@ export default function About({ about, currentProfile }: any) {
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className="card-heading">
+                <Box className={about ? "card-heading" : "card-heading-new-item"}>
                     {t('profile.about-title')}
-                    {currentProfile && <EditIcon className="edit-icon" />}
+                    {currentProfile && <EditAbout about={about} />}
                 </Box>
                 <Box className="about-content">
                     {about?.substr(0, currentLength)}
