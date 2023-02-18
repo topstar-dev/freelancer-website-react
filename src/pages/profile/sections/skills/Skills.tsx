@@ -1,12 +1,12 @@
 import { Box, Chip } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useTranslation } from "react-i18next";
-import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
 import { useState } from "react";
 import SeeMore from "../../../../components/seeMore/SeeMore";
+import EditSkills from "./editSkills";
 
-export default function Skills({ skills, currentProfile }: any) {
+export default function Skills({ skills, occupation_category_id, currentProfile }: any) {
     const { t } = useTranslation();
     const [currentLength, setCurrentLength] = useState(7);
 
@@ -15,7 +15,7 @@ export default function Skills({ skills, currentProfile }: any) {
             <Card className="see-more-container container-width">
                 <Box className="card-heading">
                     {t('profile.skills-title')}
-                    {currentProfile && <EditIcon className="edit-icon" />}
+                    {currentProfile && <EditSkills skills={skills} occupation_category_id={occupation_category_id} />}
                 </Box>
                 <Stack
                     display={'flex'}

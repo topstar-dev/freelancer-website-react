@@ -28,7 +28,7 @@ export default function FreelancerProfile({ profile }: any) {
             <div className={'profile-layout-container'}>
                 <div className="right-profile-section">
                     {isAboutDisplay && <About about={profile.about} currentProfile={currentProfile} />}
-                    {isSkillDisplay && <Skills skills={profile.skills} currentProfile={currentProfile} />}
+                    {isSkillDisplay && <Skills skills={profile.skills} occupation_category_id={profile.occupation_category_id} currentProfile={currentProfile} />}
                     {isExperienceDisplay && <Experiences experiences={profile.experiences} currentProfile={currentProfile} />}
                     {isEducationDisplay && <Educations educations={profile.educations} currentProfile={currentProfile} />}
                 </div>
@@ -52,7 +52,7 @@ export default function FreelancerProfile({ profile }: any) {
             <div className="left-profile-section">
                 <UserInfo {...profileUserInfo} currentProfile={currentProfile} />
                 {isAboutDisplay && <About about={profile.about} currentProfile={currentProfile} />}
-                {isSkillDisplay && <Skills skills={profile.skills} currentProfile={currentProfile} />}
+                {isSkillDisplay && <Skills skills={profile.skills} occupation_category_id={profile.occupation_category_id} currentProfile={currentProfile} />}
                 {isExperienceDisplay && <Experiences experiences={profile.experiences} currentProfile={currentProfile} />}
                 {isEducationDisplay && <Educations educations={profile.educations} currentProfile={currentProfile} />}
             </div>
