@@ -71,7 +71,7 @@ const EditAbout = ({ about }: any) => {
                                         </Box>
                                     </Box>
                                 </DialogTitle>
-                                <Box style={{ paddingTop: '5px' }} className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
+                                <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
                                     <TextField
                                         multiline={true}
                                         rows={8}

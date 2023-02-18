@@ -138,14 +138,14 @@ const EditBasicInformation = ({
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
-                                <DialogTitle style={{ marginTop: 6 }}>
+                                <DialogTitle style={{ padding: '0 0 24px 0' }}>
                                     <Box className={`heading-flex`}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('freelancer.about.title')}</Box>
                                         </Box>
                                     </Box>
                                 </DialogTitle>
-                                <Box style={{ paddingTop: '5px' }} className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
+                                <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
                                     <Form>
                                         <FormControl fullWidth>
                                             <InputLabel id="profile-country-id-select-label">{t('freelancer.about.country')}</InputLabel>
@@ -221,7 +221,7 @@ const EditBasicInformation = ({
                                         </FormControl>}
                                     </Form>
                                 </Box>
-                                <DialogActions style={{ paddingBottom: '20px', paddingRight: '24px', paddingTop: '40px' }}>
+                                <DialogActions style={{ paddingTop: '24px', paddingRight: 0, paddingBottom: 0 }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {
