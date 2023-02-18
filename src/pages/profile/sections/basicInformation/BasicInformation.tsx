@@ -1,11 +1,14 @@
 import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
-import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
+import EditBasicInformation from "./editBasicInformation";
 
 export default function BasicInformation({
     location,
     join_date,
+    city_id,
+    province_id,
+    country_id,
     currentProfile
 }: any) {
     const { t } = useTranslation();
@@ -14,7 +17,11 @@ export default function BasicInformation({
         <Card className="basicInfo-container container-width">
             <Box className="card-heading">
                 {t('profile.basic-info-title')}
-                {currentProfile && <EditIcon className="edit-icon" />}
+                {currentProfile && <EditBasicInformation
+                    city_id={city_id}
+                    province_id={province_id}
+                    country_id={country_id}
+                />}
             </Box>
             <Box className="basicInfo-location" style={{ marginBottom: 10 }}>
                 <span>{t('profile.basic-info-location')}:</span> {location}

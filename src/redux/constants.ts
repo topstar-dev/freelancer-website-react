@@ -10,6 +10,8 @@ export const FUNCTION_TYPES = {
     USER_FEEDBACK: 'USER_FEEDBACK'
 }
 
+export const COUNTRY_ID_CHINA = '49';
+
 interface LanguageSkill {
     [x: string]: string
 }

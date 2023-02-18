@@ -15,8 +15,8 @@ import { getCitiesList, getCountriesList, getProvincesList } from '../../redux/r
 import { submitFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useSnackbar } from 'notistack';
 import { useEditFreelancer } from './useEditFreelancer';
+import { COUNTRY_ID_CHINA } from '../../redux/constants';
 
-const COUNTRY_ID_CHINA = '49';
 const AboutMe = (props: any) => {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();

@@ -29,11 +29,17 @@ export const transformUserInfoData = (data: any) => {
 export const transformUBasicInformationData = (data: any) => {
     const {
         location,
-        join_time
+        join_time,
+        city_id,
+        province_id,
+        country_id
     } = data;
 
     return {
         location,
-        join_date: dayjs(new Date(join_time)).format('YYYY-MM-DD')
+        join_date: dayjs(new Date(join_time)).format('YYYY-MM-DD'),
+        city_id,
+        province_id,
+        country_id
     }
 }
