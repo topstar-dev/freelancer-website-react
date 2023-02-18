@@ -17,8 +17,8 @@ export default function About({ about, currentProfile }: any) {
                     {currentProfile && <EditIcon className="edit-icon" />}
                 </Box>
                 <Box className="about-content">
-                    {about.substr(0, currentLength)}
-                    {about.length > currentLength ? '...' : ''}
+                    {about?.substr(0, currentLength)}
+                    {about?.length > currentLength ? '...' : ''}
                 </Box>
             </Card>
             <SeeMore
@@ -27,7 +27,7 @@ export default function About({ about, currentProfile }: any) {
                 totalSize={about?.length}
                 limit={200}
                 onClick={() => {
-                    setCurrentLength(about.length)
+                    setCurrentLength(about?.length)
                 }}
                 onClickLess={() => {
                     setCurrentLength(200);
