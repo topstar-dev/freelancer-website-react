@@ -13,7 +13,7 @@ import CustomBackdrop from "../../../../components/customBackdrop/CustomBackdrop
 import { useProfileContext } from "../../Profile";
 import useBreakpoint from "../../../../components/breakpoints/BreakpointProvider";
 
-const EditAbout = ({ about }: any) => {
+const EditBasicInformation = ({ about }: any) => {
     const { t } = useTranslation();
     const { isMobile } = useBreakpoint()
     const editFreelancer = useEditFreelancer();
@@ -64,7 +64,7 @@ const EditAbout = ({ about }: any) => {
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
-                                <DialogTitle style={{ padding: '0 0 24px 0' }}>
+                                <DialogTitle style={{ marginTop: 6 }}>
                                     <Box className={`heading-flex`}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('freelancer.about.title')}</Box>
@@ -86,7 +86,7 @@ const EditAbout = ({ about }: any) => {
                                         helperText={formik.touched.about && formik.errors.about && (formik.errors.about as ReactNode)}
                                     />
                                 </Box>
-                                <DialogActions style={{ paddingTop: '24px', paddingRight: 0 }}>
+                                <DialogActions style={{ paddingBottom: '20px', paddingRight: '24px', paddingTop: '40px' }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {
@@ -131,4 +131,4 @@ const EditAbout = ({ about }: any) => {
     )
 }
 
-export default EditAbout;
+export default EditBasicInformation;
