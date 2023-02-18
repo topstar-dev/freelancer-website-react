@@ -248,6 +248,14 @@
     padding: 0 !important;
 }
 
+.editSkillsModal .MuiDialogContent-root {
+    padding: 0 !important;
+}
+
+.editSkillsModal .MuiAutocomplete-popper {
+    z-index: 9999999 !important;
+}
+
 /* ======================
 = job feedback
 ====================== */

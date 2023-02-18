@@ -112,7 +112,7 @@ const EditSkills = ({
                     setShow(false)
                 }}
                 maxWidth="lg"
-                className="editLanguagesModal"
+                className="editSkillsModal"
             >
                 <Formik
                     enableReinitialize
