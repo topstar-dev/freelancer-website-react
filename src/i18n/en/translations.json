@@ -65,8 +65,8 @@
     "footer-terms-of-service": "Terms",
     "home-page-heading1": "Talent First, ",
     "home-page-heading2": "Client First",
-    "home-page-heading1-details": "Rounx is a remote work platform for people with professional skills.",
-    "home-page-heading1-details2": "Clients can hire freelancers all over the world to get the job done, Freelancers can find suitable jobs on this platform.",
+    "home-page-heading1-details": "Rounx is a remote work platform for skilled professionals.",
+    "home-page-heading1-details2": "Clients can hire Freelancers from all over the world to complete the work, and Freelancers can find suitable jobs on this platform.",
     "home-page-join-ronux-button": "Join Rounx",
     "home-page-why-ronux": "Why Rounx?",
     "home-page-why-point1": "High quality work",
@@ -108,7 +108,6 @@
     "country": "Country / Region",
     "set-password": "Set password",
     "confirm-password": "Confirm password",
-    "send-message": "Send message",
     "email": "Email",
     "code": "Enter code",
     "reset-password": "Reset Password",
@@ -231,18 +230,16 @@
         "experiences-title": "Experiences",
         "educations-title": "Educations",
         "share-link-copied-to-clipboard": "Share link copied to clipboard",
-        "present": "Present"
+        "present": " - Present"
     },
     "contact-us": {
         "title": "Contact us",
         "name": "Rounx Technology (Dalian) Co., Ltd.",
-        "type": "Remote Work",
         "timing-title": "Working hours",
-        "timing": "Monday-Friday: 8:00 AM - 5:00 PM UTC+8",
+        "timing": "Monday - Friday: 8:00 AM - 5:00 PM UTC+8",
         "contact-details": "Contact details",
         "customer": "Customer Support",
-        "business": "Business Cooperation",
-        "online": "Online customer service (24 x 7)"
+        "online": "Customer Service (24 x 7)"
     },
     "faq": {
         "title": "Frequently Asked Questions",
