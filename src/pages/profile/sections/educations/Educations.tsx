@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
 import SeeMore from "../../../../components/seeMore/SeeMore";
 import { useState } from "react";
+import EditEducations from "./editEducations";
 
 export default function Educations({ educations, currentProfile }: any) {
     const { t } = useTranslation();
@@ -26,9 +26,9 @@ export default function Educations({ educations, currentProfile }: any) {
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className="card-heading">
+                <Box className={educations.length ? "card-heading" : "card-heading-new-item"}>
                     {t('profile.educations-title')}
-                    {currentProfile && <EditIcon className="edit-icon" />}
+                    {currentProfile && <EditEducations educations={educations} />}
                 </Box>
                 <Box className="profile-educations-box">
                     {educations?.slice(0, currentLength)?.map((edu: any, index: number) => (

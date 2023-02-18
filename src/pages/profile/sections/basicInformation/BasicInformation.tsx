@@ -15,7 +15,7 @@ export default function BasicInformation({
 
     return (
         <Card className="basicInfo-container container-width">
-            <Box className="card-heading">
+            <Box className={country_id || province_id || city_id ? "card-heading" : "card-heading-new-item"}>
                 {t('profile.basic-info-title')}
                 {currentProfile && <EditBasicInformation
                     city_id={city_id}

@@ -13,7 +13,7 @@ export default function Skills({ skills, occupation_category_id, currentProfile 
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className="card-heading">
+                <Box className={skills.length ? "card-heading" : "card-heading-new-item"}>
                     {t('profile.skills-title')}
                     {currentProfile && <EditSkills skills={skills} occupation_category_id={occupation_category_id} />}
                 </Box>

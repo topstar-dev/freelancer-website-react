@@ -25,7 +25,7 @@ export default function Experiences({ experiences, currentProfile }: any) {
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className="card-heading">
+                <Box className={experiences.length ? "card-heading" : "card-heading-new-item"}>
                     {t('profile.experiences-title')}
                     {currentProfile && <EditExperiences experiences={experiences} />}
                 </Box>
