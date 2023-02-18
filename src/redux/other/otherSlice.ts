@@ -26,7 +26,6 @@ export const otherSlice = createSlice({
             state.userAvatar = null;
         },
         setAvatar: (state, action) => {
-
             state.userAvatar = action.payload;
         },
         clearProfile: (state) => {

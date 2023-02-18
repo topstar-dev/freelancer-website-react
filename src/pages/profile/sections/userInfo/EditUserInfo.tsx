@@ -15,11 +15,14 @@ import useBreakpoint from '../../../../components/breakpoints/BreakpointProvider
 import { ReactNode, useEffect, useState } from 'react';
 import CustomBackdrop from '../../../../components/customBackdrop/CustomBackdrop';
 import WithTranslateFormErrors from '../../../../services/validationScemaOnLangChange';
-import { useAppDispatch } from '../../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { imageUpload } from '../../../../redux/other/otherActions';
 import { useEditFreelancer } from '../../../applyFreelancer/useEditFreelancer';
 import Form from '../../../../components/form/Form';
 import { useProfileContext } from '../../Profile';
+import { setTokens } from '../../../../redux/account/accountApi';
+import { updateUserInfo } from '../../../../redux/auth/authSlice';
+import { setAvatar, setProfile } from '../../../../redux/other/otherSlice';
 import "cropperjs/dist/cropper.css";
 import '../../../applyFreelancer/applyFreelancer.css';
 
@@ -39,6 +42,7 @@ const EditUserInfo = ({
     const { updateProfileData } = useProfileContext();
     const dispatch = useAppDispatch();
     const editFreelancer = useEditFreelancer();
+    const { userInfo } = useAppSelector(state => state.auth)
 
     const [editMode, setEditMode] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
@@ -62,11 +66,16 @@ const EditUserInfo = ({
                                     const imageUrlUpdate: any = {};
                                     if (tempImageData.functionType === FUNCTION_TYPES.USER_PROFILE) {
                                         setUserProfile(URL.createObjectURL(result));
+                                        dispatch(setProfile(URL.createObjectURL(result)))
                                         imageUrlUpdate['profile_file_name'] = res.payload.data.file_name;
                                     } else if (tempImageData.functionType === FUNCTION_TYPES.USER_AVATAR) {
                                         setUserAvatar(URL.createObjectURL(result));
+                                        dispatch(setAvatar(URL.createObjectURL(result)))
                                         imageUrlUpdate['avatar_file_name'] = res.payload.data.file_name;
+                                        setTokens({ ...userInfo, avatar_file_name: res.payload.data.file_name });
+                                        dispatch(updateUserInfo({ ...userInfo, avatar_file_name: res.payload.data.file_name }))
                                     }
+                                    updateProfileData(imageUrlUpdate);
                                     enqueueSnackbar(res.payload.message)
                                 }
                             }).catch((err) => {
@@ -86,7 +95,7 @@ const EditUserInfo = ({
                     });
                 })
         }
-    }, [dispatch, enqueueSnackbar, cropData, tempImageData, setUserAvatar, setUserProfile])
+    }, [dispatch, enqueueSnackbar, cropData, tempImageData, setUserAvatar, setUserProfile, updateProfileData, userInfo])
 
     return (<Box className="user-info-edit">
         <EditIcon
@@ -302,11 +311,14 @@ const EditUserInfo = ({
                                             if (!(first_name || last_name || avatarImageCheck || profileImageCheck)) {
                                                 setBackdrop(true);
                                                 editFreelancer(formik.values).then(() => {
-                                                    setEditMode(false)
+                                                    setEditMode(false);
+                                                    const fullName = [formik.values.first_name, formik.values.last_name].join(' ');
+                                                    setTokens({ ...userInfo, name: fullName });
+                                                    dispatch(updateUserInfo({ ...userInfo, name: fullName }))
                                                     updateProfileData({
                                                         first_name: formik.values.first_name,
                                                         last_name: formik.values.last_name,
-                                                        full_name: [formik.values.first_name, formik.values.last_name].join(' ')
+                                                        full_name: fullName
                                                     })
                                                 }).catch(() => { })
                                                     .finally(() => { setBackdrop(false) })
