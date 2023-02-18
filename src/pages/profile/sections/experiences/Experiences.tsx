@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import EditIcon from '@mui/icons-material/Edit';
 import Card from "../../../../components/card/Card";
 import SeeMore from "../../../../components/seeMore/SeeMore";
 import { useState } from "react";
+import EditExperiences from "./editExperiences";
 
 export default function Experiences({ experiences, currentProfile }: any) {
     const { t } = useTranslation();
@@ -27,7 +27,7 @@ export default function Experiences({ experiences, currentProfile }: any) {
             <Card className="see-more-container container-width">
                 <Box className="card-heading">
                     {t('profile.experiences-title')}
-                    {currentProfile && <EditIcon className="edit-icon" />}
+                    {currentProfile && <EditExperiences experiences={experiences} />}
                 </Box>
                 <Box className="profile-experience-box">
                     {experiences?.slice(0, currentLength)?.map((exp: any, index: number) => (
