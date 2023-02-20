@@ -83,7 +83,7 @@ export default function UserInfo({
                             loadingProfile={loadingProfile}
                         />
                         :
-                        <PreviewUserInfoActions />
+                        <PreviewUserInfoActions username={username} />
                     }
                 </Box>
             </Box>

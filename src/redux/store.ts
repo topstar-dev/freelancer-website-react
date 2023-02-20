@@ -9,6 +9,7 @@ import otherSlice from './other/otherSlice';
 import profileSlice from './profile/profileSlice';
 import resourcesSlice from './resources/resourcesSlice';
 import settingsSlice from './settings/settingsSlice';
+import starSlice from './star/starSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ export const store = configureStore({
     other: otherSlice,
     profile: profileSlice,
     resources: resourcesSlice,
-    settings: settingsSlice
+    settings: settingsSlice,
+    star: starSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
 });
