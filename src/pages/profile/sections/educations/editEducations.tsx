@@ -28,10 +28,12 @@ const EditEducations = ({ educations }: any) => {
     return (
         <>
             {educations && educations.length > 0 ?
-                <EditIcon
-                    className="edit-icon"
-                    onClick={() => setShow(true)}
-                />
+                <IconButton className="edit-button-base">
+                    <EditIcon
+                        className="edit-icon"
+                        onClick={() => setShow(true)}
+                    />
+                </IconButton>
                 :
                 <Chip
                     className="add-new-chip"

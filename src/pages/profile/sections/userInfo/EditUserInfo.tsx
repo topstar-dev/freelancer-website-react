@@ -1,7 +1,7 @@
 import EditIcon from '@mui/icons-material/Edit';
 import ShareIcon from '@mui/icons-material/Share';
 import * as yup from "yup";
-import { Avatar, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { Avatar, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import Compressor from 'compressorjs';
 import Cropper from "react-cropper";
@@ -98,17 +98,21 @@ const EditUserInfo = ({
     }, [dispatch, enqueueSnackbar, cropData, tempImageData, setUserAvatar, setUserProfile, updateProfileData, userInfo])
 
     return (<Box className="user-info-edit">
-        <EditIcon
-            className="user-info-edit-icon"
-            style={{ marginLeft: 'auto' }}
-            onClick={() => setEditMode(true)}
-        />
-        <ShareIcon
-            className="user-info-edit-icon"
-            onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                enqueueSnackbar(t('profile.share-link-copied-to-clipboard'))
-            }} />
+        <IconButton>
+            <EditIcon
+                className="user-info-edit-icon"
+                style={{ marginLeft: 'auto' }}
+                onClick={() => setEditMode(true)}
+            />
+        </IconButton>
+        <IconButton>
+            <ShareIcon
+                className="user-info-edit-icon"
+                onClick={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    enqueueSnackbar(t('profile.share-link-copied-to-clipboard'))
+                }} />
+        </IconButton>
 
         <Dialog
             fullScreen={isMobile}

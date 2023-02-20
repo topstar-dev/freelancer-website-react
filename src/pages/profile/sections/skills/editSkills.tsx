@@ -1,4 +1,4 @@
-import { Autocomplete, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, Stack, TextField } from "@mui/material";
+import { Autocomplete, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Select, Stack, TextField } from "@mui/material";
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -91,10 +91,12 @@ const EditSkills = ({
     return (
         <>
             {skills ?
-                <EditIcon
-                    className="edit-icon"
-                    onClick={() => setShow(true)}
-                />
+                <IconButton className="edit-button-base">
+                    <EditIcon
+                        className="edit-icon"
+                        onClick={() => setShow(true)}
+                    />
+                </IconButton>
                 :
                 <Chip
                     className="add-new-chip"

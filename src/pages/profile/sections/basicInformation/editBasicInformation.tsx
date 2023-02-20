@@ -1,4 +1,4 @@
-import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -97,10 +97,12 @@ const EditBasicInformation = ({
     return (
         <>
             {country_id || province_id || city_id ?
-                <EditIcon
-                    className="edit-icon"
-                    onClick={() => setShow(true)}
-                />
+                <IconButton className="edit-button-base">
+                    <EditIcon
+                        className="edit-icon"
+                        onClick={() => setShow(true)}
+                    />
+                </IconButton>
                 :
                 <Chip
                     className="add-new-chip"

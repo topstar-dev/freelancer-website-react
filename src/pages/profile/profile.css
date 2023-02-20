@@ -45,12 +45,24 @@
     border-bottom-right-radius: 0;
 }
 
+.see-more-container:has(.edit-icon) {
+    padding-top: 18px;
+}
+
 .card-heading {
     font-size: 20px;
     margin-bottom: 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.card-heading:has(.edit-icon) {
+    margin-bottom: 14px;
+}
+
+.card-heading .edit-button-base {
+    margin-right: -8px;
 }
 
 .profile-edit-heading-title {
@@ -95,7 +107,7 @@
 }
 
 .profile-card-spacing-close-icon {
-    padding: 16px;
+    padding: 32px 16px;
 }
 
 .profile-close-icon {
@@ -142,10 +154,11 @@
 }
 
 .user-info-edit {
-    padding: 16px 26px 0 0;
+    padding: 8px 18px 0 0;
     margin-left: auto;
     display: flex;
-    gap: 20px;
+    gap: 4px;
+    height: 48px;
 }
 
 .user-info-edit .user-info-edit-icon {
@@ -215,6 +228,9 @@
 /* ======================
 = basic information
 ====================== */
+.basicInfo-container:has(.edit-icon) {
+    padding-top: 18px;
+}
 
 .basicInfo-location,
 .basicInfo-joining-date {

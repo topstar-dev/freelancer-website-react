@@ -28,10 +28,12 @@ const EditExperiences = ({ experiences }: any) => {
     return (
         <>
             {experiences && experiences.length > 0 ?
-                <EditIcon
-                    className="edit-icon"
-                    onClick={() => setShow(true)}
-                />
+                <IconButton className="edit-button-base">
+                    <EditIcon
+                        className="edit-icon"
+                        onClick={() => setShow(true)}
+                    />
+                </IconButton>
                 :
                 <Chip
                     className="add-new-chip"

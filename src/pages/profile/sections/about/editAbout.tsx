@@ -1,4 +1,4 @@
-import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from "@mui/material";
 import React, { ReactNode, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -25,10 +25,12 @@ const EditAbout = ({ about }: any) => {
     return (
         <>
             {about ?
-                <EditIcon
-                    className="edit-icon"
-                    onClick={() => setShow(true)}
-                />
+                <IconButton className="edit-button-base">
+                    <EditIcon
+                        className="edit-icon"
+                        onClick={() => setShow(true)}
+                    />
+                </IconButton>
                 :
                 <Chip
                     className="add-new-chip"
