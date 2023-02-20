@@ -122,12 +122,10 @@
 }
 
 .profile-edit-dialog-body {
-    overflow: auto;
     min-width: 500px;
 }
 
 .profile-edit-dialog-body.profile-edit-dialog-body-mobile {
-    overflow: auto;
     min-width: 500px;
 }
 
