@@ -28,11 +28,11 @@ const EditEducations = ({ educations }: any) => {
     return (
         <>
             {educations && educations.length > 0 ?
-                <IconButton className="edit-button-base">
-                    <EditIcon
-                        className="edit-icon"
-                        onClick={() => setShow(true)}
-                    />
+                <IconButton
+                    className="edit-button-base"
+                    onClick={() => setShow(true)}
+                >
+                    <EditIcon className="edit-icon" />
                 </IconButton>
                 :
                 <Chip
@@ -47,9 +47,6 @@ const EditEducations = ({ educations }: any) => {
             <Dialog
                 fullScreen={isMobile}
                 open={show}
-                onClose={() => {
-                    setShow(false)
-                }}
                 maxWidth="lg"
                 className="editLanguagesModal"
             >
@@ -103,16 +100,16 @@ const EditEducations = ({ educations }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.educations.length < 20 &&
-                                                <IconButton>
-                                                    <AddIcon className='add-icon' onClick={() => {
-                                                        pushMethod({
-                                                            major_name: '',
-                                                            school_name: '',
-                                                            start_year: '',
-                                                            end_year: '',
-                                                            description: '',
-                                                        })
-                                                    }} />
+                                                <IconButton onClick={() => {
+                                                    pushMethod({
+                                                        major_name: '',
+                                                        school_name: '',
+                                                        start_year: '',
+                                                        end_year: '',
+                                                        description: '',
+                                                    })
+                                                }}>
+                                                    <AddIcon className='add-icon' />
                                                 </IconButton>
                                             }
                                         </Box>
@@ -148,12 +145,13 @@ const EditEducations = ({ educations }: any) => {
                                                     <React.Fragment key={index}>
                                                         <Box className="flex-items">
                                                             <Box className="profile-card-spacing-close-icon">
-                                                                <IconButton className='profile-close-icon'>
-                                                                    <CloseIcon
-                                                                        onClick={() => {
-                                                                            remove(index)
-                                                                        }}
-                                                                    />
+                                                                <IconButton
+                                                                    className='profile-close-icon'
+                                                                    onClick={() => {
+                                                                        remove(index)
+                                                                    }}
+                                                                >
+                                                                    <CloseIcon />
                                                                 </IconButton>
                                                             </Box>
                                                             <Box className="profile-card-spacing-multiple">

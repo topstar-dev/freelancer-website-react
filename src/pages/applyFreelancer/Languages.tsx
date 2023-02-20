@@ -94,13 +94,13 @@ const Languages = (props: any) => {
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.languages.length < 20 &&
-                                        <IconButton>
-                                            <AddIcon className='add-icon' onClick={() => {
-                                                pushMethod({
-                                                    language_code: '',
-                                                    language_skill: ''
-                                                })
-                                            }} />
+                                        <IconButton onClick={() => {
+                                            pushMethod({
+                                                language_code: '',
+                                                language_skill: ''
+                                            })
+                                        }}>
+                                            <AddIcon className='add-icon' />
                                         </IconButton>
                                     }
                                 </Box>
@@ -123,14 +123,14 @@ const Languages = (props: any) => {
                                                 <React.Fragment key={index}>
                                                     <Box className="freelancer-experience-flex">
                                                         <Box className="freelancer-card-spacing-close-icon">
-                                                            <IconButton className='close-icon'>
-                                                                <CloseIcon
-                                                                    onClick={() => {
-                                                                        if (formik.values.languages.length > 1) {
-                                                                            remove(index)
-                                                                        }
-                                                                    }}
-                                                                />
+                                                            <IconButton
+                                                                className='close-icon'
+                                                                onClick={() => {
+                                                                    if (formik.values.languages.length > 1) {
+                                                                        remove(index)
+                                                                    }
+                                                                }}>
+                                                                <CloseIcon />
                                                             </IconButton>
                                                         </Box>
                                                         <Box className="freelancer-card-spacing-multiple">

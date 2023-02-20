@@ -25,11 +25,11 @@ const EditAbout = ({ about }: any) => {
     return (
         <>
             {about ?
-                <IconButton className="edit-button-base">
-                    <EditIcon
-                        className="edit-icon"
-                        onClick={() => setShow(true)}
-                    />
+                <IconButton
+                    onClick={() => setShow(true)}
+                    className="edit-button-base"
+                >
+                    <EditIcon className="edit-icon" />
                 </IconButton>
                 :
                 <Chip
@@ -44,9 +44,6 @@ const EditAbout = ({ about }: any) => {
             <Dialog
                 fullScreen={isMobile}
                 open={show}
-                onClose={() => {
-                    setShow(false)
-                }}
                 maxWidth="lg"
             >
                 <Formik

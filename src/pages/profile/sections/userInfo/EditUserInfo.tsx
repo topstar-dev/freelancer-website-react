@@ -98,28 +98,19 @@ const EditUserInfo = ({
     }, [dispatch, enqueueSnackbar, cropData, tempImageData, setUserAvatar, setUserProfile, updateProfileData, userInfo])
 
     return (<Box className="user-info-edit">
-        <IconButton>
-            <EditIcon
-                className="user-info-edit-icon"
-                style={{ marginLeft: 'auto' }}
-                onClick={() => setEditMode(true)}
-            />
+        <IconButton style={{ marginLeft: 'auto' }} onClick={() => setEditMode(true)}>
+            <EditIcon className="user-info-edit-icon" />
         </IconButton>
-        <IconButton>
-            <ShareIcon
-                className="user-info-edit-icon"
-                onClick={() => {
-                    navigator.clipboard.writeText(window.location.href);
-                    enqueueSnackbar(t('profile.share-link-copied-to-clipboard'))
-                }} />
+        <IconButton onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+            enqueueSnackbar(t('profile.share-link-copied-to-clipboard'))
+        }}>
+            <ShareIcon className="user-info-edit-icon" />
         </IconButton>
 
         <Dialog
             fullScreen={isMobile}
             open={editMode}
-            onClose={() => {
-                setEditMode(false)
-            }}
             maxWidth="lg"
             className='userinfo-profile-edit'
         >

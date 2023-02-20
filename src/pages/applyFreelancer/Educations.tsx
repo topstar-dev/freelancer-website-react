@@ -81,16 +81,16 @@ const Educations = (props: any) => {
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.educations.length < 20 &&
-                                        <IconButton>
-                                            <AddIcon className='add-icon' onClick={() => {
-                                                pushMethod({
-                                                    major_name: '',
-                                                    school_name: '',
-                                                    start_year: '',
-                                                    end_year: '',
-                                                    description: '',
-                                                })
-                                            }} />
+                                        <IconButton onClick={() => {
+                                            pushMethod({
+                                                major_name: '',
+                                                school_name: '',
+                                                start_year: '',
+                                                end_year: '',
+                                                description: '',
+                                            })
+                                        }}>
+                                            <AddIcon className='add-icon' />
                                         </IconButton>
                                     }
                                 </Box>
@@ -126,12 +126,12 @@ const Educations = (props: any) => {
                                                 <React.Fragment key={index}>
                                                     <Box className="freelancer-experience-flex">
                                                         <Box className="freelancer-card-spacing-close-icon">
-                                                            <IconButton className='close-icon'>
-                                                                <CloseIcon
-                                                                    onClick={() => {
-                                                                        remove(index)
-                                                                    }}
-                                                                />
+                                                            <IconButton
+                                                                className='close-icon'
+                                                                onClick={() => {
+                                                                    remove(index)
+                                                                }}>
+                                                                <CloseIcon />
                                                             </IconButton>
                                                         </Box>
                                                         <Box className="freelancer-card-spacing-multiple">

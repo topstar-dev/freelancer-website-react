@@ -97,11 +97,11 @@ const EditBasicInformation = ({
     return (
         <>
             {country_id || province_id || city_id ?
-                <IconButton className="edit-button-base">
-                    <EditIcon
-                        className="edit-icon"
-                        onClick={() => setShow(true)}
-                    />
+                <IconButton
+                    className="edit-button-base"
+                    onClick={() => setShow(true)}
+                >
+                    <EditIcon className="edit-icon" />
                 </IconButton>
                 :
                 <Chip
@@ -116,9 +116,6 @@ const EditBasicInformation = ({
             <Dialog
                 fullScreen={isMobile}
                 open={show}
-                onClose={() => {
-                    setShow(false)
-                }}
                 maxWidth="lg"
             >
                 <Formik

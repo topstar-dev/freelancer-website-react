@@ -56,11 +56,11 @@ const EditLanguages = ({ languages }: any) => {
     return (
         <>
             {languages && languages.length > 0 ?
-                <IconButton className="edit-button-base">
-                    <EditIcon
-                        className="edit-icon"
-                        onClick={() => setShow(true)}
-                    />
+                <IconButton
+                    className="edit-button-base"
+                    onClick={() => setShow(true)}
+                >
+                    <EditIcon className="edit-icon" />
                 </IconButton>
                 :
                 <Chip
@@ -75,9 +75,6 @@ const EditLanguages = ({ languages }: any) => {
             <Dialog
                 fullScreen={isMobile}
                 open={show}
-                onClose={() => {
-                    setShow(false)
-                }}
                 maxWidth="lg"
                 className="editLanguagesModal"
             >
@@ -107,13 +104,13 @@ const EditLanguages = ({ languages }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.languages.length < 20 &&
-                                                <IconButton>
-                                                    <AddIcon className='add-icon' onClick={() => {
-                                                        pushMethod({
-                                                            language_code: '',
-                                                            language_skill: ''
-                                                        })
-                                                    }} />
+                                                <IconButton onClick={() => {
+                                                    pushMethod({
+                                                        language_code: '',
+                                                        language_skill: ''
+                                                    })
+                                                }}>
+                                                    <AddIcon className='add-icon' />
                                                 </IconButton>
                                             }
                                         </Box>
@@ -136,14 +133,14 @@ const EditLanguages = ({ languages }: any) => {
                                                     <React.Fragment key={index}>
                                                         <Box key={index} className="flex-items">
                                                             <Box className="profile-card-spacing-close-icon">
-                                                                <IconButton className='profile-close-icon'>
-                                                                    <CloseIcon
-                                                                        onClick={() => {
-                                                                            if (formik.values.languages.length > 1) {
-                                                                                remove(index)
-                                                                            }
-                                                                        }}
-                                                                    />
+                                                                <IconButton
+                                                                    className='profile-close-icon'
+                                                                    onClick={() => {
+                                                                        if (formik.values.languages.length > 1) {
+                                                                            remove(index)
+                                                                        }
+                                                                    }}>
+                                                                    <CloseIcon />
                                                                 </IconButton>
                                                             </Box>
                                                             <Box className="profile-card-spacing-multiple">

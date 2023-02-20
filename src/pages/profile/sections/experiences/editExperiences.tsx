@@ -28,11 +28,11 @@ const EditExperiences = ({ experiences }: any) => {
     return (
         <>
             {experiences && experiences.length > 0 ?
-                <IconButton className="edit-button-base">
-                    <EditIcon
-                        className="edit-icon"
-                        onClick={() => setShow(true)}
-                    />
+                <IconButton
+                    className="edit-button-base"
+                    onClick={() => setShow(true)}
+                >
+                    <EditIcon className="edit-icon" />
                 </IconButton>
                 :
                 <Chip
@@ -47,9 +47,6 @@ const EditExperiences = ({ experiences }: any) => {
             <Dialog
                 fullScreen={isMobile}
                 open={show}
-                onClose={() => {
-                    setShow(false)
-                }}
                 maxWidth="lg"
                 className="editLanguagesModal"
             >
@@ -104,16 +101,16 @@ const EditExperiences = ({ experiences }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.experiences.length < 20 &&
-                                                <IconButton>
-                                                    <AddIcon className='add-icon' onClick={() => {
-                                                        pushMethod({
-                                                            company_name: '',
-                                                            job_title: '',
-                                                            start_year: '',
-                                                            end_year: '',
-                                                            description: '',
-                                                        })
-                                                    }} />
+                                                <IconButton onClick={() => {
+                                                    pushMethod({
+                                                        company_name: '',
+                                                        job_title: '',
+                                                        start_year: '',
+                                                        end_year: '',
+                                                        description: '',
+                                                    })
+                                                }} >
+                                                    <AddIcon className='add-icon' />
                                                 </IconButton>
                                             }
                                         </Box>
@@ -149,14 +146,14 @@ const EditExperiences = ({ experiences }: any) => {
                                                     <React.Fragment key={index}>
                                                         <Box className="flex-items">
                                                             <Box className="profile-card-spacing-close-icon">
-                                                                <IconButton className='profile-close-icon'>
-                                                                    <CloseIcon
-                                                                        onClick={() => {
-                                                                            if (formik.values.experiences.length > 1) {
-                                                                                remove(index)
-                                                                            }
-                                                                        }}
-                                                                    />
+                                                                <IconButton
+                                                                    className='profile-close-icon'
+                                                                    onClick={() => {
+                                                                        if (formik.values.experiences.length > 1) {
+                                                                            remove(index)
+                                                                        }
+                                                                    }}>
+                                                                    <CloseIcon />
                                                                 </IconButton>
                                                             </Box>
                                                             <Box className="profile-card-spacing-multiple">

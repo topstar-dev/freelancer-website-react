@@ -82,16 +82,16 @@ const Experiences = (props: any) => {
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.experiences.length < 20 &&
-                                        <IconButton>
-                                            <AddIcon className='add-icon' onClick={() => {
-                                                pushMethod({
-                                                    company_name: '',
-                                                    job_title: '',
-                                                    start_year: '',
-                                                    end_year: '',
-                                                    description: '',
-                                                })
-                                            }} />
+                                        <IconButton onClick={() => {
+                                            pushMethod({
+                                                company_name: '',
+                                                job_title: '',
+                                                start_year: '',
+                                                end_year: '',
+                                                description: '',
+                                            })
+                                        }}>
+                                            <AddIcon className='add-icon' />
                                         </IconButton>
                                     }
                                 </Box>
@@ -127,14 +127,14 @@ const Experiences = (props: any) => {
                                                 <React.Fragment key={index}>
                                                     <Box className="freelancer-experience-flex">
                                                         <Box className="freelancer-card-spacing-close-icon">
-                                                            <IconButton className='close-icon'>
-                                                                <CloseIcon
-                                                                    onClick={() => {
-                                                                        if (formik.values.experiences.length > 1) {
-                                                                            remove(index)
-                                                                        }
-                                                                    }}
-                                                                />
+                                                            <IconButton
+                                                                className='close-icon'
+                                                                onClick={() => {
+                                                                    if (formik.values.experiences.length > 1) {
+                                                                        remove(index)
+                                                                    }
+                                                                }}>
+                                                                <CloseIcon />
                                                             </IconButton>
                                                         </Box>
                                                         <Box className="freelancer-card-spacing-multiple">
