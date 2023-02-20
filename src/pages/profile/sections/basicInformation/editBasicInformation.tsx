@@ -140,7 +140,7 @@ const EditBasicInformation = ({
                                 <DialogTitle style={{ padding: '0 0 24px 0' }}>
                                     <Box className={`heading-flex`}>
                                         <Box>
-                                            <Box className='profile-edit-heading-title'>{t('freelancer.about.title')}</Box>
+                                            <Box className='profile-edit-heading-title'>{t('profile.basic-info-title')}</Box>
                                         </Box>
                                     </Box>
                                 </DialogTitle>
