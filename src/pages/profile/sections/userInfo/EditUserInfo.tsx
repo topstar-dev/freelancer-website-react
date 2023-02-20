@@ -135,7 +135,7 @@ const EditUserInfo = ({
                 {formik =>
                     <WithTranslateFormErrors {...formik}>
                         <DialogContent>
-                            <DialogTitle style={{ padding: '0 24px 24px 24px' }}>
+                            <DialogTitle style={{ padding: '0 24px 10px 24px' }}>
                                 <Box className={`heading-flex`}>
                                     <Box>
                                         <Box className='profile-edit-heading-title'>{t('freelancer.info.title')}</Box>
