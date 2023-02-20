@@ -31,6 +31,7 @@ export default function Profile(props: any) {
     useEffect(() => {
         if (!called) {
             setCalled(true);
+            console.log('called again')
             if (username) {
                 setBackdrop(true)
                 dispatch(getProfileAction({ username })).then((res: any) => {
@@ -58,7 +59,9 @@ export default function Profile(props: any) {
     }, [location.pathname])
 
     useEffect(() => {
-        if (language && i18n.language && i18n.language !== language) {
+        const currentLang = i18n.language;
+        if (language && currentLang && currentLang !== language) {
+            console.log("herere", language, currentLang)
             setCalled(false)
         }
     }, [i18n, language])

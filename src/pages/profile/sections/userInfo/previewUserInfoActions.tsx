@@ -4,14 +4,10 @@ import { IconButton } from '@mui/material';
 import { Box } from '@mui/system';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import CustomBackdrop from '../../../../components/customBackdrop/CustomBackdrop';
 
-const PreviewUserInfoActions = ({ }: any) => {
+const PreviewUserInfoActions = () => {
     const { t } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
-
-    const [backdrop, setBackdrop] = useState(false);
 
     return (<Box className="user-info-edit">
         <IconButton style={{ marginLeft: 'auto' }}>
@@ -24,7 +20,6 @@ const PreviewUserInfoActions = ({ }: any) => {
             <ShareIcon className="user-info-edit-icon" />
         </IconButton>
 
-        <CustomBackdrop loading={backdrop} />
     </Box>)
 }
 

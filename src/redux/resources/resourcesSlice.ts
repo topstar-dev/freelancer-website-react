@@ -39,9 +39,9 @@ export const resourceslice = createSlice({
     initialState,
     reducers: {
         changeLanguage: (state, action) => {
-            state.language = action.payload;
-            state.countryData = {};
             localStorage.setItem('i18nextLng', action.payload);
+            state.countryData = {};
+            state.language = action.payload;
         }
     },
     extraReducers: (builder) => {
