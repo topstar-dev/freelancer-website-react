@@ -153,11 +153,11 @@
     "fluent": "高级",
     "native-fluent": "母语 / 流利",
     "add-languages": "添加语言",
-    "add-about": "添加关于",
+    "add-about": "添加个人简介",
     "add-skills": "添加技能",
     "add-basic-info": "添加基本​​信息",
-    "add-experience": "添加体验",
-    "add-educations": "添加教育",
+    "add-experiences": "添加工作经历",
+    "add-educations": "添加教育经历",
     "freelancer": {
         "title": "提交自由职业者申请",
         "skills": {
@@ -165,9 +165,7 @@
             "subtitle": "第1步，共6步",
             "occupation": "职业类别",
             "skills": "选择技能",
-            "selected": "所选技能",
-            "development": "编程与开发",
-            "design": "设计"
+            "selected": "所选技能"
         },
         "info": {
             "banner": "请使用您的真实姓名和头像",

@@ -41,7 +41,7 @@ const EditExperiences = ({ experiences }: any) => {
                     variant="outlined"
                     style={{ paddingLeft: '10px', paddingRight: '10px' }}
                     avatar={<AddIcon />}
-                    label={t('add-experience')}
+                    label={t('add-experiences')}
                 />
             }
             <Dialog

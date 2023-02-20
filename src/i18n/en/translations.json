@@ -156,7 +156,7 @@
     "add-about": "Add About",
     "add-skills": "Add Skills",
     "add-basic-info": "Add Basic information",
-    "add-experience": "Add Experiences",
+    "add-experiences": "Add Experiences",
     "add-educations": "Add Educations",
     "freelancer": {
         "title": "Submit freelancer application",
@@ -165,16 +165,14 @@
             "subtitle": "Step 1 of 6",
             "occupation": "Occupational category",
             "skills": "Select skills",
-            "selected": "Selected skills",
-            "development": "Development",
-            "design": "Design"
+            "selected": "Selected skills"
         },
         "info": {
             "banner": "Please use your real name and avatar",
             "title": "Name and photos",
             "subtitle": "Step 2 of 6",
-            "first-name": "First Name",
-            "last-name": "Last Name"
+            "first-name": "First name",
+            "last-name": "Last name"
         },
         "experiences": {
             "title": "Experiences",
