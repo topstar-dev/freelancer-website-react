@@ -1,4 +1,4 @@
-import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormHelperText, TextField } from "@mui/material";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormHelperText, IconButton, TextField } from "@mui/material";
 import React, { ReactNode, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -101,15 +101,17 @@ const EditEducations = ({ educations }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.educations.length < 20 &&
-                                                <AddIcon className='add-icon' onClick={() => {
-                                                    pushMethod({
-                                                        major_name: '',
-                                                        school_name: '',
-                                                        start_year: '',
-                                                        end_year: '',
-                                                        description: '',
-                                                    })
-                                                }} />
+                                                <IconButton>
+                                                    <AddIcon className='add-icon' onClick={() => {
+                                                        pushMethod({
+                                                            major_name: '',
+                                                            school_name: '',
+                                                            start_year: '',
+                                                            end_year: '',
+                                                            description: '',
+                                                        })
+                                                    }} />
+                                                </IconButton>
                                             }
                                         </Box>
                                     </Box>
@@ -142,16 +144,17 @@ const EditEducations = ({ educations }: any) => {
 
                                                 return (
                                                     <React.Fragment key={index}>
-                                                        <Box className="freelancer-experience-flex">
-                                                            <Box className="freelancer-card-spacing">
-                                                                <CloseIcon
-                                                                    className='close-icon'
-                                                                    onClick={() => {
-                                                                        remove(index)
-                                                                    }}
-                                                                />
+                                                        <Box className="flex-items">
+                                                            <Box className="profile-card-spacing-close-icon">
+                                                                <IconButton className='profile-close-icon'>
+                                                                    <CloseIcon
+                                                                        onClick={() => {
+                                                                            remove(index)
+                                                                        }}
+                                                                    />
+                                                                </IconButton>
                                                             </Box>
-                                                            <Box className="freelancer-card-spacing-multiple">
+                                                            <Box className="profile-card-spacing-multiple">
                                                                 <Form>
                                                                     <TextField
                                                                         fullWidth

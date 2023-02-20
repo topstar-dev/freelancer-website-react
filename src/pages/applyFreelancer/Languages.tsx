@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Backdrop, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import { Backdrop, CircularProgress, Divider, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Select } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '../../components/button/Button';
@@ -94,12 +94,14 @@ const Languages = (props: any) => {
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.languages.length < 20 &&
-                                        <AddIcon className='add-icon' onClick={() => {
-                                            pushMethod({
-                                                language_code: '',
-                                                language_skill: ''
-                                            })
-                                        }} />
+                                        <IconButton>
+                                            <AddIcon className='add-icon' onClick={() => {
+                                                pushMethod({
+                                                    language_code: '',
+                                                    language_skill: ''
+                                                })
+                                            }} />
+                                        </IconButton>
                                     }
                                 </Box>
                             </Box>
@@ -120,15 +122,16 @@ const Languages = (props: any) => {
                                             return (
                                                 <React.Fragment key={index}>
                                                     <Box className="freelancer-experience-flex">
-                                                        <Box className="freelancer-card-spacing">
-                                                            <CloseIcon
-                                                                className='close-icon'
-                                                                onClick={() => {
-                                                                    if (formik.values.languages.length > 1) {
-                                                                        remove(index)
-                                                                    }
-                                                                }}
-                                                            />
+                                                        <Box className="freelancer-card-spacing-close-icon">
+                                                            <IconButton className='close-icon'>
+                                                                <CloseIcon
+                                                                    onClick={() => {
+                                                                        if (formik.values.languages.length > 1) {
+                                                                            remove(index)
+                                                                        }
+                                                                    }}
+                                                                />
+                                                            </IconButton>
                                                         </Box>
                                                         <Box className="freelancer-card-spacing-multiple">
                                                             <Form>

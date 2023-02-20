@@ -94,6 +94,10 @@
     padding: 24px;
 }
 
+.profile-card-spacing-close-icon {
+    padding: 16px;
+}
+
 .profile-close-icon {
     color: #757575;
     cursor: pointer;

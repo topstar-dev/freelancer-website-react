@@ -1,4 +1,4 @@
-import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormHelperText, TextField } from "@mui/material";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormHelperText, IconButton, TextField } from "@mui/material";
 import React, { ReactNode, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -102,15 +102,17 @@ const EditExperiences = ({ experiences }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.experiences.length < 20 &&
-                                                <AddIcon className='add-icon' onClick={() => {
-                                                    pushMethod({
-                                                        company_name: '',
-                                                        job_title: '',
-                                                        start_year: '',
-                                                        end_year: '',
-                                                        description: '',
-                                                    })
-                                                }} />
+                                                <IconButton>
+                                                    <AddIcon className='add-icon' onClick={() => {
+                                                        pushMethod({
+                                                            company_name: '',
+                                                            job_title: '',
+                                                            start_year: '',
+                                                            end_year: '',
+                                                            description: '',
+                                                        })
+                                                    }} />
+                                                </IconButton>
                                             }
                                         </Box>
                                     </Box>
@@ -143,18 +145,19 @@ const EditExperiences = ({ experiences }: any) => {
 
                                                 return (
                                                     <React.Fragment key={index}>
-                                                        <Box className="freelancer-experience-flex">
-                                                            <Box className="freelancer-card-spacing">
-                                                                <CloseIcon
-                                                                    className='close-icon'
-                                                                    onClick={() => {
-                                                                        if (formik.values.experiences.length > 1) {
-                                                                            remove(index)
-                                                                        }
-                                                                    }}
-                                                                />
+                                                        <Box className="flex-items">
+                                                            <Box className="profile-card-spacing-close-icon">
+                                                                <IconButton className='profile-close-icon'>
+                                                                    <CloseIcon
+                                                                        onClick={() => {
+                                                                            if (formik.values.experiences.length > 1) {
+                                                                                remove(index)
+                                                                            }
+                                                                        }}
+                                                                    />
+                                                                </IconButton>
                                                             </Box>
-                                                            <Box className="freelancer-card-spacing-multiple">
+                                                            <Box className="profile-card-spacing-multiple">
                                                                 <Form className="freelancer-form">
                                                                     <TextField
                                                                         fullWidth

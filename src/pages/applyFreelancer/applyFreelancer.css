@@ -60,6 +60,10 @@
     width: 100%;
 }
 
+.freelancer-card-spacing-close-icon {
+    padding: 16px;
+}
+
 /* card footer style */
 .freelancer-footer {
     padding: 24px;
@@ -162,9 +166,9 @@
 }
 
 .close-icon {
-    color: #757575;
-    cursor: pointer;
-    margin-top: 32px;
+    color: #757575 !important;
+    cursor: pointer !important;
+    margin-top: 32px !important;
 }
 
 .add-icon {

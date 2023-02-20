@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Backdrop, CircularProgress, Divider, FormHelperText, TextField } from '@mui/material';
+import { Backdrop, CircularProgress, Divider, FormHelperText, IconButton, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Form from '../../components/form/Form';
@@ -81,15 +81,17 @@ const Educations = (props: any) => {
                                 </Box>
                                 <Box className="center-item">
                                     {formik.values.educations.length < 20 &&
-                                        <AddIcon className='add-icon' onClick={() => {
-                                            pushMethod({
-                                                major_name: '',
-                                                school_name: '',
-                                                start_year: '',
-                                                end_year: '',
-                                                description: '',
-                                            })
-                                        }} />
+                                        <IconButton>
+                                            <AddIcon className='add-icon' onClick={() => {
+                                                pushMethod({
+                                                    major_name: '',
+                                                    school_name: '',
+                                                    start_year: '',
+                                                    end_year: '',
+                                                    description: '',
+                                                })
+                                            }} />
+                                        </IconButton>
                                     }
                                 </Box>
                             </Box>
@@ -123,13 +125,14 @@ const Educations = (props: any) => {
                                             return (
                                                 <React.Fragment key={index}>
                                                     <Box className="freelancer-experience-flex">
-                                                        <Box className="freelancer-card-spacing">
-                                                            <CloseIcon
-                                                                className='close-icon'
-                                                                onClick={() => {
-                                                                    remove(index)
-                                                                }}
-                                                            />
+                                                        <Box className="freelancer-card-spacing-close-icon">
+                                                            <IconButton className='close-icon'>
+                                                                <CloseIcon
+                                                                    onClick={() => {
+                                                                        remove(index)
+                                                                    }}
+                                                                />
+                                                            </IconButton>
                                                         </Box>
                                                         <Box className="freelancer-card-spacing-multiple">
                                                             <Form>

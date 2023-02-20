@@ -1,4 +1,4 @@
-import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { ReactNode, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -105,12 +105,14 @@ const EditLanguages = ({ languages }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.languages.length < 20 &&
-                                                <AddIcon className='add-icon' onClick={() => {
-                                                    pushMethod({
-                                                        language_code: '',
-                                                        language_skill: ''
-                                                    })
-                                                }} />
+                                                <IconButton>
+                                                    <AddIcon className='add-icon' onClick={() => {
+                                                        pushMethod({
+                                                            language_code: '',
+                                                            language_skill: ''
+                                                        })
+                                                    }} />
+                                                </IconButton>
                                             }
                                         </Box>
                                     </Box>
@@ -131,15 +133,16 @@ const EditLanguages = ({ languages }: any) => {
                                                 return (
                                                     <React.Fragment key={index}>
                                                         <Box key={index} className="flex-items">
-                                                            <Box className="profile-card-spacing">
-                                                                <CloseIcon
-                                                                    className='profile-close-icon'
-                                                                    onClick={() => {
-                                                                        if (formik.values.languages.length > 1) {
-                                                                            remove(index)
-                                                                        }
-                                                                    }}
-                                                                />
+                                                            <Box className="profile-card-spacing-close-icon">
+                                                                <IconButton className='profile-close-icon'>
+                                                                    <CloseIcon
+                                                                        onClick={() => {
+                                                                            if (formik.values.languages.length > 1) {
+                                                                                remove(index)
+                                                                            }
+                                                                        }}
+                                                                    />
+                                                                </IconButton>
                                                             </Box>
                                                             <Box className="profile-card-spacing-multiple">
                                                                 <Form>
