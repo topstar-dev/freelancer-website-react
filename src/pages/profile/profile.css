@@ -51,14 +51,14 @@
 
 .card-heading {
     font-size: 20px;
-    margin-bottom: 22px;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .card-heading:has(.edit-icon) {
-    margin-bottom: 14px;
+    margin-bottom: 22px;
 }
 
 .card-heading .edit-button-base {
@@ -72,7 +72,7 @@
 .card-heading-new-item {
     font-size: 20px;
     display: flex;
-    gap: 24px;
+    gap: 30px;
     flex-direction: column;
 }
 
