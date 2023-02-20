@@ -1,4 +1,4 @@
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import ShareIcon from '@mui/icons-material/Share';
 import { IconButton } from '@mui/material';
 import { Box } from '@mui/system';
@@ -10,8 +10,8 @@ const PreviewUserInfoActions = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     return (<Box className="user-info-edit">
-        <IconButton style={{ marginLeft: 'auto' }}>
-            <StarBorderIcon className="user-info-edit-icon" />
+        <IconButton style={{ marginLeft: 'auto', paddingLeft: 6, paddingRight: 6 }}>
+            <StarOutlineIcon style={{ fontSize: '29px' }} className="user-info-edit-icon" />
         </IconButton>
         <IconButton onClick={() => {
             navigator.clipboard.writeText(window.location.href);
