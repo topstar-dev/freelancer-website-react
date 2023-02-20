@@ -6,6 +6,7 @@ import { FUNCTION_TYPES } from "../../../../redux/constants";
 import { useAppDispatch } from "../../../../redux/hooks";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import EditUserInfo from "./EditUserInfo";
+import PreviewUserInfoActions from "./previewUserInfoActions";
 
 export default function UserInfo({
     full_name,
@@ -70,16 +71,20 @@ export default function UserInfo({
                             <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
                         }
                     </Box>
-                    {currentProfile && <EditUserInfo
-                        first_name={first_name}
-                        last_name={last_name}
-                        userAvatar={userAvatar}
-                        userProfile={userProfile}
-                        setUserAvatar={setUserAvatar}
-                        setUserProfile={setUserProfile}
-                        loadingAvatar={loadingAvatar}
-                        loadingProfile={loadingProfile}
-                    />}
+                    {currentProfile ?
+                        <EditUserInfo
+                            first_name={first_name}
+                            last_name={last_name}
+                            userAvatar={userAvatar}
+                            userProfile={userProfile}
+                            setUserAvatar={setUserAvatar}
+                            setUserProfile={setUserProfile}
+                            loadingAvatar={loadingAvatar}
+                            loadingProfile={loadingProfile}
+                        />
+                        :
+                        <PreviewUserInfoActions />
+                    }
                 </Box>
             </Box>
             <Box className="userInfo-user-details">

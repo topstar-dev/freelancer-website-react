@@ -120,7 +120,7 @@ export default function JobFeedback({ username }: any) {
                     ""
                     :
                     <>
-                        <Divider style={{ margin: '14px 0' }} />
+                        <Divider style={{ margin: '21px 0' }} />
                         <Box>
                             {jobFeedbackData?.records?.job_feedbacks?.map((review: any, index: number) => (
                                 <Box className="review-list-container" key={index}>

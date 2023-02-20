@@ -16,7 +16,7 @@ export default function FreelancerProfile({ profile }: any) {
     const basicInfo = transformUBasicInformationData(profile);
     const { userInfo } = useAppSelector(state => state.auth);
 
-    const currentProfile = profileUserInfo.username === userInfo?.username;
+    const currentProfile = false//profileUserInfo.username === userInfo?.username;
     const isAboutDisplay = profile.about || currentProfile;
     const isSkillDisplay = (profile.skills && profile.skills.length > 0) || currentProfile;
     const isExperienceDisplay = (profile.experiences && profile.experiences.length > 0) || currentProfile;
