@@ -90,7 +90,7 @@ const EditSkills = ({
     }
     return (
         <>
-            {skills ?
+            {skills.length > 0 ?
                 <IconButton
                     className="edit-button-base"
                     onClick={() => setShow(true)}
@@ -147,7 +147,7 @@ const EditSkills = ({
                                     </Box>
                                 </DialogTitle>
                                 <Box style={{ paddingTop: '5px' }} className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
-                                    <Form className="profile-card-spacing" style={{ paddingTop: 40 }}>
+                                    <Form className="profile-card-spacing" style={{ paddingTop: 9 }}>
                                         <FormControl error={formik.touched.occupation_category_id && Boolean(formik.errors.occupation_category_id)} fullWidth>
                                             <InputLabel id="freelancer-occupation-select-label">{t('freelancer.skills.occupation')}</InputLabel>
                                             <Select

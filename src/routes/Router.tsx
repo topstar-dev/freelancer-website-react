@@ -17,8 +17,8 @@ import SetNewPassword from "../pages/auth/resetPassword/Password";
 import HomePage from "../pages/home/Home";
 import ContactUs from "../pages/contactUs/ContacUs";
 import AboutUs from "../pages/aboutUs/AboutUs";
-import Privacy from "../pages/policies/Privacy";
-import Terms from "../pages/policies/Terms";
+// import Privacy from "../pages/policies/Privacy";
+// import Terms from "../pages/policies/Terms";
 import NotFound from "../pages/error/NotFound";
 
 // apply-freelancer

@@ -6,14 +6,14 @@ import { useState } from "react";
 import SeeMore from "../../../../components/seeMore/SeeMore";
 import EditSkills from "./editSkills";
 
-export default function Skills({ skills, occupation_category_id, currentProfile }: any) {
+export default function Skills({ skills = [], occupation_category_id, currentProfile }: any) {
     const { t } = useTranslation();
     const [currentLength, setCurrentLength] = useState(7);
-
+    console.log(skills, Boolean(skills.length))
     return (
         <Box>
             <Card className="see-more-container container-width">
-                <Box className={skills.length ? "card-heading" : "card-heading-new-item"}>
+                <Box className={`${skills.length > 0 ? "card-heading" : "card-heading-new-item"}`}>
                     {t('profile.skills-title')}
                     {currentProfile && <EditSkills skills={skills} occupation_category_id={occupation_category_id} />}
                 </Box>
