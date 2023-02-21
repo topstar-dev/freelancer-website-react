@@ -39,6 +39,7 @@ import Security from "../pages/settings/Security";
 import Currency from "../pages/settings/Currency";
 import { languages } from "../i18n/i18nextConf";
 import ApplicationStatus from "../pages/applyFreelancer/applicationStatus";
+import ComingSoon from "../pages/error/ComingSoon";
 
 export default function Router() {
   const routesWithBaseUrl = (baseUrl: string) => {
@@ -102,6 +103,14 @@ export default function Router() {
           {
             path: `${baseUrl}/about`,
             element: <AboutUs />
+          },
+          {
+            path: `${baseUrl}/blog`,
+            element: <ComingSoon />
+          },
+          {
+            path: `${baseUrl}/help`,
+            element: <ComingSoon />
           }
         ],
       },
