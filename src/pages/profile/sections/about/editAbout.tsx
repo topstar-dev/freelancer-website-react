@@ -70,7 +70,7 @@ const EditAbout = ({ about }: any) => {
                                         </Box>
                                     </Box>
                                 </DialogTitle>
-                                <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body profile-edit-dialog-body-mobile" : "profile-edit-dialog-body"}>
+                                <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body" : "profile-edit-dialog-body"}>
                                     <TextField
                                         multiline={true}
                                         rows={8}
@@ -81,6 +81,7 @@ const EditAbout = ({ about }: any) => {
                                         label={t('freelancer.about.about')}
                                         value={formik.values.about ? formik.values.about : ''}
                                         onChange={formik.handleChange}
+                                        style={{ width: '100%' }}
                                         error={formik.touched.about && Boolean(formik.errors.about)}
                                         helperText={formik.touched.about && formik.errors.about ? (formik.errors.about as ReactNode) : t('profile.write-a-short-summary')}
                                     />
