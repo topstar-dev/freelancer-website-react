@@ -230,17 +230,15 @@ const EditSkills = ({
                                         style={{ marginLeft: 10 }}
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
-                                                const { about } = res;
-                                                if (about) {
-                                                    formik.submitForm();
-                                                }
+                                                const { occupation_category_id, skills } = res;
+                                                formik.submitForm();
 
                                                 const saveData = {
                                                     occupation_category_id: formik.values.occupation_category_id,
                                                     skills: formik.values.skills.map((e: any, index: number) => ({ skill_id: e.skill_id, order: index }))
                                                 }
 
-                                                if (!about) {
+                                                if (!(occupation_category_id || skills)) {
                                                     setLoading(true);
                                                     editFreelancer(saveData).then(() => {
                                                         setShow(false)
