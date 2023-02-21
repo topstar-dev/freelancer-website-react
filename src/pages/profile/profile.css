@@ -306,6 +306,10 @@
     align-items: center;
 }
 
+.progress-ratings .progress-value:last-child {
+    margin-bottom: 0;
+}
+
 .progress-ratings .progress-value .rating-number {
     display: block;
     width: 18px;
