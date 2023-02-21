@@ -90,11 +90,11 @@ export default function Router() {
           },
           {
             path: `${baseUrl}/privacy`,
-            element: <Privacy />,
+            element: <ComingSoon />
           },
           {
             path: `${baseUrl}/terms`,
-            element: <Terms />,
+            element: <ComingSoon />
           },
           {
             path: `${baseUrl}/contact`,
