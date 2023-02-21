@@ -82,7 +82,7 @@ const EditAbout = ({ about }: any) => {
                                         value={formik.values.about ? formik.values.about : ''}
                                         onChange={formik.handleChange}
                                         error={formik.touched.about && Boolean(formik.errors.about)}
-                                        helperText={formik.touched.about && formik.errors.about && (formik.errors.about as ReactNode)}
+                                        helperText={formik.touched.about && formik.errors.about ? (formik.errors.about as ReactNode) : t('profile.write-a-short-summary')}
                                     />
                                 </Box>
                                 <DialogActions style={{ paddingTop: '24px', paddingRight: 0, paddingBottom: 0 }}>

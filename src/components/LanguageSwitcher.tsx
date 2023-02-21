@@ -30,8 +30,11 @@ const LanguageSwitcher = () => {
         if (userInfo) {
             setBackdrop(true);
             dispatch(personalSettingsUpdate({ language_code: lang })).then((res) => {
-                enqueueSnackbar(res.payload.message);
-                dispatch(changeLanguage(lang))
+                if (res.payload.success) {
+                    dispatch(changeLanguage(lang))
+                } else {
+                    enqueueSnackbar(res.payload.message);
+                }
             }).catch((err: any) => {
                 enqueueSnackbar(err.message);
             }).finally(() => {
