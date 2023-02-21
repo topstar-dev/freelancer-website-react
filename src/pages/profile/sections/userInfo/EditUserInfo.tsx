@@ -36,7 +36,7 @@ const EditUserInfo = ({
     loadingAvatar,
     loadingProfile
 }: any) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
     const { isMobile } = useBreakpoint();
     const { updateProfileData } = useProfileContext();
@@ -307,7 +307,10 @@ const EditUserInfo = ({
                                                 setBackdrop(true);
                                                 editFreelancer(formik.values).then(() => {
                                                     setEditMode(false);
-                                                    const fullName = [formik.values.first_name, formik.values.last_name].join(' ');
+                                                    const fullName = i18n.language === 'zh-CN' ?
+                                                        [formik.values.last_name, formik.values.first_name].join(' ')
+                                                        :
+                                                        [formik.values.first_name, formik.values.last_name].join(' ');
                                                     setTokens({ ...userInfo, name: fullName });
                                                     dispatch(updateUserInfo({ ...userInfo, name: fullName }))
                                                     updateProfileData({
