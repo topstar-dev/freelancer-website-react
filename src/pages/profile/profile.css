@@ -410,6 +410,11 @@
     font-size: 16px !important;
 }
 
+html[lang="zh-CN"] .skill-chip,
+html[lang="zh-CN"] .skill-chip-extra {
+    font-family: 'Roboto';
+}
+
 .skill-chip-extra {
     color: #757575;
     font-size: 13px;
