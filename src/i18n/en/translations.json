@@ -26,6 +26,7 @@
         "confirm-password-required": "Confirm password is required",
         "passwords-not-match": "The two passwords do not match",
         "please_enter_valid_password": "Please enter valid password",
+        "username-required": "Username is required",
         "firstname-required": "First name is required",
         "lastname-required": "Last name is required",
         "birthday-required": "Birthday is required",
@@ -221,6 +222,7 @@
         }
     },
     "profile": {
+        "username": "Username",
         "see-more": "See more",
         "see-less": "See less",
         "basic-info-title": "Basic information",

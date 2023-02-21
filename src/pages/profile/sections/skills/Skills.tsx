@@ -9,7 +9,6 @@ import EditSkills from "./editSkills";
 export default function Skills({ skills = [], occupation_category_id, currentProfile }: any) {
     const { t } = useTranslation();
     const [currentLength, setCurrentLength] = useState(7);
-    console.log(skills, Boolean(skills.length))
     return (
         <Box>
             <Card className="see-more-container container-width">

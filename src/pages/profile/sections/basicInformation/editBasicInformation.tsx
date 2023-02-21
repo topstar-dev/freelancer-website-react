@@ -1,5 +1,5 @@
-import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, IconButton, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import React, { ReactNode, useEffect, useState } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,13 +14,15 @@ import { useProfileContext } from "../../Profile";
 import useBreakpoint from "../../../../components/breakpoints/BreakpointProvider";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { getCitiesList, getCountriesList, getProvincesList } from "../../../../redux/resources/resourcesActions";
-import { COUNTRY_ID_CHINA } from "../../../../redux/constants";
+import { COUNTRY_ID_CHINA, USER_TYPES } from "../../../../redux/constants";
 import Form from "../../../../components/form/Form";
 
 const EditBasicInformation = ({
     country_id,
     province_id,
-    city_id
+    city_id,
+    username,
+    user_type
 }: any) => {
     const { t, i18n } = useTranslation();
     const { isMobile } = useBreakpoint();
@@ -30,7 +32,8 @@ const EditBasicInformation = ({
     const [basicInfo] = useState({
         country_id: country_id ? country_id : '',
         province_id: province_id ? province_id : '',
-        city_id: city_id ? city_id : ''
+        city_id: city_id ? city_id : '',
+        username: username
     });
 
     const [show, setShow] = useState(false);
@@ -122,6 +125,9 @@ const EditBasicInformation = ({
                     enableReinitialize
                     initialValues={basicInfo}
                     validationSchema={yup.object({
+                        username: yup
+                            .string()
+                            .required(t('validation.username-required')),
                         country_id: yup
                             .string()
                             .required(t('validation.country-required')),
@@ -218,6 +224,25 @@ const EditBasicInformation = ({
                                                 ))}
                                             </Select>
                                         </FormControl>}
+
+                                        {user_type === USER_TYPES.FREELANCER ?
+                                            <Box>
+                                                <Box style={{ marginTop: 16, marginBottom: 40 }}><Divider /></Box>
+                                                <TextField
+                                                    fullWidth
+                                                    id="username"
+                                                    name="username"
+                                                    type="text"
+                                                    label={t('profile.username')}
+                                                    value={formik.values.username ? formik.values.username : ''}
+                                                    onChange={formik.handleChange}
+                                                    error={formik.touched.username && Boolean(formik.errors.username)}
+                                                    helperText={formik.touched.username && formik.errors.username && formik.errors.username as ReactNode}
+                                                />
+                                            </Box>
+                                            :
+                                            ''
+                                        }
                                     </Form>
                                 </Box>
                                 <DialogActions style={{ paddingTop: '40px', paddingRight: 0, paddingBottom: 0 }}>
@@ -232,8 +257,8 @@ const EditBasicInformation = ({
                                         style={{ marginLeft: 10 }}
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
-                                                const { country_id } = res;
-                                                if (country_id) {
+                                                const { country_id, username } = res;
+                                                if (country_id || username) {
                                                     formik.submitForm();
                                                 }
 
@@ -247,6 +272,11 @@ const EditBasicInformation = ({
                                                     location: {
                                                         country_id: formik.values.country_id
                                                     }
+                                                }
+
+                                                if (user_type === USER_TYPES.FREELANCER) {
+                                                    saveData['username'] = formik.values.username;
+                                                    updatedValues.username = formik.values.username;
                                                 }
 
                                                 if (formik.values.province_id) {
@@ -263,7 +293,7 @@ const EditBasicInformation = ({
                                                     updatedValues.location.unshift(getName(formik.values.city_id, 'city'))
                                                 }
 
-                                                if (!country_id) {
+                                                if (!(country_id || username)) {
                                                     setLoading(true);
                                                     updatedValues.location = i18n.language === 'zh-CN' ? updatedValues.location.reverse().join(', ') : updatedValues.location.join(', ');
                                                     editFreelancer(saveData).then(() => {

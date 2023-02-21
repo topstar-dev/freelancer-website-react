@@ -32,7 +32,9 @@ export const transformUBasicInformationData = (data: any) => {
         join_time,
         city_id,
         province_id,
-        country_id
+        country_id,
+        username,
+        user_type
     } = data;
 
     return {
@@ -40,6 +42,8 @@ export const transformUBasicInformationData = (data: any) => {
         join_date: dayjs(new Date(join_time)).format('YYYY-MM-DD'),
         city_id,
         province_id,
-        country_id
+        country_id,
+        username,
+        user_type
     }
 }

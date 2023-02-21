@@ -26,6 +26,7 @@
         "confirm-password-required": "请输入确认密码",
         "passwords-not-match": "两次密码不一致",
         "please_enter_valid_password": "请输入有效密码",
+        "username-required": "用户名是必需的",
         "firstname-required": "请输入姓氏",
         "lastname-required": "请输入名字",
         "birthday-required": "请选择出生日期",
@@ -221,6 +222,7 @@
         }
     },
     "profile": {
+        "username": "用户名",
         "see-more": "查看更多",
         "see-less": "隐藏部分",
         "basic-info-title": "基本信息",

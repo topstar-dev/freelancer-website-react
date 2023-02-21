@@ -9,7 +9,9 @@ export default function BasicInformation({
     city_id,
     province_id,
     country_id,
-    currentProfile
+    currentProfile,
+    user_type,
+    username
 }: any) {
     const { t } = useTranslation();
 
@@ -21,6 +23,8 @@ export default function BasicInformation({
                     city_id={city_id}
                     province_id={province_id}
                     country_id={country_id}
+                    user_type={user_type}
+                    username={username}
                 />}
             </Box>
             <Box className="basicInfo-location" style={{ marginBottom: 10 }}>
