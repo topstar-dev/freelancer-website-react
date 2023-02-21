@@ -101,15 +101,17 @@ const EditExperiences = ({ experiences }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.experiences.length < 20 &&
-                                                <IconButton onClick={() => {
-                                                    pushMethod({
-                                                        company_name: '',
-                                                        job_title: '',
-                                                        start_year: '',
-                                                        end_year: '',
-                                                        description: '',
-                                                    })
-                                                }} >
+                                                <IconButton
+                                                    style={{ marginRight: '-8px' }}
+                                                    onClick={() => {
+                                                        pushMethod({
+                                                            company_name: '',
+                                                            job_title: '',
+                                                            start_year: '',
+                                                            end_year: '',
+                                                            description: '',
+                                                        })
+                                                    }} >
                                                     <AddIcon className='add-icon' />
                                                 </IconButton>
                                             }

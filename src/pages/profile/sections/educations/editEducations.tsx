@@ -100,15 +100,17 @@ const EditEducations = ({ educations }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.educations.length < 20 &&
-                                                <IconButton onClick={() => {
-                                                    pushMethod({
-                                                        major_name: '',
-                                                        school_name: '',
-                                                        start_year: '',
-                                                        end_year: '',
-                                                        description: '',
-                                                    })
-                                                }}>
+                                                <IconButton
+                                                    style={{ marginRight: '-8px' }}
+                                                    onClick={() => {
+                                                        pushMethod({
+                                                            major_name: '',
+                                                            school_name: '',
+                                                            start_year: '',
+                                                            end_year: '',
+                                                            description: '',
+                                                        })
+                                                    }}>
                                                     <AddIcon className='add-icon' />
                                                 </IconButton>
                                             }

@@ -104,12 +104,14 @@ const EditLanguages = ({ languages }: any) => {
                                         </Box>
                                         <Box className="center-item">
                                             {formik.values.languages.length < 20 &&
-                                                <IconButton onClick={() => {
-                                                    pushMethod({
-                                                        language_code: '',
-                                                        language_skill: ''
-                                                    })
-                                                }}>
+                                                <IconButton
+                                                    style={{ marginRight: '-8px' }}
+                                                    onClick={() => {
+                                                        pushMethod({
+                                                            language_code: '',
+                                                            language_skill: ''
+                                                        })
+                                                    }}>
                                                     <AddIcon className='add-icon' />
                                                 </IconButton>
                                             }
