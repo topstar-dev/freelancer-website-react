@@ -98,7 +98,7 @@ const EditLanguages = ({ languages }: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
                                 <DialogTitle style={{ marginTop: 6 }}>
-                                    <Box className={`heading-flex`} style={{ alignItems: 'center' }}>
+                                    <Box className={`heading-flex`} style={{ alignItems: 'center', marginTop: '-8px' }}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('freelancer.languages.title')}</Box>
                                         </Box>
