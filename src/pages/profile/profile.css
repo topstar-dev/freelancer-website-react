@@ -116,8 +116,16 @@
     margin-top: 12px;
 }
 
-.profile-card-spacing-multiple {
+.profile-edit-right-divider {
+    padding: 40px 24px 0 70px;
+}
+
+.flex-items:first-child .profile-card-spacing-multiple {
     padding: 24px 24px 0 0;
+}
+
+.profile-card-spacing-multiple {
+    padding: 40px 24px 0 0;
     width: 100%;
 }
 

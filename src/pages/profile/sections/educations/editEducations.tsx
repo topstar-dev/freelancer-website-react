@@ -230,7 +230,7 @@ const EditEducations = ({ educations }: any) => {
                                                                 </Form>
                                                             </Box>
                                                         </Box>
-                                                        {index < formik.values.educations.length - 1 && <Box className="right-divider"><Divider /></Box>}
+                                                        {index < formik.values.educations.length - 1 && <Box className="profile-edit-right-divider"><Divider /></Box>}
                                                     </React.Fragment>
                                                 )
                                             })

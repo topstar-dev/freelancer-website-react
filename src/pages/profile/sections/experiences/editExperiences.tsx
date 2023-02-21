@@ -232,7 +232,7 @@ const EditExperiences = ({ experiences }: any) => {
                                                                 </Form>
                                                             </Box>
                                                         </Box>
-                                                        {index < formik.values.experiences.length - 1 && <Box className="right-divider"><Divider /></Box>}
+                                                        {index < formik.values.experiences.length - 1 && <Box className="profile-edit-right-divider"><Divider /></Box>}
                                                     </React.Fragment>
                                                 )
                                             })

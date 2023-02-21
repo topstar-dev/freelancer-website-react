@@ -180,7 +180,7 @@ const EditLanguages = ({ languages }: any) => {
                                                                 </Form>
                                                             </Box>
                                                         </Box>
-                                                        {index < formik.values.languages.length - 1 && <Box className="right-divider"><Divider /></Box>}
+                                                        {index < formik.values.languages.length - 1 && <Box className="profile-edit-right-divider"><Divider /></Box>}
                                                     </React.Fragment>
                                                 )
                                             })
