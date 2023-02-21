@@ -308,7 +308,7 @@ const EditUserInfo = ({
                                                 editFreelancer(formik.values).then(() => {
                                                     setEditMode(false);
                                                     const fullName = i18n.language === 'zh-CN' ?
-                                                        [formik.values.last_name, formik.values.first_name].join(' ')
+                                                        [formik.values.last_name, formik.values.first_name]
                                                         :
                                                         [formik.values.first_name, formik.values.last_name].join(' ');
                                                     setTokens({ ...userInfo, name: fullName });
