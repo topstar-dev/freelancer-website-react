@@ -37,7 +37,7 @@ const PreviewUserInfoActions = ({ username = '' }: any) => {
                 setBackdrop(false)
             })
         }
-    }, [dispatch, called])
+    }, [dispatch, called, staredUsers, userInfo])
 
     return (<Box className="user-info-edit">
         {userInfo && <IconButton

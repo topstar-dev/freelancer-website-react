@@ -94,7 +94,7 @@ const EditEducations = ({ educations }: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
                                 <DialogTitle style={{ marginTop: 6 }}>
-                                    <Box className={`heading-flex`}>
+                                    <Box className={`heading-flex`} style={{ alignItems: 'center' }}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('freelancer.educations.title')}</Box>
                                         </Box>
