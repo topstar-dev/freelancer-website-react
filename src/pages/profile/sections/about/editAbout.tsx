@@ -85,7 +85,7 @@ const EditAbout = ({ about }: any) => {
                                         helperText={formik.touched.about && formik.errors.about ? (formik.errors.about as ReactNode) : t('profile.write-a-short-summary')}
                                     />
                                 </Box>
-                                <DialogActions style={{ paddingTop: '24px', paddingRight: 0, paddingBottom: 0 }}>
+                                <DialogActions style={{ paddingTop: '40px', paddingRight: 0, paddingBottom: 0 }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {
