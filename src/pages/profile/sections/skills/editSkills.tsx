@@ -90,7 +90,7 @@ const EditSkills = ({
     }
     return (
         <>
-            {skills ?
+            {skills.length > 0 ?
                 <IconButton
                     className="edit-button-base"
                     onClick={() => setShow(true)}
