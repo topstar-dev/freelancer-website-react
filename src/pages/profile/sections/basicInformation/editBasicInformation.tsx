@@ -274,7 +274,7 @@ const EditBasicInformation = ({
                                                     }
                                                 }
 
-                                                if (user_type === USER_TYPES.FREELANCER) {
+                                                if (user_type === USER_TYPES.FREELANCER && username !== formik.values.username) {
                                                     saveData['username'] = formik.values.username;
                                                     updatedValues.username = formik.values.username;
                                                 }
