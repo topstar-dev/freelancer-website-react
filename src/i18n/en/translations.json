@@ -154,11 +154,11 @@
     "fluent": "Fluent",
     "native-fluent": "Native",
     "add-languages": "Add languages",
-    "add-about": "Add About",
-    "add-skills": "Add Skills",
-    "add-basic-info": "Add Basic information",
-    "add-experiences": "Add Experiences",
-    "add-educations": "Add Educations",
+    "add-about": "Add about",
+    "add-skills": "Add skills",
+    "add-basic-info": "Add basic information",
+    "add-experiences": "Add experiences",
+    "add-educations": "Add educations",
     "freelancer": {
         "title": "Submit freelancer application",
         "skills": {
