@@ -48,7 +48,7 @@ const EditAbout = ({ about }: any) => {
             >
                 <Formik
                     enableReinitialize
-                    initialValues={{ about: about }}
+                    initialValues={{ about: about || '' }}
                     validationSchema={yup.object({
                         about: yup
                             .string()
