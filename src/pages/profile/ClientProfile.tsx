@@ -31,11 +31,11 @@ export default function ClientProfile({ profile }: any) {
     return (
         <div className={'profile-layout-container profile-layout-container-mobile'}>
             <div className="right-profile-section">
-                <BasicInformation {...basicInfo} />
-                <JobFeedback username={profile.username} />
+                <BasicInformation {...basicInfo} currentProfile={currentProfile} />
+                <JobFeedback username={profile.username} currentProfile={currentProfile} />
             </div>
             <div className="left-profile-section">
-                <UserInfo {...profileUserInfo} />
+                <UserInfo {...profileUserInfo} currentProfile={currentProfile} />
             </div>
         </div>
     )
