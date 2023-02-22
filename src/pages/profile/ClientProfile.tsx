@@ -35,7 +35,7 @@ export default function ClientProfile({ profile }: any) {
                 <JobFeedback username={profile.username} />
             </div>
             <div className="left-profile-section">
-                <UserInfo {...userInfo} />
+                <UserInfo {...profileUserInfo} />
             </div>
         </div>
     )
