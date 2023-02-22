@@ -33,9 +33,9 @@ const EditBasicInformation = ({
         country_id: country_id ? country_id : '',
         province_id: province_id ? province_id : '',
         city_id: city_id ? city_id : '',
-        username: username
+        username: username ? username : ''
     });
-
+    console.log(username)
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
     const [called, setCalled] = useState(false)
@@ -257,8 +257,8 @@ const EditBasicInformation = ({
                                         style={{ marginLeft: 10 }}
                                         onClick={() => {
                                             formik.validateForm().then((res: any) => {
-                                                const { country_id, username } = res;
-                                                if (country_id || username) {
+                                                const { country_id } = res;
+                                                if (country_id || res.username) {
                                                     formik.submitForm();
                                                 }
 
@@ -293,7 +293,7 @@ const EditBasicInformation = ({
                                                     updatedValues.location.unshift(getName(formik.values.city_id, 'city'))
                                                 }
 
-                                                if (!(country_id || username)) {
+                                                if (!(country_id || res.username)) {
                                                     setLoading(true);
                                                     updatedValues.location = i18n.language === 'zh-CN' ? updatedValues.location.reverse().join(', ') : updatedValues.location.join(', ');
                                                     editFreelancer(saveData).then(() => {
