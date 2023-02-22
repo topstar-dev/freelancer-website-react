@@ -35,7 +35,7 @@ const EditBasicInformation = ({
         city_id: city_id ? city_id : '',
         username: username ? username : ''
     });
-    console.log(username)
+
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
     const [called, setCalled] = useState(false)

@@ -133,10 +133,6 @@
     min-width: 500px;
 }
 
-.profile-edit-dialog-body.profile-edit-dialog-body-mobile {
-    min-width: 500px;
-}
-
 @media (max-width:499px) {
     .profile-edit-dialog-body {
         min-width: 100%;
@@ -342,6 +338,15 @@
     font-size: 50px;
     color: #757575;
     margin-bottom: 10px;
+}
+
+html[lang="zh-CN"] .rating-rate,
+html[lang="zh-CN"] .rating-number {
+    font-family: 'Roboto';
+}
+
+html[lang="zh-CN"] .review-count-number {
+    margin-top: -6px;
 }
 
 .rating-box {

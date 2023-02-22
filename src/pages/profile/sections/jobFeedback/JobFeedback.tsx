@@ -113,7 +113,7 @@ export default function JobFeedback({ username }: any) {
                                 emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                             />
                         </Box>
-                        <Box>{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
+                        <Box className="review-count-number">{jobFeedbackData?.records?.review_count || 0} {t('profile.job-feedback-reviews')}</Box>
                     </Box>
                 </Box>
                 {!jobFeedbackData?.records?.job_feedbacks.length ?
