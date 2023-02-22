@@ -12,6 +12,7 @@ import { useEditFreelancer } from "../../../applyFreelancer/useEditFreelancer";
 import CustomBackdrop from "../../../../components/customBackdrop/CustomBackdrop";
 import { useProfileContext } from "../../Profile";
 import useBreakpoint from "../../../../components/breakpoints/BreakpointProvider";
+import Form from "../../../../components/form/Form";
 
 const EditAbout = ({ about }: any) => {
     const { t } = useTranslation();
@@ -45,6 +46,7 @@ const EditAbout = ({ about }: any) => {
                 fullScreen={isMobile}
                 open={show}
                 maxWidth="lg"
+                className="editAboutModal"
             >
                 <Formik
                     enableReinitialize
@@ -63,7 +65,7 @@ const EditAbout = ({ about }: any) => {
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
-                                <DialogTitle style={{ padding: '0 0 24px 0' }}>
+                                <DialogTitle>
                                     <Box className={`heading-flex`}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('freelancer.about.title')}</Box>
@@ -71,22 +73,24 @@ const EditAbout = ({ about }: any) => {
                                     </Box>
                                 </DialogTitle>
                                 <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body" : "profile-edit-dialog-body"}>
-                                    <TextField
-                                        multiline={true}
-                                        rows={8}
-                                        fullWidth
-                                        id='about'
-                                        name='about'
-                                        type="text"
-                                        label={t('freelancer.about.about')}
-                                        value={formik.values.about ? formik.values.about : ''}
-                                        onChange={formik.handleChange}
-                                        style={{ width: '100%' }}
-                                        error={formik.touched.about && Boolean(formik.errors.about)}
-                                        helperText={formik.touched.about && formik.errors.about ? (formik.errors.about as ReactNode) : t('profile.write-a-short-summary')}
-                                    />
+                                    <Form className="profile-card-spacing" style={{ paddingTop: 0, paddingBottom: 0 }}>
+                                        <TextField
+                                            multiline={true}
+                                            rows={8}
+                                            fullWidth
+                                            id='about'
+                                            name='about'
+                                            type="text"
+                                            label={t('freelancer.about.about')}
+                                            value={formik.values.about ? formik.values.about : ''}
+                                            onChange={formik.handleChange}
+                                            style={{ width: '100%' }}
+                                            error={formik.touched.about && Boolean(formik.errors.about)}
+                                            helperText={formik.touched.about && formik.errors.about ? (formik.errors.about as ReactNode) : t('profile.write-a-short-summary')}
+                                        />
+                                    </Form>
                                 </Box>
-                                <DialogActions style={{ paddingTop: '40px', paddingRight: 0, paddingBottom: 0 }}>
+                                <DialogActions style={{ paddingBottom: '20px', paddingRight: '24px', paddingTop: '40px' }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {

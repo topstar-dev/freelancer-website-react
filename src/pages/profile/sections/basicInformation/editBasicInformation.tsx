@@ -120,6 +120,7 @@ const EditBasicInformation = ({
                 fullScreen={isMobile}
                 open={show}
                 maxWidth="lg"
+                className="editBasicInfoModal"
             >
                 <Formik
                     enableReinitialize
@@ -143,7 +144,7 @@ const EditBasicInformation = ({
                     {formik =>
                         <WithTranslateFormErrors {...formik}>
                             <DialogContent>
-                                <DialogTitle style={{ padding: '0 0 24px 0' }}>
+                                <DialogTitle>
                                     <Box className={`heading-flex`}>
                                         <Box>
                                             <Box className='profile-edit-heading-title'>{t('profile.basic-info-title')}</Box>
@@ -151,7 +152,7 @@ const EditBasicInformation = ({
                                     </Box>
                                 </DialogTitle>
                                 <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body" : "profile-edit-dialog-body"}>
-                                    <Form>
+                                    <Form className="profile-card-spacing" style={{ paddingTop: 0, paddingBottom: 0 }}>
                                         <FormControl fullWidth>
                                             <InputLabel id="profile-country-id-select-label">{t('freelancer.about.country')}</InputLabel>
                                             <Select
@@ -245,7 +246,7 @@ const EditBasicInformation = ({
                                         }
                                     </Form>
                                 </Box>
-                                <DialogActions style={{ paddingTop: '40px', paddingRight: 0, paddingBottom: 0 }}>
+                                <DialogActions style={{ paddingBottom: '20px', paddingRight: '24px', paddingTop: '40px' }}>
                                     <Button
                                         variant="text"
                                         onClick={() => {
