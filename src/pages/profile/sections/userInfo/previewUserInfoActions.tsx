@@ -40,7 +40,7 @@ const PreviewUserInfoActions = ({ username = '' }: any) => {
     }, [dispatch, called, staredUsers, userInfo])
 
     return (<Box className="user-info-edit">
-        {userInfo && <IconButton
+        <IconButton
             style={{ marginLeft: 'auto', paddingLeft: 6, paddingRight: 6 }}
             onClick={() => {
                 if (staredUsers.indexOf(username) !== -1) {
@@ -77,7 +77,7 @@ const PreviewUserInfoActions = ({ username = '' }: any) => {
                 :
                 <StarOutlineIcon style={{ fontSize: '29px' }} className="user-info-edit-icon" />
             }
-        </IconButton>}
+        </IconButton>
         <IconButton onClick={() => {
             navigator.clipboard.writeText(window.location.href);
             enqueueSnackbar(t('profile.share-link-copied-to-clipboard'))
