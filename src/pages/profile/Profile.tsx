@@ -22,6 +22,7 @@ export default function Profile(props: any) {
     const { language } = useAppSelector(state => state.resources);
     const { username } = useParams();
 
+    const [staticUsername, setStaticUsername] = useState<any>('');
     const [profile, setProfile] = useState<any>(null);
     const [called, setCalled] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
@@ -52,42 +53,42 @@ export default function Profile(props: any) {
     }, [dispatch, enqueueSnackbar, called, username, errorPage])
 
     useEffect(() => {
-        setCalled(false)
-    }, [username])
+        if (username !== staticUsername) {
+            setStaticUsername(username);
+            setCalled(false)
+        }
+    }, [staticUsername, username])
 
     useEffect(() => {
         const currentLang = i18n.language;
         if (language && currentLang && currentLang !== language) {
             setCalled(false)
         }
-    }, [i18n, language])
+    }, [i18n, language, username])
 
     if (errorPage) {
         return <NotFound />
     }
 
     if (profile) {
-        switch (profile.user_type) {
-            case USER_TYPES.CLIENT:
-                return <ProfileContext.Provider value={{
-                    updateProfileData: (data: any) => {
-                        setProfile({ ...profile, ...data });
-                    }
-                }}>
-                    <ClientProfile profile={profile} />
-                    <CustomBackdrop loading={backdrop} />
-                </ProfileContext.Provider>
-            case USER_TYPES.FREELANCER:
-                return <ProfileContext.Provider value={{
-                    updateProfileData: (data: any) => {
-                        setProfile({ ...profile, ...data });
-                    }
-                }}>
-                    <FreelancerProfile profile={profile} />
-                    <CustomBackdrop loading={backdrop} />
-                </ProfileContext.Provider>
-            default:
-                return <>Invalid user</>
+        if (profile.user_type === USER_TYPES.CLIENT) {
+            return <ProfileContext.Provider value={{
+                updateProfileData: (data: any) => {
+                    setProfile({ ...profile, ...data });
+                }
+            }}>
+                <ClientProfile profile={profile} />
+                <CustomBackdrop loading={backdrop} />
+            </ProfileContext.Provider>
+        } else {
+            return <ProfileContext.Provider value={{
+                updateProfileData: (data: any) => {
+                    setProfile({ ...profile, ...data });
+                }
+            }}>
+                <FreelancerProfile profile={profile} />
+                <CustomBackdrop loading={backdrop} />
+            </ProfileContext.Provider>
         }
     } else {
         return <>No Data</>

@@ -56,9 +56,11 @@ export default function UserInfo({
     }, [dispatch, loadingProfile, profile_file_name, userProfile])
 
     useEffect(() => {
-        setUserAvatar(null);
-        setUserProfile(null)
-    }, [pathParams.username])
+        if (username !== pathParams.username) {
+            setUserAvatar(null);
+            setUserProfile(null)
+        }
+    }, [username, pathParams.username])
 
     return (
         <Card className="userInfo-container container-width">
