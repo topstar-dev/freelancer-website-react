@@ -293,17 +293,7 @@ const EditUserInfo = ({
                                                 formik.setFieldError('last_name', last_name);
                                             }
 
-                                            let avatarImageCheck = false;
-                                            let profileImageCheck = false;
-                                            if (!userAvatar && !loadingAvatar) {
-                                                avatarImageCheck = true;
-                                                enqueueSnackbar(t('validation.avatar-image'))
-                                            } else if (!userProfile && !loadingProfile) {
-                                                profileImageCheck = true;
-                                                enqueueSnackbar(t('validation.profile-image'))
-                                            }
-
-                                            if (!(first_name || last_name || avatarImageCheck || profileImageCheck)) {
+                                            if (!(first_name || last_name)) {
                                                 setBackdrop(true);
                                                 editFreelancer(formik.values).then(() => {
                                                     setEditMode(false);
