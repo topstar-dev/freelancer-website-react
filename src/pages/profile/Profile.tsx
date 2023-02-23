@@ -1,8 +1,8 @@
-import { Backdrop, CircularProgress } from "@mui/material";
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import CustomBackdrop from "../../components/customBackdrop/CustomBackdrop";
 import { USER_TYPES } from "../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getProfileAction } from "../../redux/profile/profileActions";
@@ -52,6 +52,10 @@ export default function Profile(props: any) {
     }, [dispatch, enqueueSnackbar, called, username, errorPage])
 
     useEffect(() => {
+        setCalled(false)
+    }, [username])
+
+    useEffect(() => {
         const currentLang = i18n.language;
         if (language && currentLang && currentLang !== language) {
             setCalled(false)
@@ -60,16 +64,6 @@ export default function Profile(props: any) {
 
     if (errorPage) {
         return <NotFound />
-    }
-
-    if (backdrop && !profile) {
-        return <Backdrop
-            className='only-backdrop'
-            sx={{ color: '#fff', zIndex: 999 }}
-            open={backdrop}
-        >
-            <CircularProgress color="inherit" />
-        </Backdrop>
     }
 
     if (profile) {
@@ -81,6 +75,7 @@ export default function Profile(props: any) {
                     }
                 }}>
                     <ClientProfile profile={profile} />
+                    <CustomBackdrop loading={backdrop} />
                 </ProfileContext.Provider>
             case USER_TYPES.FREELANCER:
                 return <ProfileContext.Provider value={{
@@ -89,6 +84,7 @@ export default function Profile(props: any) {
                     }
                 }}>
                     <FreelancerProfile profile={profile} />
+                    <CustomBackdrop loading={backdrop} />
                 </ProfileContext.Provider>
             default:
                 return <>Invalid user</>

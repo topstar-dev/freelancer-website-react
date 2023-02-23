@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../../../redux/hooks";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import EditUserInfo from "./EditUserInfo";
 import PreviewUserInfoActions from "./previewUserInfoActions";
+import { useParams } from "react-router-dom";
 
 export default function UserInfo({
     full_name,
@@ -20,6 +21,7 @@ export default function UserInfo({
     ...rest
 }: any) {
     const dispatch = useAppDispatch();
+    const pathParams = useParams();
     const [userAvatar, setUserAvatar] = useState<any>(null);
     const [loadingAvatar, setLoadingAvatar] = useState(false);
     const [userProfile, setUserProfile] = useState<any>(null);
@@ -52,6 +54,11 @@ export default function UserInfo({
                 })
         }
     }, [dispatch, loadingProfile, profile_file_name, userProfile])
+
+    useEffect(() => {
+        setUserAvatar(null);
+        setUserProfile(null)
+    }, [pathParams.username])
 
     return (
         <Card className="userInfo-container container-width">
