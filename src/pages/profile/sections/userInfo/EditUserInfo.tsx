@@ -76,6 +76,7 @@ const EditUserInfo = ({
                                         dispatch(updateUserInfo({ ...userInfo, avatar_file_name: res.payload.data.file_name }))
                                     }
                                     updateProfileData(imageUrlUpdate);
+                                } else {
                                     enqueueSnackbar(res.payload.message)
                                 }
                             }).catch((err) => {
