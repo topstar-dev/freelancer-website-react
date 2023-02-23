@@ -29,7 +29,7 @@ const EditBasicInformation = ({
     const dispatch = useAppDispatch();
     const editFreelancer = useEditFreelancer();
     const { updateProfileData } = useProfileContext();
-    const [basicInfo] = useState({
+    const [basicInfo, setBasicInfo] = useState<any>({
         country_id: country_id ? country_id : '',
         province_id: province_id ? province_id : '',
         city_id: city_id ? city_id : '',
@@ -164,6 +164,12 @@ const EditBasicInformation = ({
                                                 onChange={(e) => {
                                                     formik.setFieldValue('province_id', "")
                                                     formik.setFieldValue('city_id', "")
+                                                    setBasicInfo({
+                                                        username: basicInfo.username,
+                                                        country_id: e.target.value,
+                                                        province_id: '',
+                                                        city_id: ''
+                                                    })
                                                     if (e.target.value.toString() === COUNTRY_ID_CHINA) {
                                                         setLoading(true)
                                                         dispatch(getProvincesList({ country_id: Number(e.target.value) })).then((res) => {
@@ -194,6 +200,12 @@ const EditBasicInformation = ({
                                                 onChange={(e) => {
                                                     setLoading(true)
                                                     formik.setFieldValue('city_id', "")
+                                                    setBasicInfo({
+                                                        username: basicInfo.username,
+                                                        country_id: basicInfo.country_id,
+                                                        province_id: e.target.value,
+                                                        city_id: ''
+                                                    })
                                                     dispatch(getCitiesList({ province_id: Number(e.target.value), country_id: Number(formik.values.country_id) })).then((res) => {
                                                         if (res.payload && res.payload.success) {
                                                             setCityList(res.payload.data.records);
@@ -218,7 +230,15 @@ const EditBasicInformation = ({
                                                 id="city_id"
                                                 name="city_id"
                                                 value={formik.values.city_id ? formik.values.city_id : ''}
-                                                onChange={formik.handleChange}
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+                                                    setBasicInfo({
+                                                        username: basicInfo.username,
+                                                        country_id: basicInfo.country_id,
+                                                        province_id: basicInfo.province_id,
+                                                        city_id: e.target.value
+                                                    })
+                                                }}
                                             >
                                                 {cityList.map((city: any) => (
                                                     <MenuItem key={city.city_id} value={city.city_id}>{city.city_name}</MenuItem>
@@ -236,7 +256,15 @@ const EditBasicInformation = ({
                                                     type="text"
                                                     label={t('profile.username')}
                                                     value={formik.values.username ? formik.values.username : ''}
-                                                    onChange={formik.handleChange}
+                                                    onChange={(e) => {
+                                                        formik.handleChange(e);
+                                                        setBasicInfo({
+                                                            username: e.target.value,
+                                                            country_id: basicInfo.country_id,
+                                                            province_id: basicInfo.province_id,
+                                                            city_id: e.target.value
+                                                        })
+                                                    }}
                                                     error={formik.touched.username && Boolean(formik.errors.username)}
                                                     helperText={formik.touched.username && formik.errors.username && formik.errors.username as ReactNode}
                                                 />
@@ -285,6 +313,9 @@ const EditBasicInformation = ({
                                                     updatedValues['province_id'] = formik.values.province_id;
                                                     updatedValues['province_name'] = getName(formik.values.province_id, 'province');
                                                     updatedValues.location.unshift(getName(formik.values.province_id, 'province'))
+                                                } else {
+                                                    updatedValues['province_id'] = '';
+                                                    updatedValues['province_name'] = '';
                                                 }
 
                                                 if (formik.values.city_id) {
@@ -292,6 +323,9 @@ const EditBasicInformation = ({
                                                     updatedValues['city_id'] = formik.values.city_id;
                                                     updatedValues['city_name'] = getName(formik.values.city_id, 'city');
                                                     updatedValues.location.unshift(getName(formik.values.city_id, 'city'))
+                                                } else {
+                                                    updatedValues['city_id'] = '';
+                                                    updatedValues['city_name'] = '';
                                                 }
 
                                                 if (!(country_id || res.username)) {
