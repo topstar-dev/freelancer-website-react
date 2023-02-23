@@ -320,8 +320,9 @@ const EditUserInfo = ({
                                                     }).catch(() => { })
                                                         .finally(() => { setBackdrop(false) })
                                                 }
+                                            } else {
+                                                setEditMode(false);
                                             }
-
                                         })
                                     }}>{t('user-personal-account-save')}</Button>
                             </DialogActions>
