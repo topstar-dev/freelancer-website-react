@@ -240,7 +240,7 @@ const EditSkills = ({
 
                                                 if (!(occupation_category_id || skills)) {
                                                     setLoading(true);
-                                                    editFreelancer(saveData).then(() => {
+                                                    editFreelancer(saveData, false).then(() => {
                                                         setShow(false)
                                                         updateProfileData({
                                                             occupation_category_name: (categories.find((e: any) => e.occupation_category_id === formik.values.occupation_category_id) as any)?.occupation_category_name,

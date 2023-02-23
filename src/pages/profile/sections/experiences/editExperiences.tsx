@@ -281,7 +281,7 @@ const EditExperiences = ({ experiences }: any) => {
 
                                                 if (isValid) {
                                                     setLoading(true);
-                                                    editFreelancer(saveData).then(() => {
+                                                    editFreelancer(saveData, false).then(() => {
                                                         setShow(false)
                                                         updateProfileData(saveData)
                                                     })

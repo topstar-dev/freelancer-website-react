@@ -113,7 +113,7 @@ const EditAbout = ({ about }: any) => {
 
                                                 if (!about) {
                                                     setLoading(true);
-                                                    editFreelancer(saveData).then(() => {
+                                                    editFreelancer(saveData, false).then(() => {
                                                         setShow(false)
                                                         updateProfileData({
                                                             about: formik.values.about

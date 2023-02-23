@@ -296,7 +296,7 @@ const EditUserInfo = ({
 
                                             if (!(first_name || last_name)) {
                                                 setBackdrop(true);
-                                                editFreelancer(formik.values).then(() => {
+                                                editFreelancer(formik.values, false).then(() => {
                                                     setEditMode(false);
                                                     const fullName = i18n.language === 'zh-CN' ?
                                                         [formik.values.last_name, formik.values.first_name].join(' ')

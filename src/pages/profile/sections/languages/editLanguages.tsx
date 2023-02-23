@@ -218,7 +218,7 @@ const EditLanguages = ({ languages }: any) => {
 
                                                 if (isValid) {
                                                     setLoading(true);
-                                                    editFreelancer(saveData).then(() => {
+                                                    editFreelancer(saveData, false).then(() => {
                                                         setShow(false)
                                                         updateProfileData({
                                                             languages: saveData.languages.map((l: any) => {

@@ -297,7 +297,7 @@ const EditBasicInformation = ({
                                                 if (!(country_id || res.username)) {
                                                     setLoading(true);
                                                     updatedValues.location = i18n.language === 'zh-CN' ? updatedValues.location.reverse().join(' - ') : updatedValues.location.join(', ');
-                                                    editFreelancer(saveData).then(() => {
+                                                    editFreelancer(saveData, false).then(() => {
                                                         setShow(false)
                                                         updateProfileData(updatedValues)
                                                     })
