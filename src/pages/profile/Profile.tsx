@@ -62,7 +62,7 @@ export default function Profile(props: any) {
         return <NotFound />
     }
 
-    if (backdrop) {
+    if (backdrop && !profile) {
         return <Backdrop
             className='only-backdrop'
             sx={{ color: '#fff', zIndex: 999 }}
