@@ -81,8 +81,10 @@ export default function Profile(props: any) {
     if (profile) {
         switch (profile.user_type) {
             case USER_TYPES.CLIENT:
-                return <ProfileContext.Provider value={(data: any) => {
-                    setProfile({ ...profile, ...data });
+                return <ProfileContext.Provider value={{
+                    updateProfileData: (data: any) => {
+                        setProfile({ ...profile, ...data });
+                    }
                 }}>
                     <ClientProfile profile={profile} />
                 </ProfileContext.Provider>
