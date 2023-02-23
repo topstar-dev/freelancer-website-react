@@ -157,10 +157,9 @@ const EditSkills = ({
                                                 name="occupation_category_id"
                                                 value={formik.values.occupation_category_id ? formik.values.occupation_category_id : ''}
                                                 onChange={(e) => {
-                                                    setLoading(true)
                                                     formik.handleChange(e)
                                                     formik.setFieldValue('skills', [])
-                                                    setFreelancerSkills({ ...freelancerSkills, skills: [] })
+                                                    setFreelancerSkills({ occupation_category_id: e.target.value, skills: [] })
                                                     getSkills(e.target.value);
                                                 }}
                                             >
