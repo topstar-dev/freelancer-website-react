@@ -32,9 +32,7 @@ const EditUserInfo = ({
     userAvatar,
     userProfile,
     setUserAvatar,
-    setUserProfile,
-    loadingAvatar,
-    loadingProfile
+    setUserProfile
 }: any) => {
     const { t, i18n } = useTranslation();
     const { enqueueSnackbar } = useSnackbar();
@@ -76,6 +74,7 @@ const EditUserInfo = ({
                                         dispatch(updateUserInfo({ ...userInfo, avatar_file_name: res.payload.data.file_name }))
                                     }
                                     updateProfileData(imageUrlUpdate);
+                                    enqueueSnackbar(res.payload.message)
                                 } else {
                                     enqueueSnackbar(res.payload.message)
                                 }
@@ -284,34 +283,45 @@ const EditUserInfo = ({
                                     style={{ marginLeft: 10 }}
                                     onClick={() => {
                                         formik.validateForm().then((res: any) => {
-                                            const { first_name, last_name } = res;
-                                            if (first_name) {
+                                            if (res.first_name) {
                                                 formik.setFieldTouched('first_name', true, true);
-                                                formik.setFieldError('first_name', first_name);
+                                                formik.setFieldError('first_name', res.first_name);
                                             }
-                                            if (last_name) {
+                                            if (res.last_name) {
                                                 formik.setFieldTouched('last_name', true, true);
-                                                formik.setFieldError('last_name', last_name);
+                                                formik.setFieldError('last_name', res.last_name);
                                             }
 
-                                            if (!(first_name || last_name)) {
-                                                setBackdrop(true);
-                                                editFreelancer(formik.values, false).then(() => {
-                                                    setEditMode(false);
-                                                    const fullName = i18n.language === 'zh-CN' ?
-                                                        [formik.values.last_name, formik.values.first_name].join(' ')
-                                                        :
-                                                        [formik.values.first_name, formik.values.last_name].join(' ');
-                                                    setTokens({ ...userInfo, name: fullName });
-                                                    dispatch(updateUserInfo({ ...userInfo, name: fullName }))
-                                                    updateProfileData({
-                                                        first_name: formik.values.first_name,
-                                                        last_name: formik.values.last_name,
-                                                        full_name: fullName
-                                                    })
-                                                }).catch(() => { })
-                                                    .finally(() => { setBackdrop(false) })
+                                            const saveData: any = {};
+                                            if (formik.values.first_name !== first_name) {
+                                                saveData['first_name'] = formik.values.first_name;
                                             }
+
+                                            if (formik.values.last_name !== last_name) {
+                                                saveData['last_name'] = formik.values.last_name;
+                                            }
+
+                                            if (Object.keys(saveData).length) {
+                                                if (!(res.first_name || res.last_name)) {
+                                                    setBackdrop(true);
+                                                    editFreelancer(saveData, false).then(() => {
+                                                        setEditMode(false);
+                                                        const fullName = i18n.language === 'zh-CN' ?
+                                                            [formik.values.last_name, formik.values.first_name].join(' ')
+                                                            :
+                                                            [formik.values.first_name, formik.values.last_name].join(' ');
+                                                        setTokens({ ...userInfo, name: fullName });
+                                                        dispatch(updateUserInfo({ ...userInfo, name: fullName }))
+                                                        updateProfileData({
+                                                            first_name: formik.values.first_name,
+                                                            last_name: formik.values.last_name,
+                                                            full_name: fullName
+                                                        })
+                                                    }).catch(() => { })
+                                                        .finally(() => { setBackdrop(false) })
+                                                }
+                                            }
+
                                         })
                                     }}>{t('user-personal-account-save')}</Button>
                             </DialogActions>
