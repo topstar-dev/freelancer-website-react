@@ -64,35 +64,38 @@ export default function Profile(props: any) {
         if (language && currentLang && currentLang !== language) {
             setCalled(false)
         }
-    }, [i18n, language, username])
+    }, [i18n, language, staticUsername])
 
     if (errorPage) {
         return <NotFound />
     }
 
-    if (profile) {
-        if (profile.user_type === USER_TYPES.CLIENT) {
-            return <ProfileContext.Provider value={{
-                updateProfileData: (data: any) => {
-                    setProfile({ ...profile, ...data });
-                }
-            }}>
-                <ClientProfile profile={profile} />
-                <CustomBackdrop loading={backdrop} />
-            </ProfileContext.Provider>
-        } else {
-            return <ProfileContext.Provider value={{
-                updateProfileData: (data: any) => {
-                    setProfile({ ...profile, ...data });
-                }
-            }}>
-                <FreelancerProfile profile={profile} />
-                <CustomBackdrop loading={backdrop} />
-            </ProfileContext.Provider>
-        }
-    } else {
-        return <>No Data</>
-    }
+    return (
+        <>
+            {
+                profile ?
+                    profile?.user_type === USER_TYPES.CLIENT ?
+                        <ProfileContext.Provider value={{
+                            updateProfileData: (data: any) => {
+                                setProfile({ ...profile, ...data });
+                            }
+                        }}>
+                            <ClientProfile profile={profile || {}} />
+                        </ProfileContext.Provider>
+                        :
+                        <ProfileContext.Provider value={{
+                            updateProfileData: (data: any) => {
+                                setProfile({ ...profile, ...data });
+                            }
+                        }}>
+                            <FreelancerProfile profile={profile || {}} />
+                        </ProfileContext.Provider>
+                    :
+                    ''
+            }
+            <CustomBackdrop loading={backdrop} />
+        </>
+    )
 }
 
 export const useProfileContext = () => {
