@@ -1,7 +1,7 @@
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CustomBackdrop from "../../components/customBackdrop/CustomBackdrop";
 import { USER_TYPES } from "../../redux/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
