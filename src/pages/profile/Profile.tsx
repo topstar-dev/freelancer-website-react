@@ -1,6 +1,5 @@
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import CustomBackdrop from "../../components/customBackdrop/CustomBackdrop";
 import { USER_TYPES } from "../../redux/constants";
@@ -17,12 +16,11 @@ const ProfileContext = React.createContext<any>({
 
 export default function Profile(props: any) {
     const dispatch = useAppDispatch();
-    const { enqueueSnackbar } = useSnackbar()
-    const { i18n } = useTranslation();
+    const { enqueueSnackbar } = useSnackbar();
     const { language } = useAppSelector(state => state.resources);
     const { username } = useParams();
 
-    const [staticUsername, setStaticUsername] = useState<any>('');
+    const [lang, setLang] = useState<any>('')
     const [profile, setProfile] = useState<any>(null);
     const [called, setCalled] = useState(false);
     const [backdrop, setBackdrop] = useState(false);
@@ -53,18 +51,11 @@ export default function Profile(props: any) {
     }, [dispatch, enqueueSnackbar, called, username, errorPage])
 
     useEffect(() => {
-        if (username !== staticUsername) {
-            setStaticUsername(username);
+        if (language && lang !== language) {
+            setLang(language);
             setCalled(false)
         }
-    }, [staticUsername, username])
-
-    useEffect(() => {
-        const currentLang = i18n.language;
-        if (language && currentLang && currentLang !== language) {
-            setCalled(false)
-        }
-    }, [i18n, language, staticUsername])
+    }, [lang, language])
 
     if (errorPage) {
         return <NotFound />
