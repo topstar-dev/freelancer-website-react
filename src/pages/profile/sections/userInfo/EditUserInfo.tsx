@@ -112,7 +112,7 @@ const EditUserInfo = ({
             fullScreen={isMobile}
             open={editMode}
             maxWidth="lg"
-            className='userinfo-profile-edit'
+            className={isMobile ? 'userinfo-profile-edit userinfo-profile-edit-mobile' : 'userinfo-profile-edit'}
         >
             <Formik
                 enableReinitialize
@@ -142,9 +142,9 @@ const EditUserInfo = ({
                                     </Box>
                                 </Box>
                             </DialogTitle>
-                            <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body" : "profile-edit-dialog-body"}>
+                            <Box style={{ paddingTop: '10px' }} className={isMobile ? "profile-edit-dialog-body profile-body-mobile" : "profile-edit-dialog-body"}>
                                 <Box className="profile-photo-container">
-                                    <Box className="profile-image-box">
+                                    <Box style={{ height: 'auto' }} className="profile-image-box">
                                         {userProfile ?
                                             <img className='profile-image' alt="profile_image" src={userProfile} />
                                             :

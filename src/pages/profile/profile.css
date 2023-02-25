@@ -148,9 +148,14 @@
     position: relative;
 }
 
+.userinfo-profile-edit.userinfo-profile-edit-mobile .MuiDialogContent-root {
+    max-width: unset;
+}
+
 .userinfo-profile-edit .MuiDialogContent-root {
     padding-left: 0 !important;
     padding-right: 0 !important;
+    max-width: 550px;
 }
 
 .user-info-edit {
