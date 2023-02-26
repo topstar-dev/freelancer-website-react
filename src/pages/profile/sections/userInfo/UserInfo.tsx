@@ -7,7 +7,6 @@ import { useAppDispatch } from "../../../../redux/hooks";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import EditUserInfo from "./EditUserInfo";
 import PreviewUserInfoActions from "./previewUserInfoActions";
-import { useParams } from "react-router-dom";
 
 export default function UserInfo({
     full_name,
@@ -21,9 +20,10 @@ export default function UserInfo({
     ...rest
 }: any) {
     const dispatch = useAppDispatch();
-    const pathParams = useParams();
+    const [currentAvatarImage, setCurrentAvatarImage] = useState<any>(null);
     const [userAvatar, setUserAvatar] = useState<any>(null);
     const [loadingAvatar, setLoadingAvatar] = useState(false);
+    const [currentProfileImage, setCurrentProfileImage] = useState<any>(null);
     const [userProfile, setUserProfile] = useState<any>(null);
     const [loadingProfile, setLoadingProfile] = useState(false);
 
@@ -56,11 +56,18 @@ export default function UserInfo({
     }, [dispatch, loadingProfile, profile_file_name, userProfile])
 
     useEffect(() => {
-        if (username !== pathParams.username) {
+        if (avatar_file_name !== currentAvatarImage) {
+            setCurrentAvatarImage(avatar_file_name)
             setUserAvatar(null);
-            setUserProfile(null)
         }
-    }, [username, pathParams.username])
+    }, [avatar_file_name, currentAvatarImage])
+
+    useEffect(() => {
+        if (profile_file_name !== currentProfileImage) {
+            setCurrentProfileImage(profile_file_name)
+            setUserProfile(null);
+        }
+    }, [profile_file_name, currentProfileImage])
 
     return (
         <Card className="userInfo-container container-width">
