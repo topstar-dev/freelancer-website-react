@@ -61,6 +61,10 @@ export const getuserDataFromStorage = () => {
 export const refreshToken = (error?: any, previous: boolean = false) => {
     const userData = getuserDataFromStorage();
 
+    if (!userData) {
+        return Promise.reject(error)
+    }
+
     const requestConfigs: any = {
         method: 'post',
         headers: {

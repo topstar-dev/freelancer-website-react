@@ -18,7 +18,7 @@ service.interceptors.response.use(
         if (error.response.status !== 401 || error.config.url.includes('/refresh-token')) {
             return Promise.reject(error);
         }
-        return refreshToken(true, error)
+        return refreshToken(error, true)
     }
 );
 
