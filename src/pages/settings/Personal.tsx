@@ -359,17 +359,17 @@ export default function Personal() {
             </Box>
             <Box id="account email">
                 <Typography fontSize='20px'>
-                    {t('user-personal-account-language')}
+                    {t('language')}
                 </Typography>
                 <br />
                 <Form>
 
                     <FormControl fullWidth>
-                        <InputLabel id="personal-language">{t('user-personal-account-language')}</InputLabel>
+                        <InputLabel id="personal-language">{t('language')}</InputLabel>
                         <Select
                             fullWidth
                             labelId="personal-language"
-                            label={t('user-personal-account-language')}
+                            label={t('language')}
                             MenuProps={{
                                 className: isMobile ? 'personal-select-menu personal-select-menu-mobile' : 'personal-select-menu'
                             }}

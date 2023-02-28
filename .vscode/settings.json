@@ -3,5 +3,16 @@
         "src/i18n",
         "src/pages/profile/sections/languages"
     ],
-    "i18n-ally.keystyle": "nested"
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.keysInUse": [
+        "faq.q1",
+        "faq.a1",
+        "faq.q2",
+        "faq.a2",
+        "faq.q3",
+        "faq.a3",
+        "beginner",
+        "add-languages",
+        "header-user-signout-message"
+    ]
 }
