@@ -210,7 +210,7 @@
       "failed-message": "Your current profile has not been approved yet, reason: {{message}}, please modify your profile and resubmit, thank you for your understanding and support.",
       "failed-button": "Resubmit",
       "passed-title": "Application approved",
-      "passed-message": "Your current profile has been approved and you can start working",
+      "passed-message": "You have passed Rounx's freelance review. Then you can submit a job proposal to find a job that suits you.",
       "passed-button": "Completed"
     }
   },

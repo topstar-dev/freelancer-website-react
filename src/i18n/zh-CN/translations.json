@@ -210,7 +210,7 @@
       "failed-message": "您当前的个人资料尚未通过审核，原因：{{message}}，请修改您的个人资料并重新提交，感谢您的理解与支持。",
       "failed-button": "重新提交",
       "passed-title": "申请通过",
-      "passed-message": "您当前的个人资料已通过审核，现在您可以开始工作了",
+      "passed-message": "您已通过 Rounx 的自由职业者审核，接下来您可以通过提交工作提案，找到适合您的工作。",
       "passed-button": "完成"
     }
   },
