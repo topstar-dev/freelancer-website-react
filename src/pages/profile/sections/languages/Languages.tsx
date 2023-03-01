@@ -15,7 +15,7 @@ export default function Languages({ languages, currentProfile }: any) {
         <Box>
             <Card className="see-more-container container-width">
                 <Box className={languages.length ? "card-heading" : "card-heading-new-item"}>
-                    {t('profile.language-title')}
+                    {t('language')}
                     {currentProfile && <EditLanguages languages={languages} />}
                 </Box>
                 {languages.length ?
