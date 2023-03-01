@@ -142,7 +142,7 @@ const NamePhoto = (props: any) => {
                         <WithTranslateFormErrors {...formik}>
                             <Box className={`freelancer-body`}>
                                 <Box className="profile-photo-container">
-                                    <Box className="profile-image-box">
+                                    <Box style={{ height: 'auto' }} className="profile-image-box">
                                         {userProfile ?
                                             <img className='profile-image' alt="profile_image" src={userProfile} />
                                             :
