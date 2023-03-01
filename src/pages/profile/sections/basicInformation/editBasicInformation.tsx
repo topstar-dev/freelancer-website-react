@@ -262,7 +262,7 @@ const EditBasicInformation = ({
                                                             username: e.target.value,
                                                             country_id: basicInfo.country_id,
                                                             province_id: basicInfo.province_id,
-                                                            city_id: e.target.value
+                                                            city_id: basicInfo.city_id
                                                         })
                                                     }}
                                                     error={formik.touched.username && Boolean(formik.errors.username)}
