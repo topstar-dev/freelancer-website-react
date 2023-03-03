@@ -7,6 +7,7 @@ import WhyRounxSection from "./sections/WhyRounx";
 import FAQ from "./sections/FAQ";
 import WorkPlateformSection from "./sections/WorkPlateform";
 import './home.css'
+import RecentlyJoinedSection from "./sections/RecentlyJoined";
 
 export default function HomePage() {
     const { t } = useTranslation();
@@ -22,6 +23,8 @@ export default function HomePage() {
     return (
         <Box className='home-container'>
             <SkillsSection />
+            <Divider style={{ margin: '96px 0' }} />
+            <RecentlyJoinedSection />
             <Divider style={{ margin: '96px 0' }} />
             <WhyRounxSection />
             <Divider style={{ margin: '96px 0' }} />

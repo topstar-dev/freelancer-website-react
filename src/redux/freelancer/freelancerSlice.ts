@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getFreelancerApplicationAction, submitFreelancerApplicationAction } from './freelancerActions';
+import { getFreelancerApplicationAction, getRecommendedFreelancersAction, submitFreelancerApplicationAction } from './freelancerActions';
 
 export interface FreelancerState {
     message?: string | null;
     loading: boolean;
     freelancerProfileData: any;
+    recentlyJoinedFreelancer: any;
 }
 
 const initialState: FreelancerState = {
     loading: false,
     message: null,
-    freelancerProfileData: null
+    freelancerProfileData: null,
+    recentlyJoinedFreelancer: null
 }
 
 export const freelancerSlice = createSlice({
@@ -46,6 +48,16 @@ export const freelancerSlice = createSlice({
         builder.addCase(submitFreelancerApplicationAction.rejected, (state: FreelancerState) => {
             state.loading = false;
             state.message = null;
+        });
+
+        builder.addCase(getRecommendedFreelancersAction.pending, (state: FreelancerState, action) => {
+            state.recentlyJoinedFreelancer = {};
+        });
+        builder.addCase(getRecommendedFreelancersAction.fulfilled, (state: FreelancerState, action) => {
+            state.recentlyJoinedFreelancer = action.payload.data;
+        });
+        builder.addCase(getRecommendedFreelancersAction.rejected, (state: FreelancerState, action) => {
+            state.recentlyJoinedFreelancer = { records: [] };
         });
     }
 });

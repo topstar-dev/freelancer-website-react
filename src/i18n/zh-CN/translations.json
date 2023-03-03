@@ -61,6 +61,9 @@
   "header-user-signout-message": "已退出帐号",
   "footer-privacy-policy": "隐私政策",
   "footer-terms-of-service": "服务条款",
+  "homepage": {
+    "recently-joined": "Recently Joined"
+  },
   "home-page-heading1": "Talent First, ",
   "home-page-heading2": "Client First",
   "home-page-heading1-details": "Rounx 是一个面向专业技能人群的远程工作平台",
