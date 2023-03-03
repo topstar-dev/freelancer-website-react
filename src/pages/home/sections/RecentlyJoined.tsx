@@ -46,7 +46,7 @@ const RecentlyJoinedSection = () => {
         )
     );
 
-    const [emblaRef] = useEmblaCarousel({ loop: true, dragFree: true, containScroll: 'trimSnaps' }, [autoplay.current]);
+    const [emblaRef] = useEmblaCarousel({ loop: true }, [autoplay.current]);
 
     return (
         <Box className="home-recently-joind-container">
