@@ -135,7 +135,7 @@ const RecentlyJoinedProfileContainer = ({
                 navigate(`/${username}`)
             }}
         >
-            <Box style={{ marginBottom: -27 }}>
+            <Box style={{ marginBottom: -28 }}>
                 <Box className="home-recently-joined-profile-image-box">
                     {userProfile ?
                         <img className='home-recently-joined-profile-image' alt="profile_image" src={userProfile} />

@@ -207,9 +207,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     line-height: 20px;
-    height: 40px;
+    height: 42px;
     color: #757575;
     font-size: 16px;
 }
