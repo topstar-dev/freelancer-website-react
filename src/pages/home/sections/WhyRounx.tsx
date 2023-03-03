@@ -8,8 +8,8 @@ const WhyRounxSection = () => {
     const { t } = useTranslation();
 
     return (
-        <Box>
-            <Typography className="home-why-title">
+        <Box className="home-why-container">
+            <Typography className="home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
                 {t('home-page-why-ronux')}
             </Typography>
             <Box className={`home-why-section ${isMobile ? 'home-why-section-mobile' : ''}`}>

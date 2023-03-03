@@ -20,7 +20,7 @@ export default function HomePage() {
     })
 
     return (
-        <Box className='container'>
+        <Box className='home-container'>
             <SkillsSection />
             <Divider style={{ margin: '96px 0' }} />
             <WhyRounxSection />

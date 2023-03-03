@@ -22,6 +22,13 @@
 
 .home-skills-section {
     display: flex;
+    padding: 0 16%;
+}
+
+@media (max-width: 1000.99px) {
+    .home-skills-section {
+        padding: 0 24px;
+    }
 }
 
 .home-skills-left {
@@ -44,7 +51,7 @@
 }
 
 .home-skills-section.home-skills-section-mobile {
-    display: unset;
+    display: inherit;
 }
 
 .home-skills-section.home-skills-section-mobile .home-skills-left {
@@ -65,6 +72,15 @@
 /* =================== */
 /* Home Why rounx section
 /* =================== */
+.home-why-container {
+    padding: 0 16%;
+}
+
+@media (max-width: 1000.99px) {
+    .home-why-container {
+        padding: 0 24px;
+    }
+}
 
 .home-why-section {
     display: flex;
@@ -94,6 +110,16 @@
 /* =======================
 = FAQ
 ======================= */
+
+.home-faq-section {
+    padding: 0 16%;
+}
+
+@media (max-width: 1000.99px) {
+    .home-faq-section {
+        padding: 0 24px;
+    }
+}
 
 .home-faq-section .MuiBox-root.accordion-box {
     display: flex;
@@ -134,6 +160,14 @@
     flex-direction: row;
     gap: 96px;
     justify-content: space-between;
+    margin-bottom: 95px;
+    padding: 0 16%;
+}
+
+@media (max-width: 1000.99px) {
+    .home-work-plateform-section {
+        padding: 0 24px;
+    }
 }
 
 .home-work-plateform-left {
