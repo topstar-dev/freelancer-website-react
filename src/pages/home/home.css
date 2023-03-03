@@ -1,12 +1,5 @@
-.home-first-section {
-    display: flex;
-}
-
-.home-first-left {
-    width: 55%;
-    padding-right: 48px;
-    display: flex;
-    align-items: center;
+.home-container {
+    padding: 24px 0;
 }
 
 .home-section-title {
@@ -23,102 +16,79 @@
     font-size: 24px !important;
 }
 
-.home-first-right {
+/* =================== */
+/* Home skills section
+/* =================== */
+
+.home-skills-section {
+    display: flex;
+}
+
+.home-skills-left {
+    width: 55%;
+    padding-right: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.home-skills-right {
     width: 45%;
     display: flex;
     align-items: center;
 }
 
-.home-first-image {
+.home-skills-image {
     height: 550px;
     width: 550px;
     margin-left: auto;
 }
 
-.home-first-section.home-first-section-mobile {
+.home-skills-section.home-skills-section-mobile {
     display: unset;
 }
 
-.home-first-section.home-first-section-mobile .home-first-left {
+.home-skills-section.home-skills-section-mobile .home-skills-left {
     width: 100%;
     padding-right: 0;
 }
 
-.home-first-section.home-first-section-mobile .home-first-right {
+.home-skills-section.home-skills-section-mobile .home-skills-right {
     width: 100%;
 }
 
-.home-first-section.home-first-section-mobile .home-first-image {
+.home-skills-section.home-skills-section-mobile .home-skills-image {
     margin-right: auto;
     width: 100%;
     height: auto;
 }
 
-/* ====================================
-second section
-==================================== */
+/* =================== */
+/* Home Why rounx section
+/* =================== */
 
-.home-second-section {
+.home-why-section {
     display: flex;
+    text-align: center;
+    margin-bottom: 95px;
 }
 
-.home-second-box {
+.home-why-box {
     width: 31%;
 }
 
-.home-second-section.home-second-section-mobile {
+.home-why-section.home-why-section-mobile {
     display: unset;
 }
 
-.home-second-section.home-second-section-mobile .home-second-box {
+.home-why-section.home-why-section-mobile .home-why-box {
     width: 100%;
     text-align: center;
     align-items: center;
     padding: 48px 0;
 }
 
-.home-second-section.home-second-section-mobile .home-second-box:nth-child(2) {
+.home-why-section.home-why-section-mobile .home-why-box:nth-child(2) {
     margin: 0 !important;
-}
-
-
-/* ====================================
-third section
-==================================== */
-
-.home-third-section {
-    display: flex;
-    flex-direction: row;
-    gap: 96px;
-    justify-content: space-between;
-}
-
-.home-third-left {
-    width: 550px;
-}
-
-.qr-code-image {
-    margin-left: -16px;
-    width: 258px;
-}
-
-@media (max-width:1170px) {
-    .home-third-section {
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    .home-third-left {
-        width: 100%;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .home-third-right {
-        width: 100%;
-        justify-content: center;
-    }
 }
 
 /* =======================
@@ -153,4 +123,62 @@ third section
 .faq-answer {
     font-size: 18px !important;
     color: #757575 !important;
+}
+
+/* =================== */
+/* Home work plateform section
+/* =================== */
+
+.home-work-plateform-section {
+    display: flex;
+    flex-direction: row;
+    gap: 96px;
+    justify-content: space-between;
+}
+
+.home-work-plateform-left {
+    width: 550px;
+}
+
+.home-work-plateform-heading {
+    font-size: 48px !important;
+    font-weight: 500 !important;
+}
+
+.home-work-plateform-sub-heading {
+    font-size: 24px !important;
+    color: #757575 !important;
+}
+
+.home-work-plateform-spacing {
+    margin: 24px 0 !important;
+}
+
+.home-work-plateform-form {
+    display: flex;
+    align-items: flex-start;
+}
+
+.qr-code-image {
+    margin-left: -16px;
+    width: 258px;
+}
+
+@media (max-width:1170px) {
+    .home-work-plateform-section {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .home-work-plateform-left {
+        width: 100%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-work-plateform-right {
+        width: 100%;
+        justify-content: center;
+    }
 }
