@@ -7,14 +7,12 @@ import StarIcon from '@mui/icons-material/Star';
 import { Box } from "@mui/system"
 import dayjs from 'dayjs';
 import { useTranslation } from "react-i18next";
-import useEmblaCarousel from "embla-carousel-react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getRecommendedFreelancersAction } from "../../../redux/freelancer/freelancerActions";
 import { useSnackbar } from "notistack";
 import { FREELANCER_REQ_TYPES, FUNCTION_TYPES } from "../../../redux/constants";
 import { profileImageDownload } from "../../../redux/profile/profileActions";
 import { useNavigate } from "../../../routes/Router";
-// import Autoplay from "embla-carousel-autoplay";
 
 const RecentlyJoinedSection = () => {
     const { t } = useTranslation();
@@ -38,15 +36,6 @@ const RecentlyJoinedSection = () => {
         }
     }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
 
-    // const autoplay = useRef(
-    //     Autoplay(
-    //         { delay: 3000, stopOnInteraction: false },
-    //         //@ts-ignore
-    //         (emblaRoot: any) => emblaRoot.parentElement
-    //     )
-    // );
-
-    const [emblaRef] = useEmblaCarousel({ loop: true });
 
     return (
         <Box className="home-recently-joind-container">
@@ -54,26 +43,18 @@ const RecentlyJoinedSection = () => {
                 {t('homepage.recently-joined')}
             </Typography>
             <Box className="home-recently-joind-list">
-                <div className="embla">
-                    <div className="embla__viewport" ref={emblaRef}>
-                        <div className="embla__container">
-                            {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
-                                recentlyJoinedFreelancer.records.map((record: any, index: number) => {
-                                    return <div className="embla__slide" key={index}>
-                                        <ButtonBase className="button-base-profile">
-                                            <RecentlyJoinedProfileContainer {...record} />
-                                        </ButtonBase>
-                                    </div>
-                                })
-                                :
-                                [...new Array(5)].map((record: any, index: number) => {
-                                    return <div className="embla__slide" key={index}>
-                                        <RecentlyJoinedProfileSkeleton {...record} />
-                                    </div>
-                                })
-                            }
-                        </div>
-                    </div>
+                <div className="recently-profile-animation">
+                    {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
+                        recentlyJoinedFreelancer.records.map((record: any, index: number) => {
+                            return (<ButtonBase key={index} className="button-base-profile">
+                                <RecentlyJoinedProfileContainer {...record} />
+                            </ButtonBase>)
+                        })
+                        :
+                        [...new Array(5)].map((record: any, index: number) => {
+                            return <RecentlyJoinedProfileSkeleton {...record} key={index} />
+                        })
+                    }
                 </div>
             </Box>
         </Box>
