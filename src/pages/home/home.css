@@ -88,8 +88,13 @@
     width: 100%;
 }
 
-.home-recently-joind-list .recently-profile-animation:hover,
-.home-recently-joind-list .recently-profile-animation:active {
+@media (max-width: 1000.99px) {
+    .home-recently-joind-list .recently-profile-animation {
+        animation: scroll-left 10s linear infinite;
+    }
+}
+
+.home-recently-joind-list .recently-profile-animation:hover {
     -moz-animation-play-state: paused;
     -webkit-animation-play-state: paused;
     animation-play-state: paused;
