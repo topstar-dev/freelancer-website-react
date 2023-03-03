@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, ButtonBase, Chip, Stack, Typography } from "@mui/material";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -14,7 +14,7 @@ import { useSnackbar } from "notistack";
 import { FREELANCER_REQ_TYPES, FUNCTION_TYPES } from "../../../redux/constants";
 import { profileImageDownload } from "../../../redux/profile/profileActions";
 import { useNavigate } from "../../../routes/Router";
-import Autoplay from "embla-carousel-autoplay";
+// import Autoplay from "embla-carousel-autoplay";
 
 const RecentlyJoinedSection = () => {
     const { t } = useTranslation();
@@ -38,15 +38,15 @@ const RecentlyJoinedSection = () => {
         }
     }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
 
-    const autoplay = useRef(
-        Autoplay(
-            { delay: 3000, stopOnInteraction: false },
-            //@ts-ignore
-            (emblaRoot: any) => emblaRoot.parentElement
-        )
-    );
+    // const autoplay = useRef(
+    //     Autoplay(
+    //         { delay: 3000, stopOnInteraction: false },
+    //         //@ts-ignore
+    //         (emblaRoot: any) => emblaRoot.parentElement
+    //     )
+    // );
 
-    const [emblaRef] = useEmblaCarousel({ loop: true }, [autoplay.current]);
+    const [emblaRef] = useEmblaCarousel({ loop: true });
 
     return (
         <Box className="home-recently-joind-container">
