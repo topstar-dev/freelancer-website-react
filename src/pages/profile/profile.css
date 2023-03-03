@@ -290,6 +290,10 @@
     z-index: 9999999 !important;
 }
 
+.profile-edit-language-menu-mobile .MuiPaper-root {
+    left: 70px !important;
+}
+
 /* ======================
 = job feedback
 ====================== */

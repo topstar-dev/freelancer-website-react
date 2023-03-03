@@ -152,6 +152,9 @@ const EditLanguages = ({ languages }: any) => {
                                                                         <Select
                                                                             label={t('freelancer.languages.language')}
                                                                             labelId="profile-language-select-label"
+                                                                            MenuProps={{
+                                                                                className: isMobile ? 'profile-edit-language-menu profile-edit-language-menu-mobile' : 'profile-edit-language-menu'
+                                                                            }}
                                                                             id={languageCode}
                                                                             name={languageCode}
                                                                             value={lang.language_code}
@@ -170,6 +173,9 @@ const EditLanguages = ({ languages }: any) => {
                                                                             labelId="profile-language-skills-select-label"
                                                                             id={languageSkill}
                                                                             name={languageSkill}
+                                                                            MenuProps={{
+                                                                                className: isMobile ? 'profile-edit-language-menu profile-edit-language-menu-mobile' : 'profile-edit-language-menu'
+                                                                            }}
                                                                             value={lang.language_skill}
                                                                             onChange={formik.handleChange}
                                                                         >
