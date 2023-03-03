@@ -177,7 +177,6 @@ const EditSkills = ({
                                             className={isMobile ? 'profile-edit-single-autocomplete-mobile' : ''}
                                         >
                                             <Autocomplete
-                                                disablePortal
                                                 blurOnSelect
                                                 value={null}
 
