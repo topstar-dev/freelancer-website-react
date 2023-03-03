@@ -105,6 +105,10 @@
     cursor: pointer;
 }
 
+.home-recently-joined-profile-box:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
 .home-recently-joined-profile-image-box {
     position: relative;
     display: flex;
