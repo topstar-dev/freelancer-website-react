@@ -179,7 +179,6 @@ const EditSkills = ({
                                             <Autocomplete
                                                 blurOnSelect
                                                 value={null}
-
                                                 onChange={(e, value) => {
                                                     let isExist = formik.values.skills.findIndex((s: any) => value?.id === s.skill_id)
                                                     if (isExist === -1) {
