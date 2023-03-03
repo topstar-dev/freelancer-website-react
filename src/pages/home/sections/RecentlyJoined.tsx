@@ -163,7 +163,7 @@ const RecentlyJoinedProfileContainer = ({
                         <LocationOnIcon className="profile-location-icon" />
                         {location}
                     </div>
-                    <div style={{ marginRight: 2 }}>
+                    <div style={{ marginLeft: -2 }}>
                         <StarIcon className="profile-star-icon" />
                         {star_rating?.toPrecision(2)}
                     </div>
