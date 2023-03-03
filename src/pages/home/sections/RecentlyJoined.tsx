@@ -26,7 +26,7 @@ const RecentlyJoinedSection = () => {
     useEffect(() => {
         if (!recentlyJoinedFreelancer) {
             setBackdrop(true);
-            dispatch(getRecommendedFreelancersAction({ req_type: FREELANCER_REQ_TYPES.FREELANCER_RECENTLY })).then((res) => {
+            dispatch(getRecommendedFreelancersAction({ req_type: FREELANCER_REQ_TYPES.FREELANCER_RECENTLY, page_size: 20 })).then((res) => {
                 if (!res.payload.success) {
                     enqueueSnackbar(res.payload.message);
                 }
