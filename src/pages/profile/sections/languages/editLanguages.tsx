@@ -153,7 +153,7 @@ const EditLanguages = ({ languages }: any) => {
                                                                             label={t('freelancer.languages.language')}
                                                                             labelId="profile-language-select-label"
                                                                             MenuProps={{
-                                                                                className: isMobile ? 'profile-edit-language-menu profile-edit-language-menu-mobile' : 'profile-edit-language-menu'
+                                                                                className: isMobile ? 'profile-edit-multiple-menu-mobile' : ''
                                                                             }}
                                                                             id={languageCode}
                                                                             name={languageCode}
@@ -174,7 +174,7 @@ const EditLanguages = ({ languages }: any) => {
                                                                             id={languageSkill}
                                                                             name={languageSkill}
                                                                             MenuProps={{
-                                                                                className: isMobile ? 'profile-edit-language-menu profile-edit-language-menu-mobile' : 'profile-edit-language-menu'
+                                                                                className: isMobile ? 'profile-edit-multiple-menu-mobile' : ''
                                                                             }}
                                                                             value={lang.language_skill}
                                                                             onChange={formik.handleChange}

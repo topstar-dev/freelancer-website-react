@@ -160,6 +160,9 @@ const EditBasicInformation = ({
                                                 labelId="profile-country-id-select-label"
                                                 id="country_id"
                                                 name="country_id"
+                                                MenuProps={{
+                                                    className: isMobile ? 'profile-edit-single-menu-mobile' : ''
+                                                }}
                                                 value={formik.values.country_id ? formik.values.country_id : ''}
                                                 onChange={(e) => {
                                                     formik.setFieldValue('province_id', "")
@@ -196,6 +199,9 @@ const EditBasicInformation = ({
                                                 labelId="freelancer-skills-select-label"
                                                 id="province_id"
                                                 name="province_id"
+                                                MenuProps={{
+                                                    className: isMobile ? 'profile-edit-single-menu-mobile' : ''
+                                                }}
                                                 value={formik.values.province_id ? formik.values.province_id : ''}
                                                 onChange={(e) => {
                                                     setLoading(true)
@@ -229,6 +235,9 @@ const EditBasicInformation = ({
                                                 labelId="freelancer-skills-select-label"
                                                 id="city_id"
                                                 name="city_id"
+                                                MenuProps={{
+                                                    className: isMobile ? 'profile-edit-single-menu-mobile' : ''
+                                                }}
                                                 value={formik.values.city_id ? formik.values.city_id : ''}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);

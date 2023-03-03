@@ -116,6 +116,18 @@
     margin-top: 12px;
 }
 
+.profile-edit-single-autocomplete-mobile .MuiAutocomplete-popper {
+    left: 23.5px !important;
+}
+
+.profile-edit-single-menu-mobile .MuiPaper-root {
+    left: 23.5px !important;
+}
+
+.profile-edit-multiple-menu-mobile .MuiPaper-root {
+    left: 70px !important;
+}
+
 .profile-edit-right-divider {
     padding: 40px 24px 0 70px;
 }
@@ -288,10 +300,6 @@
 
 .editSkillsModal .MuiAutocomplete-popper {
     z-index: 9999999 !important;
-}
-
-.profile-edit-language-menu-mobile .MuiPaper-root {
-    left: 70px !important;
 }
 
 /* ======================

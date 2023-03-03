@@ -155,6 +155,9 @@ const EditSkills = ({
                                                 labelId="freelancer-occupation-select-label"
                                                 id="occupation_category_id"
                                                 name="occupation_category_id"
+                                                MenuProps={{
+                                                    className: isMobile ? 'profile-edit-single-menu-mobile' : ''
+                                                }}
                                                 value={formik.values.occupation_category_id ? formik.values.occupation_category_id : ''}
                                                 onChange={(e) => {
                                                     formik.handleChange(e)
@@ -169,11 +172,15 @@ const EditSkills = ({
                                             </Select>
                                             {formik.touched.occupation_category_id && formik.errors.occupation_category_id && <FormHelperText>{formik.errors.occupation_category_id as ReactNode}</FormHelperText>}
                                         </FormControl>
-                                        <FormControl error={formik.submitCount > 0 && formik.touched.skills && Boolean(formik.errors.skills)} fullWidth>
+                                        <FormControl
+                                            error={formik.submitCount > 0 && formik.touched.skills && Boolean(formik.errors.skills)} fullWidth
+                                            className={isMobile ? 'profile-edit-single-autocomplete-mobile' : ''}
+                                        >
                                             <Autocomplete
                                                 disablePortal
                                                 blurOnSelect
                                                 value={null}
+
                                                 onChange={(e, value) => {
                                                     let isExist = formik.values.skills.findIndex((s: any) => value?.id === s.skill_id)
                                                     if (isExist === -1) {
