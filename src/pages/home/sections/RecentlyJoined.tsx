@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Avatar, Chip, Stack, Typography } from "@mui/material";
+import { Avatar, ButtonBase, Chip, Stack, Typography } from "@mui/material";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -51,7 +51,9 @@ const RecentlyJoinedSection = () => {
                             {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
                                 recentlyJoinedFreelancer.records.map((record: any, index: number) => {
                                     return <div className="embla__slide" key={index}>
-                                        <RecentlyJoinedProfileContainer {...record} />
+                                        <ButtonBase className="button-base-profile">
+                                            <RecentlyJoinedProfileContainer {...record} />
+                                        </ButtonBase>
                                     </div>
                                 })
                                 :
@@ -81,6 +83,7 @@ const RecentlyJoinedProfileContainer = ({
     star_rating,
     username
 }: any) => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [userAvatar, setUserAvatar] = useState<any>(null);
@@ -123,7 +126,7 @@ const RecentlyJoinedProfileContainer = ({
                 navigate(`/${username}`)
             }}
         >
-            <Box style={{ marginBottom: -28 }}>
+            <Box style={{ marginBottom: -27 }}>
                 <Box className="home-recently-joined-profile-image-box">
                     {userProfile ?
                         <img className='home-recently-joined-profile-image' alt="profile_image" src={userProfile} />
@@ -153,20 +156,16 @@ const RecentlyJoinedProfileContainer = ({
                     </div>
                     <div>
                         <StarIcon className="profile-star-icon" />
-                        {star_rating}
+                        {star_rating?.toPrecision(2)}
                     </div>
                     <div>
                         <DateRangeIcon className="profile-date-icon" />
                         {dayjs(join_time).format('YYYY-MM-DD')}
                     </div>
                 </Box>
-                {about ?
-                    <Box className="home-recently-joined-about">
-                        {about}
-                    </Box>
-                    :
-                    ''
-                }
+                <Box className="home-recently-joined-about">
+                    {about ? about : t('homepage.default-description')}
+                </Box>
                 <Box className="home-recently-joined-skills">
                     <Stack
                         display={'flex'}

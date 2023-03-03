@@ -62,7 +62,8 @@
   "footer-privacy-policy": "Privacy",
   "footer-terms-of-service": "Terms",
   "homepage": {
-    "recently-joined": "Recently Joined"
+    "recently-joined": "Recently Joined",
+    "default-description": "No description yet"
   },
   "home-page-heading1": "Talent First, ",
   "home-page-heading2": "Client First",

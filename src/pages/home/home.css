@@ -92,8 +92,13 @@
     margin: 0 16px;
 }
 
+.button-base-profile {
+    border-radius: 6px !important;
+    text-align: inherit;
+}
+
 .home-recently-joined-profile-box {
-    min-height: 369px;
+    height: 369px;
     width: 378px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 6px;
@@ -106,6 +111,9 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 .home-recently-joined-profile-image {
@@ -169,16 +177,23 @@
     color: #757575;
 }
 
+.home-recently-joined-basic-details>div svg {
+    margin-top: -2px;
+}
+
 .home-recently-joined-basic-details>div .profile-location-icon {
     color: #ea4335;
+    height: 19px;
 }
 
 .home-recently-joined-basic-details>div .profile-star-icon {
     color: #fbbc05;
+    height: 19px;
 }
 
 .home-recently-joined-basic-details>div .profile-date-icon {
     color: #34a853;
+    height: 19px;
 }
 
 .home-recently-joined-about {
@@ -188,6 +203,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 14px;
+    line-height: 20px;
+    height: 40px;
+    color: #757575;
 }
 
 .home-recently-joined-skills {
