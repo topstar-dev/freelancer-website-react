@@ -2,17 +2,18 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 import * as yup from "yup";
 import { Box, Stack } from '@mui/system';
 import { useTranslation } from 'react-i18next';
+import { FieldArray, Formik } from 'formik';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
-import { Autocomplete, Backdrop, Chip, CircularProgress, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Autocomplete, Chip, Divider, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
-import './applyFreelancer.css';
 import { useAppDispatch } from '../../redux/hooks';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
-import { FieldArray, Formik } from 'formik';
 import { getOccupationCategories, getSkillsList } from '../../redux/occupationSkills/occupationSkillsActions';
 import { useEditFreelancer } from './useEditFreelancer';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
+import './applyFreelancer.css';
 
 const Skills = (props: any) => {
     const { t } = useTranslation();
@@ -218,13 +219,7 @@ const Skills = (props: any) => {
                     }
                 </Formik>
             </Card>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={loading} />
         </Box >
     )
 }

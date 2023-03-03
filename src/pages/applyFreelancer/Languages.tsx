@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Backdrop, CircularProgress, Divider, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Select } from '@mui/material';
+import { Divider, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Select } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '../../components/button/Button';
@@ -11,11 +11,12 @@ import Card from '../../components/card/Card';
 import Form from '../../components/form/Form';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
-import './applyFreelancer.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getLanguageList } from '../../redux/resources/resourcesActions';
 import { useEditFreelancer } from './useEditFreelancer';
 import { LANGUAGE_SKILLS } from '../../redux/constants';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
+import './applyFreelancer.css';
 
 const Languages = (props: any) => {
     const { t, i18n } = useTranslation();
@@ -227,13 +228,7 @@ const Languages = (props: any) => {
                     }
                 </Formik>
             </Card>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={loading} />
         </Box>
     )
 }

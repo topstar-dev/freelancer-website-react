@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Backdrop, CircularProgress, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCurrencyList } from "../../redux/resources/resourcesActions";
@@ -8,6 +8,7 @@ import { currencySettings, currencySettingsUpdate } from "../../redux/settings/s
 import Button from "../../components/button/Button";
 import Form from "../../components/form/Form";
 import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
+import CustomBackdrop from "../../components/customBackdrop/CustomBackdrop";
 
 export default function Currency() {
     const { t } = useTranslation();
@@ -90,13 +91,7 @@ export default function Currency() {
                     {t('user-personal-account-save')}
                 </Button>
             </Form >
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop || loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop || loading} />
         </>
     )
 }

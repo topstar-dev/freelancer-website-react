@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { FieldArray, Formik, getIn } from 'formik';
 import { Box } from '@mui/system';
-import { Backdrop, CircularProgress, Divider, FormHelperText, IconButton, TextField } from '@mui/material';
+import { Divider, FormHelperText, IconButton, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import Form from '../../components/form/Form';
@@ -11,8 +11,9 @@ import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
 import { useNavigate } from '../../routes/Router';
 import WithTranslateFormErrors from '../../services/validationScemaOnLangChange';
-import './applyFreelancer.css';
 import { useEditFreelancer } from './useEditFreelancer';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
+import './applyFreelancer.css';
 
 const Educations = (props: any) => {
     const { t } = useTranslation();
@@ -274,13 +275,7 @@ const Educations = (props: any) => {
                     }
                 </Formik>
             </Card>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop} />
         </Box>
     )
 }

@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import { useTranslation } from 'react-i18next';
 import * as yup from "yup";
 import { Formik } from 'formik';
-import { Backdrop, CircularProgress, Divider, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Divider, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
 import Form from '../../components/form/Form';
@@ -16,6 +16,7 @@ import { submitFreelancerApplicationAction } from '../../redux/freelancer/freela
 import { useSnackbar } from 'notistack';
 import { useEditFreelancer } from './useEditFreelancer';
 import { COUNTRY_ID_CHINA } from '../../redux/constants';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
 
 const AboutMe = (props: any) => {
     const { t, i18n } = useTranslation();
@@ -284,13 +285,7 @@ const AboutMe = (props: any) => {
                     }
                 </Formik>
             </Card>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={loading} />
         </Box>
     )
 }

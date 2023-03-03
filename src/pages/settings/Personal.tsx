@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { TextField, Typography, Box, FormControl, Select, MenuItem, InputLabel, FormHelperText, Dialog, DialogTitle, DialogContent, DialogActions, Backdrop, CircularProgress, InputAdornment, IconButton } from "@mui/material";
+import { TextField, Typography, Box, FormControl, Select, MenuItem, InputLabel, FormHelperText, Dialog, DialogTitle, DialogContent, DialogActions, InputAdornment, IconButton } from "@mui/material";
 import Button from "../../components/button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { PersonalDataInterface, personalSettings, personalSettingsUpdate } from "../../redux/settings/settingsActions";
@@ -22,6 +22,7 @@ import useBreakpoint from "../../components/breakpoints/BreakpointProvider";
 import { useNavigate } from "../../routes/Router";
 import { removeTokens } from "../../redux/account/accountApi";
 import { updateUserInfo } from "../../redux/auth/authSlice";
+import CustomBackdrop from "../../components/customBackdrop/CustomBackdrop";
 
 export default function Personal() {
     const { t } = useTranslation();
@@ -399,13 +400,7 @@ export default function Personal() {
                     </Button>
                 </Form>
             </Box>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop || loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop || loading} />
         </>
     )
 }

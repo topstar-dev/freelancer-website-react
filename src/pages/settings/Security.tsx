@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
-import { TextField, Typography, Box, InputAdornment, IconButton, Backdrop, CircularProgress, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { TextField, Typography, Box, InputAdornment, IconButton, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import Button from "../../components/button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useSnackbar } from "notistack";
@@ -15,6 +15,7 @@ import { sendCodeToEmail } from "../../redux/auth/authActions";
 import { useNavigate } from "../../routes/Router";
 import { removeTokens } from "../../redux/account/accountApi";
 import { updateUserInfo } from "../../redux/auth/authSlice";
+import CustomBackdrop from "../../components/customBackdrop/CustomBackdrop";
 
 export default function Security() {
     const { t } = useTranslation();
@@ -194,15 +195,10 @@ export default function Security() {
                     )}
                 </Formik>
             </Box>
+
             <br />
             <br />
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop || loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+
             <Box>
                 <Typography fontSize='20px'>
                     {t('user-security-recovery-email')}
@@ -475,6 +471,8 @@ export default function Security() {
                     )}
                 </Formik>
             </Box>
+
+            <CustomBackdrop loading={backdrop || loading} />
         </>
     )
 }

@@ -26,10 +26,11 @@ import WithTranslateFormErrors from '../../services/validationScemaOnLangChange'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { imageDownload, imageUpload } from '../../redux/other/otherActions';
 import { setAvatar, setProfile } from '../../redux/other/otherSlice';
-import './applyFreelancer.css';
-import "cropperjs/dist/cropper.css";
 import { FUNCTION_TYPES } from '../../redux/constants';
 import { useEditFreelancer } from './useEditFreelancer';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
+import './applyFreelancer.css';
+import "cropperjs/dist/cropper.css";
 
 const NamePhoto = (props: any) => {
     const { t } = useTranslation();
@@ -320,13 +321,7 @@ const NamePhoto = (props: any) => {
                     }
                 </Formik>
             </Card>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop} />
         </Box>
     )
 }

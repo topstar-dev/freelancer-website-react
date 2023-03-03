@@ -6,8 +6,6 @@ import {
   TextField,
   Typography,
   Box,
-  Backdrop,
-  CircularProgress,
 } from "@mui/material";
 import { Formik } from "formik";
 import { useAppDispatch } from "../../../redux/hooks";
@@ -17,8 +15,9 @@ import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
 import Form from "../../../components/form/Form";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
-import '../auth.css';
 import { useNavigate } from "../../../routes/Router";
+import CustomBackdrop from "../../../components/customBackdrop/CustomBackdrop";
+import '../auth.css';
 
 
 export default function VerifyCode(mainProps: any) {
@@ -125,13 +124,7 @@ export default function VerifyCode(mainProps: any) {
             </WithTranslateFormErrors>
           )}
         </Formik>
-        <Backdrop
-          className='only-backdrop'
-          sx={{ color: '#fff', zIndex: 999 }}
-          open={backdrop}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
+        <CustomBackdrop loading={backdrop} />
       </Card>
     </Box>
   );

@@ -5,9 +5,7 @@ import { useSnackbar } from "notistack";
 import {
   TextField,
   Typography,
-  Box,
-  Backdrop,
-  CircularProgress,
+  Box
 } from "@mui/material";
 import { useAppDispatch } from "../../../redux/hooks";
 import { sendCodeToEmail } from "../../../redux/auth/authActions";
@@ -17,8 +15,9 @@ import Card from "../../../components/card/Card";
 import { Formik } from "formik";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
-import '../auth.css';
 import { useNavigate } from "../../../routes/Router";
+import CustomBackdrop from "../../../components/customBackdrop/CustomBackdrop";
+import '../auth.css';
 
 export default function EnterEmail(mainProps: any) {
   const { t } = useTranslation();
@@ -125,13 +124,7 @@ export default function EnterEmail(mainProps: any) {
             </WithTranslateFormErrors>
           )}
         </Formik>
-        <Backdrop
-          className='only-backdrop'
-          sx={{ color: '#fff', zIndex: 999 }}
-          open={backdrop}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
+        <CustomBackdrop loading={backdrop} />
       </Card>
     </Box>
   );

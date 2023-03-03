@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress, FormControl, MenuItem, Select } from '@mui/material';
+import { FormControl, MenuItem, Select } from '@mui/material';
 import { Box } from '@mui/system';
 import { useSnackbar } from 'notistack';
 import * as React from 'react';
@@ -11,6 +11,7 @@ import { personalSettingsUpdate } from '../redux/settings/settingsActions';
 import { changeLanguage } from '../redux/resources/resourcesSlice';
 import { useNavigate } from '../routes/Router';
 import useBreakpoint from './breakpoints/BreakpointProvider';
+import CustomBackdrop from './customBackdrop/CustomBackdrop';
 
 const LanguageSwitcher = () => {
     const navigate = useNavigate();
@@ -110,13 +111,7 @@ const LanguageSwitcher = () => {
                     中文
                 </MenuItem>
             </Select>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop} />
         </FormControl>
     )
 }

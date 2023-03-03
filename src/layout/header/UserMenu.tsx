@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { Backdrop, CircularProgress, Divider, Menu, MenuItem, MenuList } from "@mui/material"
+import { Divider, Menu, MenuItem, MenuList } from "@mui/material"
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { updateUserInfo, UserInterface } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -17,6 +17,7 @@ import { setTokens } from '../../redux/account/accountApi';
 import { changeLanguage } from '../../redux/resources/resourcesSlice';
 import { languages } from '../../i18n/i18nextConf';
 import { FUNCTION_TYPES } from '../../redux/constants';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
 
 interface UserMenuPropsInterface {
     userInfo: UserInterface | null
@@ -164,13 +165,7 @@ export default function UserMenu({ userInfo }: UserMenuPropsInterface) {
                     </MenuItem>
                 </MenuList>
             </Menu>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop} />
         </>
     )
 }

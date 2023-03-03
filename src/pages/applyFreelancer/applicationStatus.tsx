@@ -1,9 +1,9 @@
-import { Backdrop, CircularProgress } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/button/Button';
 import Card from '../../components/card/Card';
+import CustomBackdrop from '../../components/customBackdrop/CustomBackdrop';
 import { getFreelancerApplicationAction } from '../../redux/freelancer/freelancerActions';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getProfileAction } from '../../redux/profile/profileActions';
@@ -57,13 +57,7 @@ const ApplicationStatus = (props: any) => {
                 {t('freelancer.title')}
             </Box>
             {getStatus()}
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop} />
         </Box>
     )
 }
@@ -94,13 +88,7 @@ const FailedApplication = () => {
                     setBackdrop(false)
                 })
             }}>{t('freelancer.status.failed-button')}</Button>
-            <Backdrop
-                className='only-backdrop'
-                sx={{ color: '#fff', zIndex: 999 }}
-                open={backdrop}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
+            <CustomBackdrop loading={backdrop} />
         </Card >
     )
 }

@@ -6,11 +6,11 @@ import {
   Typography,
   InputAdornment,
   IconButton,
-  Box,
-  CircularProgress,
-  Backdrop,
+  Box
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Formik } from "formik";
+import * as yup from "yup";
 import { useAppDispatch } from "../../../redux/hooks";
 import { resetPasswordUser } from "../../../redux/auth/authActions";
 import { resetDefault } from "../../../redux/auth/authSlice";
@@ -18,10 +18,9 @@ import Button from "../../../components/button/Button";
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import Form from "../../../components/form/Form";
 import Card from "../../../components/card/Card";
-import { Formik } from "formik";
-import * as yup from "yup";
-import '../auth.css';
 import { useNavigate } from "../../../routes/Router";
+import CustomBackdrop from "../../../components/customBackdrop/CustomBackdrop";
+import '../auth.css';
 
 export default function SetNewPassword(mainProps: any) {
   const { t } = useTranslation();
@@ -160,13 +159,7 @@ export default function SetNewPassword(mainProps: any) {
             </WithTranslateFormErrors>
           )}
         </Formik>
-        <Backdrop
-          className='only-backdrop'
-          sx={{ color: '#fff', zIndex: 999 }}
-          open={backdrop}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
+        <CustomBackdrop loading={backdrop} />
       </Card>
     </Box>
   );

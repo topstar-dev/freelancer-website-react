@@ -11,9 +11,7 @@ import {
   IconButton,
   Popover,
   MenuItem,
-  MenuList,
-  Backdrop,
-  CircularProgress
+  MenuList
 } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
@@ -25,10 +23,11 @@ import {
 import { resetDefault } from "../../../redux/auth/authSlice";
 import Button from "../../../components/button/Button";
 import Card from "../../../components/card/Card";
-import '../auth.css';
 import WithTranslateFormErrors from "../../../services/validationScemaOnLangChange";
 import { useNavigate } from "../../../routes/Router";
 import { USER_TYPES } from "../../../redux/constants";
+import CustomBackdrop from "../../../components/customBackdrop/CustomBackdrop";
+import '../auth.css';
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -192,13 +191,7 @@ export default function SignIn() {
             </WithTranslateFormErrors>
           )}
         </Formik>
-        <Backdrop
-          className='only-backdrop'
-          sx={{ color: '#fff', zIndex: 999 }}
-          open={backdrop}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
+        <CustomBackdrop loading={backdrop} />
       </Card>
     </Box>
   );
