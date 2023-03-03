@@ -112,7 +112,7 @@ const NamePhoto = (props: any) => {
     }, [dispatch, loadingProfile, freelancerApplicationInfo.profile_file_name, userProfile])
 
     return (
-        <Box>
+        <Box className="container">
             <Box className="freelancer-main-title">
                 {t('freelancer.title')}
             </Box>

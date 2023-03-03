@@ -52,7 +52,7 @@ export default function Settings(props: any) {
     };
 
     return (
-        <Box className="settings">
+        <Box className="container settings">
             <Box>
                 <Typography fontSize='24px'>{t('user-settings')}</Typography>
                 <br />

@@ -14,7 +14,7 @@ export default function ContactUs() {
   })
 
   return (
-    <>
+    <Box className='container'>
       <Typography style={{ fontSize: '24px' }}>{t('contact-us.title')}</Typography>
       <br />
       <br />
@@ -58,6 +58,6 @@ export default function ContactUs() {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }

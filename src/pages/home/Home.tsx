@@ -37,7 +37,7 @@ export default function HomePage() {
     })
 
     return (
-        <>
+        <Box className='container'>
             <Box className={`home-first-section ${isMobile ? 'home-first-section-mobile' : ''}`}>
                 <Box className="home-first-left">
                     <Box>
@@ -208,6 +208,6 @@ export default function HomePage() {
                     ]} />
                 </Box>
             </Box>
-        </>
+        </Box>
     )
 }

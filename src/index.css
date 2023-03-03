@@ -55,6 +55,17 @@ body,
   color: var(--color-primary) !important;
 }
 
+.container {
+  padding: 24px 16%;
+  height: 100%;
+}
+
+@media (max-width: 1000.99px) {
+  .container {
+    padding: 24px;
+  }
+}
+
 /* mui backdrop z-index */
 .MuiBackdrop-root.only-backdrop {
   z-index: 1400 !important;

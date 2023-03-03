@@ -66,138 +66,140 @@ export default function SignIn() {
   }, [t, enqueueSnackbar, navigate, dispatch, userInfo, success, message])
 
   return (
-    <Card className={`auth-card`}>
-      <Formik
-        initialValues={
-          {
-            email: "",
-            password: "",
+    <Box className='container'>
+      <Card className={`auth-card`}>
+        <Formik
+          initialValues={
+            {
+              email: "",
+              password: "",
+            }
           }
-        }
-        validationSchema={yup.object({
-          email: yup
-            .string()
-            .required(t('validation.email-required')),
-          password: yup
-            .string()
-            .required(t('validation.password-required')),
-        })}
-        onSubmit={(values, actions) => {
-          setBackdrop(true);
-          dispatch(signInUser({ email: values.email, password: values.password }));
-        }}
-      >
-        {props => (
-          <WithTranslateFormErrors {...props}>
-            <Form onSubmit={props.handleSubmit}>
-              <img
-                src="/images/rounx-symbol.png"
-                alt="Rounx"
-                width="60px"
-                height="60px"
-                style={{ alignSelf: "center" }}
-              />
-              <Typography className="account-title-info">
-                {t('signin-title')}
-              </Typography>
-              <TextField
-                fullWidth
-                id="email"
-                name="email"
-                type="text"
-                label={t('email')}
-                value={props.values.email}
-                onChange={props.handleChange}
-                error={props.touched.email && Boolean(props.errors.email)}
-                helperText={props.touched.email && props.errors.email}
-              />
-              <FormControl>
+          validationSchema={yup.object({
+            email: yup
+              .string()
+              .required(t('validation.email-required')),
+            password: yup
+              .string()
+              .required(t('validation.password-required')),
+          })}
+          onSubmit={(values, actions) => {
+            setBackdrop(true);
+            dispatch(signInUser({ email: values.email, password: values.password }));
+          }}
+        >
+          {props => (
+            <WithTranslateFormErrors {...props}>
+              <Form onSubmit={props.handleSubmit}>
+                <img
+                  src="/images/rounx-symbol.png"
+                  alt="Rounx"
+                  width="60px"
+                  height="60px"
+                  style={{ alignSelf: "center" }}
+                />
+                <Typography className="account-title-info">
+                  {t('signin-title')}
+                </Typography>
                 <TextField
                   fullWidth
-                  id="password"
-                  name="password"
-                  label={t('signin-password')}
-                  type={showPassword ? "text" : "password"}
-                  value={props.values.password}
-                  autoComplete="false"
+                  id="email"
+                  name="email"
+                  type="text"
+                  label={t('email')}
+                  value={props.values.email}
                   onChange={props.handleChange}
-                  helperText={props.touched.password && props.errors.password}
-                  error={props.touched.password && Boolean(props.errors.password)}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  error={props.touched.email && Boolean(props.errors.email)}
+                  helperText={props.touched.email && props.errors.email}
                 />
-              </FormControl>
-              <Box style={{ marginTop: "10px" }}>
+                <FormControl>
+                  <TextField
+                    fullWidth
+                    id="password"
+                    name="password"
+                    label={t('signin-password')}
+                    type={showPassword ? "text" : "password"}
+                    value={props.values.password}
+                    autoComplete="false"
+                    onChange={props.handleChange}
+                    helperText={props.touched.password && props.errors.password}
+                    error={props.touched.password && Boolean(props.errors.password)}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => setShowPassword(!showPassword)}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </FormControl>
+                <Box style={{ marginTop: "10px" }}>
+                  <Button
+                    className="normal-text round-button"
+                    variant="outlined"
+                    style={{ borderRadius: 20 }}
+                    onClick={() => {
+                      navigate(`/reset-password`)
+                    }}
+                  >
+                    {t('signin-forgot-password')}
+                  </Button>
+                  <Button
+                    disabled={loading}
+                    type="submit"
+                    style={{ float: "right" }}
+                  >
+                    {t('signin')}
+                  </Button>
+                </Box>
                 <Button
                   className="normal-text round-button"
                   variant="outlined"
-                  style={{ borderRadius: 20 }}
-                  onClick={() => {
-                    navigate(`/reset-password`)
+                  style={{ width: 'fit-content', borderRadius: 20 }}
+                  onClick={(e: any) => setType(e.currentTarget)}>
+                  {t('create-account')}
+                </Button>
+                <Popover
+                  open={Boolean(type)}
+                  className="sign-in-account-menu"
+                  anchorEl={type}
+                  onClose={() => setType(null)}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
                   }}
                 >
-                  {t('signin-forgot-password')}
-                </Button>
-                <Button
-                  disabled={loading}
-                  type="submit"
-                  style={{ float: "right" }}
-                >
-                  {t('signin')}
-                </Button>
-              </Box>
-              <Button
-                className="normal-text round-button"
-                variant="outlined"
-                style={{ width: 'fit-content', borderRadius: 20 }}
-                onClick={(e: any) => setType(e.currentTarget)}>
-                {t('create-account')}
-              </Button>
-              <Popover
-                open={Boolean(type)}
-                className="sign-in-account-menu"
-                anchorEl={type}
-                onClose={() => setType(null)}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-              >
-                <MenuList>
-                  <MenuItem onClick={() => {
-                    navigate(`/sign-up?type=${USER_TYPES.CLIENT}`)
-                  }}>{t('client-account')}</MenuItem>
-                  <MenuItem onClick={() => {
-                    navigate(`/sign-up?type=${USER_TYPES.FREELANCER}`)
-                  }}>{t('freelancer-account')}</MenuItem>
-                </MenuList>
-              </Popover>
-            </Form>
-          </WithTranslateFormErrors>
-        )}
-      </Formik>
-      <Backdrop
-        className='only-backdrop'
-        sx={{ color: '#fff', zIndex: 999 }}
-        open={backdrop}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </Card>
+                  <MenuList>
+                    <MenuItem onClick={() => {
+                      navigate(`/sign-up?type=${USER_TYPES.CLIENT}`)
+                    }}>{t('client-account')}</MenuItem>
+                    <MenuItem onClick={() => {
+                      navigate(`/sign-up?type=${USER_TYPES.FREELANCER}`)
+                    }}>{t('freelancer-account')}</MenuItem>
+                  </MenuList>
+                </Popover>
+              </Form>
+            </WithTranslateFormErrors>
+          )}
+        </Formik>
+        <Backdrop
+          className='only-backdrop'
+          sx={{ color: '#fff', zIndex: 999 }}
+          open={backdrop}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </Card>
+    </Box>
   );
 }

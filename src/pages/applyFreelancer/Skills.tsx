@@ -87,7 +87,7 @@ const Skills = (props: any) => {
     }
 
     return (
-        <Box>
+        <Box className="container">
             <Box className="freelancer-main-title">{t('freelancer.title')}</Box>
             <Card className={`freelancer-card`}>
                 <Box className={`freelancer-heading`}>

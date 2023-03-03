@@ -42,91 +42,93 @@ export default function Password(mainProps: any) {
     })
 
     return (
-        <Card className={`auth-card`}>
-            <Formik
-                enableReinitialize
-                initialValues={formData}
-                validationSchema={yup.object({
-                    set_password: yup
-                        .string()
-                        .required(t('validation.set-password-required')),
-                    confirm_password: yup
-                        .string()
-                        .required(t('validation.confirm-password-required'))
-                        .min(8, t('validation.password-length'))
-                        .when("set_password", {
-                            is: (value: string) => (value && value.length > 0 ? true : false),
-                            then: yup.string().oneOf([yup.ref("set_password")], t('validation.passwords-not-match')),
-                        })
-                })}
-                onSubmit={(values) => { }}
-            >
-                {formik =>
-                    <WithTranslateFormErrors {...formik}>
-                        <Form>
-                            <img
-                                src="/images/rounx-symbol.png"
-                                alt="Rounx"
-                                width="60px"
-                                height="60px"
-                                style={{ alignSelf: "center" }}
-                            />
-                            <Typography className="account-title-info">
-                                {t('signup-password-title')}
-                            </Typography>
-                            <TextField
-                                fullWidth
-                                id="set_password"
-                                name="set_password"
-                                label={t('set-password')}
-                                type={showPassword ? "text" : "password"}
-                                value={formik.values.set_password}
-                                onChange={formik.handleChange}
-                                error={formik.touched.set_password && Boolean(formik.errors.set_password)}
-                                helperText={(formik.touched.set_password && Boolean(formik.errors.set_password) ? formik.errors.set_password : t('at_least_8_characters')) as ReactNode}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                edge="end"
-                                            >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                            <TextField
-                                fullWidth
-                                id="confirm_password"
-                                name="confirm_password"
-                                type={showPassword ? "text" : "password"}
-                                label={t('confirm-password')}
-                                value={formik.values.confirm_password}
-                                onChange={formik.handleChange}
-                                error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
-                                helperText={(formik.touched.confirm_password && formik.errors.confirm_password) as ReactNode}
-                            />
-                            <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <Button onClick={() => {
-                                    formik.validateForm().then((res: any) => {
-                                        const { set_password, confirm_password } = res;
-                                        formik.submitForm();
-                                        if (!(set_password || confirm_password)) {
-                                            sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
-                                            navigate(`/sign-up/email`)
-                                        }
-                                    })
-                                }} >
-                                    {t('next')}
-                                </Button>
-                            </Box>
-                        </Form >
-                    </WithTranslateFormErrors>
-                }
-            </Formik>
-        </Card>
+        <Box className='container'>
+            <Card className={`auth-card`}>
+                <Formik
+                    enableReinitialize
+                    initialValues={formData}
+                    validationSchema={yup.object({
+                        set_password: yup
+                            .string()
+                            .required(t('validation.set-password-required')),
+                        confirm_password: yup
+                            .string()
+                            .required(t('validation.confirm-password-required'))
+                            .min(8, t('validation.password-length'))
+                            .when("set_password", {
+                                is: (value: string) => (value && value.length > 0 ? true : false),
+                                then: yup.string().oneOf([yup.ref("set_password")], t('validation.passwords-not-match')),
+                            })
+                    })}
+                    onSubmit={(values) => { }}
+                >
+                    {formik =>
+                        <WithTranslateFormErrors {...formik}>
+                            <Form>
+                                <img
+                                    src="/images/rounx-symbol.png"
+                                    alt="Rounx"
+                                    width="60px"
+                                    height="60px"
+                                    style={{ alignSelf: "center" }}
+                                />
+                                <Typography className="account-title-info">
+                                    {t('signup-password-title')}
+                                </Typography>
+                                <TextField
+                                    fullWidth
+                                    id="set_password"
+                                    name="set_password"
+                                    label={t('set-password')}
+                                    type={showPassword ? "text" : "password"}
+                                    value={formik.values.set_password}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.set_password && Boolean(formik.errors.set_password)}
+                                    helperText={(formik.touched.set_password && Boolean(formik.errors.set_password) ? formik.errors.set_password : t('at_least_8_characters')) as ReactNode}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    edge="end"
+                                                >
+                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                                <TextField
+                                    fullWidth
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    type={showPassword ? "text" : "password"}
+                                    label={t('confirm-password')}
+                                    value={formik.values.confirm_password}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.confirm_password && Boolean(formik.errors.confirm_password)}
+                                    helperText={(formik.touched.confirm_password && formik.errors.confirm_password) as ReactNode}
+                                />
+                                <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    <Button onClick={() => {
+                                        formik.validateForm().then((res: any) => {
+                                            const { set_password, confirm_password } = res;
+                                            formik.submitForm();
+                                            if (!(set_password || confirm_password)) {
+                                                sessionStorage.setItem('signup-info', JSON.stringify({ ...formik.values, ...JSON.parse(`${sessionStorage.getItem('signup-info')}`) }))
+                                                navigate(`/sign-up/email`)
+                                            }
+                                        })
+                                    }} >
+                                        {t('next')}
+                                    </Button>
+                                </Box>
+                            </Form >
+                        </WithTranslateFormErrors>
+                    }
+                </Formik>
+            </Card>
+        </Box>
     );
 }

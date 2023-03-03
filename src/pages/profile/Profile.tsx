@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -71,7 +72,7 @@ export default function Profile(props: any) {
     }
 
     return (
-        <>
+        <Box className='container'>
             {
                 profile ?
                     profile?.user_type === USER_TYPES.CLIENT ?
@@ -94,7 +95,7 @@ export default function Profile(props: any) {
                     ''
             }
             <CustomBackdrop loading={backdrop} />
-        </>
+        </Box>
     )
 }
 

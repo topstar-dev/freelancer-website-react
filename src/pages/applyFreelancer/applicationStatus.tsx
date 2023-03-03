@@ -52,7 +52,7 @@ const ApplicationStatus = (props: any) => {
     })
 
     return (
-        <Box>
+        <Box className="container">
             <Box className="freelancer-main-title">
                 {t('freelancer.title')}
             </Box>

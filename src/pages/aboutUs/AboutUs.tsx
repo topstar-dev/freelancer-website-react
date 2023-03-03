@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { pageView } from "../../services/eventTracker";
 
 export default function AboutUs() {
@@ -12,7 +12,7 @@ export default function AboutUs() {
   })
 
   return (
-    <>
+    <Box className='container'>
       <Typography style={{ fontSize: '24px' }}>{t('about-us')}</Typography>
       <br />
       <br />
@@ -34,6 +34,6 @@ export default function AboutUs() {
         <span style={{ fontWeight: 'bold' }}>2022 - </span>
         <span>{t('about-us-2022')}</span>
       </Typography>
-    </>
+    </Box>
   )
 }

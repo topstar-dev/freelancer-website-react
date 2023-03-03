@@ -46,91 +46,93 @@ export default function EnterEmail(mainProps: any) {
 
 
   return (
-    <Card className={`auth-card`}>
-      <Formik
-        enableReinitialize
-        initialValues={formData}
-        validationSchema={yup.object({
-          email: yup
-            .string()
-            .email(t('validation.email-valid'))
-            .required(t('validation.email-required'))
-        })}
-        onSubmit={() => { }}
-      >
-        {formik => (
-          <WithTranslateFormErrors {...formik}>
-            <Form>
-              <img
-                src="/images/rounx-symbol.png"
-                alt="Rounx"
-                width="60px"
-                height="60px"
-                className='primary-color'
-                style={{ alignSelf: "center" }}
-              />
-              <Typography className="account-title-info">
-                <span>{t('reset-password')}</span>
-                <br />
-                <span style={{ fontSize: '16px' }}>{t('enter_email')}</span>
-              </Typography>
-              <TextField
-                fullWidth
-                id="email"
-                name="email"
-                label={t('email')}
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email as ReactNode}
-              />
-              <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  onClick={() => {
-                    formik.validateForm().then((res: any) => {
-                      const { email } = res;
-                      if (email) {
-                        formik.setFieldTouched('email', true, true);
-                        formik.setFieldError('email', email);
-                      }
-
-                      if (!email) {
-                        const sendEmailCodeObj = {
-                          email: formik.values.email,
-                          function_type: "RESET_PASSWORD"
+    <Box className='container'>
+      <Card className={`auth-card`}>
+        <Formik
+          enableReinitialize
+          initialValues={formData}
+          validationSchema={yup.object({
+            email: yup
+              .string()
+              .email(t('validation.email-valid'))
+              .required(t('validation.email-required'))
+          })}
+          onSubmit={() => { }}
+        >
+          {formik => (
+            <WithTranslateFormErrors {...formik}>
+              <Form>
+                <img
+                  src="/images/rounx-symbol.png"
+                  alt="Rounx"
+                  width="60px"
+                  height="60px"
+                  className='primary-color'
+                  style={{ alignSelf: "center" }}
+                />
+                <Typography className="account-title-info">
+                  <span>{t('reset-password')}</span>
+                  <br />
+                  <span style={{ fontSize: '16px' }}>{t('enter_email')}</span>
+                </Typography>
+                <TextField
+                  fullWidth
+                  id="email"
+                  name="email"
+                  label={t('email')}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email as ReactNode}
+                />
+                <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Button
+                    onClick={() => {
+                      formik.validateForm().then((res: any) => {
+                        const { email } = res;
+                        if (email) {
+                          formik.setFieldTouched('email', true, true);
+                          formik.setFieldError('email', email);
                         }
-                        setBackdrop(true);
-                        dispatch(sendCodeToEmail(sendEmailCodeObj)).then((res: any) => {
-                          const { payload } = res;
-                          const { message, success } = payload;
-                          enqueueSnackbar(message);
-                          if (success) {
-                            dispatch(resetDefault());
-                            sessionStorage.setItem('reset-password-data', JSON.stringify({ ...formik.values }))
-                            navigate(`/reset-password/code`)
+
+                        if (!email) {
+                          const sendEmailCodeObj = {
+                            email: formik.values.email,
+                            function_type: "RESET_PASSWORD"
                           }
-                          setBackdrop(false);
-                        }).catch((err) => {
-                          setBackdrop(false);
-                          enqueueSnackbar("Error occured");
-                        })
-                      }
-                    })
-                  }}>
-                  {t('next')}
-                </Button>
-              </Box>
-            </Form>
-          </WithTranslateFormErrors>
-        )}
-      </Formik>
-      <Backdrop
-        className='only-backdrop'
-        sx={{ color: '#fff', zIndex: 999 }}
-        open={backdrop}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </Card>
+                          setBackdrop(true);
+                          dispatch(sendCodeToEmail(sendEmailCodeObj)).then((res: any) => {
+                            const { payload } = res;
+                            const { message, success } = payload;
+                            enqueueSnackbar(message);
+                            if (success) {
+                              dispatch(resetDefault());
+                              sessionStorage.setItem('reset-password-data', JSON.stringify({ ...formik.values }))
+                              navigate(`/reset-password/code`)
+                            }
+                            setBackdrop(false);
+                          }).catch((err) => {
+                            setBackdrop(false);
+                            enqueueSnackbar("Error occured");
+                          })
+                        }
+                      })
+                    }}>
+                    {t('next')}
+                  </Button>
+                </Box>
+              </Form>
+            </WithTranslateFormErrors>
+          )}
+        </Formik>
+        <Backdrop
+          className='only-backdrop'
+          sx={{ color: '#fff', zIndex: 999 }}
+          open={backdrop}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </Card>
+    </Box>
   );
 }

@@ -49,7 +49,6 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
             height: `calc(100% - ${getContentHeight()}px)`,
         }}>
             <Box style={{
-                padding: isDesktop ? '24px 16%' : '24px',
                 minHeight: `calc(100% - ${isDesktop ? 72 : 119}px`
             }}>
                 <Outlet />
