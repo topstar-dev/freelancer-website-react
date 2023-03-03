@@ -177,8 +177,9 @@
     display: flex;
     gap: 6px;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     color: #757575;
+    white-space: nowrap;
 }
 
 .home-recently-joined-basic-details>div svg {
@@ -187,17 +188,17 @@
 
 .home-recently-joined-basic-details>div .profile-location-icon {
     color: #ea4335;
-    height: 19px;
+    height: 20px;
 }
 
 .home-recently-joined-basic-details>div .profile-star-icon {
     color: #fbbc05;
-    height: 19px;
+    height: 20px;
 }
 
 .home-recently-joined-basic-details>div .profile-date-icon {
     color: #34a853;
-    height: 19px;
+    height: 20px;
 }
 
 .home-recently-joined-about {
@@ -210,6 +211,12 @@
     line-height: 20px;
     height: 40px;
     color: #757575;
+    font-size: 16px;
+}
+
+.no-about-style {
+    display: flex;
+    align-items: center;
 }
 
 .home-recently-joined-skills {

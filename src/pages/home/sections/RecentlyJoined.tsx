@@ -172,7 +172,7 @@ const RecentlyJoinedProfileContainer = ({
                         {dayjs(join_time).format('YYYY-MM-DD')}
                     </div>
                 </Box>
-                <Box className="home-recently-joined-about">
+                <Box className={`home-recently-joined-about ${about ? '' : 'no-about-style'}`}>
                     {about ? about : t('homepage.default-description')}
                 </Box>
                 <Box className="home-recently-joined-skills">
