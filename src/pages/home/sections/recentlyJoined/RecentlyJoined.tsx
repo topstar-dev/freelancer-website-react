@@ -7,12 +7,14 @@ import StarIcon from '@mui/icons-material/Star';
 import { Box } from "@mui/system"
 import dayjs from 'dayjs';
 import { useTranslation } from "react-i18next";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { getRecommendedFreelancersAction } from "../../../redux/freelancer/freelancerActions";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { getRecommendedFreelancersAction } from "../../../../redux/freelancer/freelancerActions";
 import { useSnackbar } from "notistack";
-import { FREELANCER_REQ_TYPES, FUNCTION_TYPES } from "../../../redux/constants";
-import { profileImageDownload } from "../../../redux/profile/profileActions";
-import { useNavigate } from "../../../routes/Router";
+import { FREELANCER_REQ_TYPES, FUNCTION_TYPES } from "../../../../redux/constants";
+import { profileImageDownload } from "../../../../redux/profile/profileActions";
+import { useNavigate } from "../../../../routes/Router";
+import './recentlyJoined.css';
+import { addRecentlyJoinedPhotoToCache, updateRecentlyJoined } from "../../../../redux/freelancer/freelancerSlice";
 
 const RecentlyJoinedSection = () => {
     const { t } = useTranslation();
@@ -24,18 +26,34 @@ const RecentlyJoinedSection = () => {
     useEffect(() => {
         if (!recentlyJoinedFreelancer) {
             setBackdrop(true);
-            dispatch(getRecommendedFreelancersAction({ req_type: FREELANCER_REQ_TYPES.FREELANCER_RECENTLY, page_size: 20 })).then((res) => {
-                if (!res.payload.success) {
+            dispatch(getRecommendedFreelancersAction({ req_type: FREELANCER_REQ_TYPES.FREELANCER_RECENTLY, page_size: 20 })).then((res: any) => {
+                if (res.payload?.success) {
+                } else {
                     enqueueSnackbar(res.payload.message);
                 }
             }).then((err: any) => {
-                enqueueSnackbar(err.payload.message);
+                if (err) {
+                    enqueueSnackbar(err?.payload?.message);
+                }
             }).finally(() => {
                 setBackdrop(false)
             })
         }
     }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
 
+    useEffect(() => {
+        function handleResize() {
+            if (recentlyJoinedFreelancer) {
+                dispatch(updateRecentlyJoined())
+            }
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    })
 
     return (
         <Box className="home-recently-joind-container">
@@ -47,11 +65,11 @@ const RecentlyJoinedSection = () => {
                     {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
                         recentlyJoinedFreelancer.records.map((record: any, index: number) => {
                             return (<ButtonBase key={index} className="button-base-profile">
-                                <RecentlyJoinedProfileContainer {...record} />
+                                <RecentlyJoinedProfileContainer {...record} index={index} />
                             </ButtonBase>)
                         })
                         :
-                        [...new Array(5)].map((record: any, index: number) => {
+                        [...new Array(5 + Math.ceil(window.innerWidth / 378))].map((record: any, index: number) => {
                             return <RecentlyJoinedProfileSkeleton {...record} key={index} />
                         })
                     }
@@ -71,43 +89,40 @@ const RecentlyJoinedProfileContainer = ({
     about,
     skills,
     star_rating,
-    username
+    username,
+    index
 }: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const [userAvatar, setUserAvatar] = useState<any>(null);
-    const [loadingAvatar, setLoadingAvatar] = useState(false);
-    const [userProfile, setUserProfile] = useState<any>(null);
-    const [loadingProfile, setLoadingProfile] = useState(false);
+
+    const { recentlyJoinedPhotosCache } = useAppSelector(state => state.freelancer);
 
     useEffect(() => {
-        if (avatar_file_name && !userAvatar && !loadingAvatar) {
-            setLoadingAvatar(true)
+        if (avatar_file_name && !recentlyJoinedPhotosCache[avatar_file_name]) {
+            dispatch(addRecentlyJoinedPhotoToCache({ name: avatar_file_name, data: 'loading' }))
             dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_AVATAR, fileName: avatar_file_name })).then((res: any) => {
                 if (res.payload.success) {
-                    setUserAvatar(URL.createObjectURL(res.payload.file))
+                    dispatch(addRecentlyJoinedPhotoToCache({ name: avatar_file_name, data: URL.createObjectURL(res.payload.file) }))
                 }
-            }).catch(() => { })
-                .finally(() => {
-                    setLoadingAvatar(false);
-                })
+            }).catch(() => {
+                dispatch(addRecentlyJoinedPhotoToCache({ name: avatar_file_name, data: undefined }))
+            })
         }
-    }, [dispatch, loadingAvatar, avatar_file_name, userAvatar])
+    }, [dispatch, avatar_file_name, recentlyJoinedPhotosCache])
 
     useEffect(() => {
-        if (profile_file_name && !userProfile && !loadingProfile) {
-            setLoadingProfile(true)
+        if (profile_file_name && !recentlyJoinedPhotosCache[profile_file_name]) {
+            dispatch(addRecentlyJoinedPhotoToCache({ name: profile_file_name, data: 'loading' }))
             dispatch(profileImageDownload({ functionType: FUNCTION_TYPES.USER_PROFILE, fileName: profile_file_name })).then((res: any) => {
                 if (res.payload.success) {
-                    setUserProfile(URL.createObjectURL(res.payload.file))
+                    dispatch(addRecentlyJoinedPhotoToCache({ name: profile_file_name, data: URL.createObjectURL(res.payload.file) }))
                 }
-            }).catch(() => { })
-                .finally(() => {
-                    setLoadingProfile(false);
-                })
+            }).catch(() => {
+                dispatch(addRecentlyJoinedPhotoToCache({ name: profile_file_name, data: undefined }))
+            })
         }
-    }, [dispatch, loadingProfile, profile_file_name, userProfile])
+    }, [dispatch, profile_file_name, recentlyJoinedPhotosCache])
 
     return (
         <Box
@@ -118,16 +133,16 @@ const RecentlyJoinedProfileContainer = ({
         >
             <Box style={{ marginBottom: -28 }}>
                 <Box className="home-recently-joined-profile-image-box">
-                    {userProfile ?
-                        <img className='home-recently-joined-profile-image' alt="profile_image" src={userProfile} />
+                    {recentlyJoinedPhotosCache[profile_file_name] && recentlyJoinedPhotosCache[profile_file_name] !== 'loading' ?
+                        <img className='home-recently-joined-profile-image' alt="profile_image" src={recentlyJoinedPhotosCache[profile_file_name]} />
                         :
                         <img className='home-recently-joined-profile-image' alt="profile_image" src="/images/profile-placeholder.png" />
                     }
                 </Box>
                 <Box style={{ display: 'flex' }}>
                     <Box className="home-recently-joined-avatar-image-box">
-                        {userAvatar ?
-                            <Avatar className='home-recently-joined-avatar-image' alt="avatar_image" src={userAvatar} />
+                        {recentlyJoinedPhotosCache[avatar_file_name] && recentlyJoinedPhotosCache[avatar_file_name] !== 'loading' ?
+                            <Avatar className='home-recently-joined-avatar-image' alt="avatar_image" src={recentlyJoinedPhotosCache[avatar_file_name]} />
                             :
                             <Avatar className='home-recently-joined-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
                         }

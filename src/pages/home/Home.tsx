@@ -7,7 +7,7 @@ import WhyRounxSection from "./sections/WhyRounx";
 import FAQ from "./sections/FAQ";
 import WorkPlateformSection from "./sections/WorkPlateform";
 import './home.css'
-import RecentlyJoinedSection from "./sections/RecentlyJoined";
+import RecentlyJoinedSection from "./sections/recentlyJoined/RecentlyJoined";
 
 export default function HomePage() {
     const { t } = useTranslation();
