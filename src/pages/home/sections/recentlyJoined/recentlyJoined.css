@@ -23,7 +23,7 @@
     display: flex;
     gap: 18px;
 
-    animation: scroll-left 20s linear infinite;
+    animation: scroll-left 22s linear infinite;
 }
 
 /* @media (max-width: 1000.99px) {
