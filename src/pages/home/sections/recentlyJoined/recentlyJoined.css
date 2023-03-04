@@ -38,6 +38,34 @@
     animation-play-state: paused;
 }
 
+@-moz-keyframes scroll-left {
+    0% {
+        -moz-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -moz-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        -webkit-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+    }
+}
+
+@-webkit-keyframes scroll-left {
+    0% {
+        -moz-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -moz-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        -webkit-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+    }
+}
+
 @keyframes scroll-left {
     0% {
         -moz-transform: translateX(0);

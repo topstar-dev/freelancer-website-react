@@ -14,7 +14,7 @@ import { FREELANCER_REQ_TYPES, FUNCTION_TYPES, ONLINE_STATUS } from "../../../..
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import { useNavigate } from "../../../../routes/Router";
 import './recentlyJoined.css';
-import { addRecentlyJoinedPhotoToCache, updateRecentlyJoined } from "../../../../redux/freelancer/freelancerSlice";
+import { addRecentlyJoinedPhotoToCache } from "../../../../redux/freelancer/freelancerSlice";
 
 const RecentlyJoinedSection = () => {
     const { t } = useTranslation();
@@ -41,19 +41,19 @@ const RecentlyJoinedSection = () => {
         }
     }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
 
-    useEffect(() => {
-        function handleResize() {
-            if (recentlyJoinedFreelancer) {
-                dispatch(updateRecentlyJoined())
-            }
-        }
+    // useEffect(() => {
+    //     function handleResize() {
+    //         if (recentlyJoinedFreelancer) {
+    //             dispatch(updateRecentlyJoined())
+    //         }
+    //     }
 
-        window.addEventListener('resize', handleResize)
+    //     window.addEventListener('resize', handleResize)
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    })
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     }
+    // })
 
     return (
         <Box className="home-recently-joind-container">
