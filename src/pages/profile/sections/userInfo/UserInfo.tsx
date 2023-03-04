@@ -2,7 +2,7 @@ import { Avatar, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import Card from '../../../../components/card/Card'
-import { FUNCTION_TYPES } from "../../../../redux/constants";
+import { FUNCTION_TYPES, ONLINE_STATUS } from "../../../../redux/constants";
 import { useAppDispatch } from "../../../../redux/hooks";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import EditUserInfo from "./EditUserInfo";
@@ -17,6 +17,7 @@ export default function UserInfo({
     profile_file_name,
     identity_status,
     currentProfile,
+    online_status,
     ...rest
 }: any) {
     const dispatch = useAppDispatch();
@@ -85,6 +86,11 @@ export default function UserInfo({
                             <Avatar className='userInfo-avatar-image' alt="avatar_image" src={userAvatar} />
                             :
                             <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
+                        }
+                        {online_status === ONLINE_STATUS.ONLINE ?
+                            <div className="online-status-dot"></div>
+                            :
+                            ""
                         }
                     </Box>
                     {currentProfile ?

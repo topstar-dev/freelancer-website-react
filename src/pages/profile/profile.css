@@ -211,12 +211,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    /* overflow: hidden; */
+}
+
+.online-status-dot {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    border-radius: 100%;
+    background-color: #34a853;
+    border: 2px solid #fff;
+    z-index: 2;
+    left: 68px;
+    bottom: 8px;
 }
 
 .userInfo-avatar-image {
     height: 100% !important;
     width: 100% !important;
+    border-radius: 100%;
 }
 
 .userInfo-user-details {

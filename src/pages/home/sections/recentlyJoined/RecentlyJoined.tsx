@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { getRecommendedFreelancersAction } from "../../../../redux/freelancer/freelancerActions";
 import { useSnackbar } from "notistack";
-import { FREELANCER_REQ_TYPES, FUNCTION_TYPES } from "../../../../redux/constants";
+import { FREELANCER_REQ_TYPES, FUNCTION_TYPES, ONLINE_STATUS } from "../../../../redux/constants";
 import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import { useNavigate } from "../../../../routes/Router";
 import './recentlyJoined.css';
@@ -90,7 +90,7 @@ const RecentlyJoinedProfileContainer = ({
     skills,
     star_rating,
     username,
-    index
+    online_status
 }: any) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -145,6 +145,11 @@ const RecentlyJoinedProfileContainer = ({
                             <Avatar className='home-recently-joined-avatar-image' alt="avatar_image" src={recentlyJoinedPhotosCache[avatar_file_name]} />
                             :
                             <Avatar className='home-recently-joined-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
+                        }
+                        {online_status === ONLINE_STATUS.ONLINE ?
+                            <div className="online-status-dot"></div>
+                            :
+                            ""
                         }
                     </Box>
                 </Box>
