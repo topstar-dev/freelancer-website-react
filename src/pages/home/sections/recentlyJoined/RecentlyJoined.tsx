@@ -41,6 +41,36 @@ const RecentlyJoinedSection = () => {
         }
     }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
 
+    const recentlyJoinedUtil = (responseData: any) => {
+        const marqueeWidth = window.innerWidth;
+        const totalElements = responseData.records?.length;
+        const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
+
+        const root = document.documentElement;
+        root.style.setProperty('--total-lements', `${totalElements}`);
+        root.style.setProperty('--elements-to-be-appended', `${elementsToBeAppended}`);
+
+        let currentIndex = 0;
+        const newElements = [...(responseData?.records || [])]
+        if (elementsToBeAppended > 0) {
+            for (let index = 0; index < elementsToBeAppended; index++) {
+                if (currentIndex >= totalElements) {
+                    currentIndex = 0;
+                }
+                const element = newElements[currentIndex];
+                if (element) {
+                    newElements.push(element)
+                    currentIndex++;
+                }
+            }
+        }
+        return newElements;
+    }
+
+    const getRecords = () => {
+        return recentlyJoinedUtil(recentlyJoinedFreelancer);
+    }
+
     return (
         <Box className="home-recently-joind-container">
             <Typography className="home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
@@ -49,7 +79,7 @@ const RecentlyJoinedSection = () => {
             <Box className="home-recently-joind-list">
                 <div className="recently-profile-animation">
                     {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
-                        recentlyJoinedFreelancer.records.map((record: any, index: number) => {
+                        (getRecords()).map((record: any, index: number) => {
                             return (<ButtonBase key={index} className="button-base-profile">
                                 <RecentlyJoinedProfileContainer {...record} index={index} />
                             </ButtonBase>)
