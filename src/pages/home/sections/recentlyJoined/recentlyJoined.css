@@ -139,15 +139,15 @@
 }
 
 .online-status-dot {
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 18px;
     position: absolute;
     border-radius: 100%;
     background-color: #34a853;
     border: 2px solid #fff;
     z-index: 2;
-    left: 68px;
-    bottom: 8px;
+    left: 67px;
+    bottom: 6px;
 }
 
 .home-recently-joined-user-details {

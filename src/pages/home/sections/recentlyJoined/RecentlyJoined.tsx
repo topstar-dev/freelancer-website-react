@@ -41,20 +41,6 @@ const RecentlyJoinedSection = () => {
         }
     }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
 
-    // useEffect(() => {
-    //     function handleResize() {
-    //         if (recentlyJoinedFreelancer) {
-    //             dispatch(updateRecentlyJoined())
-    //         }
-    //     }
-
-    //     window.addEventListener('resize', handleResize)
-
-    //     return () => {
-    //         window.removeEventListener('resize', handleResize);
-    //     }
-    // })
-
     return (
         <Box className="home-recently-joind-container">
             <Typography className="home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
