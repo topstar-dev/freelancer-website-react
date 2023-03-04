@@ -26,11 +26,11 @@
     animation: scroll-left 20s linear infinite;
 }
 
-@media (max-width: 1000.99px) {
+/* @media (max-width: 1000.99px) {
     .recently-profile-animation {
         animation: scroll-left 10s linear infinite;
     }
-}
+} */
 
 .home-recently-joind-list .recently-profile-animation:hover {
     -moz-animation-play-state: paused;
