@@ -138,9 +138,9 @@
     border-radius: 100%;
 }
 
-.online-status-dot {
-    height: 17px;
-    width: 17px;
+.home-recently-joined-online-status {
+    height: 18px;
+    width: 18px;
     position: absolute;
     border-radius: 100%;
     background-color: #34a853;

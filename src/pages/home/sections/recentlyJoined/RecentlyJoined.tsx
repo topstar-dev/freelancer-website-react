@@ -133,7 +133,7 @@ const RecentlyJoinedProfileContainer = ({
                             <Avatar className='home-recently-joined-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
                         }
                         {online_status === ONLINE_STATUS.ONLINE ?
-                            <div className="online-status-dot"></div>
+                            <div className="home-recently-joined-online-status"></div>
                             :
                             ""
                         }
