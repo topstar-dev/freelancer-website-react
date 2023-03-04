@@ -139,8 +139,8 @@
 }
 
 .online-status-dot {
-    height: 18px;
-    width: 18px;
+    height: 17px;
+    width: 17px;
     position: absolute;
     border-radius: 100%;
     background-color: #34a853;
