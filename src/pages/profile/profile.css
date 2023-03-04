@@ -214,6 +214,18 @@
     /* overflow: hidden; */
 }
 
+.online-status-dot-profile {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    border-radius: 100%;
+    background-color: #34a853;
+    border: 2px solid #fff;
+    z-index: 2;
+    left: 67px;
+    bottom: 6px;
+}
+
 .userInfo-avatar-image {
     height: 100% !important;
     width: 100% !important;

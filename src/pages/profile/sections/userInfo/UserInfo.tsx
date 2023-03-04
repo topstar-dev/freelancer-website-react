@@ -88,7 +88,7 @@ export default function UserInfo({
                             <Avatar className='userInfo-avatar-image' alt="avatar_image" src="/images/avatar-placeholder.png" />
                         }
                         {online_status === ONLINE_STATUS.ONLINE ?
-                            <div className="online-status-dot"></div>
+                            <div className="online-status-dot-profile"></div>
                             :
                             ""
                         }
