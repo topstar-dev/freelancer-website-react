@@ -47,7 +47,7 @@ export default function Experiences({ experiences, currentProfile }: any) {
                 totalSize={experiences?.length}
                 limit={2}
                 onClick={() => {
-                    setCurrentLength(currentLength + 2)
+                    setCurrentLength(experiences?.length)
                 }}
                 onClickLess={() => {
                     setCurrentLength(2);

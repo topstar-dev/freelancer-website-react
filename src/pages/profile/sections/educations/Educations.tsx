@@ -48,7 +48,7 @@ export default function Educations({ educations, currentProfile }: any) {
                 totalSize={educations?.length}
                 limit={2}
                 onClick={() => {
-                    setCurrentLength(currentLength + 2)
+                    setCurrentLength(educations?.length)
                 }}
                 onClickLess={() => {
                     setCurrentLength(2);
