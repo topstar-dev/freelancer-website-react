@@ -251,6 +251,7 @@ html[lang="zh-CN"] .freelancer-skill-chip-extra {
     color: #757575;
     font-size: 14px;
     position: relative;
+    left: -4px;
     min-width: 40px;
     width: 40px;
     height: 32px;
