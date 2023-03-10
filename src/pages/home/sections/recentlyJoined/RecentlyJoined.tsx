@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Avatar, ButtonBase, Chip, Stack, Typography } from "@mui/material";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -17,29 +17,42 @@ import './recentlyJoined.css';
 import { addRecentlyJoinedPhotoToCache } from "../../../../redux/freelancer/freelancerSlice";
 
 const RecentlyJoinedSection = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const { language } = useAppSelector(state => state.resources)
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useAppDispatch();
     const { recentlyJoinedFreelancer } = useAppSelector(state => state.freelancer);
     const [backdrop, setBackdrop] = useState(false);
 
+    const callApi = useCallback(() => {
+        setBackdrop(true);
+        dispatch(getRecommendedFreelancersAction({ req_type: FREELANCER_REQ_TYPES.FREELANCER_RECENTLY, page_size: 20 })).then((res: any) => {
+            if (res.payload?.success) {
+            } else {
+                enqueueSnackbar(res.payload.message);
+            }
+        }).then((err: any) => {
+            if (err) {
+                enqueueSnackbar(err?.payload?.message);
+            }
+        }).finally(() => {
+            setBackdrop(false)
+        })
+    }, [dispatch, enqueueSnackbar]);
+
     useEffect(() => {
         if (!recentlyJoinedFreelancer) {
-            setBackdrop(true);
-            dispatch(getRecommendedFreelancersAction({ req_type: FREELANCER_REQ_TYPES.FREELANCER_RECENTLY, page_size: 20 })).then((res: any) => {
-                if (res.payload?.success) {
-                } else {
-                    enqueueSnackbar(res.payload.message);
-                }
-            }).then((err: any) => {
-                if (err) {
-                    enqueueSnackbar(err?.payload?.message);
-                }
-            }).finally(() => {
-                setBackdrop(false)
-            })
+            callApi();
         }
-    }, [dispatch, enqueueSnackbar, recentlyJoinedFreelancer]);
+    }, [callApi, recentlyJoinedFreelancer]);
+
+    useEffect(() => {
+        if (recentlyJoinedFreelancer) {
+            if (language && i18n.language && i18n.language !== language) {
+                callApi();
+            }
+        }
+    }, [i18n, language, recentlyJoinedFreelancer, callApi])
 
     const recentlyJoinedUtil = (responseData: any) => {
         const marqueeWidth = window.innerWidth;
