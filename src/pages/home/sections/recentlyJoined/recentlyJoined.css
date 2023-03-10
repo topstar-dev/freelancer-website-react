@@ -256,7 +256,7 @@ html[lang="zh-CN"] .freelancer-skill-chip-extra {
     height: 32px;
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: 8px 0;
 }
 
 .skeleton {
