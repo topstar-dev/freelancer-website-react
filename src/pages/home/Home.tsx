@@ -25,7 +25,7 @@ export default function HomePage() {
             <SkillsSection />
             <Divider style={{ margin: '96px 0' }} />
             <RecentlyJoinedSection />
-            <Divider style={{ margin: '96px 0' }} />
+            <Divider style={{ margin: '116px 0px 96px 0px' }} />
             <WhyRounxSection />
             <Divider style={{ margin: '96px 0' }} />
             <FAQ />
