@@ -23,7 +23,7 @@
     display: flex;
     gap: 18px;
 
-    animation: scroll-left 22s linear infinite;
+    /* animation: scroll-left 22s linear infinite; */
 }
 
 /* @media (max-width: 1000.99px) {
@@ -225,8 +225,16 @@
     display: flex;
 }
 
+.home-recently-joined-skills .stack-skills-box::-webkit-scrollbar {
+    display: none;
+}
+
 .home-recently-joined-skills .stack-skills-box {
-    max-width: 300px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .freelancer-skill-chip {
@@ -243,6 +251,7 @@ html[lang="zh-CN"] .freelancer-skill-chip-extra {
     color: #757575;
     font-size: 13px;
     position: relative;
+    min-width: 40px;
     width: 40px;
     height: 32px;
     display: flex;

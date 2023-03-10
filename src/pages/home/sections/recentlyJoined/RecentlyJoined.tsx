@@ -203,19 +203,19 @@ const RecentlyJoinedProfileContainer = ({
                         spacing={1}
                         className="stack-skills-box"
                     >
-                        {skills?.slice(0, 2)?.map((skill: any, index: number) => {
+                        {skills?.slice(0, 3)?.map((skill: any, index: number) => {
                             return (
                                 <Chip className="freelancer-skill-chip" key={index} label={skill.skill_name} variant="outlined" />
                             )
                         })}
+                        {skills.length > 3 ?
+                            <div className="freelancer-skill-chip-extra">
+                                {`+ ${skills.length - skills?.slice(0, 2)?.length}`}
+                            </div>
+                            :
+                            ''
+                        }
                     </Stack>
-                    {skills.length > 2 ?
-                        <div className="freelancer-skill-chip-extra">
-                            {`+ ${skills.length - skills?.slice(0, 2)?.length}`}
-                        </div>
-                        :
-                        ''
-                    }
                 </Box>
             </Box>
         </Box>
