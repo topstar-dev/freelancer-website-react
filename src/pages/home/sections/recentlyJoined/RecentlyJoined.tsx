@@ -153,6 +153,13 @@ const RecentlyJoinedProfileContainer = ({
         }
     }, [dispatch, profile_file_name, recentlyJoinedPhotosCache])
 
+    const getAboutClass = (aboutData: any) => {
+        if(skills.length > 0){
+            return aboutData ? '' : 'no-about-style'
+        } else {
+            return aboutData ? 'no-skills-style' : 'no-skills-style no-about-style'
+        }
+    }
     return (
         <Box
             className="home-recently-joined-profile-box"
@@ -202,8 +209,8 @@ const RecentlyJoinedProfileContainer = ({
                         {dayjs(join_time).format('YYYY-MM-DD')}
                     </div>
                 </Box>
-                <Box className={`home-recently-joined-about ${about ? '' : 'no-about-style'}`}>
-                    {about ? about : t('homepage.default-description')}
+                <Box className={`home-recently-joined-about-wrapper ${getAboutClass(about)}`}>
+                    <div className={`home-recently-joined-about`}>{about ? about : t('homepage.default-description')}</div>
                 </Box>
                 <Box className="home-recently-joined-skills">
                     <Stack
@@ -274,7 +281,7 @@ const RecentlyJoinedProfileSkeleton = () => {
                 </Box>
 
                 <Box className="home-recently-joined-skills">
-                    <div className="skeleton chip"></div>
+                    <div className="skeleton chip" style={{marginLeft: 10}}></div>
                     <div className="skeleton chip"></div>
                 </Box>
             </Box>
