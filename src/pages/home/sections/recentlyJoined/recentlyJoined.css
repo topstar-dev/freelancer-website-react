@@ -231,7 +231,7 @@
     display: flex;
     position: relative;
     left: -10px;
-    min-width: calc(100% + 20px);
+    min-width: calc(100% + 10px);
 }
 
 
