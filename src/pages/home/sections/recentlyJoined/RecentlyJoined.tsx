@@ -167,7 +167,7 @@ const RecentlyJoinedProfileContainer = ({
                 navigate(`/${username}`)
             }}
         >
-            <Box style={{ marginBottom: -28 }}>
+            <Box style={{ marginBottom: -28, height: 214 }}>
                 <Box className="home-recently-joined-profile-image-box">
                     {recentlyJoinedPhotosCache[profile_file_name] && recentlyJoinedPhotosCache[profile_file_name] !== 'loading' ?
                         <img className='home-recently-joined-profile-image' alt="profile_image" src={recentlyJoinedPhotosCache[profile_file_name]} />

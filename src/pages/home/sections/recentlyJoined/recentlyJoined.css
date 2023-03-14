@@ -166,7 +166,6 @@
     gap: 10px;
     align-items: center;
     margin-left: -4px;
-    margin-bottom: 14px;
 }
 
 .home-recently-joined-basic-details>div {
@@ -199,6 +198,7 @@
 .home-recently-joined-about-wrapper{
     display: flex;
     align-items: center;
+    height: 72px;
 }
 
 .home-recently-joined-about {
@@ -207,24 +207,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 16px;
     line-height: 20px;
-    height: 42px;
     color: #757575;
     font-size: 16px;
-}
-
-.no-skills-style {
-    height: 90px;
-}
-
-.no-skills-style .home-recently-joined-about{
-    margin-bottom: 0;
-}
-
-.no-about-style .home-recently-joined-about{
-    display: flex;
-    align-items: center;
 }
 
 .home-recently-joined-skills {
@@ -232,6 +217,7 @@
     position: relative;
     left: -10px;
     min-width: calc(100% + 10px);
+    height: 32px;
 }
 
 
