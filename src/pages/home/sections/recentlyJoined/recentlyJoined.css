@@ -209,9 +209,9 @@
     overflow: hidden;
 }
 
-.home-recently-joined-about-wrapper.no-skills-about{
+/* .home-recently-joined-about-wrapper.no-skills-about{
     height: 128px;
-}
+} */
 
 .home-recently-joined-about {
     display: -webkit-box;
