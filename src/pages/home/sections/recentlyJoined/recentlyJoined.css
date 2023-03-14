@@ -80,12 +80,13 @@
 }
 
 .home-recently-joined-profile-box {
-    height: 370px;
+    height: 369px;
     width: 378px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 6px;
     cursor: pointer;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .home-recently-joined-profile-box:hover {
@@ -145,26 +146,30 @@
 }
 
 .home-recently-joined-user-details {
-    padding: 0 26px 26px;
+    padding: 0 26px;
+    height: 51px;
+    overflow: hidden;
 }
 
 .home-recently-joined-user-name {
     font-size: 20px;
-    margin-bottom: 10px;
     display: flex;
-    align-items: center;
+    align-items: top;
+    height: 30px;
 }
 
 .home-recently-joined-user-verified-icon {
     color: var(--color-primary);
     margin-left: 8px;
+    margin-top: 3px;
     font-size: 18px !important;
 }
 
 .home-recently-joined-basic-details {
     display: flex;
     gap: 10px;
-    align-items: center;
+    align-items: bottom;
+    margin-left: -4px;
     margin-left: -4px;
 }
 
@@ -200,6 +205,8 @@
     display: flex;
     align-items: center;
     height: 72px;
+    padding: 0 26px;
+    overflow: hidden;
 }
 
 .home-recently-joined-about-wrapper.no-skills-about{
@@ -218,12 +225,14 @@
 }
 
 .home-recently-joined-skills {
+    padding: 0 26px 26px;
     display: flex;
-    align-items: center;
+    align-items: top;
     position: relative;
     left: -10px;
     min-width: calc(100% + 10px);
     height: 33px;
+    overflow: hidden;
 }
 
 
@@ -237,7 +246,7 @@
     background: linear-gradient(to right, #fff 0%, transparent 100%);
     height: 100%;
     width: 10px;
-    left: 0;
+    left: 26px;
 }
 
 .home-recently-joined-profile-box:hover .home-recently-joined-skills::after{
@@ -251,7 +260,7 @@
     background: linear-gradient(to left, #fff 0%, transparent 100%);
     height: 100%;
     width: 10px;
-    right: 0;
+    right: 26px;
 }
 
 .home-recently-joined-skills .stack-skills-box::-webkit-scrollbar {
@@ -259,6 +268,7 @@
 }
 
 .home-recently-joined-skills .stack-skills-box {
+    height: 33px;
     padding: 0 10px;
     overflow-x: auto;
     -ms-overflow-style: none;
