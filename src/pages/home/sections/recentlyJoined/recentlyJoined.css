@@ -195,10 +195,15 @@
     color: #34a853;
     height: 20px;
 }
+
 .home-recently-joined-about-wrapper{
     display: flex;
     align-items: center;
     height: 72px;
+}
+
+.home-recently-joined-about-wrapper.no-skills-about{
+    height: 130px;
 }
 
 .home-recently-joined-about {

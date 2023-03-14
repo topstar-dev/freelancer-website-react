@@ -153,13 +153,6 @@ const RecentlyJoinedProfileContainer = ({
         }
     }, [dispatch, profile_file_name, recentlyJoinedPhotosCache])
 
-    const getAboutClass = (aboutData: any) => {
-        if(skills.length > 0){
-            return aboutData ? '' : 'no-about-style'
-        } else {
-            return aboutData ? 'no-skills-style' : 'no-skills-style no-about-style'
-        }
-    }
     return (
         <Box
             className="home-recently-joined-profile-box"
@@ -191,51 +184,59 @@ const RecentlyJoinedProfileContainer = ({
                 </Box>
             </Box>
             <Box className="home-recently-joined-user-details">
-                <Box className="home-recently-joined-user-name">
-                    {name}
-                    {identity_status === 'PASSED' && <VerifiedIcon className="home-recently-joined-user-verified-icon" />}
+                <Box style={{ height: 51 }}>
+                    <Box className="home-recently-joined-user-name">
+                        {name}
+                        {identity_status === 'PASSED' && <VerifiedIcon className="home-recently-joined-user-verified-icon" />}
+                    </Box>
+                    <Box className="home-recently-joined-basic-details">
+                        <div>
+                            <LocationOnIcon className="profile-location-icon" />
+                            {location}
+                        </div>
+                        <div style={{ marginLeft: -2 }}>
+                            <StarIcon className="profile-star-icon" />
+                            {star_rating?.toPrecision(2)}
+                        </div>
+                        <div>
+                            <DateRangeIcon className="profile-date-icon" />
+                            {dayjs(join_time).format('YYYY-MM-DD')}
+                        </div>
+                    </Box>
                 </Box>
-                <Box className="home-recently-joined-basic-details">
-                    <div>
-                        <LocationOnIcon className="profile-location-icon" />
-                        {location}
-                    </div>
-                    <div style={{ marginLeft: -2 }}>
-                        <StarIcon className="profile-star-icon" />
-                        {star_rating?.toPrecision(2)}
-                    </div>
-                    <div>
-                        <DateRangeIcon className="profile-date-icon" />
-                        {dayjs(join_time).format('YYYY-MM-DD')}
-                    </div>
-                </Box>
-                <Box className={`home-recently-joined-about-wrapper ${getAboutClass(about)}`}>
-                    <div className={`home-recently-joined-about`}>{about ? about : t('homepage.default-description')}</div>
-                </Box>
-                <Box className="home-recently-joined-skills">
-                    <Stack
-                        display={'flex'}
-                        direction='row'
-                        overflow={'hidden'}
-                        flexWrap={'nowrap'}
-                        gap={'10px'}
-                        alignItems='flex-start'
-                        spacing={1}
-                        className="stack-skills-box"
-                    >
-                        {skills?.slice(0, 3)?.map((skill: any, index: number) => {
-                            return (
-                                <Chip className="freelancer-skill-chip" key={index} label={skill.skill_name} variant="outlined" />
-                            )
-                        })}
-                        {skills.length > 3 ?
-                            <div className="freelancer-skill-chip-extra">
-                                {`+ ${skills.length - skills?.slice(0, 2)?.length}`}
-                            </div>
-                            :
-                            ''
-                        }
-                    </Stack>
+                <Box className="home-recently-joined-bottom-wrapper">
+                    <Box className={`home-recently-joined-about-wrapper ${skills.length > 0 ? '' : 'no-skills-about'}`}>
+                        <div className={`home-recently-joined-about`}>{about ? about : t('homepage.default-description')}</div>
+                    </Box>
+                    {skills.length > 0 ?
+                        <Box className="home-recently-joined-skills">
+                            <Stack
+                                display={'flex'}
+                                direction='row'
+                                overflow={'hidden'}
+                                flexWrap={'nowrap'}
+                                gap={'10px'}
+                                alignItems='flex-start'
+                                spacing={1}
+                                className="stack-skills-box"
+                            >
+                                {skills?.slice(0, 3)?.map((skill: any, index: number) => {
+                                    return (
+                                        <Chip className="freelancer-skill-chip" key={index} label={skill.skill_name} variant="outlined" />
+                                    )
+                                })}
+                                {skills.length > 3 ?
+                                    <div className="freelancer-skill-chip-extra">
+                                        {`+ ${skills.length - skills?.slice(0, 2)?.length}`}
+                                    </div>
+                                    :
+                                    ''
+                                }
+                            </Stack>
+                        </Box>
+                        :
+                        ''
+                    }
                 </Box>
             </Box>
         </Box>
@@ -281,7 +282,7 @@ const RecentlyJoinedProfileSkeleton = () => {
                 </Box>
 
                 <Box className="home-recently-joined-skills">
-                    <div className="skeleton chip" style={{marginLeft: 10}}></div>
+                    <div className="skeleton chip" style={{ marginLeft: 10 }}></div>
                     <div className="skeleton chip"></div>
                 </Box>
             </Box>
