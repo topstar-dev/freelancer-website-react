@@ -80,7 +80,7 @@
 }
 
 .home-recently-joined-profile-box {
-    height: 369px;
+    height: 370px;
     width: 378px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 6px;
@@ -219,10 +219,11 @@
 
 .home-recently-joined-skills {
     display: flex;
+    align-items: center;
     position: relative;
     left: -10px;
     min-width: calc(100% + 10px);
-    height: 32px;
+    height: 33px;
 }
 
 
