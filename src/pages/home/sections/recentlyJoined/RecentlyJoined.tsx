@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { Avatar, ButtonBase, Chip, Stack, Typography } from "@mui/material";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -54,7 +54,7 @@ const RecentlyJoinedSection = () => {
         }
     }, [i18n, language, recentlyJoinedFreelancer, callApi])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(recentlyJoinedFreelancer && recentlyJoinedFreelancer.records){
             const totalElements = recentlyJoinedFreelancer.records?.length;
             const root = document.body;
