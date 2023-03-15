@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: "SourceHanSansSC";
   font-display: auto;
   src: local("SourceHanSansSC"),
@@ -10,7 +10,7 @@
   font-display: auto;
   src: local("Roboto"),
     url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
-}
+} */
 
 :root {
   --color-primary: #336def;
