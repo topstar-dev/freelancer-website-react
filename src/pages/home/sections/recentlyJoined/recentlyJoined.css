@@ -7,8 +7,9 @@
 }
 
 :root {
+    --gap: 10px;
     --scrolling-list-width: 100%;
-    --total-lements: 5;
+    --total-elements: 5;
     --element-width: 396px;
     --elements-to-be-appended: calc(var(--scrolling-list-width) / var(--element-width));
 }
@@ -42,9 +43,9 @@
     }
 
     100% {
-        -moz-transform: translate3d(calc(-1*var(--element-width)*var(--total-lements)), 0, 0);
-        -webkit-transform: translate3d(calc(-1*var(--element-width)*var(--total-lements)), 0, 0);
-        transform: translate3d(calc(-1*var(--element-width)*var(--total-lements)), 0, 0);
+        -moz-transform: translate3d(calc(-100% - var(--gap)), 0, 0);
+        -webkit-transform: translate3d(calc(-100% - var(--gap)), 0, 0);
+        transform: translate3d(calc(-100% - var(--gap)), 0, 0);
     }
 }
 
@@ -56,9 +57,9 @@
     }
 
     100% {
-        -moz-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
-        -webkit-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
-        transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        -moz-transform: translateX(calc(-100% - var(--gap)));
+        -webkit-transform: translateX(calc(-100% - var(--gap)));
+        transform: translateX(calc(-100% - var(--gap)));
     }
 }
 
@@ -70,9 +71,9 @@
     }
 
     100% {
-        -moz-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
-        -webkit-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
-        transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        -moz-transform: translateX(calc(-100% - var(--gap)));
+        -webkit-transform: translateX(calc(-100% - var(--gap)));
+        transform: translateX(calc(-100% - var(--gap)));
     }
 }
 
