@@ -17,6 +17,8 @@
     width: var(--scrolling-list-width);
     overflow: hidden;
     position: relative;
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .recently-profile-animation {
@@ -34,15 +36,15 @@
 
 @-moz-keyframes scroll-left {
     0% {
-        -moz-transform: translateX(0);
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
+        -moz-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
 
     100% {
-        -moz-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
-        -webkit-transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
-        transform: translateX(calc(-1*var(--element-width)*var(--total-lements)));
+        -moz-transform: translate3d(calc(-1*var(--element-width)*var(--total-lements)), 0, 0);
+        -webkit-transform: translate3d(calc(-1*var(--element-width)*var(--total-lements)), 0, 0);
+        transform: translate3d(calc(-1*var(--element-width)*var(--total-lements)), 0, 0);
     }
 }
 
@@ -201,7 +203,7 @@
     height: 20px;
 }
 
-.home-recently-joined-about-wrapper{
+.home-recently-joined-about-wrapper {
     display: flex;
     align-items: center;
     height: 72px;
@@ -236,7 +238,7 @@
 }
 
 
-.home-recently-joined-profile-box:hover .home-recently-joined-skills::before{
+.home-recently-joined-profile-box:hover .home-recently-joined-skills::before {
     background: linear-gradient(to right, rgb(224 224 224) 0%, transparent 100%);
 }
 
@@ -249,7 +251,7 @@
     left: 26px;
 }
 
-.home-recently-joined-profile-box:hover .home-recently-joined-skills::after{
+.home-recently-joined-profile-box:hover .home-recently-joined-skills::after {
     background: linear-gradient(to left, rgb(224 224 224) 0%, transparent 100%);
 }
 
