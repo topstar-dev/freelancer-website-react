@@ -7,7 +7,7 @@ import { useAppSelector } from './redux/hooks';
 function App() {
   const { language } = useAppSelector(state => state.resources)
   const enFamily = ["Roboto"].join(',');
-  const chFamily = ["SourceHanSansSC"].join(',');
+  const chFamily = ["Noto Sans SC"].join(',');
   const customTheme = createTheme({
     typography: {
       fontFamily: language === 'zh-CN' ? chFamily : enFamily
