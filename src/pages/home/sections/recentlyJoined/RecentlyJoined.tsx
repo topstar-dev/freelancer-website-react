@@ -55,22 +55,20 @@ const RecentlyJoinedSection = () => {
     }, [i18n, language, recentlyJoinedFreelancer, callApi])
 
     useEffect(() => {
-        if(recentlyJoinedFreelancer.records){
+        if(recentlyJoinedFreelancer && recentlyJoinedFreelancer.records){
             const totalElements = recentlyJoinedFreelancer.records?.length;
-            const root = document.documentElement;
+            const root = document.body;
             const marqueeWidth = window.innerWidth;
             const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
             root.style.setProperty('--total-elements', `${totalElements}`);
             root.style.setProperty('--elements-to-be-appended', `${elementsToBeAppended}`)
         }
-    }, [recentlyJoinedFreelancer.records])
+    }, [recentlyJoinedFreelancer])
 
     const recentlyJoinedUtil = (responseData: any) => {
         const marqueeWidth = window.innerWidth;
-        const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
         const totalElements = responseData.records?.length;
-
-        const root = document.documentElement;
+        const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
 
         let currentIndex = 0;
         const newElements = [...(responseData?.records || [])]
