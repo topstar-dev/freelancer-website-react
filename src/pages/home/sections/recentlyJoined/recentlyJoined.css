@@ -22,6 +22,8 @@
 }
 
 .recently-profile-animation {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     display: flex;
     gap: 18px;
 
