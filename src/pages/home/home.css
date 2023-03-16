@@ -45,8 +45,8 @@
 }
 
 .home-skills-image {
-    height: 550px;
-    width: 550px;
+    height: 504px;
+    width: 504px;
     margin-left: auto;
 }
 
@@ -64,9 +64,9 @@
 }
 
 .home-skills-section.home-skills-section-mobile .home-skills-image {
-    margin-right: auto;
-    width: 100%;
-    height: auto;
+    width: 464px;
+    height: 464px;
+    margin: 48px auto 0;
 }
 
 /* =================== */
