@@ -52,11 +52,13 @@
 
 .home-skills-section.home-skills-section-mobile {
     display: inherit;
+    padding: 0px;
 }
 
 .home-skills-section.home-skills-section-mobile .home-skills-left {
     width: 100%;
-    padding-right: 0;
+    padding-right: 24px;
+    padding-left: 24px;
 }
 
 .home-skills-section.home-skills-section-mobile .home-skills-right {
@@ -64,8 +66,10 @@
 }
 
 .home-skills-section.home-skills-section-mobile .home-skills-image {
-    width: 464px;
-    height: 464px;
+    width: 100%;
+    height: auto;
+    max-width: 456px;
+    max-height: 456px;
     margin: 48px auto 0;
 }
 
