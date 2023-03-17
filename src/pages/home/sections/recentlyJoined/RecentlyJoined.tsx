@@ -65,7 +65,7 @@ const RecentlyJoinedSection = () => {
         }
     }, [recentlyJoinedFreelancer])
 
-    const recentlyJoinedUtil = (responseData: any) => {
+    const recentlyJoinedUtil = useCallback((responseData: any) => {
         const marqueeWidth = window.innerWidth;
         const totalElements = responseData.records?.length;
         const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
@@ -85,7 +85,9 @@ const RecentlyJoinedSection = () => {
             }
         }
         return newElements;
-    }
+    },
+    [],
+  )
 
     const getRecords = () => {
         return recentlyJoinedUtil(recentlyJoinedFreelancer);
