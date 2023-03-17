@@ -11,6 +11,7 @@ html {
   zoom: 0.95;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth
 }
 
 html[lang="en"] {
@@ -30,6 +31,7 @@ body,
 #root {
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth
 }
 
 #root {
