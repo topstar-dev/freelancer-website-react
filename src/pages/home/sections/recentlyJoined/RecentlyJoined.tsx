@@ -65,13 +65,15 @@ const RecentlyJoinedSection = () => {
         }
     }, [recentlyJoinedFreelancer])
 
-    const recentlyJoinedUtil = useCallback((responseData: any) => {
-        const marqueeWidth = window.innerWidth;
-        const totalElements = responseData.records?.length;
+    const recentlyJoinedUtil = useCallback(() => {
+
+        if(recentlyJoinedFreelancer && recentlyJoinedFreelancer.records)
+       { const marqueeWidth = window.innerWidth;
+        const totalElements = recentlyJoinedFreelancer.records?.length;
         const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
 
         let currentIndex = 0;
-        const newElements = [...(responseData?.records || [])]
+        const newElements = [...(recentlyJoinedFreelancer?.records || [])]
         if (elementsToBeAppended > 0) {
             for (let index = 0; index < elementsToBeAppended; index++) {
                 if (currentIndex >= totalElements) {
@@ -84,14 +86,12 @@ const RecentlyJoinedSection = () => {
                 }
             }
         }
-        return newElements;
+            return newElements;
+        }
+        return []
     },
-    [],
+    [recentlyJoinedFreelancer],
   )
-
-    const getRecords = () => {
-        return recentlyJoinedUtil(recentlyJoinedFreelancer);
-    }
 
     return (
         <Box className="home-recently-joind-container">
@@ -101,7 +101,7 @@ const RecentlyJoinedSection = () => {
             <Box className="home-recently-joind-list">
                 <div className="recently-profile-animation">
                     {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
-                        (getRecords()).map((record: any, index: number) => {
+                        (recentlyJoinedUtil()).map((record: any, index: number) => {
                             return (<ButtonBase key={index} className="button-base-profile">
                                 <RecentlyJoinedProfileContainer {...record} index={index} />
                             </ButtonBase>)
