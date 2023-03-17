@@ -14,14 +14,23 @@
 }
 
 .home-recently-joind-list {
-    width: var(--scrolling-list-width);
+    width: 100vw;
     overflow: hidden;
     position: relative;
     backface-visibility: hidden;
     perspective: 1000px;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.home-recently-joind-list::-webkit-scrollbar {
+    display: none;
 }
 
 .recently-profile-animation {
+    width: 100vw;
+    overflow-x: visible;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
