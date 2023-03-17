@@ -9,43 +9,34 @@
 :root {
     --scrolling-list-width: 100%;
     --total-elements: 5;
+    --gap: 18px;
     --element-width: 396px;
     --elements-to-be-appended: calc(var(--scrolling-list-width) / var(--element-width));
 }
 
 .home-recently-joind-list {
-    width: 100vw;
+    width: var(--scrolling-list-width);
     overflow: hidden;
     position: relative;
     backface-visibility: hidden;
     perspective: 1000px;
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.home-recently-joind-list::-webkit-scrollbar {
-    display: none;
 }
 
 .recently-profile-animation {
-    width: 100vw;
-    overflow-x: visible;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     display: flex;
-    gap: 18px;
-
-    animation: scroll-left 22s linear infinite;
+    gap: var(--gap);
+    margin-right: var(--gap);
 }
 
-.home-recently-joind-list .recently-profile-animation:hover {
+/* .home-recently-joind-list .recently-profile-animation:hover {
     -moz-animation-play-state: paused;
     -webkit-animation-play-state: paused;
     animation-play-state: paused;
-}
+} */
 
 @-moz-keyframes scroll-left {
     0% {

@@ -15,6 +15,7 @@ import { profileImageDownload } from "../../../../redux/profile/profileActions";
 import { useNavigate } from "../../../../routes/Router";
 import './recentlyJoined.css';
 import { addRecentlyJoinedPhotoToCache } from "../../../../redux/freelancer/freelancerSlice";
+import Marquee from 'react-fast-marquee';
 
 const RecentlyJoinedSection = () => {
     const { t, i18n } = useTranslation();
@@ -99,6 +100,8 @@ const RecentlyJoinedSection = () => {
                 {t('homepage.recently-joined')}
             </Typography>
             <Box className="home-recently-joind-list">
+                
+            <Marquee speed={80} pauseOnHover={true} gradient={false}>
                 <div className="recently-profile-animation">
                     {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
                         (recentlyJoinedUtil()).map((record: any, index: number) => {
@@ -111,7 +114,7 @@ const RecentlyJoinedSection = () => {
                             return <RecentlyJoinedProfileSkeleton {...record} key={index} />
                         })
                     }
-                </div>
+                </div></Marquee>
             </Box>
         </Box>
     )
