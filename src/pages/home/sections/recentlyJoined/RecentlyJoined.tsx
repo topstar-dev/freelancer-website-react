@@ -56,7 +56,7 @@ const RecentlyJoinedSection = () => {
     }, [i18n, language, recentlyJoinedFreelancer, callApi])
 
     useLayoutEffect(() => {
-        if(recentlyJoinedFreelancer && recentlyJoinedFreelancer.records){
+        if (recentlyJoinedFreelancer && recentlyJoinedFreelancer.records) {
             const totalElements = recentlyJoinedFreelancer.records?.length;
             const root = document.body;
             const marqueeWidth = window.innerWidth;
@@ -66,55 +66,28 @@ const RecentlyJoinedSection = () => {
         }
     }, [recentlyJoinedFreelancer])
 
-    const recentlyJoinedUtil = useCallback(() => {
-
-        if(recentlyJoinedFreelancer && recentlyJoinedFreelancer.records)
-       { const marqueeWidth = window.innerWidth;
-        const totalElements = recentlyJoinedFreelancer.records?.length;
-        const elementsToBeAppended = Math.ceil(marqueeWidth / 396);
-
-        let currentIndex = 0;
-        const newElements = [...(recentlyJoinedFreelancer?.records || [])]
-        if (elementsToBeAppended > 0) {
-            for (let index = 0; index < elementsToBeAppended; index++) {
-                if (currentIndex >= totalElements) {
-                    currentIndex = 0;
-                }
-                const element = newElements[currentIndex];
-                if (element) {
-                    newElements.push(element)
-                    currentIndex++;
-                }
-            }
-        }
-            return newElements;
-        }
-        return []
-    },
-    [recentlyJoinedFreelancer],
-  )
-
     return (
         <Box className="home-recently-joind-container">
             <Typography className="home-section-title" style={{ textAlign: 'center', marginBottom: '95px' }}>
                 {t('homepage.recently-joined')}
             </Typography>
             <Box className="home-recently-joind-list">
-                
-            <Marquee speed={80} pauseOnHover={true} gradient={false}>
-                <div className="recently-profile-animation">
-                    {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
-                        (recentlyJoinedUtil()).map((record: any, index: number) => {
-                            return (<ButtonBase key={index} className="button-base-profile">
-                                <RecentlyJoinedProfileContainer {...record} index={index} />
-                            </ButtonBase>)
-                        })
-                        :
-                        [...new Array(5 + Math.ceil(window.innerWidth / 378))].map((record: any, index: number) => {
-                            return <RecentlyJoinedProfileSkeleton {...record} key={index} />
-                        })
-                    }
-                </div></Marquee>
+
+                <Marquee speed={80} pauseOnHover={true} gradient={false}>
+                    <div className="recently-profile-animation">
+                        {!backdrop && recentlyJoinedFreelancer && recentlyJoinedFreelancer.records ?
+                            recentlyJoinedFreelancer?.records.map((record: any, index: number) => {
+                                return (<ButtonBase key={index} className="button-base-profile">
+                                    <RecentlyJoinedProfileContainer {...record} index={index} />
+                                </ButtonBase>)
+                            })
+                            :
+                            [...new Array(5 + Math.ceil(window.innerWidth / 378))].map((record: any, index: number) => {
+                                return <RecentlyJoinedProfileSkeleton {...record} key={index} />
+                            })
+                        }
+                    </div>
+                </Marquee>
             </Box>
         </Box>
     )

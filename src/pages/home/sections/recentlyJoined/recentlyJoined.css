@@ -23,20 +23,10 @@
 }
 
 .recently-profile-animation {
-    -webkit-transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
     display: flex;
     gap: var(--gap);
     margin-right: var(--gap);
 }
-
-/* .home-recently-joind-list .recently-profile-animation:hover {
-    -moz-animation-play-state: paused;
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
-} */
 
 @-moz-keyframes scroll-left {
     0% {
