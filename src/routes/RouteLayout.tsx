@@ -46,6 +46,7 @@ const CustomRouter = ({ isHeader, protectedRoute }: RoutesInterface) => {
             overflowY: 'auto',
             overflowX: 'hidden',
             position: 'relative',
+            scrollBehavior: "smooth",
             height: `calc(100% - ${getContentHeight()}px)`,
         }}>
             <Box style={{
