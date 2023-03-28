@@ -174,17 +174,19 @@ const RecentlyJoinedProfileContainer = ({
                     {identity_status === 'PASSED' && <VerifiedIcon className="home-recently-joined-user-verified-icon" />}
                 </Box>
                 <Box className="home-recently-joined-basic-details">
-                    <div>
-                        <LocationOnIcon className="profile-location-icon" />
-                        {location}
-                    </div>
-                    <div style={{ marginLeft: -2 }}>
-                        <StarIcon className="profile-star-icon" />
-                        {star_rating?.toPrecision(2)}
-                    </div>
-                    <div>
-                        <DateRangeIcon className="profile-date-icon" />
-                        {dayjs(join_time).format('YYYY-MM-DD')}
+                    <div className="basic-details-wrapper">
+                        <div className="basic-details-box">
+                            <LocationOnIcon className="profile-location-icon" />
+                            {location}
+                        </div>
+                        <div className="basic-details-box" style={{ marginLeft: -2 }}>
+                            <StarIcon className="profile-star-icon" />
+                            {star_rating?.toPrecision(2)}
+                        </div>
+                        <div className="basic-details-box">
+                            <DateRangeIcon className="profile-date-icon" />
+                            {dayjs(join_time).format('YYYY-MM-DD')}
+                        </div>
                     </div>
                 </Box>
             </Box>
