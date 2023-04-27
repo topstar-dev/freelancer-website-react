@@ -12,12 +12,12 @@ export default function Educations({ educations, currentProfile }: any) {
     const getDetailsLabel = (exp: any) => {
         if (exp.end_year) {
             return {
-                first: `${exp.major_name}`,
+                first: `${exp.school_name}`,
                 last: `${exp.start_year} - ${exp.end_year}`
             }
         } else {
             return {
-                first: `${exp.major_name}`,
+                first: `${exp.school_name}`,
                 last: `${exp.start_year}${t('profile.present')}`
             }
         }
@@ -34,7 +34,7 @@ export default function Educations({ educations, currentProfile }: any) {
                     {educations?.slice(0, currentLength)?.map((edu: any, index: number) => (
                         <Box className="profile-educations-item" key={index}>
                             <Box>
-                                <Box className="educations-title">{edu.school_name}</Box>
+                                <Box className="educations-title">{edu.major_name}</Box>
                                 <Box className="educations-details">{getDetailsLabel(edu).first} &#183; {getDetailsLabel(edu).last}</Box>
                             </Box>
                             {edu.description && <Box className="educations-description">{edu.description}</Box>}

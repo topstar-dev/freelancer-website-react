@@ -12,12 +12,12 @@ export default function Experiences({ experiences, currentProfile }: any) {
     const getDetailsLabel = (exp: any) => {
         if (exp.end_year) {
             return {
-                first: `${exp.job_title}`,
+                first: `${exp.company_name}`,
                 last: `${exp.start_year} - ${exp.end_year}`
             }
         } else {
             return {
-                first: `${exp.job_title}`,
+                first: `${exp.company_name}`,
                 last: `${exp.start_year}${t('profile.present')}`
             }
         }
@@ -33,7 +33,7 @@ export default function Experiences({ experiences, currentProfile }: any) {
                     {experiences?.slice(0, currentLength)?.map((exp: any, index: number) => (
                         <Box className="profile-experience-item" key={index}>
                             <Box>
-                                <Box className="experience-title">{exp.company_name}</Box>
+                                <Box className="experience-title">{exp.job_title}</Box>
                                 <Box className="experience-details">{getDetailsLabel(exp).first} &#183; {getDetailsLabel(exp).last}</Box>
                             </Box>
                             {exp.description && <Box className="experience-description">{exp.description}</Box>}
